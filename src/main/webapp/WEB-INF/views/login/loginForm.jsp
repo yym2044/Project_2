@@ -372,7 +372,7 @@
 <script type="text/javascript">
 	
 $("#btnLogin").on("click", function(){
-	
+	alert("asdf");
 	$.ajax({
 		async: true 
 		,cache: false
@@ -383,7 +383,7 @@ $("#btnLogin").on("click", function(){
 			if(response.rt == "successGoIndex") {
 				location.href = "/infra/index/indexView";
 			} else if(response.rt == "successGoMain") {
-				location.href = "/infra/coupang/mainPage";
+				location.href = "/infra/home";
 			} else {
 				alert("로그인 실패");
 			}
@@ -409,7 +409,7 @@ $("#btnLogin").on("click", function(){
     				if(response.rt == "successGoIndex") {
     					location.href = "/infra/index/indexView";
     				} else if(response.rt == "successGoMain") {
-    					location.href = "/infra/coupang/mainPage";
+    					location.href = "/infra/home";
     				} else {
     					alert("로그인 실패");
     				}

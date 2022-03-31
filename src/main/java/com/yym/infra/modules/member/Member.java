@@ -5,6 +5,7 @@ public class Member {
 	private String ifmmSeq;
 	private Integer ifmmAdminNy;
 	private String ifmmId;
+	private String ifmmPwd;
 	private String ifmmName;
 	private String ifmmDesc;
 	
@@ -39,6 +40,12 @@ public class Member {
 	}
 	public void setIfmmDesc(String ifmmDesc) {
 		this.ifmmDesc = ifmmDesc;
+	}
+	public String getIfmmPwd() {
+		return ifmmPwd;
+	}
+	public void setIfmmPwd(String ifmmPwd) {
+		this.ifmmPwd = ifmmPwd;
 	}
 	
 	
