@@ -20,8 +20,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-<link href="${path}/resources/css/style.css" rel="stylesheet" />
-<link href="${path}/resources/css/sidebars.css" rel="stylesheet" />
+<link href="${path}/resources/common/css/style.css" rel="stylesheet" />
+<link href="${path}/resources/common/css/sidebars.css" rel="stylesheet" />
 <link href="${path}/resources/common/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
