@@ -9,7 +9,7 @@
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.category.Category"></resultMap>
 
-	<select id="selectCategory" resultMap="resultMapObj">
+	<select id="selectCategoryForCache" resultMap="resultMapObj">
 		SELECT
 			ifctSeq
 			, ifctName

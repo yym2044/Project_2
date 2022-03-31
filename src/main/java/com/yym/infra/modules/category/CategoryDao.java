@@ -14,8 +14,8 @@ public class CategoryDao {
 //	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.yym.infra.modules.product.ProductMpp";
+	private static String namespace = "com.yym.infra.modules.catogory.CategoryMpp";
 	
-	public List<Category> selectCategory() {return sqlSession.selectList(namespace + ".selectCategory", ""); }
+	public List<Category> selectCategoryForCache() {return sqlSession.selectList(namespace + ".selectCategoryForCache", ""); }
 
 }
