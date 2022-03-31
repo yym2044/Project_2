@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yym.infra.modules.code.CodeMpp"> <!-- 지금 파일 지정 -->
+
+	<resultMap id="resultMapObj"
+		type="com.yym.infra.modules.code.Code"></resultMap> <!-- 결과 객체 저장 -->
+
+	<sql id="selectCommon">
+		FROM 
+			cpcpcp.infrCodeGroup
+		WHERE 1=1
+			
+		<choose>
+			<when test="shIfcgDelNy == 2">AND ifcgDelNy = 1</when>
+			<when test="shIfcgDelNy == 1">AND ifcgDelNy = 0</when>
+		</choose>
+			
+		 <!-- 
+		 <if test="shIfcgDelNy != null and !shIfcgDelNy.equals('')">
+		 	AND ifcgDelNy = #{shIfcgDelNy}
+		 </if>
+		  -->
+		<if test="shIfcgName != null and !shIfcgName.equals('')">
+			AND ifcgName LIKE concat('%',#{shIfcgName},'%')
+		</if>
+		
+		<choose>
+			<when test="shOption == 1">AND ifcgName like concat('%',#{shValue},'%')</when>
+			<when test="shOption == 2">AND ifcgNameEng like concat('%',#{shValue},'%')</when>
+		</choose>
+		
+	</sql>
+
+	<select id="selectList" resultMap="resultMapObj">
+		
+		SELECT 
+			ifcgSeq
+			, ifcgName
+			, ifcgNameEng
+			, ifcgDelNy
+			
+		<include refid="selectCommon"/>
+		limit #{startRnumForMysql}, #{rowNumToShow} 
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT 
+			count(*)
+		
+		<include refid="selectCommon"/>
+		
+	</select>
+	
+	<select id="selectListAll" resultMap="resultMapObj">
+		SELECT
+			ifcgSeq
+			,ifcgName
+		FROM
+			infrCodeGroup
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO infrCodeGroup (
+			ifcgName
+			,ifcgDelNy
+		) VALUES (
+			#{ifcgName}
+			,0
+		)
+		
+		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+		
+	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		
+		SELECT 
+			a.ifcgSeq
+			, a.ifcgName
+			, a.ifcgDelNy
+		FROM 
+			cpcpcp.infrCodeGroup a
+		WHERE 1=1
+			<!-- AND a.ifcgDelNy = 0 -->
+			AND a.ifcgSeq = #{ifcgSeq}
+			
+			<!-- selectOne 인데 한개가 아니잖아-->
+		
+	</select>
+	
+	<select id="selectList2" resultMap="resultMapObj">
+		
+		SELECT 
+			a.ifcgSeq
+			, a.ifcgName
+			, a.ifcgDelNy
+			, b.ifcdSeq
+			, b.ifcdName
+		FROM 
+			cpcpcp.infrCodeGroup a
+		LEFT JOIN
+			cpcpcp.infrCode b on b.ifcgSeq = a.ifcgSeq
+		WHERE 1=1
+			<!-- AND a.ifcgDelNy = 0 -->
+			AND a.ifcgSeq = #{ifcgSeq}
+		
+	</select>
+	
+	<update id="update">
+		
+		UPDATE 
+			cpcpcp.infrCodeGroup 
+		SET
+			ifcgName = #{ifcgName}
+			,ifcgDelNy = #{ifcgDelNy}
+		WHERE 1=1
+			AND ifcgSeq = #{ifcgSeq}
+	
+	</update>
+	
+	<delete id="delete">
+	
+	DELETE
+	FROM
+		infrCodeGroup
+	WHERE 1=1
+		AND ifcgSeq = #{ifcgSeq}
+		
+	</delete>
+	
+	<update id="updateDelete">
+	UPDATE
+		infrCodeGroup
+	SET
+		ifcgDelNy = 1
+	WHERE 1=1
+		AND ifcgSeq = #{ifcgSeq}
+		
+	</update>
+	
+	<!-- 코드 -->
+	<sql id="selectCommon_code">
+		FROM 
+			cpcpcp.infrCode a
+		WHERE 1=1
+		<if test="shIfcgSeq != null and !shIfcgSeq.equals('')">
+			AND ifcgSeq = #{shIfcgSeq}
+		</if>
+		
+		ORDER BY
+			a.ifcgSeq
+			, a.ifcdOrder
+	</sql>
+	
+	<select id="selectOneCount_code" resultType="Integer">
+		
+		SELECT
+			count(*)
+		<include refid="selectCommon_code"/>
+	
+	</select>
+	
+	<select id="selectList_code" resultMap="resultMapObj">
+		
+		SELECT 
+			a.ifcgSeq
+			, a.ifcdSeq		<!-- 리스트 화면에 뿌리진 않음 -->
+			, a.ifcdOrder
+			, a.ifcdName
+			, a.ifcdDelNy
+		<include refid="selectCommon_code"/>
+		LIMIT #{startRnumForMysql}, #{rowNumToShow}
+			
+	</select>
+	
+	<insert id="insert_code">
+		INSERT INTO
+		infrCode (
+			ifcgSeq
+			,ifcdOrder
+			,ifcdName
+			,ifcdDelNy
+		)
+		VALUES (
+			#{ifcgSeq}
+			,#{ifcdOrder}
+			,#{ifcdName}
+			,0
+		)
+		
+		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+		
+	</insert>
+	
+	<select id="selectOne_code" resultMap="resultMapObj">
+		
+		SELECT 
+			a.ifcgSeq
+			, a.ifcdSeq
+			, a.ifcdOrder
+			, a.ifcdName
+			, a.ifcdDelNy
+		FROM 
+			cpcpcp.infrCode a
+		WHERE 1=1
+			<!-- AND a.ifcgDelNy = 0 -->
+			AND a.ifcdSeq = #{ifcdSeq}
+			
+			<!-- selectOne 인데 한개가 아니잖아-->
+		
+	</select>
+	
+	<update id="update_code">
+	
+		UPDATE
+			infrCode
+		SET
+			ifcdOrder = #{ifcdOrder}
+			,ifcdName = #{ifcdName}
+		WHERE
+			1=1
+			AND ifcdSeq = #{ifcdSeq}
+			
+	</update>
+	
+	<delete id="delete_code">
+		
+		DELETE FROM
+			infrCode
+		WHERE
+			1=1
+			AND ifcdSeq = #{ifcdSeq}
+	
+	</delete>
+	
+	<select id="selectListForCache" resultMap="resultMapObj">
+		
+		SELECT 
+			ifcdSeq
+			, ifcdName
+			, ifcgSeq
+		FROM 
+			infrCode
+		WHERE 1=1
+			AND ifcdDelNy = 0
+			AND ifcdUseNy = 1
+		ORDER BY
+			ifcdOrder
+		
+	</select>
+	
+</mapper>
