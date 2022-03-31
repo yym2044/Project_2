@@ -8,7 +8,7 @@
 
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.code.Code"></resultMap> <!-- 결과 객체 저장 -->
-
+ 
 	<sql id="selectCommon">
 		FROM 
 			cpcpcp.infrCodeGroup

@@ -7,7 +7,7 @@ public interface CodeService {
 	public int selectOneCount(CodeVo vo) throws Exception;
 	public List<Code> selectList(CodeVo vo) throws Exception; 
 	public List<Code> selectListAll() throws Exception;
-	
+	 
 	public int insert(Code dto) throws Exception;
 	public Code selectOne(CodeVo vo) throws Exception;
 	
