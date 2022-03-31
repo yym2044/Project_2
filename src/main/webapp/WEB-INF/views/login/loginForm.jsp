@@ -20,10 +20,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 <!-- codepen -->
-<link rel="stylesheet" href="${path}/resources/css/style.css">
-<link rel="stylesheet" href="${path}/resources/css/codepen.css">
+<link rel="stylesheet" href="${path}/resources/common/css/style.css">
+<link rel="stylesheet" href="${path}/resources/common/css/codepen.css">
 
-<script src="${path}/resources/js/codepen.js"></script>
+<script src="${path}/resources/common/js/codepen.js"></script>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
