@@ -8,7 +8,23 @@
 
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.product.Product"></resultMap>
-		
-		
-	
+
+	<select id="selectCategory" resultMap="resultMapObj">
+		SELECT
+			ifctSeq
+			, ifctName
+			, ifctParents
+			, ifctDepth
+            , ifctOrder
+		FROM
+			infrCategory
+		WHERE 1 = 1
+			AND ifctUseNy = 1
+			AND ifctDelNy = 0
+		ORDER BY
+			ifctDepth
+            , ifctParents
+			, ifctOrder
+	</select>
+
 </mapper>
