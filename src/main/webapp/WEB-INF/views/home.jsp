@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${path}/resources/common/css/styleCoupang.css?after">
 
 <style type="text/css">
-
+	
 </style>
 
 </head>
@@ -31,7 +31,7 @@
 			<div class="col">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link link-dark">즐겨찾기</a></li>
-					<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle" href="#" data-bs-toggle="dropdown">입점신청</a>
+					<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">입점신청</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="#">오픈마켓</a></li>
 							<li><a class="dropdown-item" href="#">여행·티켓</a></li>
@@ -63,8 +63,7 @@
 
 			<div class="col-1 offset-2 justify-content-end">
 				<ul class="nav">
-					<li class="nav-item dropdown">
-						<a class="nav-link link-light dropdown-toggle p-0" href="#">
+					<li class="nav-item dropdown"><a class="nav-link link-light dropdown-toggle p-0" href="#">
 							<!-- data-bs-toggle="dropdown" -->
 							<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
 								<i class="bi bi-list fs-2"></i>
@@ -78,8 +77,7 @@
 							<li><a class="dropdown-item" href="#">주방용품</a></li>
 							<li><a class="dropdown-item" href="#">생활용품</a></li>
 							<li><a class="dropdown-item" href="#">문구/취미</a></li>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 
 			</div>

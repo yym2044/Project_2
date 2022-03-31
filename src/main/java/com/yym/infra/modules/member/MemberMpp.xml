@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yym.infra.modules.member.MemberMpp">
+
+	<resultMap id="resultMapObj"
+		type="com.yym.infra.modules.member.Member"></resultMap>
+		
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			ifmmSeq
+			, ifmmAdminNy
+			, ifmmId
+			, ifmmName
+			, ifmmDesc
+		FROM
+			infrMember
+		WHERE 1=1
+			AND ifmmId = #{ifmmId}
+			AND ifmmPwd = #{ifmmPwd}
+	</select>
+	
+</mapper>
