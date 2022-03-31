@@ -14,7 +14,7 @@
 			cpcpcp.infrCodeGroup
 		WHERE 1=1
 			
-		<choose>
+		<choose> 
 			<when test="shIfcgDelNy == 2">AND ifcgDelNy = 1</when>
 			<when test="shIfcgDelNy == 1">AND ifcgDelNy = 0</when>
 		</choose>

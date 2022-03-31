@@ -8,7 +8,7 @@ public class CodeVo {
 	
 	private String shIfcgName;
 	private String shIfcgDelNy;
-	 
+	  
 	private Integer shIfcgSeq;
 	
 	private String shOption;

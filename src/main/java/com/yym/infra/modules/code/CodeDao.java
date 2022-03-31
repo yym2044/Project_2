@@ -13,7 +13,7 @@ public class CodeDao {
 	@Inject
 //	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
-	 
+	  
 	private static String namespace = "com.yym.infra.modules.code.CodeMpp";
 
 	public int selectOneCount(CodeVo vo) {return sqlSession.selectOne(namespace + ".selectOneCount", vo);}
