@@ -1,0 +1,56 @@
+ul.nav li.dropdown:hover>ul.dropdown-menu {
+	display: block;
+	margin: 0;
+}
+
+footer div div a {
+	text-decoration: none;
+	color: black;
+	padding: 5px;
+}
+
+.footerNav {
+	font-size: small;
+	padding: 8px;
+}
+
+.nav-item {
+	font-size: small;
+}
+
+.randomProduct, .todayHot {
+	width: 100%;
+}
+
+.productLink {
+	text-decoration: none;
+}
+
+.productLink:hover {
+	text-decoration: underline;
+}
+
+.btnText {
+	font-size: small;
+}
+
+.productName {
+	font-size: large;
+	font-weight: bold;
+}
+
+.productPrice {
+	font-size: x-large;
+	font-weight: bold;
+	color : hotpink;
+}
+
+.arrivalDate {
+	font-size: large;
+	font-weight: bold;
+	color : green;
+}
+
+.productDetails {
+	font-size: x-small;
+}

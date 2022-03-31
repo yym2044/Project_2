@@ -15,8 +15,8 @@
 <title>쿠팡!</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-<link href="${path}/resources/css/style.css" rel="stylesheet" />
-<link rel="stylesheet" href="${path}/resources/css/styleCoupang.css">
+<link href="${path}/resources/common/css/style.css?after" rel="stylesheet" />
+<link rel="stylesheet" href="${path}/resources/common/css/styleCoupang.css?after">
 
 <style type="text/css">
 
@@ -45,7 +45,7 @@
 					<li class="nav-item">
 						<c:choose>
 							<c:when test="${empty sessSeq}">
-								<a class="nav-link link-dark" href="/infra/member/loginForm">로그인</a>
+								<a class="nav-link link-dark" href="/infra/login/loginForm">로그인</a>
 							</c:when>
 							<c:otherwise>
 								<a class="nav-link link-dark" href="javascript:logOut()">로그아웃</a>
@@ -63,7 +63,8 @@
 
 			<div class="col-1 offset-2 justify-content-end">
 				<ul class="nav">
-					<li class="nav-item dropdown"><a class="nav-link link-light dropdown-toggle p-0" href="#">
+					<li class="nav-item dropdown">
+						<a class="nav-link link-light dropdown-toggle p-0" href="#">
 							<!-- data-bs-toggle="dropdown" -->
 							<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
 								<i class="bi bi-list fs-2"></i>
@@ -77,7 +78,8 @@
 							<li><a class="dropdown-item" href="#">주방용품</a></li>
 							<li><a class="dropdown-item" href="#">생활용품</a></li>
 							<li><a class="dropdown-item" href="#">문구/취미</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 
 			</div>
@@ -86,7 +88,7 @@
 
 				<div class="row">
 					<div class="col-2">
-						<a href="./mainPage.html" title="COUPANG"><img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;"></a>
+						<a href="home" title="COUPANG"><img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;"></a>
 					</div>
 					<div class="col-6">
 						<div class="input-group">
@@ -429,7 +431,7 @@
 		<div class="row p-5">
 			<div class="col-2 offset-1">
 				<h5>
-					<a href="/" title="COUPANG" style="text-decoration: none; color: gray">COUPANG</a>
+					<a href="/infra/home" title="COUPANG" style="text-decoration: none; color: gray">COUPANG</a>
 				</h5>
 			</div>
 			<div class="col-3">
@@ -491,13 +493,13 @@
 				</div>
 				<div class="col-3">
 					<a href="https://www.facebook.com/Coupang.korea" target="_blank" class="text-light" title="쿠팡 페이스북">
-						<img src="../../images/xdmin/sns_icon/icon_round_facebook_48.png" style="width: 32px;">
+						<img src="/infra/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="width: 32px;">
 					</a>
 					<a href="https://news.coupang.com/" target="_blank" class="text-light" title="쿠팡 뉴스룸">
-						<img src="../../images/xdmin/sns_icon/icon_round_naver_48.png" style="width: 32px;">
+						<img src="/infra/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="width: 32px;">
 					</a>
 					<a href="https://www.instagram.com/coupang" target="_blank" class="text-light" title="쿠팡 인스타그램">
-						<img src="../../images/xdmin/sns_icon/icon_round_instgram_48.png" style="width: 32px;">
+						<img src="/infra/resources/images/xdmin/sns_icon/icon_round_instgram_48.png" style="width: 32px;">
 					</a>
 				</div>
 			</div>

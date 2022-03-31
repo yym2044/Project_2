@@ -13,4 +13,10 @@ public class HomeController {
 		return "/home";
 	}
 	
+	@RequestMapping(value = "/login/loginForm")
+	public String loginForm() {
+		
+		return "/login/loginForm";
+	}
+	
 }
