@@ -15,7 +15,7 @@ public class Code {
 	private Integer ifcdDelNy;
 	private Integer ifcdOrder;
 	
-	
+	 
 //	for cache
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
