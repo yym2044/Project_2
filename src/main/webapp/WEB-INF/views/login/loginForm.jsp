@@ -314,21 +314,21 @@
 						<div class="row align-items-center mb-1">
 							<div class="col-6 fw-light">아직 회원이 아니세요? 회원가입을 하시면 보다 많은 혜택이 있습니다.</div>
 							<div class="col-6 text-end">
-								<a href="./regForm1.html" class="btn btn-outline-dark" style="width: 125px;">회원가입하기</a>
+								<a href="/infra/login/regForm1" class="btn btn-outline-dark" style="width: 125px;">회원가입하기</a>
 							</div>
 						</div>
 
 						<div class="row align-items-center mb-1">
 							<div class="col-6 fw-light">아이디가 기억나지 않으세요? '아이디 찾기'를 해주세요.</div>
 							<div class="col-6 text-end">
-								<a href="./loginFindId.html" class="btn btn-outline-dark" style="width: 125px;">아이디찾기</a>
+								<a href="/infra/login/loginFindId" class="btn btn-outline-dark" style="width: 125px;">아이디찾기</a>
 							</div>
 						</div>
 
 						<div class="row align-items-center">
 							<div class="col-6 fw-light">비밀번호가 기억나지 않으세요? '비밀번호 찾기'를 해주세요.</div>
 							<div class="col-6 text-end">
-								<a href="./loginFindPwd.html" class="btn btn-outline-dark" style="width: 125px;">비밀번호찾기</a>
+								<a href="/infra/login/loginFindPwd" class="btn btn-outline-dark" style="width: 125px;">비밀번호찾기</a>
 							</div>
 						</div>
 
@@ -372,7 +372,6 @@
 <script type="text/javascript">
 	
 $("#btnLogin").on("click", function(){
-	alert("asdf");
 	$.ajax({
 		async: true 
 		,cache: false
@@ -380,9 +379,7 @@ $("#btnLogin").on("click", function(){
 		,url: "/infra/member/loginProc"
 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
 		,success: function(response) {
-			if(response.rt == "successGoIndex") {
-				location.href = "/infra/index/indexView";
-			} else if(response.rt == "successGoMain") {
+			if(response.rt == "success") {
 				location.href = "/infra/home";
 			} else {
 				alert("로그인 실패");
@@ -406,9 +403,7 @@ $("#btnLogin").on("click", function(){
     			,url: "/infra/member/loginProc"
     			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
     			,success: function(response) {
-    				if(response.rt == "successGoIndex") {
-    					location.href = "/infra/index/indexView";
-    				} else if(response.rt == "successGoMain") {
+    				if(response.rt == "success") {
     					location.href = "/infra/home";
     				} else {
     					alert("로그인 실패");

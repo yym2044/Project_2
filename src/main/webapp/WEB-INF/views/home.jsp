@@ -52,7 +52,7 @@
 							</c:otherwise>
 						</c:choose>
 					</li>
-					<li class="nav-item"><a class="nav-link link-dark" href="/infra/member/regForm1">회원가입</a></li>
+					<li class="nav-item"><a class="nav-link link-dark" href="/infra/login/regForm1">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link link-dark" href="#">고객센터</a></li>
 				</ul>
 			</div>
@@ -169,29 +169,29 @@
 			</div>
 
 			<div class="row border p-2">
-				<div class="col-6 ps-0">
-					<button class="btn p-0">
+				<div class="col-6 ps-0 mb-1">
+					<button class="todayHot btn p-0">
 						<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot1.png">
 					</button>
 				</div>
-				<div class="col-6 ps-0">
-					<button class="btn p-0">
+				<div class="col-6 ps-0 mb-1">
+					<button class="todayHot btn p-0">
 						<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot2.png">
 					</button>
 				</div>
 
 				<div class="col-3 ps-0">
-					<button class="btn p-0">
+					<button class="todayHot btn p-0">
 						<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot3.png">
 					</button>
 				</div>
 				<div class="col-3 ps-0">
-					<button class="btn p-0">
+					<button class="todayHot btn p-0">
 						<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot4.png">
 					</button>
 				</div>
 				<div class="col-6 ps-0">
-					<button class="btn p-0">
+					<button class="todayHot btn p-0">
 						<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot5.png">
 					</button>
 				</div>
@@ -521,7 +521,7 @@
 				,url: "/infra/member/logOutProc"
 				,success: function(response) {
 					if(response.rt == "success") {
-						location.href = "/infra/coupang/mainPage";
+						location.href = "/infra/home";
 					} else {
 						alert("로그아웃 실패");
 					}
@@ -530,8 +530,6 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
-			
-			alert("로그아웃 완료");
 			
 		}
 	

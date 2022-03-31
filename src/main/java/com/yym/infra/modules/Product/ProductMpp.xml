@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yym.infra.modules.product.ProductMpp">
+
+	<resultMap id="resultMapObj"
+		type="com.yym.infra.modules.product.Product"></resultMap>
+		
+		<select id="selectListForCache" resultMap="resultMapObj">
+		
+		SELECT 
+			ifcdSeq
+			, ifcdName
+			, ifcgSeq
+		FROM 
+			infrCode
+		WHERE 1=1
+			AND ifcdDelNy = 0
+			AND ifcdUseNy = 1
+		ORDER BY
+			ifcdOrder
+		
+		</select>
+	
+</mapper>
