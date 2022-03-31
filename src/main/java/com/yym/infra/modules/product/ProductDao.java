@@ -1,7 +1,5 @@
 package com.yym.infra.modules.product;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +14,5 @@ public class ProductDao {
 	
 	private static String namespace = "com.yym.infra.modules.product.ProductMpp";
 	
-	public List<Product> selectCategory() {return sqlSession.selectList(namespace + ".selectCategory", ""); }
 
 }
