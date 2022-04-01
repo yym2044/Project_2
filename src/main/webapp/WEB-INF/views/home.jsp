@@ -35,22 +35,9 @@ p {
 	margin: .6rem 0;
 }
 
-a:link, a:visited {
-	color: #008CCD;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #00BCED;
-}
-
-a:action {
-	color: #008CCD;
-}
 /*******************************/
 /********* USEFUL PART *********/
 /*******************************/
-
 #topBar {
 	position: relative;
 	z-index: 1000;
@@ -120,41 +107,43 @@ ul.subMenu ul.subMenu {
 
 	<div class="container-fluid">
 
-
+<%-- 
 		<!--Content-->
 		<nav id="topBar" style="font-size: small;">
 			<ul>
 				<li>
 					<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
-								<i class="bi bi-list fs-2"></i>
-								<div class="btnText">카테고리</div>
-							</button>
+						<i class="bi bi-list fs-2"></i>
+						<div class="btnText">카테고리</div>
+					</button>
 					<ul class="subMenu p-0">
 						<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
-							<li>
-								<a><c:out value="${item1.ifctName }"/></a>
+							<li><a>
+									<c:out value="${item1.ifctName }" />
+								</a>
 								<ul class="subMenu p-0">
 									<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 										<c:if test="${item1.ifctSeq eq item2.ifctParents}">
-											<li>
-												<a><c:out value="${item2.ifctName}"/></a>
+											<li><a>
+													<c:out value="${item2.ifctName}" />
+												</a>
 												<ul class="subMenu p-0">
 													<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
 														<c:if test="${item2.ifctSeq eq item3.ifctParents}">
-															<li><a><c:out value="${item3.ifctName}"/></a></li>
+															<li><a>
+																	<c:out value="${item3.ifctName}" />
+																</a></li>
 														</c:if>
 													</c:forEach>
-												</ul>
-											</li>
+												</ul></li>
 										</c:if>
 									</c:forEach>
-								</ul>
-							</li>
+								</ul></li>
 						</c:forEach>
 					</ul>
 				</li>
 			</ul>
-		</nav>
+		</nav> --%>
 		<!-- <nav id="topBar">
 			<ul>
 				<li><a href="#">
@@ -226,40 +215,42 @@ ul.subMenu ul.subMenu {
 
 		<div class="row border-bottom align-items-center">
 
-			<div class="col-1 offset-2 justify-content-end">
-				<div id="topBar" style="font-size: small;">
-			<ul>
-				<li>
-					<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
+			<div class="col-2 offset-1" style="padding-left: 100px;">
+				<nav id="topBar" style="font-size: small;">
+					<ul>
+						<li>
+							<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
 								<i class="bi bi-list fs-2"></i>
 								<div class="btnText">카테고리</div>
 							</button>
-					<ul class="subMenu p-0">
-						<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
-							<li>
-								<a><c:out value="${item1.ifctName }"/></a>
-								<ul class="subMenu p-0">
-									<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
-										<c:if test="${item1.ifctSeq eq item2.ifctParents}">
-											<li>
-												<a><c:out value="${item2.ifctName}"/></a>
-												<ul class="subMenu p-0">
-													<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
-														<c:if test="${item2.ifctSeq eq item3.ifctParents}">
-															<li><a><c:out value="${item3.ifctName}"/></a></li>
-														</c:if>
-													</c:forEach>
-												</ul>
-											</li>
-										</c:if>
-									</c:forEach>
-								</ul>
-							</li>
-						</c:forEach>
+							<ul class="subMenu p-0">
+								<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
+									<li><a>
+											<c:out value="${item1.ifctName }" />
+										</a>
+										<ul class="subMenu p-0">
+											<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+												<c:if test="${item1.ifctSeq eq item2.ifctParents}">
+													<li><a>
+															<c:out value="${item2.ifctName}" />
+														</a>
+														<ul class="subMenu p-0">
+															<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
+																<c:if test="${item2.ifctSeq eq item3.ifctParents}">
+																	<li><a>
+																			<c:out value="${item3.ifctName}" />
+																		</a></li>
+																</c:if>
+															</c:forEach>
+														</ul></li>
+												</c:if>
+											</c:forEach>
+										</ul></li>
+								</c:forEach>
+							</ul>
+						</li>
 					</ul>
-				</li>
-			</ul>
-		</div>
+				</nav>
 
 			</div>
 
