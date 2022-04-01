@@ -16,6 +16,7 @@
 			, ifctDepth
             , ifctOrder
             , ifctUrl
+            , shCategoryNy
 		FROM
 			infrCategory
 		WHERE 1 = 1
