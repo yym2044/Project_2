@@ -14,9 +14,7 @@ public class MemberDao {
 	
 	private static String namespace = "com.yym.infra.modules.member.MemberMpp";
 
-	
-	
 	public Member selectOneLogin(Member dto) {return sqlSession.selectOne(namespace + ".selectOneLogin", dto); }
-
+	
 	
 }

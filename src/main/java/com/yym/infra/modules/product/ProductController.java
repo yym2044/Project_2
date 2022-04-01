@@ -12,7 +12,7 @@ public class ProductController {
 	ProductServiceImpl service;
 	
 	@RequestMapping(value = "/product/productView")
-	public String productView() throws Exception {
+	public String productView(ProductVo vo) throws Exception {
 		
 		
 		return "product/productView";

@@ -8,7 +8,34 @@
 
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.product.Product"></resultMap>
-
+	
+	<select id="selectList">
+		
+		SELECT
+			trpdSeq
+			, trpdName
+			, trpdPrice
+			, trpdDiscountPercent
+			, trpdDeliveryFee
+			, trpdStarRating
+		FROM 
+			tradProduct
+		WHERE 1=1
+			AND trpdDelNy = 0
+			AND trpdUseNy = 1
+		<choose>
+			<when test="shCategory == 0">
+				AND (trpdName like concat('%',#{shVar},'%') OR trpdTag like concat('%',#{shVar},'%')
+			</when> 
+			<otherwise>
+				AND (trpdName like concat('%',#{shVar},'%') OR trpdTag like concat('%',#{shVar},'%'))
+				AND trpdCategoryCd2 = ${shCategory}
+			</otherwise>
+				
+		</choose>
+			
+	
+	</select>
 	
 
 </mapper>

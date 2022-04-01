@@ -11,6 +11,7 @@ public class Category {
 	private String ifctDepth;
 	private String ifctOrder;
 	private String ifctUrl;
+	private Integer shCategoryNy;
 	
 	//for cache
 	public static List<Category> cachedCategoryArrayList = new ArrayList<Category>();
@@ -64,6 +65,14 @@ public class Category {
 	
 	public void setIfctUrl(String ifctUrl) {
 		this.ifctUrl = ifctUrl;
+	}
+
+	public Integer getShCategoryNy() {
+		return shCategoryNy;
+	}
+
+	public void setShCategoryNy(Integer shCategoryNy) {
+		this.shCategoryNy = shCategoryNy;
 	}
 	
 	

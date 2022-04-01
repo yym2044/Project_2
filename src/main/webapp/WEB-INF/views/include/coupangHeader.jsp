@@ -104,22 +104,24 @@
 
 				<div class="row">
 					<div class="col-2">
-						<a href="home" title="COUPANG">
+						<a href="/infra/home" title="COUPANG">
 							<img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;">
 						</a>
 					</div>
 					<div class="col-6">
 						<div class="input-group">
 							<div class="col-3">
-								<select class="form-select">
-									<option selected>카테고리</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+								<select id="shCategory" name="shCategory" class="form-select">
+									<option value="0" selected>전체</option>
+										<c:forEach items="${listCategoryDepth2}" var="item" varStatus="status">
+											<c:if test="${item.shCategoryNy eq 1}">
+												<option value="<c:out value="${item.ifctSeq}"/>"><c:out value="${item.ifctName}"/></option>
+											</c:if>
+										</c:forEach>
 								</select>
 							</div>
-							<input class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
-							<button class="btn btn-outline-secondary" type="button">
+							<input id="shBar" name="shBar" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
+							<button id="btnSearch" name="btnSearch" class="btn btn-outline-secondary" type="button">
 								<i class="bi bi-search"></i>
 							</button>
 						</div>
