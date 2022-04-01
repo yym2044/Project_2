@@ -7,6 +7,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
+<jsp:useBean id="CategoryServiceImpl" class="com.yym.infra.modules.category.CategoryServiceImpl"/>	<!-- CategoryServiceImpl 클래스 바로 사용 -->
+
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
@@ -24,6 +26,8 @@
 
 </head>
 <body>
+
+	<c:set var="listCategory" value="${CategoryServiceImpl.selectCategoryCachedCode('1')}"/>	<!-- listCategory에 값을 담음 -->
 
 	<div class="container-fluid">
 		
@@ -71,12 +75,27 @@
 							</button>
 						</a>
 						<ul class="dropdown-menu">
+							<c:forEach items="${listCategory}" var="item" varStatus="status">
+								<li>
+									<c:choose>
+										<c:when test="${not empty item.ifctUrl}">
+											<a class="dropdown-item" href="javascript:goCategory(<c:out value="${item.ifctSeq}"/>)"><c:out value="${item.ifctName}"/></a>
+										</c:when>
+										<c:otherwise>
+											<a class="dropdown-item"><c:out value="${item.ifctName}"/></a>
+										</c:otherwise>
+									</c:choose>
+								</li>
+							</c:forEach>
+							
+							<!-- 
 							<li><a class="dropdown-item" href="#">패션의류/잡화</a></li>
 							<li><a class="dropdown-item" href="#">뷰티</a></li>
 							<li><a class="dropdown-item" href="#">식품</a></li>
 							<li><a class="dropdown-item" href="#">주방용품</a></li>
 							<li><a class="dropdown-item" href="#">생활용품</a></li>
 							<li><a class="dropdown-item" href="#">문구/취미</a></li>
+							 -->
 						</ul></li>
 				</ul>
 

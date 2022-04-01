@@ -6,8 +6,7 @@
 
 <mapper namespace="com.yym.infra.modules.category.CategoryMpp">
 
-	<resultMap id="resultMapObj"
-		type="com.yym.infra.modules.category.Category"></resultMap>
+	<resultMap id="resultMapObj" type="com.yym.infra.modules.category.Category"></resultMap>
 
 	<select id="selectCategoryForCache" resultMap="resultMapObj">
 		SELECT
@@ -16,6 +15,7 @@
 			, ifctParents
 			, ifctDepth
             , ifctOrder
+            , ifctUrl
 		FROM
 			infrCategory
 		WHERE 1 = 1
