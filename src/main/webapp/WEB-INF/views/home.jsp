@@ -22,6 +22,106 @@
 <link rel="stylesheet" href="${path}/resources/common/css/styleCoupang.css?after">
 
 <style type="text/css">
+
+/*** Base Styling (Scroll for the useful part) ***/
+/* Layout */
+html, body, div, h1, h2, p, a, ul, li, nav {
+	margin: 0;
+	padding: 0;
+	border: none;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* Typography */
+body {
+	font-size: 100%;
+}
+
+p {
+	font-weight: 400;
+	margin: .6rem 0;
+}
+
+a:link, a:visited {
+	color: #008CCD;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #00BCED;
+}
+
+a:action {
+	color: #008CCD;
+}
+/*******************************/
+/********* USEFUL PART *********/
+/*******************************/
+
+#topBar {
+	position: relative;
+	padding: 0 15px;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background: #d63932;
+	height: 3.6rem;
+	font-size: 1.2rem;
+	box-shadow: 0 0px 10px rgba(0, 0, 0, .25);
+}
+
+#topBar ul li {
+	position: relative;
+	display: inline-block;
+}
+
+#topBar>ul>li {
+	float: left;
+}
+
+#topBar a {
+	display: inline-block;
+	padding: 1.2rem 1.8rem;
+	line-height: 1.2rem;
+	color: #FFF;
+	transition: .2s ease-out;
+}
+
+#topBar a:hover, li.active {
+	background: #c6302d;
+}
+
+ul.subMenu {
+	box-sizing: border-box;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 170%;
+}
+
+ul.subMenu li {
+	width: 100%;
+	background: #3d3d3b;
+}
+
+#topBar ul.subMenu li a {
+	width: 100%;
+	padding: 1rem 1rem;
+	border-bottom: 1px solid rgba(0, 0, 0, .05);
+	border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+#topBar ul.subMenu li a:hover, #topBar ul.subMenu li.active>a {
+	background: #2f2f2d;
+	padding-left: 1.1rem;
+}
+
+ul.subMenu ul.subMenu {
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 100%;
+}
 </style>
 
 </head>
@@ -33,6 +133,77 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
+
+
+		<!--Content-->
+		<nav id="topBar">
+			<ul>
+				<li>
+					<a>카테고리</a>
+					<ul class="subMenu">
+						<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
+							<li>
+								<a><c:out value="${item1.ifctName }"/></a>
+								<ul class="subMenu">
+									<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+										<c:if test="${item1.ifctSeq eq item2.ifctParents}">
+											<li>
+												<a><c:out value="${item2.ifctName}"/></a>
+												<ul class="subMenu">
+													<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
+														<c:if test="${item2.ifctSeq eq item3.ifctParents}">
+															<li><a><c:out value="${item3.ifctName}"/></a></li>
+														</c:if>
+													</c:forEach>
+												</ul>
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+						</c:forEach>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!-- <nav id="topBar">
+			<ul>
+				<li><a href="#">
+						카테고리 <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="subMenu">
+						<li><a href="#">Item 1.1</a></li>
+						<li><a href="#">
+								Item 1.2 &nbsp;<i class="fa fa-angle-right"></i>
+							</a>
+							<ul class="subMenu">
+								<li><a href="#">Item 1.2.1 with a veeeeeeeery looooong name</a></li>
+								<li><a href="#">
+										Item 1.2.2 &nbsp;<i class="fa fa-angle-right"></i>
+									</a>
+									<ul class="subMenu">
+										<li><a href="#">Item 1.2.2.1</a></li>
+										<li><a href="#">
+												Item 1.2.2.2 &nbsp;<i class="fa fa-angle-right"></i>
+											</a>
+											<ul class="subMenu">
+												<li><a href="#">Item 1.2.2.2.1</a></li>
+												<li><a href="#">Item 1.2.2.2.2</a></li>
+												<li><a href="#">Item 1.2.2.2.3</a></li>
+											</ul></li>
+									</ul></li>
+							</ul>
+						</li>
+						<li><a href="#">Item 1.3</a></li>
+						<li><a href="#">Item 1.4</a></li>
+					</ul></li>
+			</ul>
+		</nav> -->
+
+
+
+
+
 
 		<div class="row bg-light">
 			<div class="col">
@@ -99,8 +270,10 @@
 																	<ul class="dropdown-menu" id="dropdown2">
 																		<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
 																			<c:if test="${item2.ifctSeq eq item3.ifctParents}">
-																				<li><a class="dropdown-item"><c:out value="${item3.ifctName}"/></a></li>
-																			</c:if>																		
+																				<li><a class="dropdown-item">
+																						<c:out value="${item3.ifctName}" />
+																					</a></li>
+																			</c:if>
 																		</c:forEach>
 																	</ul>
 																</div>
@@ -555,6 +728,26 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+	<script type="text/javascript">
+		//Hide SubMenus.
+		$(".subMenu").hide();
+
+		// Shows SubMenu when it's parent is hovered.
+		$(".subMenu").parent("li").hover(function() {
+			$(this).find(">.subMenu").not(':animated').slideDown(300);
+			$(this).toggleClass("active ");
+		});
+
+		// Hides SubMenu when mouse leaves the zone.
+		$(".subMenu").parent("li").mouseleave(function() {
+			$(this).find(">.subMenu").slideUp(150);
+		});
+
+		// Prevents scroll to top when clicking on <a href="#"> 
+		$("a[href=\"#\"]").click(function() {
+			return false;
+		});
+	</script>
 
 	<script type="text/javascript">
 		logOut = function() {
