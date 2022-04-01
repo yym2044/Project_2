@@ -25,7 +25,7 @@ public class CategoryServiceImpl {
 		
 	}
 	
-	public static List<Category> selectCategoryCachedCode(String ifctParents) throws Exception {
+	public static List<Category> selectCategoryWithParentsCachedCode(String ifctParents) throws Exception {
 		
 		List<Category> rt = new ArrayList<Category>();
 		
@@ -39,6 +39,21 @@ public class CategoryServiceImpl {
 		
 		return rt;
 		
+	}
+	
+	public static List<Category> selectCategoryWithDepthCachedCode(String ifctDepth) throws Exception {
+		
+		List<Category> rt = new ArrayList<Category>();
+		
+		for(Category categoryRow : Category.cachedCategoryArrayList) {
+			if(categoryRow.getIfctDepth().equals(ifctDepth)) {
+				rt.add(categoryRow);
+			} else {
+				// by pass
+			}
+		}
+		
+		return rt;
 	}
 	
 	public static void clear() throws Exception {
