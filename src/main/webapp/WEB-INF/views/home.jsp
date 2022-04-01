@@ -27,7 +27,8 @@
 </head>
 <body>
 
-	<c:set var="listCategory" value="${CategoryServiceImpl.selectCategoryCachedCode('1')}"/>	<!-- listCategory에 값을 담음 -->
+	<c:set var="listCategoryParents1" value="${CategoryServiceImpl.selectCategoryWithParentsCachedCode('1')}"/>	<!-- listCategory에 값을 담음 -->
+	<c:set var="listCategoryDepth2" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('2')}"/>	<!-- 패션의류/잡화 -->
 
 	<div class="container-fluid">
 		
@@ -75,14 +76,23 @@
 							</button>
 						</a>
 						<ul class="dropdown-menu">
-							<c:forEach items="${listCategory}" var="item" varStatus="status">
-								<li>
+							<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
+								<li class="nav-item dropdown">
 									<c:choose>
 										<c:when test="${not empty item.ifctUrl}">
 											<a class="dropdown-item" href="javascript:goCategory(<c:out value="${item.ifctSeq}"/>)"><c:out value="${item.ifctName}"/></a>
 										</c:when>
 										<c:otherwise>
-											<a class="dropdown-item"><c:out value="${item.ifctName}"/></a>
+											<div class="btn-group dropend">
+											<a class="d-block dropdown-item nav-link link-dark dropdown-toggle" style="width: 158px;" data-bs-toggle="dropdown"><c:out value="${item.ifctName}"/></a>
+											  <ul class="dropdown-menu">
+													<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+														<li>
+															<a class="dropdown-item"><c:if test="${item.ifctSeq eq item2.ifctParents}"><c:out value="${item2.ifctName}"/></c:if></a>
+														</li>
+													</c:forEach>											    
+											  </ul>
+											</div>
 										</c:otherwise>
 									</c:choose>
 								</li>
