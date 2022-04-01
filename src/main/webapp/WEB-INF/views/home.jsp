@@ -25,13 +25,6 @@
 
 /*** Base Styling (Scroll for the useful part) ***/
 /* Layout */
-html, body, div, h1, h2, p, a, ul, li, nav {
-	margin: 0;
-	padding: 0;
-	border: none;
-	font: inherit;
-	vertical-align: baseline;
-}
 /* Typography */
 body {
 	font-size: 100%;
@@ -60,14 +53,8 @@ a:action {
 
 #topBar {
 	position: relative;
-	padding: 0 15px;
-	top: 0;
-	left: 0;
 	z-index: 1000;
 	background: #d63932;
-	height: 3.6rem;
-	font-size: 1.2rem;
-	box-shadow: 0 0px 10px rgba(0, 0, 0, .25);
 }
 
 #topBar ul li {
@@ -83,12 +70,11 @@ a:action {
 	display: inline-block;
 	padding: 1.2rem 1.8rem;
 	line-height: 1.2rem;
-	color: #FFF;
 	transition: .2s ease-out;
 }
 
 #topBar a:hover, li.active {
-	background: #c6302d;
+	
 }
 
 ul.subMenu {
@@ -96,12 +82,12 @@ ul.subMenu {
 	position: absolute;
 	top: 100%;
 	left: 0;
-	width: 170%;
+	width: 130%;
 }
 
 ul.subMenu li {
 	width: 100%;
-	background: #3d3d3b;
+	background: white;
 }
 
 #topBar ul.subMenu li a {
@@ -112,7 +98,7 @@ ul.subMenu li {
 }
 
 #topBar ul.subMenu li a:hover, #topBar ul.subMenu li.active>a {
-	background: #2f2f2d;
+	color: blue;
 	padding-left: 1.1rem;
 }
 
@@ -136,20 +122,23 @@ ul.subMenu ul.subMenu {
 
 
 		<!--Content-->
-		<nav id="topBar">
+		<nav id="topBar" style="font-size: small;">
 			<ul>
 				<li>
-					<a>카테고리</a>
-					<ul class="subMenu">
+					<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
+								<i class="bi bi-list fs-2"></i>
+								<div class="btnText">카테고리</div>
+							</button>
+					<ul class="subMenu p-0">
 						<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
 							<li>
 								<a><c:out value="${item1.ifctName }"/></a>
-								<ul class="subMenu">
+								<ul class="subMenu p-0">
 									<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 										<c:if test="${item1.ifctSeq eq item2.ifctParents}">
 											<li>
 												<a><c:out value="${item2.ifctName}"/></a>
-												<ul class="subMenu">
+												<ul class="subMenu p-0">
 													<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
 														<c:if test="${item2.ifctSeq eq item3.ifctParents}">
 															<li><a><c:out value="${item3.ifctName}"/></a></li>
@@ -238,64 +227,39 @@ ul.subMenu ul.subMenu {
 		<div class="row border-bottom align-items-center">
 
 			<div class="col-1 offset-2 justify-content-end">
-				<ul class="nav">
-					<li class="nav-item dropdown"><a class="nav-link link-light dropdown-toggle p-0" href="#">
-							<!-- data-bs-toggle="dropdown" -->
-							<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
+				<div id="topBar" style="font-size: small;">
+			<ul>
+				<li>
+					<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
 								<i class="bi bi-list fs-2"></i>
 								<div class="btnText">카테고리</div>
 							</button>
-						</a>
-						<ul class="dropdown-menu">
-							<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
-								<li class="nav-item dropdown"><c:choose>
-										<c:when test="${not empty item.ifctUrl}">
-											<a class="dropdown-item" href="javascript:goCategory(<c:out value="${item.ifctSeq}"/>)">
-												<c:out value="${item.ifctName}" />
-											</a>
-										</c:when>
-										<c:otherwise>
-											<div class="btn-group dropend">
-												<a class="d-block dropdown-item nav-link link-dark dropdown-toggle" style="width: 158px;" data-bs-toggle="dropdown">
-													<c:out value="${item.ifctName}" />
-												</a>
-												<ul class="dropdown-menu">
-													<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
-														<c:if test="${item.ifctSeq eq item2.ifctParents}">
-															<li class="nav-item dropdown">
-																<div class="btn-goup dropend">
-																	<a class="d-block dropdown-item nav-link link-dark dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdown2">
-																		<c:out value="${item2.ifctName}" />
-																	</a>
-																	<ul class="dropdown-menu" id="dropdown2">
-																		<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
-																			<c:if test="${item2.ifctSeq eq item3.ifctParents}">
-																				<li><a class="dropdown-item">
-																						<c:out value="${item3.ifctName}" />
-																					</a></li>
-																			</c:if>
-																		</c:forEach>
-																	</ul>
-																</div>
-															</li>
+					<ul class="subMenu p-0">
+						<c:forEach items="${listCategoryParents1}" var="item1" varStatus="status1">
+							<li>
+								<a><c:out value="${item1.ifctName }"/></a>
+								<ul class="subMenu p-0">
+									<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+										<c:if test="${item1.ifctSeq eq item2.ifctParents}">
+											<li>
+												<a><c:out value="${item2.ifctName}"/></a>
+												<ul class="subMenu p-0">
+													<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
+														<c:if test="${item2.ifctSeq eq item3.ifctParents}">
+															<li><a><c:out value="${item3.ifctName}"/></a></li>
 														</c:if>
 													</c:forEach>
 												</ul>
-											</div>
-										</c:otherwise>
-									</c:choose></li>
-							</c:forEach>
-
-							<!-- 
-							<li><a class="dropdown-item" href="#">패션의류/잡화</a></li>
-							<li><a class="dropdown-item" href="#">뷰티</a></li>
-							<li><a class="dropdown-item" href="#">식품</a></li>
-							<li><a class="dropdown-item" href="#">주방용품</a></li>
-							<li><a class="dropdown-item" href="#">생활용품</a></li>
-							<li><a class="dropdown-item" href="#">문구/취미</a></li>
-							 -->
-						</ul></li>
-				</ul>
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+						</c:forEach>
+					</ul>
+				</li>
+			</ul>
+		</div>
 
 			</div>
 
