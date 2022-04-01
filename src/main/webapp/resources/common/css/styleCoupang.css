@@ -1,6 +1,13 @@
 ul.nav li.dropdown:hover>ul.dropdown-menu {
 	display: block;
-	margin: 0;
+	margin: 0px;
+}
+
+
+
+div.dropend li.dropdown:hover>ul.dropdown-munu {
+	display : block;
+	margin : 0px;
 }
 
 footer div div a {
