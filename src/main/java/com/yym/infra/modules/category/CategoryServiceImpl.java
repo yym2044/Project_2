@@ -14,15 +14,34 @@ public class CategoryServiceImpl {
 	@Autowired
 	CategoryDao dao;
 	
-	
 	@PostConstruct
-	public void selectCategoryForCache(){
+	public void selectCategoryForCache() {
 		
 		List<Category> categoryListFromDb = (ArrayList<Category>) dao.selectCategoryForCache();
 		
 		Category.cachedCategoryArrayList.clear();
 		Category.cachedCategoryArrayList.addAll(categoryListFromDb);
-		System.out.println("cachedCategoryArrayList: " + Category.cachedCategoryArrayList.size() + " catched !!");
+		System.out.println("cachedCategoryArrayList : " + Category.cachedCategoryArrayList.size() + " catched!!");
+		
 	}
 	
+	public static List<Category> selectCategoryCachedCode(String ifctParents) throws Exception {
+		
+		List<Category> rt = new ArrayList<Category>();
+		
+		for(Category categoryRow : Category.cachedCategoryArrayList) {
+			if(categoryRow.getIfctParents().equals(ifctParents)) {
+				rt.add(categoryRow);
+			} else {
+				// by pass
+			}
+		}
+		
+		return rt;
+		
+	}
+	
+	public static void clear() throws Exception {
+		Category.cachedCategoryArrayList.clear();
+	}
 }
