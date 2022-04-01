@@ -61,7 +61,7 @@
 
 		<div class="row border-bottom align-items-center">
 
-			<div class="col-2 offset-1" style="padding-left: 100px;">
+			<div class="col-2" style="padding-left: 100px;">
 				<nav id="topBar" style="font-size: small;">
 					<ul class="m-0">
 						<li>
@@ -108,9 +108,9 @@
 							<img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;">
 						</a>
 					</div>
-					<div class="col-6">
+					<div class="col-8">
 						<div class="input-group">
-							<div class="col-3">
+							<div class="col-2">
 								<select id="shCategory" name="shCategory" class="form-select">
 									<option value="0" selected>전체</option>
 										<c:forEach items="${listCategoryDepth2}" var="item" varStatus="status">
@@ -121,9 +121,9 @@
 								</select>
 							</div>
 							<input id="shBar" name="shBar" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
-							<a id="btnSearch" name="btnSearch" href="/infra/product/productSearch" class="btn btn-outline-secondary" type="button">
+							<button id="btnSearch" name="btnSearch" class="btn btn-outline-secondary" type="button">
 								<i class="bi bi-search"></i>
-							</a>
+							</button>
 						</div>
 					</div>
 					<div class="col">
