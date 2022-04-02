@@ -31,8 +31,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/productView")
-	public String productView(Model model, ProductVo vo) throws Exception {
+	public String productView(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
 		
+		model.addAttribute("rt", service.selectOne(vo));
 		
 		return "product/productView";
 	}

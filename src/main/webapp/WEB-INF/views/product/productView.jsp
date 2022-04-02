@@ -63,7 +63,7 @@
 					<div class="col">
 						<div class="row border-bottom border-2 m-1 align-items-center">
 							<div class="col p-0">
-								<p class="productName m-0">언탭트 남성용 오버핏 스웨트 고중량 후드</p>
+								<p class="productName m-0"><c:out value="${vo.trpdSeq}"/><c:out value="${rt.trpdSeq}"/>언탭트 남성용 오버핏 스웨트 고중량 후드</p>
 								<p>
 									<img src="${path}/resources/images/user/productView/starRatingImg.png">
 									<span>
