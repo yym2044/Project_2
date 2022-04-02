@@ -11,7 +11,7 @@ public class Product {
 	private Integer trpdCategoryCd2;
 	private Integer trpdCategoryCd3;
 	private Integer trpdPrice;
-	private Double trpdDiscountPercent;
+	private Double trpdDiscountPercent = 0.0;
 	private Integer trpdDeliveryFee;
 	private Double trpdStarRating;
 	private Integer trpdOptionParentCd1;

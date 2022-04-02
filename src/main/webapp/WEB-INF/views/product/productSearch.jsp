@@ -89,14 +89,22 @@
 										<c:out value="${item.trpdName }" />
 									</span>
 								</a>
-								<span class="d-inline px-1" style="font-size: x-small"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/> 할인</span>
-								<span class="d-inline text-decoration-line-through px-1" style="font-size: x-small"><c:out value="${item.trpdPrice}"/></span>
+								<c:if test="${item.trpdDiscountPercent ne 0.0}">
+									<span class="d-inline px-1" style="font-size: x-small"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/> 할인</span>
+									<span class="d-inline text-decoration-line-through px-1" style="font-size: x-small"><c:out value="${item.trpdPrice}"/></span>
+								</c:if>
 								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (item.trpdPrice * (1-item.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
 								<span class="d-inline fw-bold px-1 text-danger"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</span>
 								<c:if test="${item.trpdDeliveryFee eq 0}"><span class="d-block px-1 pt-1" style="font-size: x-small;">무료배송</span></c:if>								
-								<p class="card-text fw-bold pt-2 px-1 mb-5">
+								<div style="clear: both;	padding-right: 0px;	padding-left: 0px;	background: url(${path}/resources/igames/user/icon_star.gif) 0px 0px;	float: left;	padding-bottom: 0px;	margin: 0px;	width: 90px;	padding-top: 0px;	height: 18px;">
+									<p style="width: 10%; padding-right:0px;	padding-left:0px;	background: url(${path}/resources/igames/user/icon_star2.gif) 0px 0px;	padding-bottom: 0px;	margin: 0px;	padding-top: 0px;	height: 18px;">
+									</p>
+								</div>
+								
+								
+								<%-- <p class="card-text fw-bold pt-2 px-1 mb-5">
 									별점 : <c:out value="${item.trpdStarRating }"/>
-								</p>
+								</p> --%>
 								
 							</div>
 						</div>
