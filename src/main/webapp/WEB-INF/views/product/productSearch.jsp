@@ -83,7 +83,7 @@
 					<c:forEach items="${list}" var="item" varStatus="status">
 						<div class="col">
 							<div class="card borderX">
-								<a class="productLink link-dark">
+								<a href="javascript:goView(<c:out value="${item.trpdSeq}"/>);" class="productLink link-dark">
 									<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
 									<span class="d-block pt-2 px-1" style="height: 50px; font-size: small">
 										<c:out value="${item.trpdName }" />
@@ -328,6 +328,15 @@
 			$("#formSearch").attr("action", "/infra/product/productSearch");
 			$("#formSearch").submit();
 		});
+	</script>
+	
+	<script type="text/javascript">
+	
+	goView = function(seq){
+		$("#formSearch").attr("action", "/infra/product/productView");
+		$("#formSearch").submit();
+	}
+	
 	</script>
 
 
