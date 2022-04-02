@@ -53,15 +53,15 @@
 						<div class="input-group">
 							<div class="col-2">
 								<select id="shCategory" name="shCategory" class="form-select">
-									<option value="0" selected>전체</option>
+									<option value="0">전체</option>
 										<c:forEach items="${listCategoryDepth2}" var="item" varStatus="status">
 											<c:if test="${item.shCategoryNy eq 1}">
-												<option value="<c:out value="${item.ifctSeq}"/>"><c:out value="${item.ifctName}"/></option>
+												<option value="<c:out value="${item.ifctSeq}"/>" <c:if test="${item.ifctSeq eq vo.shCategory}">selected</c:if>><c:out value="${item.ifctName}"/></option>
 											</c:if>
 										</c:forEach>
 								</select>
 							</div>
-							<input id="shBar" name="shBar" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
+							<input id="shBar" name="shBar" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!" value="<c:out value="${vo.shBar}"/>">
 							<button id="btnSearch" name="btnSearch" class="btn btn-outline-secondary" type="button">
 								<i class="bi bi-search"></i>
 							</button>

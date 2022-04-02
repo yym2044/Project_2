@@ -53,7 +53,7 @@
 							<div class="input-group">
 								<div class="col-3">
 									<select id="shCategory" name="shCategory" class="form-select">
-										<option value="0" selected>전체</option>
+										<option value="0">전체</option>
 										<c:forEach items="${listCategoryDepth2}" var="item" varStatus="status">
 											<c:if test="${item.shCategoryNy eq 1}">
 												<option value="<c:out value="${item.ifctSeq}"/>"><c:out value="${item.ifctName}" /></option>
