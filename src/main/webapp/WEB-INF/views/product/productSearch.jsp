@@ -89,7 +89,7 @@
 										<c:out value="${item.trpdName }" />
 									</span>
 								</a>
-								<span class="d-inline px-1" style="font-size: x-small"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/></span>
+								<span class="d-inline px-1" style="font-size: x-small"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/> 할인</span>
 								<span class="d-inline text-decoration-line-through px-1" style="font-size: x-small"><c:out value="${item.trpdPrice}"/></span>
 								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (item.trpdPrice * (1-item.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
 								<span class="d-inline fw-bold px-1 text-danger"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</span>
