@@ -52,10 +52,10 @@
 						'에 대한 검색결과
 					</div>
 				</div>
-				<div class="table-responsive">
+				<%-- <div class="table-responsive">
 					<table class="table">
-						<c:forEach items="${list}" var="item" varStatus="status">
-							<tr>
+						<tr>
+							<c:forEach items="${list}" var="item" varStatus="status">
 								<td>
 									<c:out value="${item.trpdSeq}" />
 								</td>
@@ -74,10 +74,36 @@
 								<td>
 									<c:out value="${item.trpdStarRating }" />
 								</td>
-							</tr>
-						</c:forEach>
+							</c:forEach>
+						</tr>
 					</table>
+				</div>	 --%>
+
+				<div class="card-group row row-cols-4">
+					<c:forEach items="${list}" var="item" varStatus="status">
+						<div class="col">
+							<div class="card borderX">
+								<a class="productLink link-dark">
+									<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+									<span class="d-block pt-2 px-1" style="height: 50px; font-size: small">
+										<c:out value="${item.trpdName }" />
+									</span>
+								</a>
+								<span class="d-inline"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/></span>
+								<span class="d-inline text-decoration-line-through" style="font-size: x-small"><c:out value="${item.trpdPrice}"/></span>
+								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (item.trpdPrice * (1-item.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
+								<span class="d-inline fw-bold px-1 text-danger"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</span>
+								
+								<p class="card-text fw-bold pt-2 px-1 mb-5">
+									별점 : <c:out value="${item.trpdStarRating }"/>
+								</p>
+								
+							</div>
+						</div>
+					</c:forEach>
 				</div>
+				
+				
 			</div>
 			<!-- width65 end -->
 
@@ -270,8 +296,6 @@
 				</button>
 			</div>
 			<!-- today's recommendation end -->
-
-
 		</form>
 	</div>
 
@@ -290,7 +314,7 @@
 			trigger : 'focus'
 		})
 	</script>
-	
+
 	<script type="text/javascript">
 		$("#btnSearch").on("click", function() {
 			$("#formSearch").attr("action", "/infra/product/productSearch");
