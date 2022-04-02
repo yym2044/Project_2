@@ -3,7 +3,9 @@ ul.nav li.dropdown:hover>ul.dropdown-menu {
 	margin: 0px;
 }
 
-
+#shBar {
+	font-size: small;
+}
 
 div.dropend li.dropdown:hover>ul.dropdown-munu {
 	display : block;
