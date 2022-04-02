@@ -4,8 +4,8 @@ public class ProductVo {
 	
 	private String trpdSeq;
 	
-	private Integer shCategory;
-	private String shBar;
+	private Integer shCategory = 0;
+	private String shBar = "";
 	
 	
 	public Integer getShCategory() {

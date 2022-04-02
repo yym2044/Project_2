@@ -17,7 +17,7 @@ public class ProductDao {
 	private static String namespace = "com.yym.infra.modules.product.ProductMpp";
 	
 	
-	public List<Product> selectList(ProductVo vo){return sqlSession.selectList(namespace + ".selectList", vo); }
+	public List<Product> selectList(ProductVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	
 
 }

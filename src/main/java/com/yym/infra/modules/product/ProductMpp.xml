@@ -8,9 +8,9 @@
 
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.product.Product"></resultMap>
-	
-	<select id="selectList">
-		
+
+	<select id="selectList" resultMap="resultMapObj">
+
 		SELECT
 			trpdSeq
 			, trpdName
@@ -18,24 +18,26 @@
 			, trpdDiscountPercent
 			, trpdDeliveryFee
 			, trpdStarRating
-		FROM 
+		FROM
 			tradProduct
 		WHERE 1=1
 			AND trpdDelNy = 0
-			AND trpdUseNy = 1
-		<choose>
-			<when test="shCategory == 0">
-				AND (trpdName like concat('%',#{shVar},'%') OR trpdTag like concat('%',#{shVar},'%')
-			</when> 
-			<otherwise>
-				AND (trpdName like concat('%',#{shVar},'%') OR trpdTag like concat('%',#{shVar},'%'))
-				AND trpdCategoryCd2 = ${shCategory}
-			</otherwise>
-				
-		</choose>
-			
-	
+		
+			<choose>
+				<when test="shCategory == 0">
+					AND (trpdName like concat('%',#{shBar},'%') OR
+					trpdTag like concat('%',#{shBar},'%'))
+				</when>
+				<otherwise>
+					AND (trpdName like concat('%',#{shBar},'%') OR trpdTag
+					like concat('%',#{shBar},'%'))
+					AND trpdCategoryCd2 = #{shCategory}
+				</otherwise>
+
+			</choose>
+
+
 	</select>
-	
+
 
 </mapper>

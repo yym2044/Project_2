@@ -3,6 +3,7 @@ package com.yym.infra.modules.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -12,8 +13,19 @@ public class ProductController {
 	@Autowired
 	ProductServiceImpl service;
 	
+	@RequestMapping(value = "/home")
+	public String home(Model model, @ModelAttribute("vo") ProductVo vo) {
+		
+		return "/home";
+	}
+	
 	@RequestMapping(value = "/product/productSearch")
-	public String productSearch(Model model, ProductVo vo) throws Exception {
+	public String productSearch(Model model,@ModelAttribute("vo") ProductVo vo) throws Exception {
+		
+		System.out.println("vo.getShCategory() : " + vo.getShCategory());
+		System.out.println("vo.getShBar() : " + vo.getShBar());
+		
+		model.addAttribute("list", service.selectList(vo));
 		
 		return "/product/productSearch";
 	}
