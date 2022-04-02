@@ -33,13 +33,13 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
-		<form id="formHome" method="post" action="/infra/product/productSearch">
+		<form id="formHome" method="post" action="">
 
 
 			<%@include file="./include/coupangTopBar.jsp"%>
 			
 			<%@include file="./include/coupangShSection1.jsp"%>
-
+			
 
 
 			<!-- 광고 carousel s -->
@@ -77,28 +77,28 @@
 
 				<div class="row border p-2">
 					<div class="col-6 ps-0 mb-1">
-						<button class="todayHot btn p-0">
+						<button type="button" class="todayHot btn p-0">
 							<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot1.png">
 						</button>
 					</div>
 					<div class="col-6 ps-0 mb-1">
-						<button class="todayHot btn p-0">
+						<button type="button"  class="todayHot btn p-0">
 							<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot2.png">
 						</button>
 					</div>
 
 					<div class="col-3 ps-0">
-						<button class="todayHot btn p-0">
+						<button type="button"  class="todayHot btn p-0">
 							<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot3.png">
 						</button>
 					</div>
 					<div class="col-3 ps-0">
-						<button class="todayHot btn p-0">
+						<button type="button"  class="todayHot btn p-0">
 							<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot4.png">
 						</button>
 					</div>
 					<div class="col-6 ps-0">
-						<button class="todayHot btn p-0">
+						<button type="button"  class="todayHot btn p-0">
 							<img class="todayHot border" src="${path}/resources/images/user/mainPage/todayHot5.png">
 						</button>
 					</div>
@@ -332,6 +332,7 @@
 
 	<script type="text/javascript">
 		$("#btnSearch").on("click", function() {
+			$("#formHome").attr("action", "/infra/product/productSearch");
 			$("#formHome").submit();
 		});
 	</script>

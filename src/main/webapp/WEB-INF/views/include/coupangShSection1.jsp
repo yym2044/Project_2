@@ -6,7 +6,7 @@
 					<nav id="topBar" style="font-size: small;">
 						<ul class="m-0">
 							<li>
-								<button class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
+								<button type="button"  class="btn btn-primary btn-lg rounded-0" style="width: 110px; height: 115px;">
 									<i class="bi bi-list fs-2"></i>
 									<div class="btnText">카테고리</div>
 								</button>
@@ -68,11 +68,11 @@
 							</div>
 						</div>
 						<div class="col">
-							<button>
+							<button type="button" >
 								<i class="bi bi-person"></i>
 								<div class="btnText">마이쿠팡</div>
 							</button>
-							<button>
+							<button type="button" >
 								<i class="bi bi-cart4"></i>
 								<div class="btnText">장바구니</div>
 							</button>
