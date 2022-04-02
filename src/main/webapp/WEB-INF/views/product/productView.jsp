@@ -52,21 +52,25 @@
 					</nav>
 				</div>
 			</div>
-
+			
 
 			<!-- width65 start -->
 			<div class="width65">
 				<div class="row">
 					<div class="col-5">
-						<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg">
+						<%-- <img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg"> --%>
+						<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
 					</div>
 					<div class="col">
 						<div class="row border-bottom border-2 m-1 align-items-center">
 							<div class="col p-0">
-								<p class="productName m-0"><c:out value="${vo.trpdSeq}"/><c:out value="${rt.trpdSeq}"/>언탭트 남성용 오버핏 스웨트 고중량 후드</p>
-								<p>
-									<img src="${path}/resources/images/user/productView/starRatingImg.png">
-									<span>
+								<p class="productName m-0"><c:out value="${rt.trpdName}"/></p>
+								<div class="starDiv d-inline-block mt-1" style="background: url(${path}/resources/images/user/icon_star2.gif) 0px 0px;">
+									<p class="starP" style="width: <c:out value="${rt.trpdStarRating * 20}"/>%; background: url(${path}/resources/images/user/icon_star.gif) 0px 0px;">
+									</p>
+								</div>
+								<p class="d-inline-block mt-0 px-1">
+									<span style="font-size: small;">
 										<a href="" style="text-decoration: none;">32개 상품평</a>
 									</span>
 								</p>
@@ -82,12 +86,23 @@
 						</div>
 						<div class="row border-bottom border-1 m-1 py-2">
 							<div class="col p-0 py-1">
-								<p class="productPrice m-0">28,900 원</p>
+								<!-- <p class="productPrice m-0">28,900 원</p> -->
+								
+								<c:if test="${rt.trpdDiscountPercent ne 0.0}">
+									<span class="d-inline ps-1" style="font-size: small"><fmt:formatNumber value="${rt.trpdDiscountPercent}" type="percent"/> 할인</span>
+									<span class="d-inline text-decoration-line-through px-1" style="font-size: small"><c:out value="${rt.trpdPrice}"/></span>
+								</c:if>
+								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (rt.trpdPrice * (1-rt.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
+								<p class="fw-bold px-1 text-danger productPrice m-0"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</p>
+								
+								
 							</div>
 						</div>
 						<div class="row border-bottom border-1 m-1 py-2">
 							<div class="col p-0 py-1">
-								<p class="m-0 fw-bold">무료배송</p>
+								<!-- <p class="m-0 fw-bold">무료배송</p> -->
+								<c:if test="${rt.trpdDeliveryFee eq 0}"><p class="m-0 fw-bold">무료배송</p></c:if>
+								
 								<p class="m-0" style="font-size: small;">
 									<span class="arrivalDate">내일(일) 3/27</span>
 									도착 보장 (2시간 36분 내 주문 시 / 서울⋅경기 기준)
