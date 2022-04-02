@@ -31,7 +31,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/productView")
-	public String productView(ProductVo vo) throws Exception {
+	public String productView(Model model, ProductVo vo) throws Exception {
 		
 		
 		return "product/productView";
