@@ -72,10 +72,10 @@
 								</p>
 							</div>
 							<div class="col-3 text-end">
-								<button class="btn btn-outline-danger rounded-circle">
+								<button type="button"  class="btn btn-outline-danger rounded-circle">
 									<i class="bi bi-heart"></i>
 								</button>
-								<button class="btn btn-outline-primary rounded-circle">
+								<button type="button"  class="btn btn-outline-primary rounded-circle">
 									<i class="bi bi-share-fill"></i>
 								</button>
 							</div>
