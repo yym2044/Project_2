@@ -96,8 +96,8 @@
 								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (item.trpdPrice * (1-item.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
 								<span class="d-inline fw-bold px-1 text-danger"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</span>
 								<c:if test="${item.trpdDeliveryFee eq 0}"><span class="d-block px-1 pt-1" style="font-size: x-small;">무료배송</span></c:if>								
-								<div style="clear: both;	padding-right: 0px;	padding-left: 0px;	background: url(${path}/resources/igames/user/icon_star.gif) 0px 0px;	float: left;	padding-bottom: 0px;	margin: 0px;	width: 90px;	padding-top: 0px;	height: 18px;">
-									<p style="width: 10%; padding-right:0px;	padding-left:0px;	background: url(${path}/resources/igames/user/icon_star2.gif) 0px 0px;	padding-bottom: 0px;	margin: 0px;	padding-top: 0px;	height: 18px;">
+								<div class="starDiv" style="background: url(${path}/resources/images/user/icon_star2.gif) 0px 0px;">
+									<p class="starP" style="width: <c:out value="${item.trpdStarRating * 20}"/>%; background: url(${path}/resources/images/user/icon_star.gif) 0px 0px;">
 									</p>
 								</div>
 								

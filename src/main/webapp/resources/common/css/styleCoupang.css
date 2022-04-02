@@ -3,6 +3,26 @@ ul.nav li.dropdown:hover>ul.dropdown-menu {
 	margin: 0px;
 }
 
+.starDiv{
+	clear: both; padding-right: 0px;	
+	padding-left: 0px;	
+	float: left;	
+	padding-bottom: 0px;	
+	margin: 0px;	
+	width: 90px;	
+	padding-top: 0px;	
+	height: 18px;
+}
+.starP{
+	padding-right:0px;	
+	padding-left:0px;	
+	padding-bottom: 0px;	
+	margin: 0px;	
+	padding-top: 0px;	
+	height: 18px;
+}
+
+
 #shBar {
 	font-size: small;
 }
