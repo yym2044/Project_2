@@ -117,7 +117,7 @@
 						</div>
 						<div class="row m-1 py-2 align-items-center">
 							<div class="col-2 p-0">
-								<input class="form-control" type="number" value="1" min="1" style="height: 38px;">
+								<input id="trorQuantity" name="trorQuantity" type="text" value="1" style="width: 38px;">
 							</div>
 							<div class="col px-1">
 								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
@@ -369,6 +369,14 @@
 			$("#formView").attr("action", "/infra/product/productSearch");
 			$("#formView").submit();
 		});
+	</script>
+	
+	<script type="text/javascript">
+	
+	$("#trorQuantity").spinner({
+		min: 1
+	});
+	
 	</script>
 
 

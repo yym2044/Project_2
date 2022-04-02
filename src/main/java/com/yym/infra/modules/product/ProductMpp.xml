@@ -9,6 +9,7 @@
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.product.Product"></resultMap>
 
+	<!-- search화면에 뿌림 -->
 	<select id="selectList" resultMap="resultMapObj">
 
 		SELECT
@@ -39,5 +40,14 @@
 
 	</select>
 
+	
+	<!-- <select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			trpdSeq
+			, trpdName
+			, trpdStarRating
+			, 
+			
+	</select> -->
 
 </mapper>
