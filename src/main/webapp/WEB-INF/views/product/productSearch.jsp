@@ -32,6 +32,7 @@
 
 	<div class="container-fluid">
 		<form id="formSearch" method="post">
+		<input type="hidden" id="trpdSeq" name="trpdSeq">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -333,6 +334,7 @@
 	<script type="text/javascript">
 	
 	goView = function(seq){
+		$("#trpdSeq").val(seq);
 		$("#formSearch").attr("action", "/infra/product/productView");
 		$("#formSearch").submit();
 	}

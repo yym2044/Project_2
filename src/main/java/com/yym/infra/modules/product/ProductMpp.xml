@@ -37,17 +37,23 @@
 
 			</choose>
 
-
 	</select>
 
 	
-	<!-- <select id="selectOne" resultMap="resultMapObj">
+	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			trpdSeq
 			, trpdName
+			, trpdPrice
+			, trpdDiscountPercent
+			, trpdDeliveryFee
 			, trpdStarRating
-			, 
-			
-	</select> -->
+		FROM
+			tradProduct
+		WHERE 1=1
+			AND trpdDelNy = 0
+			AND trpdSeq = #{trpdSeq}
+		
+	</select>
 
 </mapper>
