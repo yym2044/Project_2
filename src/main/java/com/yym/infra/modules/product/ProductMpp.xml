@@ -92,9 +92,10 @@
 	<select id="selectListOptions" resultMap="resultMapObj">
 		SELECT
 			b.tropSeq
-			,b.tropName
-			,c.trocName
-			,c.trocAdditionalPrice
+			, b.tropName
+			, c.trocSeq
+			, c.trocName
+			, c.trocAdditionalPrice
 		FROM 
 			tradProduct a
 		LEFT JOIN 

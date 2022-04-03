@@ -24,6 +24,10 @@ public class ProductServiceImpl implements ProductService {
 	public Product selectOne(ProductVo vo) throws Exception {
 		return dao.selectOne(vo);
 	}
+	@Override
+	public List<Product> selectListOptions(ProductVo vo) throws Exception {
+		return dao.selectListOptions(vo);
+	}
 	
 	
 	
