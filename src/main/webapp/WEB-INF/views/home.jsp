@@ -33,7 +33,7 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
-		<form id="formHome" method="post" action="">
+		<form id="formHome" method="post" action="/infra/product/productSearch">
 
 
 			<%@include file="./include/coupangTopBar.jsp"%>
@@ -298,7 +298,6 @@
 				</button>
 			</div>
 			<!-- today's recommendation end -->
-
 		</form>
 
 	</div>

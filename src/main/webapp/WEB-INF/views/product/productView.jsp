@@ -32,7 +32,7 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
-		<form id="formView" method="post">
+		<form id="formView" method="post" action="/infra/product/productSearch">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -401,6 +401,30 @@
 			trigger : 'focus'
 		})
 	</script>
+	
+	<script type="text/javascript">
+		logOut = function() {
+
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/infra/member/logOutProc",
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/infra/product/productView?trpdSeq=${vo.trpdSeq}";
+					} else {
+						alert("로그아웃 실패");
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
+
+		}
+	</script>
 
 	<script type="text/javascript">
 		$("#btnSearch").on("click", function() {
@@ -416,7 +440,15 @@
 	});
 	
 	</script>
-
+	
+	<script type="text/javascript">
+	function enterkey(){
+		if (window.event.keyCode == 13){
+			$("#formView").attr("action", "/infra/product/productSearch");
+			$("#formView").submit();
+		}
+	}
+	</script>
 
 
 </body>

@@ -103,6 +103,7 @@
 					<a href="https://www.instagram.com/coupang" target="_blank" class="text-light" title="쿠팡 인스타그램">
 						<img src="/infra/resources/images/xdmin/sns_icon/icon_round_instgram_48.png" style="width: 32px;">
 					</a>
+					
 				</div>
 			</div>
 		</div>
