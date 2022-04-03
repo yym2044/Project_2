@@ -57,11 +57,11 @@
 				</div>
 				
 				<div class="row bg-light m-0 py-1 mb-2 align-items-center" style="font-size: small;">
-					<div class="col text-start px-2">
-						<a href="javascript:goSort('lowPrice')">낮은가격순</a>
-						<a href="javascript:goSort('highPrice')">높은가격순</a>
-						<a href="javascript:goSort('highStar')">별점순</a>
-						<a href="javascript:goSort('latest')">최신순</a>
+					<div class="col text-start px-3">
+						<a href="javascript:goSort('lowPrice')" class="linkG <c:if test="${vo.shSort eq 'lowPrice'}">fw-bold text-primary</c:if>">낮은가격순</a>
+						<a href="javascript:goSort('highPrice')" class="linkG <c:if test="${vo.shSort eq 'highPrice'}">fw-bold text-primary</c:if>">높은가격순</a>
+						<a href="javascript:goSort('highStar')" class="linkG <c:if test="${vo.shSort eq 'highStar'}">fw-bold text-primary</c:if>">별점순</a>
+						<a href="javascript:goSort('latest')" class="linkG <c:if test="${vo.shSort eq 'latest'}">fw-bold text-primary</c:if>">최신순</a>
 					</div>
 					<div class="col px-2">
 						<ul class="nav d-flex justify-content-end text-end">

@@ -3,6 +3,12 @@ ul.nav li.dropdown:hover>ul.dropdown-menu {
 	margin: 0px;
 }
 
+.linkG {
+	text-decoration: none;
+	color: black;
+	padding-right: 10px;
+}
+
 .starDiv{
 	clear: both; padding-right: 0px;	
 	padding-left: 0px;	
