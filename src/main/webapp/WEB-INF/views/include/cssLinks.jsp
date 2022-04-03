@@ -5,3 +5,4 @@
 <link href="${path}/resources/common/css/style.css?after" rel="stylesheet" />
 <link rel="stylesheet" href="${path}/resources/common/css/styleCoupang.css?after">
 <link href="${path}/resources/common/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<link href="${path}/resources/common/css/stickySideBar.css" rel="stylesheet"/>
