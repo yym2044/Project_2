@@ -32,7 +32,7 @@
 	<c:set var="listCategoryDepth2" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('2')}" />
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
-	<div class="container-fluid">
+	<div class="container-fluid px-0">
 		<form id="formHome" method="post" action="/infra/product/productSearch">
 
 
