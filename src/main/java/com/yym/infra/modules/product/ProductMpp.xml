@@ -56,8 +56,8 @@
 			<when test="shSort == 'highPrice'">
 				ORDER BY (trpdPrice * (1-trpdDiscountPercent)) DESC
 			</when>
-			<when test="shSort == 'highSales'">
-				ORDER BY trpdSeq
+			<when test="shSort == 'highStar'">
+				ORDER BY trpdStarRating DESC
 			</when>
 			<when test="shSort == 'latest'">
 				ORDER BY regDateTime
