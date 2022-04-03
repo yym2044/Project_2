@@ -33,6 +33,7 @@ public class Product {
 	private String trocName;
 	private Integer trocAdditionalPrice;
 	
+	
 	//RegMod
 	private String regIp;
 	private String regSeq;
