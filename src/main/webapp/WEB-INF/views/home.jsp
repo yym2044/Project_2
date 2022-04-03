@@ -336,5 +336,16 @@
 			$("#formHome").submit();
 		});
 	</script>
+	
+	<script type="text/javascript">
+	
+	function enterkey(){
+		if (window.event.keyCode == 13){
+			$("#formHome").attr("action", "/infra/product/productSearch");
+			$("#formHome").submit();
+		}
+	}
+	
+	</script>
 </body>
 </html>

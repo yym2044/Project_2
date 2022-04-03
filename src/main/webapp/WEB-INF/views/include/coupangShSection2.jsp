@@ -61,7 +61,7 @@
 										</c:forEach>
 								</select>
 							</div>
-							<input id="shBar" name="shBar" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!" value="<c:out value="${vo.shBar}"/>">
+							<input id="shBar" name="shBar" onkeyup="enterkey();" class="form-control" type="text" placeholder="찾고 싶은 상품을 검색해보세요!" value="<c:out value="${vo.shBar}"/>">
 							<button id="btnSearch" name="btnSearch" class="btn btn-outline-secondary" type="button">
 								<i class="bi bi-search"></i>
 							</button>
