@@ -116,10 +116,11 @@
 									<br>
 									<select class="form-select" style="width: 18%; font-size: small;">
 										<option>::선택::</option>
-										<option>XL</option>
-										<option>L</option>
-										<option>M</option>
-										<option>S</option>
+										<c:forEach items="${listOption}" var="item" varStatus="status">
+											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd1}">
+												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
+											</c:if>
+										</c:forEach>
 									</select>
 								</div>
 							</c:if>
@@ -129,8 +130,11 @@
 									<br>
 									<select class="form-select" style="width: 18%; font-size: small;">
 										<option>::선택::</option>
-										<option>화이트</option>
-										<option>블랙</option>
+										<c:forEach items="${listOption}" var="item" varStatus="status">
+											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd2}">
+												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
+											</c:if>
+										</c:forEach>
 									</select>
 								</div>
 							</c:if>
@@ -140,8 +144,11 @@
 									<br>
 									<select class="form-select" style="width: 18%; font-size: small;">
 										<option>::선택::</option>
-										<option>화이트</option>
-										<option>블랙</option>
+										<c:forEach items="${listOption}" var="item" varStatus="status">
+											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd3}">
+												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
+											</c:if>
+										</c:forEach>
 									</select>
 								</div>
 							</c:if>

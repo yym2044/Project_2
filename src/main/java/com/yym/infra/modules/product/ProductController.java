@@ -41,6 +41,7 @@ public class ProductController {
 	public String productView(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
 		
 		model.addAttribute("rt", service.selectOne(vo));
+		model.addAttribute("listOption", service.selectListOptions(vo));
 		
 		return "product/productView";
 	}

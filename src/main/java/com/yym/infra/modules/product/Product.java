@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Product {
 
+	//상품
 	private String trpdSeq;
 	private String trpdPid;
 	private String trpdName;
@@ -15,6 +16,9 @@ public class Product {
 	private Integer trpdDeliveryFee;
 	private Double trpdStarRating;
 	
+	private String trpdTag;
+	private String trpdDesc;
+	private Integer trpdDelNy;
 	private Integer trpdOptionParentCd1;
 	private String trpdOptionParentName1;
 	private Integer trpdOptionParentCd2;
@@ -22,9 +26,12 @@ public class Product {
 	private Integer trpdOptionParentCd3;
 	private String trpdOptionParentName3;
 	
-	private String trpdTag;
-	private String trpdDesc;
-	private Integer trpdDelNy;
+	//옵션
+	private String tropSeq;
+	private String tropName;
+	private String trocSeq;
+	private String trocName;
+	private Integer trocAdditionalPrice;
 	
 	//RegMod
 	private String regIp;
@@ -217,6 +224,36 @@ public class Product {
 	}
 	public void setTrpdOptionParentName3(String trpdOptionParentName3) {
 		this.trpdOptionParentName3 = trpdOptionParentName3;
+	}
+	public String getTropSeq() {
+		return tropSeq;
+	}
+	public void setTropSeq(String tropSeq) {
+		this.tropSeq = tropSeq;
+	}
+	public String getTropName() {
+		return tropName;
+	}
+	public void setTropName(String tropName) {
+		this.tropName = tropName;
+	}
+	public String getTrocName() {
+		return trocName;
+	}
+	public void setTrocName(String trocName) {
+		this.trocName = trocName;
+	}
+	public Integer getTrocAdditionalPrice() {
+		return trocAdditionalPrice;
+	}
+	public void setTrocAdditionalPrice(Integer trocAdditionalPrice) {
+		this.trocAdditionalPrice = trocAdditionalPrice;
+	}
+	public String getTrocSeq() {
+		return trocSeq;
+	}
+	public void setTrocSeq(String trocSeq) {
+		this.trocSeq = trocSeq;
 	}
 	
 }
