@@ -35,6 +35,7 @@
 		<input type="hidden" id="trpdSeq" name="trpdSeq">
 		<input type="hidden" id="thisPage" name="thisPage" value="${vo.thisPage}">
 		<input type="hidden" id="shSort" name="shSort" value="${vo.shSort}">
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="${vo.rowNumToShow}">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -63,14 +64,14 @@
 						<a href="javascript:goSort('highStar')" class="linkG <c:if test="${vo.shSort eq 'highStar'}">fw-bold text-primary</c:if>">별점순</a>
 						<a href="javascript:goSort('latest')" class="linkG <c:if test="${vo.shSort eq 'latest'}">fw-bold text-primary</c:if>">최신순</a>
 					</div>
-					<div class="col px-2">
+					<div class="col px-1">
 						<ul class="nav d-flex justify-content-end text-end">
-							<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">4개씩 보기</a>
-								<ul class="dropdown-menu" style="font-size: small;">
-									<li><a class="dropdown-item" href="#">4개씩 보기</a></li>
-									<li><a class="dropdown-item" href="#">8개씩 보기</a></li>
-									<li><a class="dropdown-item" href="#">16개씩 보기</a></li>
-									<li><a class="dropdown-item" href="#">32개씩 보기</a></li>
+							<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle"><c:out value="${vo.rowNumToShow}"/>개씩 보기</a>
+								<ul class="dropdown-menu borderX py-0" style="min-width: 118px; font-size: small; margin-top: 2px;">
+									<li><a class="dropdown-item <c:if test="${vo.rowNumToShow eq 4}">active</c:if>" href="javascript:changeRow(4);">4개씩 보기</a></li>
+									<li><a class="dropdown-item <c:if test="${vo.rowNumToShow eq 8}">active</c:if>" href="javascript:changeRow(8);">8개씩 보기</a></li>
+									<li><a class="dropdown-item <c:if test="${vo.rowNumToShow eq 16}">active</c:if>" href="javascript:changeRow(16);">16개씩 보기</a></li>
+									<li><a class="dropdown-item <c:if test="${vo.rowNumToShow eq 32}">active</c:if>" href="javascript:changeRow(32);">32개씩 보기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -366,6 +367,8 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	
 
 	<script type="text/javascript">
 		var popoverTriggerList = [].slice.call(document
@@ -403,6 +406,12 @@
 	
 	goSort = function(what){
 		$("#shSort").val(what);
+		$("#formSearch").attr("action", "/infra/product/productSearch");
+		$("#formSearch").submit();
+	}
+	
+	changeRow = function(Num){
+		$("#rowNumToShow").val(Num);
 		$("#formSearch").attr("action", "/infra/product/productSearch");
 		$("#formSearch").submit();
 	}
