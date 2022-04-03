@@ -380,11 +380,19 @@ $("#btnLogin").on("click", function(){
 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
 		,success: function(response) {
 			if(response.rt == "success") {
-				location.href = "/infra/home";
+				
+				/* location.href = "/infra/home"; */	// 메인페이지로
+				/* window.location = document.referrer; */
+				location.href = document.referrer;
+				
 			} else {
 				alert("로그인 실패");
 			}
 		}
+		
+		
+		
+		
 		,error : function(jqXHR, textStatus, errorThrown){
 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 		}
