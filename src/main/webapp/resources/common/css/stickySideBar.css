@@ -1,0 +1,24 @@
+header {
+  display: block;
+}
+
+section {
+  float: left;
+  width: 70%;
+}
+
+
+aside {
+  float: left;
+  width: 25%;
+}
+
+.sticky {
+  position: relative;
+  top: 0;
+}
+
+footer {
+  display: block;
+  clear: both;
+}

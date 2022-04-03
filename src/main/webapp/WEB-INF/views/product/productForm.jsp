@@ -37,18 +37,51 @@
 
 			<%@include file="../include/coupangTopBar.jsp"%>
 
-			
-			<!-- width65 start -->
-			<div class="width65">
-				
-			</div>
-			<!-- width65 end -->
 
-			
+			<aside class="sticky">
+				<h1>This is a sticky sidebar</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				<p>Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</aside>
+
+			<section class="main-content">
+				<article>
+					<h1>Heading</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+				</article>
+			</section>
 
 
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-		</form>
+	</form>
 	</div>
 
 	<%@include file="../include/footer.jsp"%>
@@ -77,6 +110,6 @@
 
 		}
 	</script>
-	
+
 </body>
 </html>
