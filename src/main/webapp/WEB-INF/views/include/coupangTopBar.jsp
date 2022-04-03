@@ -4,13 +4,17 @@
 				<div class="col">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link link-dark">즐겨찾기</a></li>
+						<li class="nav-item"><a href="/infra/product/productForm" class="nav-link link-dark">상품등록</a></li>
+						<!-- 
 						<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">입점신청</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#">오픈마켓</a></li>
 								<li><a class="dropdown-item" href="#">여행·티켓</a></li>
 								<li><a class="dropdown-item" href="#">로켓배송</a></li>
 								<li><a class="dropdown-item" href="#">제휴마케팅</a></li>
-							</ul></li>
+							</ul>
+						</li>
+						 -->
 					</ul>
 				</div>
 				<div class="col d-flex justify-content-end">
