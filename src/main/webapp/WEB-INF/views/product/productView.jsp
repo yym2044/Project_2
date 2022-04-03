@@ -41,13 +41,26 @@
 
 			<div class="row">
 				<div class="col offset-2 py-3 d-flex">
-					<nav style="-bs-breadcrumb-divider: '&gt;';" aria-label="breadcrumb">
+					<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 						<ol class="breadcrumb" style="font-size: small;">
 							<li class="breadcrumb-item">쿠팡 홈</li>
+							
+							<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
+								<c:if test="${item.ifctSeq eq rt.trpdCategoryCd1}"><li class="breadcrumb-item"><c:out value="${item.ifctName}"/></li></c:if>
+							</c:forEach>
+							<c:forEach items="${listCategoryDepth2}" var="item" varStatus="status">
+								<c:if test="${item.ifctSeq eq rt.trpdCategoryCd2}"><li class="breadcrumb-item"><c:out value="${item.ifctName}"/></li></c:if>
+							</c:forEach>
+							<c:forEach items="${listCategoryDepth3}" var="item" varStatus="status">
+								<c:if test="${item.ifctSeq eq rt.trpdCategoryCd3}"><li class="breadcrumb-item"><c:out value="${item.ifctName}"/></li></c:if>
+							</c:forEach>
+							
+							<!-- 
 							<li class="breadcrumb-item">남성패션</li>
 							<li class="breadcrumb-item">의류</li>
 							<li class="breadcrumb-item">맨투맨/후드티</li>
 							<li class="breadcrumb-item active" aria-current="page">후드티</li>
+							 -->
 						</ol>
 					</nav>
 				</div>

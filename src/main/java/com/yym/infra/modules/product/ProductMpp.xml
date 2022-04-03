@@ -81,6 +81,11 @@
 			 , trpdOptionParentCd1
 			 , trpdOptionParentCd2
 			 , trpdOptionParentCd3
+			 
+			 , trpdCategoryCd1
+			 , trpdCategoryCd2
+			 , trpdCategoryCd3
+			 
 		FROM
 			tradProduct
 		WHERE 1=1
