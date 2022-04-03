@@ -23,5 +23,8 @@ public class ProductDao {
 	public Product selectOne(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo); }
 			
 	
-
+//	//옵션값 메모리
+//	public List<Product> optionParentForCache() {return sqlSession.selectList(namespace + ".optionParentForCache",""); }
+//	public List<Product> optionChildForCache() {return sqlSession.selectList(namespace + ".optionChildForCache",""); }
+	
 }

@@ -27,4 +27,13 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	
+//	@PostConstruct
+//	public void optionParentForCache() {
+//		List<Product> optionParentListFromDb = (ArrayList<Product>) dao.optionParentForCache();
+//		
+//		Product.cachedOptionParentArrayList.clear();
+//		Product.cachedOptionParentArrayList.addAll(optionParentListFromDb);
+//		System.out.println("cachedOptionParentArrayList: " + Product.cachedOptionParentArrayList.size() + " catched !!");
+//		
+//	}
 }

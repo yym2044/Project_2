@@ -73,6 +73,14 @@
 			, trpdDiscountPercent
 			, trpdDeliveryFee
 			, trpdStarRating
+			
+			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd1) as trpdOptionParentName1
+			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd2) as trpdOptionParentName2
+			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd3) as trpdOptionParentName3
+			
+			 , trpdOptionParentCd1
+			 , trpdOptionParentCd2
+			 , trpdOptionParentCd3
 		FROM
 			tradProduct
 		WHERE 1=1
@@ -80,5 +88,57 @@
 			AND trpdSeq = #{trpdSeq}
 		
 	</select>
-
+	
+	<select id="selectListOptions" resultMap="resultMapObj">
+		SELECT
+			b.tropSeq
+			,b.tropName
+			,c.trocName
+			,c.trocAdditionalPrice
+		FROM 
+			tradProduct a
+		LEFT JOIN 
+			tradOptionParent b 
+		ON  
+			(b.tropSeq = a.trpdOptionParentCd1) 
+			OR (b.tropSeq = a.trpdOptionParentCd2)
+			OR (b.tropSeq = a.trpdOptionParentCd3)
+		LEFT JOIN 
+			tradOptionChild c
+		ON 
+			c.tropSeq = b.tropSeq
+		WHERE 
+			a.trpdSeq = #{trpdSeq}
+	</select>
+	
+	<!-- 옵션값 메모리에 올리기 s -->
+	<!-- 
+	<select id="optionParentForCache" resultMap="resultMapObj">
+		SELECT
+			tropSeq
+			, tropName 
+		FROM 
+			tradOptionParent
+		WHERE 1=1
+			AND tropDelNy = 0
+			AND tropUseNy = 1
+		ORDER BY
+			tropOrder
+	</select>
+	<select id="optionChildForCache" resultMap="resultMapObj">
+		SELECT
+			trocSeq
+			, trocName
+			, tropSeq
+		FROM 
+			tradOptionChild
+		WHERE 1=1
+			AND trocDelNy = 0
+			AND trocUseNy = 1
+		ORDER BY
+			trocOrder
+	</select>
+	 -->
+	<!-- 옵션값 메모리에 올리기 s -->
+	
 </mapper>
