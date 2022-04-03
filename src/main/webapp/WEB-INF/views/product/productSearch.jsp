@@ -33,6 +33,8 @@
 	<div class="container-fluid">
 		<form id="formSearch" method="post">
 		<input type="hidden" id="trpdSeq" name="trpdSeq">
+		<input type="hidden" id="thisPage" name="thisPage" value="${vo.thisPage}">
+		<input type="hidden" id="shSort" name="shSort">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -53,6 +55,28 @@
 						'에 대한 검색결과
 					</div>
 				</div>
+				
+				<div class="row bg-light m-0 py-1 mb-2 align-items-center" style="font-size: small;">
+					<div class="col text-start px-2">
+						<a href="javascript:sort(lowPrice)">낮은가격순</a>
+						<a href="javascript:sort(highPrice)">높은가격순</a>
+						<a href="javascript:sort(highSales)">판매량순</a>
+						<a href="javascript:sort(latest)">최신순</a>
+					</div>
+					<div class="col px-2">
+						<ul class="nav d-flex justify-content-end text-end">
+							<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">4개씩 보기</a>
+								<ul class="dropdown-menu" style="font-size: small;">
+									<li><a class="dropdown-item" href="#">4개씩 보기</a></li>
+									<li><a class="dropdown-item" href="#">8개씩 보기</a></li>
+									<li><a class="dropdown-item" href="#">16개씩 보기</a></li>
+									<li><a class="dropdown-item" href="#">32개씩 보기</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
 				<%-- <div class="table-responsive">
 					<table class="table">
 						<tr>
@@ -115,6 +139,42 @@
 				
 			</div>
 			<!-- width65 end -->
+			
+			
+			
+			<!-- pagination start -->
+			<nav class="mt-3" aria-label="...">
+				<ul class="pagination justify-content-center">
+					<c:if test="${vo.startPage gt vo.pageNumToShow}">
+						<li class="page-item"><a class="page-link" href="javascript:goPage(<c:out value="${vo.startPage - 1}"/>)"><<</a></li>
+						<%-- <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.startPage - 1}&rowNumToShow=${vo.rowNumToShow}&shIfmmGrade=<c:out value="${vo.shIfmmGrade}"/>&shIfmmEmailConsentNy=<c:out value="${vo.shIfmmEmailConsentNy}"/>&shIfmmSmsConsentNy=<c:out value="${vo.shIfmmSmsConsentNy}"/>&shIfmmPushConsentNy=<c:out value="${vo.shIfmmPushConsentNy}"/>&shIfscSeq=<c:out value="${vo.shIfscSeq}"/>&searchBar=<c:out value="${vo.searchBar}"/>&sort=<c:out value="${vo.sort}"/>&orderby=<c:out value="${vo.orderby}"/>">Previous</a></li> --%>
+					</c:if>
+					
+					<li class="page-item <c:if test="${vo.thisPage eq vo.startPage}">disabled</c:if>"><a class="page-link" href="javascript:goPage(<c:out value="${vo.thisPage - 1}"/>)"><</a></li>
+					
+					<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+						<c:choose>
+							<c:when test="${i.index eq vo.thisPage}">
+								<li class="page-item active"><a class="page-link disableLink" href="javascript:goPage(<c:out value="${i.index}"/>)">${i.index}</a></li>
+								<%-- <li class="page-item active"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}&rowNumToShow=${vo.rowNumToShow}&shIfmmGrade=<c:out value="${vo.shIfmmGrade}"/>&shIfmmEmailConsentNy=<c:out value="${vo.shIfmmEmailConsentNy}"/>&shIfmmSmsConsentNy=<c:out value="${vo.shIfmmSmsConsentNy}"/>&shIfmmPushConsentNy=<c:out value="${vo.shIfmmPushConsentNy}"/>&shIfscSeq=<c:out value="${vo.shIfscSeq}"/>&searchBar=<c:out value="${vo.searchBar}"/>&sort=<c:out value="${vo.sort}"/>&orderby=<c:out value="${vo.orderby}"/>">${i.index}</a></li> --%>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="javascript:goPage(<c:out value="${i.index}"/>)">${i.index}</a></li>
+								<%-- <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}&rowNumToShow=${vo.rowNumToShow}&shIfmmGrade=<c:out value="${vo.shIfmmGrade}"/>&shIfmmEmailConsentNy=<c:out value="${vo.shIfmmEmailConsentNy}"/>&shIfmmSmsConsentNy=<c:out value="${vo.shIfmmSmsConsentNy}"/>&shIfmmPushConsentNy=<c:out value="${vo.shIfmmPushConsentNy}"/>&shIfscSeq=<c:out value="${vo.shIfscSeq}"/>&searchBar=<c:out value="${vo.searchBar}"/>&sort=<c:out value="${vo.sort}"/>&orderby=<c:out value="${vo.orderby}"/>">${i.index}</a></li> --%>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<li class="page-item <c:if test="${vo.thisPage eq vo.endPage}">disabled</c:if>"><a class="page-link" href="javascript:goPage(<c:out value="${vo.thisPage + 1}"/>)">></a></li>
+					<c:if test="${vo.endPage ne vo.totalPages}">
+						<li class="page-item"><a class="page-link" href="javascript:goPage(<c:out value="${vo.endPage + 1}"/>)">>></a></li>
+						<%-- <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.endPage + 1}&rowNumToShow=${vo.rowNumToShow}&shIfmmGrade=<c:out value="${vo.shIfmmGrade}"/>&shIfmmEmailConsentNy=<c:out value="${vo.shIfmmEmailConsentNy}"/>&shIfmmSmsConsentNy=<c:out value="${vo.shIfmmSmsConsentNy}"/>&shIfmmPushConsentNy=<c:out value="${vo.shIfmmPushConsentNy}"/>&shIfscSeq=<c:out value="${vo.shIfscSeq}"/>&searchBar=<c:out value="${vo.searchBar}"/>&sort=<c:out value="${vo.sort}"/>&orderby=<c:out value="${vo.orderby}"/>">Next</a></li> --%>
+					</c:if>
+				</ul>
+			</nav>
+			<!-- pagination end -->
+			
+			
+			
 
 
 
@@ -336,6 +396,18 @@
 	goView = function(seq){
 		$("#trpdSeq").val(seq);
 		$("#formSearch").attr("action", "/infra/product/productView");
+		$("#formSearch").submit();
+	}
+	
+	goPage = function(pageNum){
+		$("#thisPage").val(pageNum);
+		$("#formSearch").attr("action", "/infra/product/productSearch");
+		$("#formSearch").submit();
+	}
+	
+	goSort = function(what){
+		$("#shSort").val(what);
+		$("#formSearch").attr("action", "/infra/product/productSearch");
 		$("#formSearch").submit();
 	}
 	

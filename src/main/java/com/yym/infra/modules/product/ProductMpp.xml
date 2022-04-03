@@ -21,7 +21,7 @@
 			, trpdStarRating
 	
 		<include refid="selectListCommon"/>
-
+		LIMIT #{startRnumForMysql}, #{rowNumToShow}
 	</select>
 	
 	<select id="selectListCount" resultType="Integer">
@@ -48,8 +48,22 @@
 				</otherwise>
 
 			</choose>
+			
+		<choose>
+			<when test="shSort == 'lowPrice'">
+				ORDER BY (trpdPrice * (1-trpdDiscountPercent))
+			</when>
+			<when test="shSort == 'highPrice'">
+				ORDER BY (trpdPrice * (1-trpdDiscountPercent)) DESC
+			</when>
+			<when test="shSort == 'highSales'">
+				ORDER BY trpdSeq
+			</when>
+			<when test="shSort == 'latest'">
+				ORDER BY regDateTime
+			</when>
+		</choose>
 	</sql>
-
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
