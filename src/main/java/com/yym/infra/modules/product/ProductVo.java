@@ -25,7 +25,7 @@ public class ProductVo {
 	//------------
 		public void setParamsPaging(int totalRowsParam) {
 			
-			totalRows = totalRowsParam;
+			totalRows = totalRowsParam; 
 
 			totalPages = totalRows / rowNumToShow;
 			

@@ -27,7 +27,7 @@ public class ProductController {
 		
 		int count = service.selectListCount(vo);
 		
-		vo.setParamsPaging(count);
+		vo.setParamsPaging(count); 
 		
 		if(count != 0) {
 			model.addAttribute("list", service.selectList(vo));
