@@ -389,6 +389,30 @@
 			trigger : 'focus'
 		})
 	</script>
+	
+	<script type="text/javascript">
+		logOut = function() {
+
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/infra/member/logOutProc",
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/infra/product/productSearch";
+					} else {
+						alert("로그아웃 실패");
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
+
+		}
+	</script>
 
 	<script type="text/javascript">
 		$("#btnSearch").on("click", function() {
