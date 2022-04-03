@@ -115,14 +115,23 @@
 										<c:out value="${item.trpdName }" />
 									</span>
 								</a>
-								<c:if test="${item.trpdDiscountPercent ne 0.0}">
+								<c:choose>
+								<c:when test="${item.trpdDiscountPercent ne 0.0}">
 									<div class="row">
 										<div class="col-12">
 											<span class="d-inline ps-1 text-warning" style="font-size: x-small"><fmt:formatNumber value="${item.trpdDiscountPercent}" type="percent"/></span>
 											<span class="d-inline text-decoration-line-through px-1" style="font-size: x-small"><c:out value="${item.trpdPrice}"/></span>
 										</div>
 									</div>
-								</c:if>
+								</c:when>
+								<c:otherwise>
+									<div class="row">
+										<div class="col-12">
+											<span class="d-inline ps-1" style="font-size: x-small; color : white;"> </span>
+										</div>
+									</div>
+								</c:otherwise>
+								</c:choose>
 								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (item.trpdPrice * (1-item.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
 								<span class="d-inline fw-bold px-1 text-danger"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</span>
 								<c:if test="${item.trpdDeliveryFee eq 0}"><span class="d-block px-1 pt-1" style="font-size: x-small;">무료배송</span></c:if>								
