@@ -110,25 +110,41 @@
 							</div>
 						</div>
 						<div class="row border-bottom border-1 m-1 py-2">
-							<div class="col p-0 py-1" style="font-size: small">
-								사이즈
-								<br>
-								<select class="form-select" style="width: 18%; font-size: small;">
-									<option>::선택::</option>
-									<option>XL</option>
-									<option>L</option>
-									<option>M</option>
-									<option>S</option>
-								</select>
-								<br>
-								색상
-								<br>
-								<select class="form-select" style="width: 18%; font-size: small;">
-									<option>::선택::</option>
-									<option>화이트</option>
-									<option>블랙</option>
-								</select>
-							</div>
+							<c:if test="${not empty rt.trpdOptionParentName1}">
+								<div class="col-12 p-0 py-1" style="font-size: small">
+									<c:out value="${rt.trpdOptionParentName1}"/>
+									<br>
+									<select class="form-select" style="width: 18%; font-size: small;">
+										<option>::선택::</option>
+										<option>XL</option>
+										<option>L</option>
+										<option>M</option>
+										<option>S</option>
+									</select>
+								</div>
+							</c:if>
+							<c:if test="${not empty rt.trpdOptionParentName2}">
+								<div class="col-12 p-0 py-1" style="font-size: small">
+									<c:out value="${rt.trpdOptionParentName2}"/>
+									<br>
+									<select class="form-select" style="width: 18%; font-size: small;">
+										<option>::선택::</option>
+										<option>화이트</option>
+										<option>블랙</option>
+									</select>
+								</div>
+							</c:if>
+							<c:if test="${not empty rt.trpdOptionParentName3}">
+								<div class="col-12 p-0 py-1" style="font-size: small">
+									<c:out value="${rt.trpdOptionParentName3}"/>
+									<br>
+									<select class="form-select" style="width: 18%; font-size: small;">
+										<option>::선택::</option>
+										<option>화이트</option>
+										<option>블랙</option>
+									</select>
+								</div>
+							</c:if>
 						</div>
 						<div class="row m-1 py-2 align-items-center">
 							<div class="col-2 p-0">

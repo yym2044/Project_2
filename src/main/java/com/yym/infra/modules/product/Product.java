@@ -14,9 +14,14 @@ public class Product {
 	private Double trpdDiscountPercent = 0.0;
 	private Integer trpdDeliveryFee;
 	private Double trpdStarRating;
+	
 	private Integer trpdOptionParentCd1;
+	private String trpdOptionParentName1;
 	private Integer trpdOptionParentCd2;
+	private String trpdOptionParentName2;
 	private Integer trpdOptionParentCd3;
+	private String trpdOptionParentName3;
+	
 	private String trpdTag;
 	private String trpdDesc;
 	private Integer trpdDelNy;
@@ -34,7 +39,9 @@ public class Product {
 	private Date modDateTimeSvr;
 	
 	
-	
+//	//for cache
+//	public static List<Product> cachedOptionParentArrayList = new ArrayList<Product>();
+//	public static List<Product> cachedOptionChildArrayList = new ArrayList<Product>();
 	
 	
 	public String getTrpdSeq() {
@@ -192,6 +199,24 @@ public class Product {
 	}
 	public void setTrpdTag(String trpdTag) {
 		this.trpdTag = trpdTag;
+	}
+	public String getTrpdOptionParentName1() {
+		return trpdOptionParentName1;
+	}
+	public void setTrpdOptionParentName1(String trpdOptionParentName1) {
+		this.trpdOptionParentName1 = trpdOptionParentName1;
+	}
+	public String getTrpdOptionParentName2() {
+		return trpdOptionParentName2;
+	}
+	public void setTrpdOptionParentName2(String trpdOptionParentName2) {
+		this.trpdOptionParentName2 = trpdOptionParentName2;
+	}
+	public String getTrpdOptionParentName3() {
+		return trpdOptionParentName3;
+	}
+	public void setTrpdOptionParentName3(String trpdOptionParentName3) {
+		this.trpdOptionParentName3 = trpdOptionParentName3;
 	}
 	
 }
