@@ -9,7 +9,7 @@
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.product.Product"></resultMap>
 
-	<!-- search화면에 뿌림 -->
+	<!-- search화면 start -->
 	<select id="selectList" resultMap="resultMapObj">
 
 		SELECT
@@ -19,6 +19,18 @@
 			, trpdDiscountPercent
 			, trpdDeliveryFee
 			, trpdStarRating
+	
+		<include refid="selectListCommon"/>
+
+	</select>
+	
+	<select id="selectListCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectListCommon"/>
+	</select>
+	
+	<sql id="selectListCommon">
 		FROM
 			tradProduct
 		WHERE 1=1
@@ -36,8 +48,7 @@
 				</otherwise>
 
 			</choose>
-
-	</select>
+	</sql>
 
 	
 	<select id="selectOne" resultMap="resultMapObj">

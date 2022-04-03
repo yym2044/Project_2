@@ -25,7 +25,14 @@ public class ProductController {
 		System.out.println("vo.getShCategory() : " + vo.getShCategory());
 		System.out.println("vo.getShBar() : " + vo.getShBar());
 		
-		model.addAttribute("list", service.selectList(vo));
+		int count = service.selectListCount(vo);
+		
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
+		
 		
 		return "/product/productSearch";
 	}
