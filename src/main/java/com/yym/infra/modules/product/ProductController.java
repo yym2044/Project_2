@@ -45,6 +45,13 @@ public class ProductController {
 		
 		return "product/productView";
 	}
+	
+	@RequestMapping(value="/product/productForm")
+	public String productForm() throws Exception {
+		
+		return "product/productForm";
+	}
+	
 	@RequestMapping(value = "/product/productCheckOut")
 	public String productCheckOut() throws Exception {
 		
