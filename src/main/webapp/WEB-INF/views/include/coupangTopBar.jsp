@@ -4,7 +4,7 @@
 				<div class="col">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link link-dark">즐겨찾기</a></li>
-						<li class="nav-item"><a href="/infra/product/productForm" class="nav-link link-dark">상품등록</a></li>
+						<li class="nav-item"><a href="/infra/product/productForm" class="nav-link link-dark">상품관리</a></li>
 						<!-- 
 						<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">입점신청</a>
 							<ul class="dropdown-menu">

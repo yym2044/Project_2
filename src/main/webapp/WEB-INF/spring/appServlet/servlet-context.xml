@@ -23,6 +23,25 @@
 	
 	<context:component-scan base-package="com.yym.infra" />
 	
+	<!-- session interceptor s 2022.04.04 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/login/loginForm" />
+			<exclude-mapping path="/login/regForm1" />
+			<exclude-mapping path="/login/regForm2" />
+			<exclude-mapping path="/member/loginProc" />
+			<exclude-mapping path="/login/loginFindId" />
+			<exclude-mapping path="/login/loginFindPwd" />
+			<exclude-mapping path="/home" />
+			<exclude-mapping path="/product/productSearch" />
+			<exclude-mapping path="/product/productView" />
+			<beans:bean id="checkLoginSessionInterception" class="com.yym.infra.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.04.04 for logincheck -->
+	
 	
 	
 </beans:beans>
