@@ -98,6 +98,41 @@
 							</div>
 						</div>
 					</div>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6>옵션<span class="fw-light text-danger"> ｏ</span></h6>
+							<table class="table table-borderless">
+								<tr>
+									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
+									<td>
+										<select class="form-select" style="width:200px;">
+											<option>1개</option>
+											<option>2개</option>
+											<option>3개</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="pt-3" style="width: 100px; vertical-align: top;">옵션 입력</td>
+									<td class="text-start">
+										<div class="mb-1" id="option1">
+											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+										</div>
+										<div class="mb-1" id="option2">
+											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+										</div>
+										<div class="mb-1" id="option3">
+											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+										</div>
+									</td>
+								</tr>
+							</table>
+							 
+						</div>
+					</div>
 				</article>
 			</section>
 
