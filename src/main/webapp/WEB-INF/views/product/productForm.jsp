@@ -184,10 +184,10 @@
 							</div>
 							
 							<div id="descImageForm">
-								<div class="upload__box">
-									<div class="upload__btn-box">
+								<div class="upload__box border">
+									<div class="upload__btn-box text-center">
 										<label class="upload__btn">
-											<p>Upload images</p>
+											<p>이미지 등록</p>
 											<input type="file" multiple="" data-max_length="20" class="upload__inputfile">
 										</label>
 									</div>
@@ -276,9 +276,28 @@
 			$("#option2").show();
 			$("#option3").show();
 		}
-		
-		
 	});
+	
+	$(document).ready(function(){
+		if($("#descImage").is(":checked")){
+	        $("#descImageForm").show();
+	        $("#descEditorForm").hide();
+	    }else{
+	        $("#descEditorForm").show();
+	        $("#descImageForm").hide();
+	    }
+	});
+
+	$("input[name=descMethod]").on("change", function(){
+		if($("#descImage").is(":checked")){
+	        $("#descImageForm").show();
+	        $("#descEditorForm").hide();
+	    }else{
+	        $("#descEditorForm").show();
+	        $("#descImageForm").hide();
+	    }
+	});
+	
 	
 	</script>
 	
