@@ -19,11 +19,6 @@
 <title>쿠팡! 상품등록</title>
 <%@include file="../include/cssLinks.jsp"%>
 
-<link rel="stylesheet" href="https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-
-<link rel="stylesheet" href="${path}/resources/common/css/sideBarForm.css">
 <style type="text/css">
 </style>
 
@@ -42,252 +37,60 @@
 			<%@include file="../include/coupangTopBar.jsp"%>
 
 
-			<aside class="sticky">
-				<h1>상품등록</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-				<p>Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			<aside class="sticky p-3">
+				<h1>상품관리</h1>
+				<h1>가격관리</h1>
+				<h1>주문/배송</h1>
+				<h1>고객관리</h1>
 			</aside>
 
-			<section class="main-content">
+			<section class="main-content p-3">
 				<article>
-					<h1>Heading</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh gravida, gravida nisl ac, imperdiet sem. Fusce quis malesuada magna. Vivamus dignissim gravida tellus sed pulvinar. Morbi eleifend dolor vel velit viverra aliquam. In pharetra felis non leo congue, id iaculis dui laoreet. Pellentesque accumsan ligula sed nisl eleifend consequat. Proin at orci purus. Praesent dignissim at odio nec fringilla. Nulla lacinia ultricies auctor. Mauris vel diam nunc. Ut lorem arcu, interdum id tortor a, tincidunt vestibulum eros. Vivamus sit amet mattis turpis. Nullam auctor ut velit nec adipiscing. Morbi et vehicula diam.</p>
+					<h1 class="fw-bold">상품등록<span class="fs-6 fw-light text-danger" style="vertical-align: middle;">ｏ필수항목</span></h1>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6>노출상품명<span class="fw-light text-danger"> ｏ</span></h6>
+							<input type="text" class="form-control" placeholder="노출상품명 입력(브랜드명 + 제품명)">
+						</div>
+					</div>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6>카테고리<span class="fw-light text-danger"> ｏ</span></h6>
+							<div class="input-group">
+								<input type="radio" class="btn-check" name="categoryMethod" id="categorySearch" autocomplete="off" checked>
+								<label class="btn btn-outline-primary" for="categorySearch">카테고리 검색</label>
+								
+								<input type="radio" class="btn-check" name="categoryMethod" id="categorySelect" autocomplete="off">
+								<label class="btn btn-outline-primary" for="categorySelect">카테고리 선택</label>
+							</div>
+							<div id="inputCategorySearchForm">
+								<input id="" name="" type="text" class="form-control form-control-sm w-50" placeholder="키테고리명 입력">
+							</div>
+							<div id="inputCategorySelectForm">
+								<select id="" name="" size="10" class="form-select form-select-sm" style="width: 200px;">
+									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
+										<option value="${item.ifctSeq}"><c:out value="${item.ifctName}"/></option>
+										<c:set var="select1" value="${item.ifctSeq}"/>
+									</c:forEach>
+								</select>
+								
+								<select id="" name="" size="10" class="form-select form-select-sm" style="width: 200px;">
+									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
+										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+											<c:if test="${item.ifctSeq eq item2.ifctParents}">
+												<option><c:out value="${item2.ifctName}"/></option>
+											</c:if>										
+										</c:forEach>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+					</div>
 				</article>
 			</section>
 
 
 
-			<div class="layout has-sidebar fixed-sidebar fixed-header">
-				<aside id="sidebar" class="sidebar break-point-lg has-bg-image sticky">
-					<div class="image-wrapper">
-						<img src="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg" alt="sidebar background" />
-					</div>
-					<div class="sidebar-layout">
-						<div class="sidebar-header">
-							<span style="text-transform: uppercase; font-size: 15px; letter-spacing: 3px; font-weight: bold;">Pro Sidebar</span>
-						</div>
-						<div class="sidebar-content">
-							<nav class="menu open-current-submenu">
-								<ul>
-									<li class="menu-item sub-menu"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-vip-diamond-fill"></i>
-											</span>
-											<span class="menu-title">Components</span>
-											<span class="menu-suffix">&#x1F525;</span>
-										</a>
-										<div class="sub-menu-list">
-											<ul>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Grid</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Layout</span>
-													</a></li>
-												<li class="menu-item sub-menu"><a href="#">
-														<span class="menu-title">Forms</span>
-													</a>
-													<div class="sub-menu-list">
-														<ul>
-															<li class="menu-item"><a href="#">
-																	<span class="menu-title">Input</span>
-																</a></li>
-															<li class="menu-item"><a href="#">
-																	<span class="menu-title">Select</span>
-																</a></li>
-															<li class="menu-item sub-menu"><a href="#">
-																	<span class="menu-title">More</span>
-																</a>
-																<div class="sub-menu-list">
-																	<ul>
-																		<li class="menu-item"><a href="#">
-																				<span class="menu-title">CheckBox</span>
-																			</a></li>
-																		<li class="menu-item"><a href="#">
-																				<span class="menu-title">Radio</span>
-																			</a></li>
-																		<li class="menu-item sub-menu"><a href="#">
-																				<span class="menu-title">Want more ?</span>
-																				<span class="menu-suffix">&#x1F914;</span>
-																			</a>
-																			<div class="sub-menu-list">
-																				<ul>
-																					<li class="menu-item"><a href="#">
-																							<span class="menu-prefix">&#127881;</span>
-																							<span class="menu-title">You made it </span>
-																						</a></li>
-																				</ul>
-																			</div></li>
-																	</ul>
-																</div></li>
-														</ul>
-													</div></li>
-											</ul>
-										</div></li>
-									<li class="menu-item sub-menu"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-bar-chart-2-fill"></i>
-											</span>
-											<span class="menu-title">Charts</span>
-										</a>
-										<div class="sub-menu-list">
-											<ul>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Pie chart</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Line chart</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Bar chart</span>
-													</a></li>
-											</ul>
-										</div></li>
-									<li class="menu-item sub-menu"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-shopping-cart-fill"></i>
-											</span>
-											<span class="menu-title">E-commerce</span>
-										</a>
-										<div class="sub-menu-list">
-											<ul>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Products</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Orders</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">credit card</span>
-													</a></li>
-											</ul>
-										</div></li>
-									<li class="menu-item sub-menu"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-global-fill"></i>
-											</span>
-											<span class="menu-title">Maps</span>
-										</a>
-										<div class="sub-menu-list">
-											<ul>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Google maps</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Open street map</span>
-													</a></li>
-											</ul>
-										</div></li>
-									<li class="menu-item sub-menu"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-brush-3-fill"></i>
-											</span>
-											<span class="menu-title">Theme</span>
-										</a>
-										<div class="sub-menu-list">
-											<ul>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Dark</span>
-													</a></li>
-												<li class="menu-item"><a href="#">
-														<span class="menu-title">Light</span>
-													</a></li>
-											</ul>
-										</div></li>
-									<li class="menu-item"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-book-2-fill"></i>
-											</span>
-											<span class="menu-title">Documentation</span>
-										</a></li>
-									<li class="menu-item"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-calendar-fill"></i>
-											</span>
-											<span class="menu-title">Calendar</span>
-										</a></li>
-									<li class="menu-item"><a href="#">
-											<span class="menu-icon">
-												<i class="ri-service-fill"></i>
-											</span>
-											<span class="menu-title">Examples</span>
-										</a></li>
-								</ul>
-							</nav>
-						</div>
-						<div class="sidebar-footer">
-							<span>Sidebar footer</span>
-						</div>
-					</div>
-				</aside>
-				<div id="overlay" class="overlay"></div>
-				<div class="layout">
-					<header class="header">
-						<a id="btn-collapse" href="#">
-							<i class="ri-menu-line ri-xl"></i>
-						</a>
-						<a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
-							<i class="ri-menu-line ri-xl"></i>
-						</a>
-					</header>
-					<main class="content">
-						<div>
-							<h1>Pro Sidebar</h1>
-							<p>Responsive layout with advanced sidebar menu built with SCSS and vanilla Javascript</p>
-							<p>
-								Full Code and documentation available on
-								<a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">Github</a>
-							</p>
-							<div>
-								<a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/pro-sidebar-template?style=social" />
-								</a>
-								<a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-									<img alt="GitHub forks" src="https://img.shields.io/github/forks/azouaoui-med/pro-sidebar-template?style=social" />
-								</a>
-							</div>
-						</div>
-						<div>
-							<h2>Features</h2>
-							<ul>
-								<li>Fully responsive</li>
-								<li>Collapsable sidebar</li>
-								<li>Multi level menu</li>
-								<li>RTL support</li>
-								<li>Customizable</li>
-							</ul>
-						</div>
-						<div>
-							<h2>Resources</h2>
-							<ul>
-								<li><a target="_blank" href="https://github.com/azouaoui-med/css-pro-layout"> Css Pro Layout</a></li>
-								<li><a target="_blank" href="https://github.com/popperjs/popper-core"> Popper Core</a></li>
-								<li><a target="_blank" href="https://remixicon.com/"> Remix Icons</a></li>
-							</ul>
-						</div>
-						<footer class="footer">
-							<small style="margin-bottom: 20px; display: inline-block"> © 2022 made with <span style="color: red; font-size: 18px">&#10084;</span> by - <a target="_blank" href="https://azouaoui.netlify.com"> Mohamed Azouaoui </a>
-							</small>
-							<br />
-							<div>
-								<a href="https://github.com/azouaoui-med" target="_blank" rel="noopener noreferrer">
-									<img alt="GitHub followers" src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social" />
-								</a>
-								<a href="https://twitter.com/azouaoui_med" target="_blank" rel="noopener noreferrer">
-									<img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social" />
-								</a>
-							</div>
-						</footer>
-					</main>
-					<div class="overlay"></div>
-				</div>
-			</div>
 
 
 
@@ -323,7 +126,30 @@
 
 		}
 	</script>
-	<script src="${path}/resources/common/js/sideBarForm.js"></script>
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		if($("#categorySearch").is(":checked")){
+	        $("#inputCategorySearchForm").show();
+	        $("#inputCategorySelectForm").hide();
+	    }else{
+	        $("#inputCategorySelectForm").show();
+	        $("#inputCategorySearchForm").hide();
+	    }
+	});
+
+	$("input[name=categoryMethod]").on("change", function(){
+		if($("#categorySearch").is(":checked")){
+	        $("#inputCategorySearchForm").show();
+	        $("#inputCategorySelectForm").hide();
+	    }else{
+	        $("#inputCategorySelectForm").show();
+	        $("#inputCategorySearchForm").hide();
+	    }
+	});
+	
+	</script>
 
 </body>
 </html>
