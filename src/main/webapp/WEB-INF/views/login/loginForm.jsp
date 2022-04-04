@@ -390,9 +390,6 @@ $("#btnLogin").on("click", function(){
 			}
 		}
 		
-		
-		
-		
 		,error : function(jqXHR, textStatus, errorThrown){
 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 		}
