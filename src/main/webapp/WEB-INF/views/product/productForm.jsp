@@ -62,7 +62,7 @@
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6>카테고리 <span class="text-danger">♥</span></h6>
-							<div class="input-group">
+							<div class="input-group mb-2">
 								<input type="radio" class="btn-check" name="categoryMethod" id="categorySearch" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="categorySearch">카테고리 검색</label>
 								
