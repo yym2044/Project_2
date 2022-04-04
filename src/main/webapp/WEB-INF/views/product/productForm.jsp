@@ -105,10 +105,10 @@
 								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
 									<td>
-										<select class="form-select" style="width:200px;">
-											<option>1개</option>
-											<option>2개</option>
-											<option>3개</option>
+										<select id="optionN" name="optionN" class="form-select" style="width:200px;">
+											<option value="1">1개</option>
+											<option value="2">2개</option>
+											<option value="3">3개</option>
 										</select>
 									</td>
 								</tr>
@@ -194,6 +194,28 @@
 	        $("#inputCategorySelectForm").show();
 	        $("#inputCategorySearchForm").hide();
 	    }
+	});
+	
+	$(document).ready(function() {
+		if($("#optionN").val() == 1){
+			$("#option2").hide();
+			$("#option3").hide();
+		}
+	});
+	
+	$("#optionN").on("change", function() {
+		if($("#optionN").val() == 1){
+			$("#option2").hide();
+			$("#option3").hide();
+		} else if($("#optionN").val() == 2) {
+			$("#option2").show();
+			$("#option3").hide();
+		} else {
+			$("#option2").show();
+			$("#option3").show();
+		}
+		
+		
 	});
 	
 	</script>
