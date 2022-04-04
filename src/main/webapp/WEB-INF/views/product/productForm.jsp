@@ -20,6 +20,12 @@
 <%@include file="../include/cssLinks.jsp"%>
 
 <style type="text/css">
+.preview{
+  width: 100px;
+}
+.preview2{
+  width: 100px;
+}
 </style>
 
 </head>
@@ -46,16 +52,16 @@
 
 			<section class="main-content p-3">
 				<article>
-					<h1 class="fw-bold">상품등록<span class="fs-6 fw-light text-danger" style="vertical-align: middle;">ｏ필수항목</span></h1>
+					<h1 class="fw-bold">상품등록 <span class="fs-6 fw-light text-danger" style="vertical-align: middle;">♥ 필수항목</span></h1>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>노출상품명<span class="fw-light text-danger"> ｏ</span></h6>
+							<h6>노출상품명 <span class="text-danger">♥</span></h6>
 							<input type="text" class="form-control" placeholder="노출상품명 입력(브랜드명 + 제품명)">
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>카테고리<span class="fw-light text-danger"> ｏ</span></h6>
+							<h6>카테고리 <span class="text-danger">♥</span></h6>
 							<div class="input-group">
 								<input type="radio" class="btn-check" name="categoryMethod" id="categorySearch" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="categorySearch">카테고리 검색</label>
@@ -100,7 +106,7 @@
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>옵션<span class="fw-light text-danger"> ｏ</span></h6>
+							<h6>옵션 <span class="text-danger">♥</span></h6>
 							<table class="table table-borderless">
 								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
@@ -117,20 +123,51 @@
 									<td class="text-start">
 										<div class="mb-1" id="option1">
 											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
 										<div class="mb-1" id="option2">
 											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
 										<div class="mb-1" id="option3">
 											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값" style="width: 400px;">
+											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
 									</td>
 								</tr>
 							</table>
 							 
+						</div>
+					</div>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6>태그</h6>
+							<input type="text" class="form-control" placeholder="태그명 ( 최대 3개까지 ,로 구분 )">
+						</div>
+					</div>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6>상품 이미지 <span class="text-danger">♥</span></h6>
+							<table class="table">
+								<tr>
+									<td class="text-start" style="width: 130px;">대표이미지 <span class="text-danger">♥</span></td>
+									<td class="text-start">
+										<label for="avatar">
+											<img src="${path}/resources/images/user/productForm/inputFile.png" height="96" id="img"/>
+										</label>
+										<input class="d-none" type="file" id="avatar" name="avatar" />
+									</td>
+								</tr>
+								<tr>
+									<td class="text-start" style="width: 130px;">추가이미지</td>
+									<td class="text-start">
+										<label for="avatar2">
+											<img src="${path}/resources/images/user/productForm/inputFile.png" height="96" id="img"/>
+										</label>
+										<input class="d-none" type="file" id="avatar2" name="avatar2" />
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</article>
@@ -219,6 +256,36 @@
 	});
 	
 	</script>
+	
+	<!-- 업로드한 이미지 프리뷰 start -->
+	<script type="text/javascript">
+	let avatarInput = document.getElementById('avatar');
+	let img = document.querySelector('label[for=avatar] img');
+
+	avatarInput.onchange = async (e) => {
+	  
+	  img.classList.add('preview');
+	  img.src = URL.createObjectURL(e.target.files[0]);  
+	  
+	  await console.log(img.offsetHeight, img.offsetWidth)
+	  
+	}
+	</script>
+	
+	<script type="text/javascript">
+	let avatarInput2 = document.getElementById('avatar2');
+	let img2 = document.querySelector('label[for=avatar2] img');
+
+	avatarInput2.onchange = async (e) => {
+	  
+	  img2.classList.add('preview2');
+	  img2.src = URL.createObjectURL(e.target.files[0]);  
+	  
+	  await console.log(img2.offsetHeight, img2.offsetWidth)
+	  
+	}
+	</script>
+	<!-- 업로드한 이미지 프리뷰 end -->
 
 </body>
 </html>
