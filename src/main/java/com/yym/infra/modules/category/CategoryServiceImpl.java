@@ -24,6 +24,20 @@ public class CategoryServiceImpl {
 		System.out.println("cachedCategoryArrayList : " + Category.cachedCategoryArrayList.size() + " catched!!");
 		
 	}
+	public static List<Category> selectCategoryWithDepthCachedCode(String ifctDepth) throws Exception {
+		
+		List<Category> rt = new ArrayList<Category>();
+		
+		for(Category categoryRow : Category.cachedCategoryArrayList) {
+			if(categoryRow.getIfctDepth().equals(ifctDepth)) {
+				rt.add(categoryRow);
+			} else {
+				// by pass
+			}
+		}
+		
+		return rt;
+	}
 	
 	public static List<Category> selectCategoryWithParentsCachedCode(String ifctParents) throws Exception {
 		
@@ -41,20 +55,6 @@ public class CategoryServiceImpl {
 		
 	}
 	
-	public static List<Category> selectCategoryWithDepthCachedCode(String ifctDepth) throws Exception {
-		
-		List<Category> rt = new ArrayList<Category>();
-		
-		for(Category categoryRow : Category.cachedCategoryArrayList) {
-			if(categoryRow.getIfctDepth().equals(ifctDepth)) {
-				rt.add(categoryRow);
-			} else {
-				// by pass
-			}
-		}
-		
-		return rt;
-	}
 	
 	public static void clear() throws Exception {
 		Category.cachedCategoryArrayList.clear();
