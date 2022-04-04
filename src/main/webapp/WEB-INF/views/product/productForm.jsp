@@ -67,19 +67,31 @@
 								<input id="" name="" type="text" class="form-control form-control-sm w-50" placeholder="키테고리명 입력">
 							</div>
 							<div id="inputCategorySelectForm">
-								<select id="" name="" size="10" class="form-select form-select-sm" style="width: 200px;">
+								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<option value="${item.ifctSeq}"><c:out value="${item.ifctName}"/></option>
 										<c:set var="select1" value="${item.ifctSeq}"/>
 									</c:forEach>
 								</select>
 								
-								<select id="" name="" size="10" class="form-select form-select-sm" style="width: 200px;">
+								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 											<c:if test="${item.ifctSeq eq item2.ifctParents}">
 												<option><c:out value="${item2.ifctName}"/></option>
 											</c:if>										
+										</c:forEach>
+									</c:forEach>
+								</select>
+								
+								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
+										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
+											<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
+												<c:if test="${item2.ifctSeq eq item3.ifctParents}">
+													<option><c:out value="${item3.ifctName}"/></option>
+												</c:if>										
+											</c:forEach>
 										</c:forEach>
 									</c:forEach>
 								</select>
