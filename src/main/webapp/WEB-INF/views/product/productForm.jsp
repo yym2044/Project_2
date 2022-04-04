@@ -28,6 +28,90 @@
 }
 </style>
 
+<style type="text/css">
+@charset "UTF-8";
+html * {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+.upload__box {
+  padding: 40px;
+}
+.upload__inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.upload__btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  min-width: 116px;
+  padding: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid;
+  background-color: #4045ba;
+  border-color: #4045ba;
+  border-radius: 10px;
+  line-height: 26px;
+  font-size: 14px;
+}
+.upload__btn:hover {
+  background-color: unset;
+  color: #4045ba;
+  transition: all 0.3s ease;
+}
+.upload__btn-box {
+  margin-bottom: 10px;
+}
+.upload__img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+.upload__img-box {
+  width: 200px;
+  padding: 0 10px;
+  margin-bottom: 12px;
+}
+.upload__img-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  line-height: 24px;
+  z-index: 1;
+  cursor: pointer;
+}
+.upload__img-close:after {
+  content: "✖";
+  font-size: 14px;
+  color: white;
+}
+
+.img-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -55,14 +139,14 @@
 					<h1 class="fw-bold">상품등록 <span class="fs-6 fw-light text-danger" style="vertical-align: middle;">♥ 필수항목</span></h1>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>노출상품명 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold" class="fw-bold">노출상품명 <span class="text-danger">♥</span></h6>
 							<input type="text" class="form-control" placeholder="노출상품명 입력(브랜드명 + 제품명)">
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>카테고리 <span class="text-danger">♥</span></h6>
-							<div class="input-group mb-2">
+							<h6 class="fw-bold" class="fw-bold">카테고리 <span class="text-danger">♥</span></h6>
+							<div class="input-group input-group-sm mb-2">
 								<input type="radio" class="btn-check" name="categoryMethod" id="categorySearch" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="categorySearch">카테고리 검색</label>
 								
@@ -106,7 +190,7 @@
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>옵션 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold">옵션 <span class="text-danger">♥</span></h6>
 							<table class="table table-borderless">
 								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
@@ -141,13 +225,13 @@
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>태그</h6>
+							<h6 class="fw-bold">태그</h6>
 							<input type="text" class="form-control" placeholder="태그명 ( 최대 3개까지 ,로 구분 )">
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6>상품 이미지 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold">상품 이미지 <span class="text-danger">♥</span></h6>
 							<table class="table">
 								<tr>
 									<td class="text-start" style="width: 130px;">대표이미지 <span class="text-danger">♥</span></td>
@@ -170,16 +254,39 @@
 							</table>
 						</div>
 					</div>
+					<div class="row border p-3 mb-2">
+						<div class="col">
+							<h6 class="fw-bold">상세설명 <span class="text-danger">♥</span></h6>
+							<div class="input-group input-group-sm mb-2">
+								<input type="radio" class="btn-check" name="descMethod" id="descImage" autocomplete="off" checked>
+								<label class="btn btn-outline-primary" for="descImage">이미지 업로드</label>
+								
+								<input type="radio" class="btn-check" name="descMethod" id="descEditor" autocomplete="off">
+								<label class="btn btn-outline-primary" for="descEditor">에디터 작성</label>
+							</div>
+							
+							<div id="descImageForm">
+								<div class="upload__box">
+									<div class="upload__btn-box">
+										<label class="upload__btn">
+											<p>Upload images</p>
+											<input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+										</label>
+									</div>
+									<div class="upload__img-wrap">
+											
+										
+									</div>
+								</div>
+							</div>
+							<div id="descEditorForm">
+							
+							</div>
+							
+						</div>
+					</div>
 				</article>
 			</section>
-
-
-
-
-
-
-
-
 
 		</form>
 	</div>
@@ -286,6 +393,69 @@
 	}
 	</script>
 	<!-- 업로드한 이미지 프리뷰 end -->
+	
+	<script type="text/javascript">
+	jQuery(document).ready(function () {
+		  ImgUpload();
+		});
+
+		function ImgUpload() {
+		  var imgWrap = "";
+		  var imgArray = [];
+
+		  $('.upload__inputfile').each(function () {
+		    $(this).on('change', function (e) {
+		      imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+		      var maxLength = $(this).attr('data-max_length');
+
+		      var files = e.target.files;
+		      var filesArr = Array.prototype.slice.call(files);
+		      var iterator = 0;
+		      filesArr.forEach(function (f, index) {
+
+		        if (!f.type.match('image.*')) {
+		          return;
+		        }
+
+		        if (imgArray.length > maxLength) {
+		          return false
+		        } else {
+		          var len = 0;
+		          for (var i = 0; i < imgArray.length; i++) {
+		            if (imgArray[i] !== undefined) {
+		              len++;
+		            }
+		          }
+		          if (len > maxLength) {
+		            return false;
+		          } else {
+		            imgArray.push(f);
+
+		            var reader = new FileReader();
+		            reader.onload = function (e) {
+		              var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+		              imgWrap.append(html);
+		              iterator++;
+		            }
+		            reader.readAsDataURL(f);
+		          }
+		        }
+		      });
+		    });
+		  });
+
+		  $('body').on('click', ".upload__img-close", function (e) {
+		    var file = $(this).parent().data("file");
+		    for (var i = 0; i < imgArray.length; i++) {
+		      if (imgArray[i].name === file) {
+		        imgArray.splice(i, 1);
+		        break;
+		      }
+		    }
+		    $(this).parent().parent().remove();
+		  });
+		}
+	</script>
 
 </body>
 </html>
