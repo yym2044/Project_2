@@ -217,15 +217,31 @@
 		tradOptionParent (
 			tropName
 			, trpdSeq
+			, tropOrder
 			, tropUseNy
 			, tropDelNy
+		<include refid="insertRegMod"/>
 		) VALUES (
 			#{tropName}
 			, #{trpdSeq}
+			, #{tropOrder}
 			, 1
 			, 0
+		<include refid="insertRegModValue"/>
 		)
 	</insert>
+	
+	<update id="updateOptionParentCd">
+	UPDATE 
+		tradProduct
+	SET
+		trpdOptionParentCd1 = (SELECT tropSeq FROM tradOptionParent WHERE trpdSeq = #{trpdSeq} AND tropOrder = 1)
+		, trpdOptionParentCd2 = (SELECT tropSeq FROM tradOptionParent WHERE trpdSeq = #{trpdSeq} AND tropOrder = 2)
+		, trpdOptionParentCd3 = (SELECT tropSeq FROM tradOptionParent WHERE trpdSeq = #{trpdSeq} AND tropOrder = 3)
+	WHERE 1=1
+		AND trpdSeq = #{trpdSeq}
+		
+	</update>
 	
 	
 </mapper>
