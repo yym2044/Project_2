@@ -29,6 +29,7 @@ public class Product {
 	//옵션
 	private String tropSeq;
 	private String tropName;
+	private Integer tropOrder;
 	private String trocSeq;
 	private String trocName;
 	private Integer trocAdditionalPrice;
@@ -262,6 +263,12 @@ public class Product {
 	}
 	public void setTropNameArray(String[] tropNameArray) {
 		this.tropNameArray = tropNameArray;
+	}
+	public Integer getTropOrder() {
+		return tropOrder;
+	}
+	public void setTropOrder(Integer tropOrder) {
+		this.tropOrder = tropOrder;
 	}
 	
 }

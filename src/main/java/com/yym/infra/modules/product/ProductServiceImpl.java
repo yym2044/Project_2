@@ -55,9 +55,12 @@ public class ProductServiceImpl implements ProductService {
 		for(int i=0; i<dto.getTropNameArray().length; i++) {
 			
 			dto.setTropName(dto.getTropNameArray()[i]);
+			dto.setTropOrder(i+1);
 			
 			dao.insertOptionParent(dto);
 		}
+		
+		dao.updateOptionParentCd(dto);
 		
 //		// infrMemberPhone
 //		for(int i=0; i<dto.getIfmpNumberArray().length; i++) {
