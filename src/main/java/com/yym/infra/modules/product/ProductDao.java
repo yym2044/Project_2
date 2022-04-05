@@ -30,4 +30,5 @@ public class ProductDao {
 	
 	
 	public int insertProduct(Product dto) {return sqlSession.insert(namespace + ".insertProduct", dto); }
+	public int insertOptionParent(Product dto) {return sqlSession.insert(namespace + ".insertOptionParent", dto); }
 }
