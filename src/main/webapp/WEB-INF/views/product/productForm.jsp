@@ -143,11 +143,7 @@
 								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 목록</td>
 									<td>
-										<select id="optionN" name="optionN" class="form-select" style="width:200px;">
-											<option value="1">1개</option>
-											<option value="2">2개</option>
-											<option value="3">3개</option>
-										</select>
+										
 									</td>
 								</tr>
 							</table>
