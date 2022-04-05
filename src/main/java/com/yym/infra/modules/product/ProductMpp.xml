@@ -185,6 +185,9 @@
 			, trpdCategoryCd1
 			, trpdCategoryCd2
 			, trpdCategoryCd3
+			, trpdOptionParentCd1
+			, trpdOptionParentCd2
+			, trpdOptionParentCd3
 			, trpdTag
 			, trpdDesc
 			, trpdDelNy
@@ -194,27 +197,35 @@
 			, #{trpdCategoryCd1}
 			, #{trpdCategoryCd2}
 			, #{trpdCategoryCd3}
+			, 0
+			, 0
+			, 0
 			, #{trpdTag}
 			, #{trpdDesc}
 			, 0
 		<include refid="insertRegModValue"/>
 		)
+		
+		<selectKey resultType="String" keyProperty="trpdSeq" order="AFTER">
+		SELECT last_insert_id()
+		</selectKey>
+		
 	</insert>
+	
 	<insert id="insertOptionParent">
 	INSERT INTO
 		tradOptionParent (
 			tropName
+			, trpdSeq
 			, tropUseNy
 			, tropDelNy
 		) VALUES (
 			#{tropName}
+			, #{trpdSeq}
 			, 1
 			, 0
 		)
 	</insert>
-	
-	
-	
 	
 	
 </mapper>
