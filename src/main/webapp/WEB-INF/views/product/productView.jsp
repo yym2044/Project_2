@@ -190,6 +190,7 @@
 							</div>
 						</div>
 						<div class="row m-1 py-2">
+							<!--    tradProduct_real에서 뽑아온 정보가 들어갈 예정 
 							<ul class="productDetails">
 								<li>의류 핏: 오버핏</li>
 								<li>안감 종류: 기본</li>
@@ -198,6 +199,7 @@
 								<li>상의 사이즈: 남성 XL (105)</li>
 								<li>쿠팡상품번호: 6111245966 - 11519354261</li>
 							</ul>
+							 -->
 						</div>
 					</div>
 				</div>
