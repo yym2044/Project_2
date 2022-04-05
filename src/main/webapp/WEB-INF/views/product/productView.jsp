@@ -103,10 +103,10 @@
 								
 								<c:if test="${rt.trpdDiscountPercent ne 0.0}">
 									<span class="d-inline ps-1" style="font-size: small"><fmt:formatNumber value="${rt.trpdDiscountPercent}" type="percent"/> 할인</span>
-									<span class="d-inline text-decoration-line-through px-1" style="font-size: small"><c:out value="${rt.trpdPrice}"/></span>
+									<span class="d-inline text-decoration-line-through px-1" style="font-size: small"><fmt:formatNumber value="${rt.trpdPrice}"/></span>
 								</c:if>
-								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (rt.trpdPrice * (1-rt.trpdDiscountPercent)) / 10 }" pattern="#,##0"/>
-								<p class="fw-bold px-1 text-danger productPrice m-0"><fmt:formatNumber value="${PRICE * 10}" pattern="#,##0" />원</p>
+								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (rt.trpdPrice * (1-rt.trpdDiscountPercent)) / 10 }"/>
+								<p class="fw-bold px-1 text-danger productPrice m-0"><fmt:formatNumber value="${PRICE * 10}" />원</p>
 								
 								
 							</div>
@@ -201,6 +201,9 @@
 							</ul>
 							 -->
 						</div>
+					</div>
+					<div class="col-12">
+						<c:out value="${rt.trpdDesc}"/>
 					</div>
 				</div>
 			</div>

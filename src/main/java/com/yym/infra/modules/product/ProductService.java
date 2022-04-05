@@ -8,4 +8,6 @@ public interface ProductService {
 	public Integer selectListCount(ProductVo vo) throws Exception;
 	public Product selectOne(ProductVo vo) throws Exception;
 	public List<Product> selectListOptions(ProductVo vo) throws Exception;
+	
+	public int insertProduct(Product dto) throws Exception;
 }

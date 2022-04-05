@@ -52,6 +52,14 @@ public class ProductController {
 		return "product/productForm";
 	}
 	
+	@RequestMapping(value="/product/productInst")
+	public String productInst(Product dto) throws Exception {
+		
+		service.insertProduct(dto);
+		
+		return "redirect:/home";
+	}
+	
 	@RequestMapping(value = "/product/productCheckOut")
 	public String productCheckOut() throws Exception {
 		

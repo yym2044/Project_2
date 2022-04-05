@@ -40,4 +40,10 @@ public class ProductServiceImpl implements ProductService {
 //		System.out.println("cachedOptionParentArrayList: " + Product.cachedOptionParentArrayList.size() + " catched !!");
 //		
 //	}
+	
+	
+	@Override
+	public int insertProduct(Product dto) throws Exception {
+		return dao.insertProduct(dto);
+	}
 }
