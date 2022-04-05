@@ -54,16 +54,16 @@
 
 			<section class="main-content p-3">
 				<article>
-					<h1 class="fw-bold">상품등록 <span class="fs-6 fw-light text-danger" style="vertical-align: middle;">♥ 필수항목</span></h1>
+					<h1 class="fw-bold">상품등록 <span class="fs-6 fw-bold text-danger" style="vertical-align: middle;">Ο 필수항목</span></h1>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6 class="fw-bold" class="fw-bold">노출상품명 <span class="text-danger">♥</span></h6>
-							<input type="text" class="form-control" placeholder="노출상품명 입력(브랜드명 + 제품명)">
+							<h6 class="fw-bold" class="fw-bold">노출상품명 <span class="text-danger">Ο</span></h6>
+							<input id="trpdName" name="trpdName" type="text" class="form-control" placeholder="노출상품명 입력(브랜드명 + 제품명)">
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6 class="fw-bold" class="fw-bold">카테고리 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold" class="fw-bold">카테고리 <span class="text-danger">Ο</span></h6>
 							<div class="input-group input-group-sm mb-2">
 								<input type="radio" class="btn-check" name="categoryMethod" id="categorySearch" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="categorySearch">카테고리 검색</label>
@@ -75,29 +75,29 @@
 								<input id="" name="" type="text" class="form-control form-control-sm w-50" placeholder="키테고리명 입력">
 							</div>
 							<div id="inputCategorySelectForm">
-								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd1" name="trpdCategoryCd1" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<option value="${item.ifctSeq}"><c:out value="${item.ifctName}"/></option>
 										<c:set var="select1" value="${item.ifctSeq}"/>
 									</c:forEach>
 								</select>
 								
-								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 											<c:if test="${item.ifctSeq eq item2.ifctParents}">
-												<option><c:out value="${item2.ifctName}"/></option>
+												<option value="<c:out value="${item2.ifctSeq}"/>"><c:out value="${item2.ifctName}"/></option>
 											</c:if>										
 										</c:forEach>
 									</c:forEach>
 								</select>
 								
-								<select id="" name="" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 											<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
 												<c:if test="${item2.ifctSeq eq item3.ifctParents}">
-													<option><c:out value="${item3.ifctName}"/></option>
+													<option value="<c:out value="${item3.ifctSeq}"/>"><c:out value="${item3.ifctName}"/></option>
 												</c:if>										
 											</c:forEach>
 										</c:forEach>
@@ -108,7 +108,7 @@
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6 class="fw-bold">옵션 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold">옵션 <span class="text-danger">Ο</span></h6>
 							<table class="table table-borderless">
 								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
@@ -152,15 +152,15 @@
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold">태그</h6>
-							<input type="text" class="form-control" placeholder="태그명 ( 최대 3개까지 ,로 구분 )">
+							<input id="trpdTag" name="trpdTag" type="text" class="form-control" placeholder="태그명 ( ,로 구분 )">
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6 class="fw-bold">상품 이미지 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold">상품 이미지 <span class="text-danger">Ο</span></h6>
 							<table class="table">
 								<tr>
-									<td class="text-start" style="width: 130px;">대표이미지 <span class="text-danger">♥</span></td>
+									<td class="text-start" style="width: 130px;">대표이미지 <span class="text-danger">Ο</span></td>
 									<td class="text-start">
 										<label for="avatar">
 											<img src="${path}/resources/images/user/productForm/inputFile.png" height="96" id="img"/>
@@ -182,7 +182,7 @@
 					</div>
 					<div class="row border p-3 mb-2">
 						<div class="col">
-							<h6 class="fw-bold">상세설명 <span class="text-danger">♥</span></h6>
+							<h6 class="fw-bold">상세설명 <span class="text-danger">Ο</span></h6>
 							<div class="input-group input-group-sm mb-2">
 								<input type="radio" class="btn-check" name="descMethod" id="descImage" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="descImage">이미지 업로드</label>
@@ -205,15 +205,20 @@
 								</div>
 							</div>
 							<div id="descEditorForm">
-								<div id="toolbar-container"></div>
-								<div style="height: 200px;" id="trpdDesc">
-									<p></p>
-								</div>
+								<textarea style="height: 200px;" id="trpdDesc" name="trpdDesc">
+								</textarea>
 								<!-- <textarea id="trpdDesc" name="trpdDesc"></textarea> -->
 							</div>
 							
 						</div>
 					</div>
+					
+					<div class="row">
+						<div class="col">
+							<button id="btnSubmit" name="btnSubmit" class="btn btn-primary">등록</button>
+						</div>
+					</div>
+					
 				</article>
 			</section>
 
@@ -222,6 +227,15 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	$("#btnSubmit").on("click", function(){
+		$("#formForm").attr("action", "/infra/product/productInst");
+		$("#formForm").submit();
+		
+		alert("상품 '" + $("#trpdName") + "'을 등록하였습니다.");
+	});
+	</script>
 
 	<script type="text/javascript">
 		logOut = function() {
@@ -345,18 +359,14 @@
 	<script src="${path}/resources/common/js/multipleImageInput.js"></script>
 	
 	<!-- textarea에 editor 적용 start -->
-	<script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/decoupled-document/ckeditor.js"></script>
-	<script type="text/javascript">
-	DecoupledEditor
-    .create( document.querySelector( '#trpdDesc' ) )
-    .then( editor => {
-        const toolbarContainer = document.querySelector( '#toolbar-container' );
+	<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 
-        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
+	<script type="text/javascript">
+    ClassicEditor
+        .create( document.querySelector( '#trpdDesc' ) )
+        .catch( error => {
+            console.error( error );
+        } );
 	</script>
 	<!-- textarea에 editor 적용 end -->
 	

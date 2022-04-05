@@ -28,4 +28,6 @@ public class ProductDao {
 //	public List<Product> optionParentForCache() {return sqlSession.selectList(namespace + ".optionParentForCache",""); }
 //	public List<Product> optionChildForCache() {return sqlSession.selectList(namespace + ".optionChildForCache",""); }
 	
+	
+	public int insertProduct(Product dto) {return sqlSession.insert(namespace + ".insertProduct", dto); }
 }
