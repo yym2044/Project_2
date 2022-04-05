@@ -200,6 +200,18 @@
 		<include refid="insertRegModValue"/>
 		)
 	</insert>
+	<insert id="insertOptionParent">
+	INSERT INTO
+		tradOptionParent (
+			tropName
+			, tropUseNy
+			, tropDelNy
+		) VALUES (
+			#{tropName}
+			, 1
+			, 0
+		)
+	</insert>
 	
 	
 	

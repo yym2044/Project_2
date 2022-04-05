@@ -33,6 +33,7 @@ public class Product {
 	private String trocName;
 	private Integer trocAdditionalPrice;
 	
+	private String[] tropNameArray;
 	
 	//RegMod
 	private String regIp;
@@ -255,6 +256,12 @@ public class Product {
 	}
 	public void setTrocSeq(String trocSeq) {
 		this.trocSeq = trocSeq;
+	}
+	public String[] getTropNameArray() {
+		return tropNameArray;
+	}
+	public void setTropNameArray(String[] tropNameArray) {
+		this.tropNameArray = tropNameArray;
 	}
 	
 }

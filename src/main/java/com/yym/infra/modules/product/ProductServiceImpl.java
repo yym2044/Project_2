@@ -50,6 +50,26 @@ public class ProductServiceImpl implements ProductService {
 		dto.setRegDateTime(UtilDateTime.nowDate());
 		dto.setModDateTime(UtilDateTime.nowDate());
 		
-		return dao.insertProduct(dto);
+		dao.insertProduct(dto);
+		
+		for(int i=0; i<dto.getTropNameArray().length; i++) {
+			
+			dto.setTropName(dto.getTropNameArray()[i]);
+			
+			dao.insertOptionParent(dto);
+		}
+		
+//		// infrMemberPhone
+//		for(int i=0; i<dto.getIfmpNumberArray().length; i++) {
+//			dto.setIfmpDefaultNy(dto.getIfmpDefaultNyArray()[i]);
+//			dto.setIfmpTypeCd(dto.getIfmpTypeCdArray()[i]);
+//			dto.setIfmpDeviceCd(dto.getIfmpDeviceCdArray()[i]);
+//			dto.setIfmpTelecomCd(dto.getIfmpTelecomCdArray()[i]);
+//			dto.setIfmpNumber(dto.getIfmpNumberArray()[i]);
+//			
+//			dao.insertPhone(dto);
+//		}
+				
+		return 1;
 	}
 }

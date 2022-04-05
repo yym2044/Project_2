@@ -44,6 +44,11 @@
 
 	<div class="container-fluid">
 		<form id="formForm" method="post" action="">
+		<div class="fixed-top">
+			<input type="text" id="tropNameArray1" name="tropNameArray">
+			<input type="text" id="tropNameArray2" name="tropNameArray">
+			<input type="text" id="tropNameArray3" name="tropNameArray">
+		</div>
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -299,6 +304,7 @@
 			}
 			 */	
 			optionName = $.trim($("#optionName1").val()); 
+			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -314,8 +320,10 @@
 			 
 			$("#addTr").append(insertTr);
 			
+			
 		} else if($("#optionN").val() == 2){
 			optionName = $.trim($("#optionName1").val()); 
+			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -329,6 +337,7 @@
 			}
 				
 			optionName = $.trim($("#optionName2").val()); 
+			$("#tropNameArray2").val(optionName);
 			optionValue = $("#optionValue2").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -345,6 +354,7 @@
 			
 		} else {
 			optionName = $.trim($("#optionName1").val());  
+			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -358,6 +368,7 @@
 			}
 				
 			optionName = $.trim($("#optionName2").val());  
+			$("#tropNameArray2").val(optionName);
 			optionValue = $("#optionValue2").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -370,7 +381,8 @@
 				insertTr += "</tr>";
 			}
 			
-			optionName = $.trim($("#optionName3").val());  
+			optionName = $.trim($("#optionName3").val());
+			$("#tropNameArray3").val(optionName);
 			optionValue = $("#optionValue3").val().split(",");
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -448,6 +460,8 @@
 		if($("#optionN").val() == 1){
 			$("#option2").hide();
 			$("#option3").hide();
+			$("#tropNameArray2").prop("disabled", true);
+			$("#tropNameArray3").prop("disabled", true);
 		}
 	});
 	
@@ -455,12 +469,18 @@
 		if($("#optionN").val() == 1){
 			$("#option2").hide();
 			$("#option3").hide();
+			$("#tropNameArray2").prop("disabled", true);
+			$("#tropNameArray3").prop("disabled", true);
 		} else if($("#optionN").val() == 2) {
 			$("#option2").show();
 			$("#option3").hide();
+			$("#tropNameArray2").prop("disabled", false);
+			$("#tropNameArray3").prop("disabled", true);
 		} else {
 			$("#option2").show();
 			$("#option3").show();
+			$("#tropNameArray2").prop("disabled", false);
+			$("#tropNameArray3").prop("disabled", false);
 		}
 	});
 	
