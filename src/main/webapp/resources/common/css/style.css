@@ -11,6 +11,11 @@
 	font-family: 'SDSamliphopangche_Outline';
 } */
 
+.fullWH {
+	width: 100%;
+	height: 100%;
+}
+
 .randomProduct{
 	width: 230px;
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yym.infra.common.util.UtilDateTime;
+
 @Service
 public class ProductServiceImpl implements ProductService { 
 
@@ -44,6 +46,10 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public int insertProduct(Product dto) throws Exception {
+		
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		dto.setModDateTime(UtilDateTime.nowDate());
+		
 		return dao.insertProduct(dto);
 	}
 }
