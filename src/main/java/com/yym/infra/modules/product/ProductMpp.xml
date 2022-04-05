@@ -149,6 +149,34 @@
 	 -->
 	<!-- 옵션값 메모리에 올리기 s -->
 	
+	<!-- INSERT -->
+	<sql id="insertRegMod">
+		<!-- , regIp
+		, regSeq
+		, regDeviceCd -->
+		, regDateTime
+		<!-- , regDateTimeSvr
+		, modIp
+		, modSeq
+		, modDeviceCd -->
+		, modDateTime
+		<!-- , modDateTimeSvr -->
+	</sql>
+	
+	<sql id="insertRegModValue">
+		<!-- ,#{regIp}
+		,#{regSeq}
+		,#{regDeviceCd} -->
+		,#{regDateTime}
+		<!-- ,#{regDateTimeSvr}
+		,#{modIp}
+		,#{modSeq}
+		,#{modDeviceCd} -->
+		,#{modDateTime}
+		<!-- ,#{modDateTimeSvr} -->
+	</sql>
+	
+	
 	
 	<insert id="insertProduct">
 	INSERT INTO
@@ -160,6 +188,7 @@
 			, trpdTag
 			, trpdDesc
 			, trpdDelNy
+		<include refid="insertRegMod"/>
 		) VALUES (
 			#{trpdName}
 			, #{trpdCategoryCd1}
@@ -168,6 +197,7 @@
 			, #{trpdTag}
 			, #{trpdDesc}
 			, 0
+		<include refid="insertRegModValue"/>
 		)
 	</insert>
 	
