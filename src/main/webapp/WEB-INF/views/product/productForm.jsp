@@ -124,29 +124,60 @@
 									<td class="pt-3" style="width: 100px; vertical-align: top;">옵션 입력</td>
 									<td class="text-start">
 										<div class="mb-1" id="option1">
-											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											<input id="optionName1" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input id="optionValue1" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
 										<div class="mb-1" id="option2">
-											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											<input id="optionName2" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input id="optionValue2" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
 										<div class="mb-1" id="option3">
-											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											<input id="optionName3" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+											<input id="optionValue3" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
-										<button type="button" class="btn btn-primary" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
+										<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
 									</td>
 								</tr>
 							</table>
-							<table class="table table-borderless">
+							<p class="ps-3" style="width: 100px; vertical-align: middle;">옵션목록</p>
+							<table class="table table-borderless" style="font-size: small; width:70%;">
+								<thead class="bg-light">
+									<tr>
+										<td style="width: 50px;"><input class="form-check-input" type="checkbox"></td>
+										<td>옵션명</td>										
+										<td>옵션값</td>										
+										<td>추가금액</td>
+									</tr>
+								</thead>
+								<tbody id="addTr">
+									<!-- <tr>
+										<td class="p-0"><input class="form-check-input" type="checkbox"></td>
+										<td class="p-0"><input class="borderX fullWH" type="text"></td>
+										<td class="p-0"><input class="borderX fullWH" type="text"></td>
+										<td class="p-0"><input class="borderX fullWH" type="text"></td>
+									</tr> -->
+								</tbody>
+							</table>
+							<!-- <table class="table table-borderless">
+								<thead class="bg-light">
+									<tr>
+										<td rowspan="2" style="vertical-align: middle;"><input type="checkbox"></td>
+										<td>옵션명</td>										
+										<td rowspan="2" style="vertical-align: top;">정상가 (원)</td>
+										<td rowspan="2" style="vertical-align: top;">판매가 (원)</td>
+										<td rowspan="2" style="vertical-align: top;">재고수량</td>
+									</tr>
+									<tr>
+										<td>옵션1, 옵션2</td>
+									</tr>
+								</thead>
 								<tr>
-									<td style="width: 100px; vertical-align: middle;">옵션 목록</td>
+									
 									<td>
 										
 									</td>
 								</tr>
-							</table>
+							</table> -->
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
@@ -227,6 +258,109 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	
+	$("#btnGetOp").on("click", function(){
+		var optionName;
+		var optionValue;
+		var insertTr = "";
+		
+		$("#addTr").empty();
+		
+		if($("#optionN").val() == 1){
+			
+			optionName = $.trim($("#optionName1").val()); 
+			optionValue = $("#optionValue1").val().split(",");
+			
+			/* alert(optionName); */
+			for(var i=0;i<optionValue.length;i++){
+				/* alert(optionValue[i]); */
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+				
+			$("#addTr").append(insertTr);
+			
+		} else if($("#optionN").val() == 2){
+			optionName = $.trim($("#optionName1").val()); 
+			optionValue = $("#optionValue1").val().split(",");
+			
+			for(var i=0;i<optionValue.length;i++){
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+				
+			optionName = $.trim($("#optionName2").val()); 
+			optionValue = $("#optionValue2").val().split(",");
+			
+			for(var i=0;i<optionValue.length;i++){
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+				
+			$("#addTr").append(insertTr); 
+			
+		} else {
+			optionName = $.trim($("#optionName1").val());  
+			optionValue = $("#optionValue1").val().split(",");
+			
+			for(var i=0;i<optionValue.length;i++){
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+				
+			optionName = $.trim($("#optionName2").val());  
+			optionValue = $("#optionValue2").val().split(",");
+			
+			for(var i=0;i<optionValue.length;i++){
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+			
+			optionName = $.trim($("#optionName3").val());  
+			optionValue = $("#optionValue3").val().split(",");
+			
+			for(var i=0;i<optionValue.length;i++){
+				
+				insertTr += "<tr class='align-items-center'>";
+				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
+				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
+				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "</tr>";
+			}
+			
+			$("#addTr").append(insertTr);
+		}
+	});
+	
+	</script>
 	
 	<script type="text/javascript">
 	$("#btnSubmit").on("click", function(){
