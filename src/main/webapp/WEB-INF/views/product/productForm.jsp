@@ -135,10 +135,22 @@
 											<input type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
 											<input type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
+										<button type="button" class="btn btn-primary" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
 									</td>
 								</tr>
 							</table>
-							 
+							<table class="table table-borderless">
+								<tr>
+									<td style="width: 100px; vertical-align: middle;">옵션 목록</td>
+									<td>
+										<select id="optionN" name="optionN" class="form-select" style="width:200px;">
+											<option value="1">1개</option>
+											<option value="2">2개</option>
+											<option value="3">3개</option>
+										</select>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
@@ -193,12 +205,15 @@
 									</div>
 									<div class="upload__img-wrap">
 											
-										
 									</div>
 								</div>
 							</div>
 							<div id="descEditorForm">
-							
+								<div id="toolbar-container"></div>
+								<div style="height: 200px;" id="trpdDesc">
+									<p></p>
+								</div>
+								<!-- <textarea id="trpdDesc" name="trpdDesc"></textarea> -->
 							</div>
 							
 						</div>
@@ -332,6 +347,22 @@
 	<!-- 업로드한 이미지 프리뷰 end -->
 	
 	<script src="${path}/resources/common/js/multipleImageInput.js"></script>
+	
+	<!-- textarea에 editor 적용 start -->
+	<script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/decoupled-document/ckeditor.js"></script>
+	<script type="text/javascript">
+	DecoupledEditor
+    .create( document.querySelector( '#trpdDesc' ) )
+    .then( editor => {
+        const toolbarContainer = document.querySelector( '#toolbar-container' );
+
+        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+	</script>
+	<!-- textarea에 editor 적용 end -->
 	
 
 </body>
