@@ -26,6 +26,10 @@
 .preview2{
   width: 100px;
 }
+
+#addTr tr td {
+	height: 40px;
+}
 </style>
 
 <link href="${path}/resources/common/css/multipleImageInput.css" rel="stylesheet">
@@ -140,7 +144,7 @@
 								</tr>
 							</table>
 							<p class="ps-3" style="width: 100px; vertical-align: middle;">옵션목록</p>
-							<table class="table table-borderless" style="font-size: small; width:70%;">
+							<table class="table table-borderless" width:70%;">
 								<thead class="bg-light">
 									<tr>
 										<td style="width: 50px;"><input class="form-check-input" type="checkbox"></td>
@@ -275,7 +279,7 @@
 			optionValue = $("#optionValue1").val().split(",");
 			
 			insertTr += "<tr class='align-items-center'>";
-			insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input' tabindex='-1'></td>";
+			insertTr += "<td><input type='checkbox' class='form-check-input' tabindex='-1'></td>";
 			insertTr += "<td class='p-0' rowspan='" + optionValue.length + "'><input type='text' class='fullWH borderX text-center fw-bold' readonly value='" + optionName + "'></td>";
 			insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[0]) + "'></td>";
 			insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + index + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -286,7 +290,7 @@
 			for(var i=1;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + index + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
@@ -300,7 +304,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -317,7 +321,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -330,7 +334,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -346,7 +350,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -359,7 +363,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -372,7 +376,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td class='p-0'><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
