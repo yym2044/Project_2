@@ -43,7 +43,7 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
-		<form id="formForm" method="post" action="">
+		<form id="formForm" method="post" action="" autocomplete="off">
 		
 		<!-- 
 		<div class="fixed-top">
