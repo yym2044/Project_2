@@ -32,9 +32,17 @@ public class Product {
 	private Integer tropOrder;
 	private String trocSeq;
 	private String trocName;
+	private Integer trocOrder;
 	private Integer trocAdditionalPrice;
 	
 	private String[] tropNameArray;
+	
+	private String[] trocNameArray1;
+	private Integer[] trocAdditionalPriceArray1;
+	private String[] trocNameArray2;
+	private Integer[] trocAdditionalPriceArray2;
+	private String[] trocNameArray3;
+	private Integer[] trocAdditionalPriceArray3;
 	
 	//RegMod
 	private String regIp;
@@ -269,6 +277,48 @@ public class Product {
 	}
 	public void setTropOrder(Integer tropOrder) {
 		this.tropOrder = tropOrder;
+	}
+	public Integer getTrocOrder() {
+		return trocOrder;
+	}
+	public void setTrocOrder(Integer trocOrder) {
+		this.trocOrder = trocOrder;
+	}
+	public String[] getTrocNameArray1() {
+		return trocNameArray1;
+	}
+	public void setTrocNameArray1(String[] trocNameArray1) {
+		this.trocNameArray1 = trocNameArray1;
+	}
+	public Integer[] getTrocAdditionalPriceArray1() {
+		return trocAdditionalPriceArray1;
+	}
+	public void setTrocAdditionalPriceArray1(Integer[] trocAdditionalPriceArray1) {
+		this.trocAdditionalPriceArray1 = trocAdditionalPriceArray1;
+	}
+	public String[] getTrocNameArray2() {
+		return trocNameArray2;
+	}
+	public void setTrocNameArray2(String[] trocNameArray2) {
+		this.trocNameArray2 = trocNameArray2;
+	}
+	public Integer[] getTrocAdditionalPriceArray2() {
+		return trocAdditionalPriceArray2;
+	}
+	public void setTrocAdditionalPriceArray2(Integer[] trocAdditionalPriceArray2) {
+		this.trocAdditionalPriceArray2 = trocAdditionalPriceArray2;
+	}
+	public String[] getTrocNameArray3() {
+		return trocNameArray3;
+	}
+	public void setTrocNameArray3(String[] trocNameArray3) {
+		this.trocNameArray3 = trocNameArray3;
+	}
+	public Integer[] getTrocAdditionalPriceArray3() {
+		return trocAdditionalPriceArray3;
+	}
+	public void setTrocAdditionalPriceArray3(Integer[] trocAdditionalPriceArray3) {
+		this.trocAdditionalPriceArray3 = trocAdditionalPriceArray3;
 	}
 	
 }

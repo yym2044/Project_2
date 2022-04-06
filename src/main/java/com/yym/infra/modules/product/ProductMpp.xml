@@ -243,5 +243,29 @@
 		
 	</update>
 	
+	<insert id="insertOptionChild">
+	INSERT INTO
+		tradOptionChild (
+			tropSeq
+			, trocName
+			, trpdSeq
+			, trocOrder
+			, trocAdditionalPrice
+			, trocUseNy
+			, trocDelNy
+			<include refid="insertRegMod"/>
+		) VALUES (
+			#{tropSeq}
+			, #{trocName}
+			, #{trpdSeq}
+			, #{trocOrder}
+			, #{trocAdditionalPrice}
+			, 1
+			, 0
+			<include refid="insertRegModValue"/>
+		)
+	
+	</insert>
+	
 	
 </mapper>
