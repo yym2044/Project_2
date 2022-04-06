@@ -229,6 +229,11 @@
 			, 0
 		<include refid="insertRegModValue"/>
 		)
+		
+		<selectKey resultType="String" keyProperty="tropSeq" order="AFTER">
+		SELECT last_insert_id()
+		</selectKey>
+		
 	</insert>
 	
 	<update id="updateOptionParentCd">
