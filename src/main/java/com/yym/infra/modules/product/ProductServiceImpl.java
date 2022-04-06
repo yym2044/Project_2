@@ -58,6 +58,30 @@ public class ProductServiceImpl implements ProductService {
 			dto.setTropOrder(i+1);
 			
 			dao.insertOptionParent(dto);
+			
+			if(i==0) {
+				for(int j=0; j<dto.getTrocNameArray1().length; j++) {
+					dto.setTrocName(dto.getTrocNameArray1()[j]);
+					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray1()[j]);
+					
+					dao.insertOptionChild(dto);
+				}
+			} else if(i==1) {
+				for(int j=0; j<dto.getTrocNameArray2().length; j++) {
+					dto.setTrocName(dto.getTrocNameArray2()[j]);
+					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray2()[j]);
+					
+					dao.insertOptionChild(dto);
+				}
+			} else {
+				for(int j=0; j<dto.getTrocNameArray3().length; j++) {
+					dto.setTrocName(dto.getTrocNameArray3()[j]);
+					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray3()[j]);
+					
+					dao.insertOptionChild(dto);
+				}
+			}
+			
 		}
 		
 		dao.updateOptionParentCd(dto);
