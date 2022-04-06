@@ -45,13 +45,13 @@
 	<div class="container-fluid">
 		<form id="formForm" method="post" action="" autocomplete="off">
 		
-		<!-- 
+		
 		<div class="fixed-top">
-			<input type="text" id="tropNameArray1" name="tropNameArray">
-			<input type="text" id="tropNameArray2" name="tropNameArray">
-			<input type="text" id="tropNameArray3" name="tropNameArray">
+			<input type="hidden" id="tropNameArray1" name="tropNameArray">
+			<input type="hidden" id="tropNameArray2" name="tropNameArray">
+			<input type="hidden" id="tropNameArray3" name="tropNameArray">
 		</div>
-		 -->
+		
 
 			<%@include file="../include/coupangTopBar.jsp"%>
 
@@ -151,7 +151,7 @@
 								</tr>
 							</table>
 							<p class="ps-3" style="width: 100px; vertical-align: middle;">옵션목록</p>
-							<table class="table table-borderless" width:70%;">
+							<table id="optionList1" class="table table-borderless">
 								<thead class="bg-light">
 									<tr>
 										<td style="width: 50px;"><input class="form-check-input" type="checkbox"></td>
@@ -169,6 +169,11 @@
 									</tr> -->
 								</tbody>
 							</table>
+							<div id="divOptNav" class="text-center">
+								<button id="btnPrevious" type="button" class="btn btn-outline-primary">Previous</button>
+								<button id="btnNext" type="button" class="btn btn-outline-primary">Next</button>
+							</div>
+														
 							<!-- <table class="table table-borderless">
 								<thead class="bg-light">
 									<tr>
@@ -272,7 +277,31 @@
 	
 	<script type="text/javascript">
 	
+	$(document).ready(function(){
+		$("#divOptNav").hide();
+		$("#btnPrevious").hide();
+	});
+	
+	$("#btnNext").click(function(){
+		$("#btnNext").hide();
+		$("#btnPrevious").show();
+		$("#optionList1").hide();
+	});
+	
+	$("#btnPrevious").click(function(){
+		$("#btnPrevious").hide();
+		$("#btnNext").show();
+		$("#optionList1").show();
+	});
+	
+	</script>
+	
+	<script type="text/javascript">
+	
 	$("#btnGetOp").on("click", function(){
+		
+		$("#divOptNav").show();
+		
 		var optionName;
 		var optionValue;
 		var insertTr = "";
