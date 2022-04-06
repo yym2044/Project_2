@@ -174,26 +174,28 @@
 								<button id="btnNext" type="button" class="btn btn-outline-primary">Next</button>
 							</div>
 														
-							<!-- <table class="table table-borderless">
-								<thead class="bg-light">
+							<table id="optionList2" class="table table-borderless">
+								<thead id="addTr2" class="bg-light">
 									<tr>
 										<td rowspan="2" style="vertical-align: middle;"><input type="checkbox"></td>
-										<td>옵션명</td>										
+										<td colspan="3">옵션명</td>										
 										<td rowspan="2" style="vertical-align: top;">정상가 (원)</td>
 										<td rowspan="2" style="vertical-align: top;">판매가 (원)</td>
 										<td rowspan="2" style="vertical-align: top;">재고수량</td>
 									</tr>
 									<tr>
-										<td>옵션1, 옵션2</td>
+										<td>옵션1이름</td>
+										<td>옵션2이름</td>
+										<td>옵션3이름</td>
 									</tr>
 								</thead>
+								<tbody id="addTr3">
 								<tr>
-									
 									<td>
-										
 									</td>
 								</tr>
-							</table> -->
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
