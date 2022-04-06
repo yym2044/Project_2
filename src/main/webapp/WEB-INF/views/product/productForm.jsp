@@ -315,6 +315,8 @@
 		var index = 1;
 		
 		$("#addTr").empty();
+		$("#addTr2").empty();
+		$("#addTr3").empty();
 		
 		if($("#optionN").val() == 1){
 			/* 
@@ -375,6 +377,19 @@
 			insertTr2 += "</tr>";
 			
 			$("#addTr2").append(insertTr2);
+			
+			insertTr2 = "";
+			
+			for(var i=0;i<optionValue.length;i++){
+				insertTr2 += "<tr>";
+				insertTr2 += "<td>";
+				
+			}
+			
+			insertTr2 += "<tr>";
+			
+			
+			$("#addTr3").append(insertTr2);
 			//optionList2 end
 			
 			
