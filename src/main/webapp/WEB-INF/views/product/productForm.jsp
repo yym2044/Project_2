@@ -44,12 +44,14 @@
 
 	<div class="container-fluid">
 		<form id="formForm" method="post" action="">
+		
+		<!-- 
 		<div class="fixed-top">
 			<input type="text" id="tropNameArray1" name="tropNameArray">
 			<input type="text" id="tropNameArray2" name="tropNameArray">
 			<input type="text" id="tropNameArray3" name="tropNameArray">
 		</div>
-
+		 -->
 
 			<%@include file="../include/coupangTopBar.jsp"%>
 
