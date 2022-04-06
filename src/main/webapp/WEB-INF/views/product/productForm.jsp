@@ -176,6 +176,7 @@
 														
 							<table id="optionList2" class="table table-borderless">
 								<thead id="addTr2" class="bg-light">
+									<!-- 								
 									<tr>
 										<td rowspan="2" style="vertical-align: middle;"><input type="checkbox"></td>
 										<td colspan="3">옵션명</td>										
@@ -188,6 +189,7 @@
 										<td>옵션2이름</td>
 										<td>옵션3이름</td>
 									</tr>
+									 -->
 								</thead>
 								<tbody id="addTr3">
 								<tr>
@@ -336,6 +338,8 @@
 				index++;
 			}
 			 */	
+			 
+			//optionList1 start
 			optionName = $.trim($("#optionName1").val()); 
 			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
@@ -350,8 +354,28 @@
 				insertTr += "</tr>";
 			} 
 			
-			 
 			$("#addTr").append(insertTr);
+			//optionList1 end
+			
+			//optionList2 start
+			
+			insertTr = "";
+			
+			insertTr += "<tr>";
+			insertTr += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr += "<td colspan='1'>옵션명</td>";
+			insertTr += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
+			insertTr += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
+			insertTr += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr += "</tr>";
+			insertTr += "<tr>";
+			insertTr += "<td>" + optionName + "</td>";
+			insertTr += "</tr>";
+			
+			$("#addTr2").append(insertTr);
+			
+			//optionList2 end
+			
 			
 			
 		} else if($("#optionN").val() == 2){
