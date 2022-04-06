@@ -63,6 +63,7 @@ public class ProductServiceImpl implements ProductService {
 				for(int j=0; j<dto.getTrocNameArray1().length; j++) {
 					dto.setTrocName(dto.getTrocNameArray1()[j]);
 					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray1()[j]);
+					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
 				}
@@ -70,6 +71,7 @@ public class ProductServiceImpl implements ProductService {
 				for(int j=0; j<dto.getTrocNameArray2().length; j++) {
 					dto.setTrocName(dto.getTrocNameArray2()[j]);
 					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray2()[j]);
+					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
 				}
@@ -77,6 +79,7 @@ public class ProductServiceImpl implements ProductService {
 				for(int j=0; j<dto.getTrocNameArray3().length; j++) {
 					dto.setTrocName(dto.getTrocNameArray3()[j]);
 					dto.setTrocAdditionalPrice(dto.getTrocAdditionalPriceArray3()[j]);
+					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
 				}
