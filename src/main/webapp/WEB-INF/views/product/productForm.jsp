@@ -169,10 +169,6 @@
 									</tr> -->
 								</tbody>
 							</table>
-							<div id="divOptNav" class="text-center">
-								<button id="btnPrevious" type="button" class="btn btn-outline-primary">Previous</button>
-								<button id="btnNext" type="button" class="btn btn-outline-primary">Next</button>
-							</div>
 														
 							<table id="optionList2" class="table table-borderless">
 								<thead id="addTr2" class="bg-light">
@@ -198,6 +194,12 @@
 								</tr>
 								</tbody>
 							</table>
+							
+							<div id="divOptNav" class="text-center">
+								<button id="btnPrevious" type="button" class="btn btn-outline-primary">Previous</button>
+								<button id="btnNext" type="button" class="btn btn-outline-primary">Next</button>
+							</div>
+							
 						</div>
 					</div>
 					<div class="row border p-3 mb-2">
@@ -309,6 +311,7 @@
 		var optionName;
 		var optionValue;
 		var insertTr = "";
+		var insertTr2 = "";
 		var index = 1;
 		
 		$("#addTr").empty();
@@ -358,22 +361,20 @@
 			//optionList1 end
 			
 			//optionList2 start
+			insertTr2 = "";
 			
-			insertTr = "";
+			insertTr2 += "<tr>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td colspan='1'>옵션명</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "</tr>";
+			insertTr2 += "<tr>";
+			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
+			insertTr2 += "</tr>";
 			
-			insertTr += "<tr>";
-			insertTr += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
-			insertTr += "<td colspan='1'>옵션명</td>";
-			insertTr += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
-			insertTr += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
-			insertTr += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
-			insertTr += "</tr>";
-			insertTr += "<tr>";
-			insertTr += "<td>" + optionName + "</td>";
-			insertTr += "</tr>";
-			
-			$("#addTr2").append(insertTr);
-			
+			$("#addTr2").append(insertTr2);
 			//optionList2 end
 			
 			
@@ -408,6 +409,27 @@
 			}
 				
 			$("#addTr").append(insertTr); 
+			
+			
+			//optionList2 start
+			insertTr2 = "";
+			
+			insertTr2 += "<tr>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td colspan='2'>옵션명</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "</tr>";
+			insertTr2 += "<tr>";
+			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
+			insertTr2 += "<td>" + $.trim($("#optionName2").val()) + "</td>";
+			insertTr2 += "</tr>";
+			
+			$("#addTr2").append(insertTr2);
+			//optionList2 end
+			
+			
 			
 		} else {
 			optionName = $.trim($("#optionName1").val());  
@@ -453,6 +475,28 @@
 			}
 			
 			$("#addTr").append(insertTr);
+			
+			
+			//optionList2 start
+			insertTr2 = "";
+			
+			insertTr2 += "<tr>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td colspan='3'>옵션명</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "</tr>";
+			insertTr2 += "<tr>";
+			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
+			insertTr2 += "<td>" + $.trim($("#optionName2").val()) + "</td>";
+			insertTr2 += "<td>" + $.trim($("#optionName3").val()) + "</td>";
+			insertTr2 += "</tr>";
+			
+			$("#addTr2").append(insertTr2);
+			//optionList2 end
+			
+			
 		}
 	});
 	
