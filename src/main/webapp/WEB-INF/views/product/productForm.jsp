@@ -378,6 +378,7 @@
 			
 			$("#addTr2").append(insertTr2);
 			
+			/* 
 			insertTr2 = "";
 			
 			for(var i=0;i<optionValue.length;i++){
@@ -390,6 +391,8 @@
 			
 			
 			$("#addTr3").append(insertTr2);
+			 */
+			 
 			//optionList2 end
 			
 			
