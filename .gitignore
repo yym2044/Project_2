@@ -30,3 +30,4 @@ target/
 .factorypath
 .project
 .springBeans
+src/main/webapp/resources/uploaded/
