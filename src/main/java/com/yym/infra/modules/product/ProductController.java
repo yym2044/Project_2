@@ -42,6 +42,7 @@ public class ProductController {
 		
 		model.addAttribute("rt", service.selectOne(vo));
 		model.addAttribute("listOption", service.selectListOptions(vo));
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "product/productView";
 	}
