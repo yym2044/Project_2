@@ -207,6 +207,15 @@
 			<version>2.13.0</version>
 		</dependency>
 		<!-- for ajax s 2022.03.31 -->	
+		
+		<!-- fileupload s 2022.04.10 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- fileupload e 2022.04.10 -->
+		
       	
 		        
 	</dependencies>

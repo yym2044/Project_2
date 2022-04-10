@@ -43,7 +43,7 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
-		<form id="formForm" method="post" action="" autocomplete="off">
+		<form id="formForm" method="post" action="" autocomplete="off" enctype="multipart/form-data">
 		
 		
 		<div class="fixed-top">
@@ -215,10 +215,10 @@
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold">상품 이미지 <span class="text-danger">Ο</span></h6>
-							<button id="btnImg" type="button">파일체크버튼</button>
+							<button id="checkImg" type="button">파일체크버튼</button>
 							<table class="table">
 								<tr>
-									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="btnImg1" class="upload__btn d-inline">대표이미지</label> <span class="text-danger">Ο</span></td>
+									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="file0" class="upload__btn d-inline">대표이미지</label> <span class="text-danger">Ο</span></td>
 									<td class="text-start">
 										<%-- 
 										<label for="avatar">
@@ -228,7 +228,7 @@
 										 --%>
 										 <div class="upload__box p-0">
 											<div class="upload__btn-box text-center">
-												<input id="btnImg1" type="file" data-max_length="1" class="upload__inputfile">
+												<input id="file0" name="file0" type="file" data-max_length="1" class="upload__inputfile">
 											</div>
 											<div class="upload__img-wrap">
 													
@@ -237,7 +237,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="btnImg2" class="upload__btn d-inline">추가이미지</label></td>
+									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="file1" class="upload__btn d-inline">추가이미지</label></td>
 									<td class="text-start">
 										<%-- 
 										<label for="avatar2">
@@ -247,7 +247,7 @@
 										 --%>
 										<div class="upload__box p-0">
 											<div class="upload__btn-box text-center">
-												<input id="btnImg2" type="file" multiple="multiple" data-max_length="20" class="upload__inputfile">
+												<input id="file1" name="file1" type="file" multiple="multiple" data-max_length="20" class="upload__inputfile">
 											</div>
 											<div class="upload__img-wrap">
 													
@@ -307,9 +307,9 @@
 	<%@include file="../include/jsLinks.jsp"%>
 	
 	<script type="text/javascript">
-	$("#btnImg").on("click", function(){
-		alert($("#btnImg1").val());
-		alert($("#btnImg2").val());
+	$("#checkImg").on("click", function(){
+		alert($("#file0").val());
+		alert($("#file1").val());
 	});
 
 	</script>

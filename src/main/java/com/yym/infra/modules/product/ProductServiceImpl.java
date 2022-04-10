@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yym.infra.common.util.UtilDateTime;
+import com.yym.infra.common.util.UtilUpload;
 
 @Service
 public class ProductServiceImpl implements ProductService { 
@@ -89,16 +91,19 @@ public class ProductServiceImpl implements ProductService {
 		
 		dao.updateOptionParentCd(dto);
 		
-//		// infrMemberPhone
-//		for(int i=0; i<dto.getIfmpNumberArray().length; i++) {
-//			dto.setIfmpDefaultNy(dto.getIfmpDefaultNyArray()[i]);
-//			dto.setIfmpTypeCd(dto.getIfmpTypeCdArray()[i]);
-//			dto.setIfmpDeviceCd(dto.getIfmpDeviceCdArray()[i]);
-//			dto.setIfmpTelecomCd(dto.getIfmpTelecomCdArray()[i]);
-//			dto.setIfmpNumber(dto.getIfmpNumberArray()[i]);
-//			
-//			dao.insertPhone(dto);
-//		}
+		for(MultipartFile multipartFile : dto.getFile0()) {
+			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+			
+			UtilUpload.upload(multipartFile, pathModule, dto);
+			
+			dto.setTableName("tradProductUploaded");
+			dto.setType(0);
+			dto.setDefaultNy(1);
+			dto.setSort(1);
+			dto.setPseq(dto.getTrpdSeq());
+			
+			dao.insertProductUploaded(dto);
+		}
 				
 		return 1;
 	}
