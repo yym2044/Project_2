@@ -13,12 +13,14 @@
 	<select id="selectList" resultMap="resultMapObj">
 
 		SELECT
-			trpdSeq
-			, trpdName
-			, trpdPrice
-			, trpdDiscountPercent
-			, trpdDeliveryFee
-			, trpdStarRating
+			a.trpdSeq
+			, a.trpdName
+			, a.trpdPrice
+			, a.trpdDiscountPercent
+			, a.trpdDeliveryFee
+			, a.trpdStarRating
+			, b.originalName
+			, b.path
 	
 		<include refid="selectListCommon"/>
 		LIMIT #{startRnumForMysql}, #{rowNumToShow}
@@ -32,7 +34,10 @@
 	
 	<sql id="selectListCommon">
 		FROM
-			tradProduct
+			tradProduct a
+		LEFT JOIN
+			tradProductUploaded b
+		ON b.pseq = a.trpdSeq
 		WHERE 1=1
 			AND trpdDelNy = 0
 		
@@ -176,6 +181,22 @@
 		<!-- ,#{modDateTimeSvr} -->
 	</sql>
 	
+	<sql id="insertReg">
+		<!-- , regIp
+		, regSeq
+		, regDeviceCd -->
+		, regDateTime
+		<!-- , regDateTimeSvr -->
+	</sql>
+	
+	<sql id="insertRegValue">
+		<!-- ,#{regIp}
+		,#{regSeq}
+		,#{regDeviceCd} -->
+		,#{regDateTime}
+		<!-- ,#{regDateTimeSvr} -->
+	</sql>
+	
 	
 	
 	<insert id="insertProduct">
@@ -271,6 +292,36 @@
 		)
 	
 	</insert>
+	
+	<!-- uploaded s -->
+	<insert id="insertProductUploaded">
+	INSERT INTO ${tableName} (
+		type
+		, defaultNy
+		, sort
+		, originalName
+		, uuidName
+		, ext
+		, size
+		, delNy
+		<include refid="insertReg"/>
+		, pseq
+		, path
+	) VALUES (
+		#{type}
+		, #{defaultNy}
+		, #{sort}
+		, #{originalName}
+		, #{uuidName}
+		, #{ext}
+		, #{size}
+		, 0
+		<include refid="insertRegValue"/>
+		, #{pseq}
+		, #{path}
+	)
+	</insert>
+	<!-- uploaded e -->
 	
 	
 </mapper>
