@@ -215,23 +215,44 @@
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold">상품 이미지 <span class="text-danger">Ο</span></h6>
+							<button id="btnImg" type="button">파일체크버튼</button>
 							<table class="table">
 								<tr>
-									<td class="text-start" style="width: 130px;">대표이미지 <span class="text-danger">Ο</span></td>
+									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="btnImg1" class="upload__btn d-inline">대표이미지</label> <span class="text-danger">Ο</span></td>
 									<td class="text-start">
+										<%-- 
 										<label for="avatar">
-											<img src="${path}/resources/images/user/productForm/inputFile.png" height="96" id="img"/>
+											<img src="${path}/resources/images/user/productForm/inputFile.png" style="width:120px; height:120px;" id="img"/>
 										</label>
 										<input class="d-none" type="file" id="avatar" name="avatar" />
+										 --%>
+										 <div class="upload__box p-0">
+											<div class="upload__btn-box text-center">
+												<input id="btnImg1" type="file" data-max_length="1" class="upload__inputfile">
+											</div>
+											<div class="upload__img-wrap">
+													
+											</div>
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="text-start" style="width: 130px;">추가이미지</td>
+									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="btnImg2" class="upload__btn d-inline">추가이미지</label></td>
 									<td class="text-start">
+										<%-- 
 										<label for="avatar2">
 											<img src="${path}/resources/images/user/productForm/inputFile.png" height="96" id="img"/>
 										</label>
 										<input class="d-none" type="file" id="avatar2" name="avatar2" />
+										 --%>
+										<div class="upload__box p-0">
+											<div class="upload__btn-box text-center">
+												<input id="btnImg2" type="file" multiple="multiple" data-max_length="20" class="upload__inputfile">
+											</div>
+											<div class="upload__img-wrap">
+													
+											</div>
+										</div>
 									</td>
 								</tr>
 							</table>
@@ -253,7 +274,7 @@
 									<div class="upload__btn-box text-center">
 										<label class="upload__btn">
 											<p>이미지 등록</p>
-											<input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+											<input type="file" multiple="multiple" data-max_length="20" class="upload__inputfile">
 										</label>
 									</div>
 									<div class="upload__img-wrap">
@@ -284,6 +305,14 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	$("#btnImg").on("click", function(){
+		alert($("#btnImg1").val());
+		alert($("#btnImg2").val());
+	});
+
+	</script>
 	
 	<script type="text/javascript">
 	
@@ -646,7 +675,8 @@
 		if($("#categorySearch").is(":checked")){
 	        $("#inputCategorySearchForm").show();
 	        $("#inputCategorySelectForm").hide();
-	        $("#trpdCategoryCd1").prop("selectedIndex", 0);
+	        $("#trpdCategoryCd1").val("");
+	        /* $("#trpdCategoryCd1").prop("selectedIndex", 0); */
 	        $("#trpdCategoryCd2").addClass('d-none');
 	        $("#trpdCategoryCd3").addClass('d-none');
 	    }else{
@@ -720,7 +750,7 @@
 	  
 	}
 	</script>
-	
+	<!-- 
 	<script type="text/javascript">
 	let avatarInput2 = document.getElementById('avatar2');
 	let img2 = document.querySelector('label[for=avatar2] img');
@@ -734,6 +764,7 @@
 	  
 	}
 	</script>
+	 -->
 	<!-- 업로드한 이미지 프리뷰 end -->
 	
 	<script src="${path}/resources/common/js/multipleImageInput.js"></script>
