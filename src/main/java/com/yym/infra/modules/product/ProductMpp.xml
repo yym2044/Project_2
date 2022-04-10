@@ -20,7 +20,7 @@
 			, a.trpdDeliveryFee
 			, a.trpdStarRating
 			, b.originalName
-			, b.path
+			, b.path 
 	
 		<include refid="selectListCommon"/>
 		LIMIT #{startRnumForMysql}, #{rowNumToShow}
