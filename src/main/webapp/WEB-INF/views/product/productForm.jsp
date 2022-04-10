@@ -94,6 +94,7 @@
 								</select>
 								
 								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 											<c:if test="${item.ifctSeq eq item2.ifctParents}">
@@ -101,9 +102,11 @@
 											</c:if>										
 										</c:forEach>
 									</c:forEach>
+									 --%>
 								</select>
 								
 								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
 											<c:forEach items="${listCategoryDepth3}" var="item3" varStatus="status3">
@@ -113,6 +116,7 @@
 											</c:forEach>
 										</c:forEach>
 									</c:forEach>
+									 --%>
 								</select>
 							</div>
 						</div>
@@ -280,6 +284,74 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	
+	var $trpdCategoryCd2 = $("#trpdCategoryCd2");
+	var $trpdCategoryCd3 = $("#trpdCategoryCd3");
+	
+	$("#trpdCategoryCd1").on("change", function(){
+		/* alert($("#trpdCategoryCd1").val()); */
+		
+		$trpdCategoryCd2.children().remove();
+		$trpdCategoryCd3.children().remove();
+		
+		// ajax
+		 $.ajax({
+			  async: true
+			  ,cache: false
+			  ,type:"post"
+			  ,url: "/infra/category/categoryList"
+			  ,data : { "ifctParents" : $("#trpdCategoryCd1").val() }
+			  ,success: function(data){
+				  /* console.log(data); */
+				  /* 
+				  $.each(data, function(idx, val) {
+					  console.log(idx + " " + val.ifctName);
+				  });
+				   */
+				  $.each(data, function(i){
+					   $trpdCategoryCd2.append("<option value=" + data[i].ifctSeq + ">" + data[i].ifctName + "</option>")
+				   });
+			  }
+			  ,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+		  });
+		 //
+		 
+	});
+	
+	$("#trpdCategoryCd2").on("change", function(){
+		
+		$trpdCategoryCd3.children().remove();
+		
+		// ajax
+		 $.ajax({
+			  async: true
+			  ,cache: false
+			  ,type:"post"
+			  ,url: "/infra/category/categoryList"
+			  ,data : { "ifctParents" : $("#trpdCategoryCd2").val() }
+			  ,success: function(data){
+				  /* console.log(data); */
+				  /* 
+				  $.each(data, function(idx, val) {
+					  console.log(idx + " " + val.ifctName);
+				  });
+				   */
+				  $.each(data, function(i){
+					   $trpdCategoryCd3.append("<option value=" + data[i].ifctSeq + ">" + data[i].ifctName + "</option>")
+				   });
+			  }
+			  ,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+		  });
+		 //
+		 
+	});
+	</script>
 	
 	<script type="text/javascript">
 	
