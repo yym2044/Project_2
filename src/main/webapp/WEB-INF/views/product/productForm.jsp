@@ -93,7 +93,7 @@
 									</c:forEach>
 								</select>
 								
-								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline d-none" style="width: 200px;">
 									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
@@ -105,7 +105,7 @@
 									 --%>
 								</select>
 								
-								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline d-none" style="width: 200px;">
 									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
@@ -290,8 +290,12 @@
 	var $trpdCategoryCd2 = $("#trpdCategoryCd2");
 	var $trpdCategoryCd3 = $("#trpdCategoryCd3");
 	
-	$("#trpdCategoryCd1").on("change", function(){
+	
+	$("#trpdCategoryCd1").on("click", function(){
 		/* alert($("#trpdCategoryCd1").val()); */
+		
+		$trpdCategoryCd2.removeClass('d-none');
+		$trpdCategoryCd3.addClass('d-none');
 		
 		$trpdCategoryCd2.children().remove();
 		$trpdCategoryCd3.children().remove();
@@ -322,8 +326,9 @@
 		 
 	});
 	
-	$("#trpdCategoryCd2").on("change", function(){
+	$("#trpdCategoryCd2").on("click", function(){
 		
+		$trpdCategoryCd3.removeClass('d-none');
 		$trpdCategoryCd3.children().remove();
 		
 		// ajax
@@ -641,6 +646,9 @@
 		if($("#categorySearch").is(":checked")){
 	        $("#inputCategorySearchForm").show();
 	        $("#inputCategorySelectForm").hide();
+	        $("#trpdCategoryCd1").prop("selectedIndex", 0);
+	        $("#trpdCategoryCd2").addClass('d-none');
+	        $("#trpdCategoryCd3").addClass('d-none');
 	    }else{
 	        $("#inputCategorySelectForm").show();
 	        $("#inputCategorySearchForm").hide();
