@@ -70,9 +70,29 @@
 			<!-- width65 start -->
 			<div class="width65">
 				<div class="row">
-					<div class="col-5">
+					<div class="col-1">
+						<div class="row">
+							<c:forEach items="${listUploaded}" var="item" varStatus="status">
+								<div class="col-12 px-0">
+									<img style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="col-4">
 						<%-- <img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg"> --%>
-						<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+						<c:choose>
+							<c:when test="${fn:length(listUploaded) ne 0}">
+								<c:forEach items="${listUploaded}" var="item" varStatus="status">
+									<c:if test="${item.defaultNy eq 1}">
+										<img class="randomProduct" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+									</c:if>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="col">
 						<div class="row border-bottom border-2 m-1 align-items-center">

@@ -110,7 +110,17 @@
 						<div class="col">
 							<div class="card borderX">
 								<a href="javascript:goView(<c:out value="${item.trpdSeq}"/>);" class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+									<%-- <img class="randomProduct" src="${path}/resources/images/user/productSearch/img_sample.jpg"> --%>
+								
+									<c:choose>
+										<c:when test="${not empty item.uuidName}">
+											<img class="randomProduct" style="height: 150px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">										
+										</c:when>
+										<c:otherwise>
+											<img class="randomProduct" style="height: 150px;" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+										</c:otherwise>
+									</c:choose>								
+									
 									<span class="d-block pt-2 px-1" style="height: 50px; font-size: small">
 										<c:out value="${item.trpdName }" />
 									</span>

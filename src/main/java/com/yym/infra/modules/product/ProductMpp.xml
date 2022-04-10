@@ -20,6 +20,7 @@
 			, a.trpdDeliveryFee
 			, a.trpdStarRating
 			, b.originalName
+			, b.uuidName
 			, b.path 
 	
 		<include refid="selectListCommon"/>
@@ -38,6 +39,8 @@
 		LEFT JOIN
 			tradProductUploaded b
 		ON b.pseq = a.trpdSeq
+			AND b.defaultNy = 1
+			
 		WHERE 1=1
 			AND trpdDelNy = 0
 		
@@ -98,7 +101,27 @@
 		WHERE 1=1
 			AND trpdDelNy = 0
 			AND trpdSeq = #{trpdSeq}
+			
 		
+	</select>
+	
+	<select id="selectListUploaded" resultMap="resultMapObj">
+	SELECT
+		seq
+		, type
+		, defaultNy
+		, sort
+		, originalName
+		, uuidName 
+		, ext
+		, size
+		, delNy
+		, pseq
+		, path
+	FROM
+		tradProductUploaded
+	WHERE
+		pseq = #{trpdSeq}
 	</select>
 	
 	<select id="selectListOptions" resultMap="resultMapObj">

@@ -32,6 +32,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectListOptions(ProductVo vo) throws Exception {
 		return dao.selectListOptions(vo);
 	}
+	@Override
+	public List<Product> selectListUploaded(ProductVo vo) throws Exception {
+		return dao.selectListUploaded(vo);
+	}
 	
 	
 	
@@ -104,6 +108,23 @@ public class ProductServiceImpl implements ProductService {
 			
 			dao.insertProductUploaded(dto);
 		}
+		
+		int j = 1;
+		for(MultipartFile multipartFile : dto.getFile1()) {
+			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+			
+			UtilUpload.upload(multipartFile, pathModule, dto);
+			
+			dto.setTableName("tradProductUploaded");
+			dto.setType(0);
+			dto.setDefaultNy(0);
+			dto.setSort(j);
+			dto.setPseq(dto.getTrpdSeq());
+			
+			dao.insertProductUploaded(dto);
+			j++;
+		}
+		
 				
 		return 1;
 	}
