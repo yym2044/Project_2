@@ -309,7 +309,7 @@
 	<script type="text/javascript">
 	$("#checkImg").on("click", function(){
 		alert($("#file0").val());
-		alert($("#file1").val());
+		alert($("#file1").val()); 
 	});
 
 	</script>
