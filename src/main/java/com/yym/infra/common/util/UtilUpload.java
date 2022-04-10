@@ -35,7 +35,7 @@ public class UtilUpload {
 		File uploadPath = new File(path);
 		
 		if (!uploadPath.exists()) {
-			uploadPath.mkdir();
+			uploadPath.mkdir(); 
 		} else {
 			// by pass
 		}
