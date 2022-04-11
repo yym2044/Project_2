@@ -154,7 +154,8 @@
 									</td>
 								</tr>
 							</table>
-							<p class="ps-3" style="width: 100px; vertical-align: middle;">옵션목록</p>
+							<p class="ps-3 d-inline" style="width: 100px; vertical-align: middle;">옵션목록</p>
+							
 							<table id="optionList1" class="table table-borderless">
 								<thead class="bg-light">
 									<tr>
@@ -308,8 +309,8 @@
 	
 	<script type="text/javascript">
 	$("#checkImg").on("click", function(){
-		alert($("#file0").val());
-		alert($("#file1").val()); 
+		alert("대표이미지 : " + $("#file0").val());
+		alert("추가이미지 : " + $("#file1").val()); 
 	});
 
 	</script>
@@ -472,7 +473,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='1'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -484,20 +485,24 @@
 			
 			$("#addTr2").append(insertTr2);
 			
-			/* 
+			///////
 			insertTr2 = "";
 			
 			for(var i=0;i<optionValue.length;i++){
 				insertTr2 += "<tr>";
-				insertTr2 += "<td>";
-				
+				insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+				insertTr2 += "</tr>";
 			}
 			
-			insertTr2 += "<tr>";
+			
 			
 			
 			$("#addTr3").append(insertTr2);
-			 */
+			
 			 
 			//optionList2 end
 			
@@ -539,7 +544,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='2'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -551,6 +556,28 @@
 			insertTr2 += "</tr>";
 			
 			$("#addTr2").append(insertTr2);
+			
+			//////
+			var optionV1 = $("#optionValue1").val().split(",");
+			var optionV2 = $("#optionValue2").val().split(",");
+			
+			insertTr2 = "";
+			
+			for(var i=0;i<optionV1.length;i++){
+				for(var j=0;j<optionV2.length;j++){
+					insertTr2 += "<tr>";
+					insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
+					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
+					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+					insertTr2 += "</tr>";
+				}
+			}
+			
+			$("#addTr3").append(insertTr2);
+			
 			//optionList2 end
 			
 			
@@ -605,7 +632,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='3'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -618,6 +645,33 @@
 			insertTr2 += "</tr>";
 			
 			$("#addTr2").append(insertTr2);
+			
+			//////
+			var optionV1 = $("#optionValue1").val().split(",");
+			var optionV2 = $("#optionValue2").val().split(",");
+			var optionV3 = $("#optionValue3").val().split(",");
+			
+			insertTr2 = "";
+			
+			for(var i=0;i<optionV1.length;i++){
+				for(var j=0;j<optionV2.length;j++){
+					for(var k=0;k<optionV3.length;k++){
+						insertTr2 += "<tr>";
+						insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
+						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
+						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
+						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+						insertTr2 += "</tr>";
+					}
+				}
+			}
+			
+			$("#addTr3").append(insertTr2);
+			
+			
 			//optionList2 end
 			
 			
