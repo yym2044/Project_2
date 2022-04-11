@@ -154,7 +154,7 @@
 									</td>
 								</tr>
 							</table>
-							<p class="ps-3 d-inline" style="width: 100px; vertical-align: middle;">옵션목록</p>
+							<p id="tableCap" class="ps-3 fw-bold" style="width: 100px; vertical-align: middle;">옵션 목록</p>
 							
 							<table id="optionList1" class="table table-borderless">
 								<thead class="bg-light">
@@ -393,17 +393,21 @@
 	$(document).ready(function(){
 		$("#divOptNav").hide();
 		$("#btnPrevious").hide();
+		$("#optionList1").hide();
+		$("#tableCap").hide();
 	});
 	
 	$("#btnNext").click(function(){
 		$("#btnNext").hide();
 		$("#btnPrevious").show();
 		$("#optionList1").hide();
+		$("#optionList2").show();
 	});
 	
 	$("#btnPrevious").click(function(){
 		$("#btnPrevious").hide();
 		$("#btnNext").show();
+		$("#optionList2").hide();
 		$("#optionList1").show();
 	});
 	
@@ -414,6 +418,8 @@
 	$("#btnGetOp").on("click", function(){
 		
 		$("#divOptNav").show();
+		$("#optionList1").show();
+		$("#tableCap").show();
 		
 		var optionName;
 		var optionValue;
