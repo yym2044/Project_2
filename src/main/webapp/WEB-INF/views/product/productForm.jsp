@@ -420,10 +420,30 @@
 			});
 		} else if($("#optionN").val() == 2){
 			
+			$("input[name=trocAdditionalPriceArray1]").each(function(i, item1){
+				$("input[name=trocAdditionalPriceArray2]").each(function(j, item2){
+				
+					var trprPrice = Number($("#trpdPrice").val()) + Number($(item1).val()) + Number($(item2).val());
+					
+					$("#trprPriceArray" + (i+1) + "_" + (j+1)).val(trprPrice);
+					
+				});
+			});
 			
 			
 		} else {
 			
+			$("input[name=trocAdditionalPriceArray1]").each(function(i, item1){
+				$("input[name=trocAdditionalPriceArray2]").each(function(j, item2){
+					$("input[name=trocAdditionalPriceArray3]").each(function(k, item3){
+						
+						var trprPrice = Number($("#trpdPrice").val()) + Number($(item1).val()) + Number($(item2).val()) + Number($(item3).val());
+						
+						$("#trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1)).val(trprPrice);
+						
+					});
+				});
+			});
 			
 		}
 		
@@ -554,7 +574,7 @@
 				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray1' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
-				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice1_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
 			}
 				
@@ -568,7 +588,7 @@
 				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray2' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
-				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice2_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
 			}
 				
@@ -630,7 +650,7 @@
 				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray1' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
-				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice1_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
 			}
 				
@@ -644,7 +664,7 @@
 				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray2' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
-				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice2_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
 			}
 			
@@ -658,7 +678,7 @@
 				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray3' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
-				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray3' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
+				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray3' id='trocAdditionalPrice3_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
 				insertTr += "</tr>";
 			}
 			
