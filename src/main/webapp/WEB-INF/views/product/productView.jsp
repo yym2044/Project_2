@@ -70,10 +70,10 @@
 			<!-- width65 start -->
 			<div class="width65">
 				<div class="row">
-					<div class="col-1">
+					<div class="col-1 ps-5 pe-0">
 						<div class="row">
 							<c:forEach items="${listUploaded}" var="item" varStatus="status">
-								<div class="col-12 px-0">
+								<div class="col-12 px-0 pb-1">
 									<img style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
 								</div>
 							</c:forEach>
