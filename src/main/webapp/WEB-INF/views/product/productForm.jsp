@@ -418,6 +418,7 @@
 	$("#btnGetOp").on("click", function(){
 		
 		$("#divOptNav").show();
+		$("#btnPrevious").click();
 		$("#optionList1").show();
 		$("#tableCap").show();
 		
@@ -509,6 +510,8 @@
 			
 			$("#addTr3").append(insertTr2);
 			
+			$("#optionList2").hide();
+			
 			 
 			//optionList2 end
 			
@@ -583,6 +586,8 @@
 			}
 			
 			$("#addTr3").append(insertTr2);
+			
+			$("#optionList2").hide();
 			
 			//optionList2 end
 			
@@ -676,6 +681,8 @@
 			}
 			
 			$("#addTr3").append(insertTr2);
+			
+			$("#optionList2").hide();
 			
 			
 			//optionList2 end
