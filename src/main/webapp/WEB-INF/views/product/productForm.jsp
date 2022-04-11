@@ -129,8 +129,8 @@
 									<td style="width: 100px; vertical-align: middle;">기본 가격</td>
 									<td>
 										<div class="input-group" style="width:200px;">
-											<span class="input-group-text box-white" style="border-right: none; position: absolute; z-index: 10">￦</span>
-											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="number form-control text-end">
+											<span class="input-group-text" style="border-right: none;">￦</span>
+											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="form-control text-end">
 										</div>
 									</td>
 								</tr>
@@ -168,7 +168,7 @@
 							<table id="optionList1" class="table table-borderless" style="font-size: small;">
 								<thead class="bg-light">
 									<tr>
-										<td style="width: 50px;"><input class="form-check-input" type="checkbox"></td>
+										<td style="width: 50px;"><input id="checkboxAll1" class="form-check-input" type="checkbox"></td>
 										<td>옵션명</td>										
 										<td>옵션값</td>										
 										<td>추가금액</td>
@@ -183,7 +183,7 @@
 									</tr> -->
 								</tbody>
 							</table>
-														
+							
 							<table id="optionList2" class="table table-borderless" style="font-size: small;">
 								<thead id="addTr2" class="bg-light">
 									<!-- 								
@@ -209,9 +209,15 @@
 								</tbody>
 							</table>
 							
-							<div id="divOptNav" class="text-center">
-								<button id="btnPrevious" type="button" class="btn btn-outline-primary">Previous</button>
-								<button id="btnNext" type="button" class="btn btn-outline-primary">Next</button>
+							
+							<div id="divOptNav" class="row align-items-center">
+								<div class="col text-start" style="padding-left: 20px;">
+									<button id="btnDelete" type="button" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+								</div>
+								<div class="col text-end">
+									<button id="btnPrevious" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-left"></i></button>
+									<button id="btnNext" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-right"></i></button>
+								</div>
 							</div>
 							
 						</div>
@@ -328,7 +334,11 @@
 	    input.value = formatValue;
 	  }
 	})
+	
+	
 	</script>
+	
+	
 	
 	<script type="text/javascript">
 	$("#checkImg").on("click", function(){
@@ -526,7 +536,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input name='checkbox1' type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray1' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -540,7 +550,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='1'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -557,7 +567,7 @@
 			
 			for(var i=0;i<optionValue.length;i++){
 				insertTr2 += "<tr>";
-				insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
 				insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "' name='trprPriceArray' type='text' class='text-center'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
@@ -585,7 +595,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' name='checkbox1' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray1' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice1_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -599,7 +609,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input type='checkbox' name='checkbox1' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray2' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice2_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -613,7 +623,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='2'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -635,7 +645,7 @@
 			for(var i=0;i<optionV1.length;i++){
 				for(var j=0;j<optionV2.length;j++){
 					insertTr2 += "<tr>";
-					insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+					insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "' name='trprPriceArray' type='text' class='text-center'></td>";
@@ -661,7 +671,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input name='checkbox1' type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray1' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray1' id='trocAdditionalPrice1_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -675,7 +685,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input name='checkbox1' type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray2' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray2' id='trocAdditionalPrice2_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -689,7 +699,7 @@
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
-				insertTr += "<td><input type='checkbox' class='form-check-input'></td>";
+				insertTr += "<td><input name='checkbox1' type='checkbox' class='form-check-input'></td>";
 				insertTr += "<td class='p-0'><input type='text' class='fullWH borderX text-center' readonly value='" + optionName + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocNameArray3' type='text' class='fullWH borderX text-center' readonly value='" + $.trim(optionValue[i]) + "'></td>";
 				insertTr += "<td class='p-0'><input name='trocAdditionalPriceArray3' id='trocAdditionalPrice3_" + (i+1) + "' type='text' class='fullWH borderX text-center' placeholder='추가금액'></td>";
@@ -703,7 +713,7 @@
 			insertTr2 = "";
 			
 			insertTr2 += "<tr>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='3'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
@@ -728,7 +738,7 @@
 				for(var j=0;j<optionV2.length;j++){
 					for(var k=0;k<optionV3.length;k++){
 						insertTr2 += "<tr>";
-						insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
+						insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input'></td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
@@ -751,6 +761,63 @@
 		}
 	});
 	
+	
+	
+	</script>
+	
+	<script type="text/javascript">
+	$("#checkboxAll1").click(function(){
+		if($("#checkboxAll1").is(":checked")){
+			$("input[name=checkbox1]").prop("checked", true);
+		} else {
+			$("input[name=checkbox1]").prop("checked", false);
+		}
+	});
+	
+	$("input[name=checkbox1]").click(function(){
+		var total = $("input[name=checkbox1]").length;
+		var checked = $("input[name=checkbox1]:checked").length;
+		
+		if(total != checked){
+			$("#checkboxAll1").prop("checked", false);
+		} else {
+			$("#checkboxAll1").prop("checked", true);
+		}
+	});
+	
+	$("#checkboxAll2").click(function(){
+		if($("#checkboxAll2").is(":checked")){
+			$("input[name=checkbox2]").prop("checked", true);
+		} else {
+			$("input[name=checkbox2]").prop("checked", false);
+		}
+	});
+	
+	$("input[name=checkbox2]").click(function(){
+		var total = $("input[name=checkbox2]").length;
+		var checked = $("input[name=checkbox2]:checked").length;
+		
+		if(total != checked){
+			$("#checkboxAll2").prop("checked", false);
+		} else {
+			$("#checkboxAll2").prop("checked", true);
+		}
+	});
+	
+	
+	$("#btnDelete").click(function(){
+			
+		var checkRows1 = $("[name='checkbox1']:checked");
+		var checkRows2 = $("[name='checkbox2']:checked");
+		
+		for(var i = checkRows1.length-1 ; i > -1; i--){
+			checkRows1.eq(i).closest('tr').remove();
+		}
+		for(var i = checkRows2.length-1 ; i > -1; i--){
+			checkRows2.eq(i).closest('tr').remove();
+		}
+		
+	});
 	</script>
 	
 	<script type="text/javascript">
