@@ -129,8 +129,8 @@
 									<td style="width: 100px; vertical-align: middle;">기본 가격</td>
 									<td>
 										<div class="input-group" style="width:200px;">
-											<span class="input-group-text">￦</span>
-											<input type="text" class="form-control">
+											<span class="input-group-text box-white" style="border-right: none; position: absolute; z-index: 10">￦</span>
+											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="form-control text-end">
 										</div>
 									</td>
 								</tr>
@@ -411,7 +411,24 @@
 		$("#btnPrevious").show();
 		$("#optionList1").hide();
 		$("#optionList2").show();
+		
+			
+		if($("#optionN").val() == 1){
+			$("input[name=trprPriceArray]").each(function(index, item){
+				var trprPrice = Number($("#trpdPrice").val()) + Number($("#trocAdditionalPrice" + (index+1)).val());
+				$(item).val(trprPrice);
+			});
+		} else if($("#optionN").val() == 2){
+			
+			
+			
+		} else {
+			
+			
+		}
+		
 	});
+	
 	
 	$("#btnPrevious").click(function(){
 		$("#btnPrevious").hide();
@@ -508,7 +525,7 @@
 				insertTr2 += "<tr>";
 				insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
-				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "' name='trprPriceArray' type='text' class='text-center'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
 				insertTr2 += "</tr>";
@@ -587,7 +604,7 @@
 					insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
-					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+					insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "' name='trprPriceArray' type='text' class='text-center'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
 					insertTr2 += "</tr>";
@@ -681,7 +698,7 @@
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
-						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+						insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprPriceArray' type='text' class='text-center'></td>";
 						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
 						insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
 						insertTr2 += "</tr>";
