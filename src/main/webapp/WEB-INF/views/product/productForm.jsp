@@ -130,7 +130,7 @@
 									<td>
 										<div class="input-group" style="width:200px;">
 											<span class="input-group-text box-white" style="border-right: none; position: absolute; z-index: 10">￦</span>
-											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="form-control text-end">
+											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="number form-control text-end">
 										</div>
 									</td>
 								</tr>
@@ -315,6 +315,20 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	const input = document.querySelector('.number');
+	input.addEventListener('keyup', function(e) {
+	  let value = e.target.value;
+	  value = Number(value.replaceAll(',', ''));
+	  if(isNaN(value)) {
+	    input.value = 0;
+	  }else {
+	    const formatValue = value.toLocaleString('ko-KR');
+	    input.value = formatValue;
+	  }
+	})
+	</script>
 	
 	<script type="text/javascript">
 	$("#checkImg").on("click", function(){
