@@ -126,6 +126,15 @@
 							<h6 class="fw-bold">옵션 <span class="text-danger">Ο</span></h6>
 							<table class="table table-borderless">
 								<tr>
+									<td style="width: 100px; vertical-align: middle;">기본 가격</td>
+									<td>
+										<div class="input-group" style="width:200px;">
+											<span class="input-group-text">￦</span>
+											<input type="text" class="form-control">
+										</div>
+									</td>
+								</tr>
+								<tr>
 									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
 									<td>
 										<select id="optionN" name="optionN" class="form-select" style="width:200px;">
@@ -150,13 +159,13 @@
 											<input id="optionName3" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
 											<input id="optionValue3" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
 										</div>
-										<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
+										<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary mt-1" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
 									</td>
 								</tr>
 							</table>
 							<p id="tableCap" class="ps-3 fw-bold" style="width: 100px; vertical-align: middle;">옵션 목록</p>
 							
-							<table id="optionList1" class="table table-borderless">
+							<table id="optionList1" class="table table-borderless" style="font-size: small;">
 								<thead class="bg-light">
 									<tr>
 										<td style="width: 50px;"><input class="form-check-input" type="checkbox"></td>
@@ -175,7 +184,7 @@
 								</tbody>
 							</table>
 														
-							<table id="optionList2" class="table table-borderless">
+							<table id="optionList2" class="table table-borderless" style="font-size: small;">
 								<thead id="addTr2" class="bg-light">
 									<!-- 								
 									<tr>
@@ -499,9 +508,9 @@
 				insertTr2 += "<tr>";
 				insertTr2 += "<td style='vertical-align: middle;'><input type='checkbox' class='form-check-input'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
-				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
-				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
-				insertTr2 += "<td style='vertical-align: middle;'><input type='text'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
+				insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='text-center'></td>";
 				insertTr2 += "</tr>";
 			}
 			
