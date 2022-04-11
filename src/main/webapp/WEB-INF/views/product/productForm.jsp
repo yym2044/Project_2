@@ -27,7 +27,7 @@
   width: 100px;
 }
 
-#addTr tr td {
+#addTr tr td, #addTr3 tr td {
 	height: 40px;
 }
 </style>
@@ -503,6 +503,7 @@
 		$("#addTr3").empty();
 		
 		if($("#optionN").val() == 1){
+			
 			/* 
 			optionName = $.trim($("#optionName1").val()); 
 			optionValue = $("#optionValue1").val().split(",");
@@ -532,6 +533,9 @@
 			optionName = $.trim($("#optionName1").val()); 
 			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
+			
+			//모든 공백 제거
+			$("#optionValue1").val($("#optionValue1").val().replace(/\s/gi, ""));
 			
 			for(var i=0;i<optionValue.length;i++){
 				
@@ -592,6 +596,10 @@
 			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
 			
+			//모든 공백 제거
+			$("#optionValue1").val($("#optionValue1").val().replace(/\s/gi, ""));
+			$("#optionValue2").val($("#optionValue2").val().replace(/\s/gi, ""));
+			
 			for(var i=0;i<optionValue.length;i++){
 				
 				insertTr += "<tr class='align-items-center'>";
@@ -648,9 +656,9 @@
 					insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input' tabindex='-1'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
-					insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
-					insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
-					insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
 					insertTr2 += "</tr>";
 				}
 			}
@@ -667,6 +675,11 @@
 			optionName = $.trim($("#optionName1").val());  
 			$("#tropNameArray1").val(optionName);
 			optionValue = $("#optionValue1").val().split(",");
+			
+			//모든 공백 제거
+			$("#optionValue1").val($("#optionValue1").val().replace(/\s/gi, ""));
+			$("#optionValue2").val($("#optionValue2").val().replace(/\s/gi, ""));
+			$("#optionValue3").val($("#optionValue3").val().replace(/\s/gi, ""));
 			
 			for(var i=0;i<optionValue.length;i++){
 				
@@ -742,9 +755,9 @@
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
-						insertTr2 += "<td style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
-						insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
-						insertTr2 += "<td style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
 						insertTr2 += "</tr>";
 					}
 				}
