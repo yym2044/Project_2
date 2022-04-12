@@ -438,7 +438,7 @@
 		
 			
 		if($("#optionN").val() == 1){
-			$("input[name=trprPriceArray]").each(function(index, item){
+			$("input[name=trprListPriceArray]").each(function(index, item){
 				var trprPrice = Number($("#trpdPrice").val()) + Number($("#trocAdditionalPrice" + (index+1)).val());
 				$(item).val(trprPrice);
 			});
@@ -449,7 +449,7 @@
 				
 					var trprPrice = Number($("#trpdPrice").val()) + Number($(item1).val()) + Number($(item2).val());
 					
-					$("#trprPriceArray" + (i+1) + "_" + (j+1)).val(trprPrice);
+					$("#trprListPriceArray" + (i+1) + "_" + (j+1)).val(trprPrice);
 					
 				});
 			});
@@ -463,7 +463,7 @@
 						
 						var trprPrice = Number($("#trpdPrice").val()) + Number($(item1).val()) + Number($(item2).val()) + Number($(item3).val());
 						
-						$("#trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1)).val(trprPrice);
+						$("#trprListPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1)).val(trprPrice);
 						
 					});
 				});
@@ -573,9 +573,9 @@
 				insertTr2 += "<tr>";
 				insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input' tabindex='-1'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
-				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
-				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
-				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
+				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 				insertTr2 += "</tr>";
 			}
 			
@@ -656,9 +656,9 @@
 					insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input' tabindex='-1'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
-					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
-					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
-					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 					insertTr2 += "</tr>";
 				}
 			}
@@ -755,9 +755,9 @@
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
-						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprPriceArray' type='text' class='fullWH borderX text-center'></td>";
-						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
-						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 						insertTr2 += "</tr>";
 					}
 				}
