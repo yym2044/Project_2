@@ -46,6 +46,17 @@ public class Product {
 	private String[] trocNameArray3;
 	private Integer[] trocAdditionalPriceArray3;
 	
+	//tradProduct_Real
+	private Integer trprListPrice;
+	private Integer trprDiscountPrice;
+	private Integer trprStock;
+	
+	private Integer[] trprListPriceArray;
+	private Integer[] trprDiscountPriceArray;
+	private Integer[] trprStockArray;
+	
+	
+	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
 	private MultipartFile[] file1;
@@ -424,6 +435,42 @@ public class Product {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public Integer getTrprListPrice() {
+		return trprListPrice;
+	}
+	public void setTrprListPrice(Integer trprListPrice) {
+		this.trprListPrice = trprListPrice;
+	}
+	public Integer getTrprDiscountPrice() {
+		return trprDiscountPrice;
+	}
+	public void setTrprDiscountPrice(Integer trprDiscountPrice) {
+		this.trprDiscountPrice = trprDiscountPrice;
+	}
+	public Integer getTrprStock() {
+		return trprStock;
+	}
+	public void setTrprStock(Integer trprStock) {
+		this.trprStock = trprStock;
+	}
+	public Integer[] getTrprListPriceArray() {
+		return trprListPriceArray;
+	}
+	public void setTrprListPriceArray(Integer[] trprListPriceArray) {
+		this.trprListPriceArray = trprListPriceArray;
+	}
+	public Integer[] getTrprDiscountPriceArray() {
+		return trprDiscountPriceArray;
+	}
+	public void setTrprDiscountPriceArray(Integer[] trprDiscountPriceArray) {
+		this.trprDiscountPriceArray = trprDiscountPriceArray;
+	}
+	public Integer[] getTrprStockArray() {
+		return trprStockArray;
+	}
+	public void setTrprStockArray(Integer[] trprStockArray) {
+		this.trprStockArray = trprStockArray;
 	}
 	
 }
