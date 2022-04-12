@@ -47,6 +47,13 @@ public class Product {
 	private Integer[] trocAdditionalPriceArray3;
 	
 	//tradProduct_Real
+	private String trprOptionChildCd1;
+	private String trprOptionChildCd2;
+	private String trprOptionChildCd3;
+	
+	private Integer trprUseNy;
+	private Integer trprDelNy;
+	
 	private Integer trprListPrice;
 	private Integer trprDiscountPrice;
 	private Integer trprStock;
@@ -54,7 +61,6 @@ public class Product {
 	private Integer[] trprListPriceArray;
 	private Integer[] trprDiscountPriceArray;
 	private Integer[] trprStockArray;
-	
 	
 	
 	//스프링에 파일을 올리기 위해
@@ -471,6 +477,36 @@ public class Product {
 	}
 	public void setTrprStockArray(Integer[] trprStockArray) {
 		this.trprStockArray = trprStockArray;
+	}
+	public String getTrprOptionChildCd1() {
+		return trprOptionChildCd1;
+	}
+	public void setTrprOptionChildCd1(String trprOptionChildCd1) {
+		this.trprOptionChildCd1 = trprOptionChildCd1;
+	}
+	public String getTrprOptionChildCd2() {
+		return trprOptionChildCd2;
+	}
+	public void setTrprOptionChildCd2(String trprOptionChildCd2) {
+		this.trprOptionChildCd2 = trprOptionChildCd2;
+	}
+	public String getTrprOptionChildCd3() {
+		return trprOptionChildCd3;
+	}
+	public void setTrprOptionChildCd3(String trprOptionChildCd3) {
+		this.trprOptionChildCd3 = trprOptionChildCd3;
+	}
+	public Integer getTrprUseNy() {
+		return trprUseNy;
+	}
+	public void setTrprUseNy(Integer trprUseNy) {
+		this.trprUseNy = trprUseNy;
+	}
+	public Integer getTrprDelNy() {
+		return trprDelNy;
+	}
+	public void setTrprDelNy(Integer trprDelNy) {
+		this.trprDelNy = trprDelNy;
 	}
 	
 }

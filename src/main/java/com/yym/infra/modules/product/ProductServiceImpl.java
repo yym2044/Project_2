@@ -1,5 +1,6 @@
 package com.yym.infra.modules.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductDao dao;
-
+	
+	//이게 될까
+	List<String> trocSeqList1 = new ArrayList<String>();
+	List<String> trocSeqList2 = new ArrayList<String>();
+	List<String> trocSeqList3 = new ArrayList<String>();
+	//
+	
 	@Override
 	public List<Product> selectList(ProductVo vo) throws Exception {
 		return dao.selectList(vo);
@@ -72,6 +79,11 @@ public class ProductServiceImpl implements ProductService {
 					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
+					
+					trocSeqList1.add(dto.getTrocSeq());
+					
+					
+					
 				}
 			} else if(i==1) {
 				for(int j=0; j<dto.getTrocNameArray2().length; j++) {
@@ -80,6 +92,10 @@ public class ProductServiceImpl implements ProductService {
 					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
+					
+					trocSeqList2.add(dto.getTrocSeq());
+					
+					
 				}
 			} else {
 				for(int j=0; j<dto.getTrocNameArray3().length; j++) {
@@ -88,10 +104,85 @@ public class ProductServiceImpl implements ProductService {
 					dto.setTrocOrder(j+1);
 					
 					dao.insertOptionChild(dto);
+					
+					trocSeqList3.add(dto.getTrocSeq());
+					
 				}
 			}
 			
+			
 		}
+		
+		System.out.println("trocSeqList1.size() : " + trocSeqList1.size());
+		System.out.println("trocSeqList2.size() : " + trocSeqList2.size());
+		System.out.println("trocSeqList3.size() : " + trocSeqList3.size());
+		
+		if(trocSeqList1.size() != 0 && trocSeqList2.size() != 0 && trocSeqList3.size() != 0) {
+			
+			int index = 0;
+			
+			for(int i = 0; i < trocSeqList1.size(); i++) {
+				for(int j = 0; j < trocSeqList2.size(); j++) {
+					for(int k = 0; k < trocSeqList3.size(); k++) {
+						System.out.println(trocSeqList1.get(i) + "-" + trocSeqList2.get(j) + "-" + trocSeqList3.get(k));
+						
+						dto.setTrprOptionChildCd1(trocSeqList1.get(i));
+						dto.setTrprOptionChildCd2(trocSeqList2.get(j));
+						dto.setTrprOptionChildCd3(trocSeqList3.get(k));
+						
+						dto.setTrprListPrice(dto.getTrprListPriceArray()[index]);
+						dto.setTrprDiscountPrice(dto.getTrprDiscountPriceArray()[index]);
+						dto.setTrprStock(dto.getTrprStockArray()[index]);
+						dto.setTrprUseNy(1);
+						dto.setTrprDelNy(0);
+						
+						dao.insertProduct_Real(dto);
+						
+						index++;
+					}
+				}
+			}
+		} else if(trocSeqList1.size() != 0 && trocSeqList2.size() != 0 && trocSeqList3.size() == 0) {
+			
+			int index = 0;
+			
+			for(int i = 0; i < trocSeqList1.size(); i++) {
+				for(int j = 0; j < trocSeqList2.size(); j++) {
+					System.out.println(trocSeqList1.get(i) + "-" + trocSeqList2.get(j));
+					
+					dto.setTrprOptionChildCd1(trocSeqList1.get(i));
+					dto.setTrprOptionChildCd2(trocSeqList2.get(j));
+					
+					dto.setTrprListPrice(dto.getTrprListPriceArray()[index]);
+					dto.setTrprDiscountPrice(dto.getTrprDiscountPriceArray()[index]);
+					dto.setTrprStock(dto.getTrprStockArray()[index]);
+					dto.setTrprUseNy(1);
+					dto.setTrprDelNy(0);
+					
+					dao.insertProduct_Real(dto);
+					
+					index++;
+				}
+			}
+		} else if(trocSeqList1.size() != 0 && trocSeqList2.size() == 0 && trocSeqList3.size() == 0) {
+			for(int i = 0; i < trocSeqList1.size(); i++) {
+				
+				System.out.println(trocSeqList1.get(i));
+				
+				dto.setTrprOptionChildCd1(trocSeqList1.get(i));
+				dto.setTrprListPrice(dto.getTrprListPriceArray()[i]);
+				dto.setTrprDiscountPrice(dto.getTrprDiscountPriceArray()[i]);
+				dto.setTrprStock(dto.getTrprStockArray()[i]);
+				dto.setTrprUseNy(1);
+				dto.setTrprDelNy(0);
+				
+				dao.insertProduct_Real(dto);
+				
+			}
+		} else {
+			// by pass
+		}
+		
 		
 		dao.updateOptionParentCd(dto);
 		

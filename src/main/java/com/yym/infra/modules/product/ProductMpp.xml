@@ -313,8 +313,39 @@
 			, 0
 			<include refid="insertRegModValue"/>
 		)
+		
+		<selectKey resultType="String" keyProperty="trocSeq" order="AFTER">
+		SELECT last_insert_id()
+		</selectKey>
 	
 	</insert>
+	
+	
+	<insert id="insertProduct_Real">
+	INSERT INTO
+		tradProduct_real (
+			trpdSeq	
+			, trprOptionChildCd1
+			, trprOptionChildCd2
+			, trprOptionChildCd3
+			, trprListPrice
+			, trprDiscountPrice
+			, trprStock
+			, trprUseNy
+			, trprDelNy
+		) VALUES (
+			#{trpdSeq}
+			, #{trprOptionChildCd1}
+			, #{trprOptionChildCd2}
+			, #{trprOptionChildCd3} 
+			, #{trprListPrice}
+			, #{trprDiscountPrice}
+			, #{trprStock}
+			, #{trprUseNy}
+			, #{trprDelNy}
+		)
+	</insert>
+	
 	
 	<!-- uploaded s -->
 	<insert id="insertProductUploaded">
