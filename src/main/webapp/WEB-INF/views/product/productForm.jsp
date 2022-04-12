@@ -30,6 +30,7 @@
 #addTr tr td, #addTr3 tr td {
 	height: 40px;
 }
+
 </style>
 
 <link href="${path}/resources/common/css/multipleImageInput.css" rel="stylesheet">
@@ -202,10 +203,6 @@
 									 -->
 								</thead>
 								<tbody id="addTr3">
-								<tr>
-									<td>
-									</td>
-								</tr>
 								</tbody>
 							</table>
 							
@@ -555,7 +552,7 @@
 			
 			insertTr2 += "<tr>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
-			insertTr2 += "<td colspan='1'>옵션명</td>";
+			insertTr2 += "<td colspan='1' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
@@ -632,7 +629,7 @@
 			
 			insertTr2 += "<tr>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
-			insertTr2 += "<td colspan='2'>옵션명</td>";
+			insertTr2 += "<td colspan='2' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
@@ -727,7 +724,7 @@
 			
 			insertTr2 += "<tr>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
-			insertTr2 += "<td colspan='3'>옵션명</td>";
+			insertTr2 += "<td colspan='3' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
