@@ -232,6 +232,7 @@
 			, trpdOptionParentCd1
 			, trpdOptionParentCd2
 			, trpdOptionParentCd3
+			, trpdPrice
 			, trpdTag
 			, trpdDesc
 			, trpdDelNy
@@ -244,6 +245,7 @@
 			, 0
 			, 0
 			, 0
+			, #{trpdPrice}
 			, #{trpdTag}
 			, #{trpdDesc}
 			, 0
