@@ -17,5 +17,7 @@ public class CategoryDao {
 	private static String namespace = "com.yym.infra.modules.category.CategoryMpp";
 	
 	public List<Category> selectCategoryForCache() {return sqlSession.selectList(namespace + ".selectCategoryForCache", ""); }
+	
+	public List<Category> selectCategoryNameString(CategoryVo vo) {return sqlSession.selectList(namespace + ".selectCategoryNameString", vo); }
 
 }
