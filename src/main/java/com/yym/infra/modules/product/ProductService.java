@@ -9,6 +9,7 @@ public interface ProductService {
 	public Product selectOne(ProductVo vo) throws Exception;
 	public List<Product> selectListOptions(ProductVo vo) throws Exception;
 	public List<Product> selectListUploaded(ProductVo vo) throws Exception;
+	public Product selectOneProduct_Real(ProductVo vo) throws Exception;
 	
 	public int insertProduct(Product dto) throws Exception;
 }

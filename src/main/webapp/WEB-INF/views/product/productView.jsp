@@ -451,6 +451,11 @@
 		if(opCount == 1) {
 			if($("#trprOptionChildCd1").val() != 0){
 				alert("1옵션짜리 trpr결정");
+				
+				
+				
+				
+				
 			}
 		} else if(opCount == 2) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){

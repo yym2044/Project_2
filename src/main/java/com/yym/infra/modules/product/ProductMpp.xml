@@ -147,6 +147,40 @@
 			a.trpdSeq = #{trpdSeq}
 	</select>
 	
+	<select id="selectOneProduct_Real" resultMap="resultMapObj">
+	
+		SELECT
+			b.trprSeq
+			, b.trpdSeq
+			, b.trprOptionChildCd1
+			, b.trprOptionChildCd2
+			, b.trprOptionChildCd3
+			, b.trprListPrice
+			, b.trprDiscountPrice
+			, b.trprStock
+		FROM
+			tradProduct a
+		LEFT JOIN
+			tradProduct_Real b
+		ON 
+			b.trpdSeq = a.trpdSeq
+		WHERE 1=1
+			AND a.trpdSeq = #{trpdSeq}
+		<if test="trprOptionChildCd1 != null">
+			AND b.trprOptionChildCd1 = #{trprOptionChildCd1}
+		</if>
+		<if test="trprOptionChildCd2 != null">
+			AND b.trprOptionChildCd2 = #{trprOptionChildCd2}
+		</if>
+		<if test="trprOptionChildCd3 != null">
+			AND b.trprOptionChildCd3 = #{trprOptionChildCd3}
+		</if>
+			
+			
+	
+	
+	</select>
+	
 	<!-- 옵션값 메모리에 올리기 s -->
 	<!-- 
 	<select id="optionParentForCache" resultMap="resultMapObj">

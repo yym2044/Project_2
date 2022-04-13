@@ -43,7 +43,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectListUploaded(ProductVo vo) throws Exception {
 		return dao.selectListUploaded(vo);
 	}
-	
+	@Override
+	public Product selectOneProduct_Real(ProductVo vo) throws Exception {
+		return dao.selectOneProduct_Real(vo);
+	}
 	
 	
 //	@PostConstruct
