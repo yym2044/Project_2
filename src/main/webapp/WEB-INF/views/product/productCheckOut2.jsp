@@ -13,7 +13,7 @@
 <meta charset="uTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>쿠팡! 주문/결제</title>
-<%@include file="../include/cssLinks.jsp" %>ss">
+<%@include file="../include/cssLinks.jsp" %>
 
 <style type="text/css">
 th {
