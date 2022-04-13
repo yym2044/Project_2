@@ -445,25 +445,74 @@
 		alert("옵션부모개수 : " + opCount);
 	});
 	
-		
+	
 	$(".optSelect").on("change", function(){
 		
 		if(opCount == 1) {
 			if($("#trprOptionChildCd1").val() != 0){
 				alert("1옵션짜리 trpr결정");
 				
-				
-				
+				// ajax
+				 $.ajax({
+					  async: true
+					  ,cache: false
+					  ,type:"post"
+					  ,url: "/infra/product/selectOneProduct_Real"
+					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
+					  ,success: function(data){
+							console.log(data.trprSeq);
+					  }
+					  ,error : function(jqXHR, textStatus, errorThrown){
+							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+						}
+				  });
+				 //
 				
 				
 			}
 		} else if(opCount == 2) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
 				alert("2옵션짜리 trpr결정");
+				
+				
+				// ajax
+				 $.ajax({
+					  async: true
+					  ,cache: false
+					  ,type:"post"
+					  ,url: "/infra/product/selectOneProduct_Real"
+					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
+					  ,success: function(data){
+							console.log(data.trprSeq);
+					  }
+					  ,error : function(jqXHR, textStatus, errorThrown){
+							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+						}
+				  });
+				 //
+				
+				
 			}
 		} else if(opCount == 3) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
 				alert("3옵션짜리 trpr결정");
+				
+				// ajax
+				 $.ajax({
+					  async: true
+					  ,cache: false
+					  ,type:"post"
+					  ,url: "/infra/product/selectOneProduct_Real"
+					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
+					  ,success: function(data){
+							console.log(data.trprSeq);
+					  }
+					  ,error : function(jqXHR, textStatus, errorThrown){
+							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+						}
+				  });
+				 //
+				
 			}
 		}
 		

@@ -1,17 +1,12 @@
 package com.yym.infra.modules.product;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.yym.infra.modules.category.Category;
-import com.yym.infra.modules.category.CategoryServiceImpl;
 
 
 @Controller
@@ -56,7 +51,8 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/product/selectOneProduct_Real")//???????????????????????????????
-	public Product selectOneProduct_Real(ProductVo vo, @RequestParam("trpdSeq") String trpdSeq, @RequestParam("trprOptionChildCd1") Integer trprOptionChildCd1, @RequestParam("trprOptionChildCd2") Integer trprOptionChildCd2, @RequestParam("trprOptionChildCd3") Integer trprOptionChildCd3) throws Exception {
+//	public Product selectOneProduct_Real(ProductVo vo, @RequestParam("trpdSeq") String trpdSeq, @RequestParam("trprOptionChildCd1") Integer trprOptionChildCd1, @RequestParam("trprOptionChildCd2") Integer trprOptionChildCd2, @RequestParam("trprOptionChildCd3") Integer trprOptionChildCd3) throws Exception {
+	public Product selectOneProduct_Real(ProductVo vo) throws Exception {
 		
 		Product product_real = service.selectOneProduct_Real(vo);
 		
