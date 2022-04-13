@@ -9,10 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	CategoryDao dao;
+	
+	
+	@Override
+	public List<Category> selectCategoryNameString(CategoryVo vo) throws Exception {
+		return dao.selectCategoryNameString(vo);
+	}
+	
 	
 	@PostConstruct
 	public void selectCategoryForCache() {
