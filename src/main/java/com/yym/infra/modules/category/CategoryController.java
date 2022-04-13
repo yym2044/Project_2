@@ -20,7 +20,14 @@ public class CategoryController {
 		
 		List<Category> list = CategoryServiceImpl.selectCategoryWithParentsCachedCode(ifctParents);
 		
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/category/selectCategoryNameString")
+	public List<Category> selectCategoryNameString(CategoryVo vo) throws Exception {
 		
+		List<Category> list = service.selectCategoryNameString(vo);
 		
 		return list;
 	}

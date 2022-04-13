@@ -13,6 +13,7 @@ public class Category {
 	private String ifctUrl;
 	private Integer shCategoryNy;
 	
+	private String ifctSeqString;
 	private String ifctNameString;
 	
 	//for cache
@@ -83,6 +84,14 @@ public class Category {
 
 	public void setIfctNameString(String ifctNameString) {
 		this.ifctNameString = ifctNameString;
+	}
+
+	public String getIfctSeqString() {
+		return ifctSeqString;
+	}
+
+	public void setIfctSeqString(String ifctSeqString) {
+		this.ifctSeqString = ifctSeqString;
 	}
 	
 	

@@ -318,7 +318,8 @@ height: 100%;
 								<label class="btn btn-outline-primary" for="categorySelect">카테고리 선택</label>
 							</div>
 							<div id="inputCategorySearchForm">
-								<input id="" name="" type="text" class="form-control form-control-sm w-50" placeholder="키테고리명 입력">
+								<input id="shNameString" name="shNameString" type="text" class="form-control form-control-sm w-50" placeholder="키테고리명 입력">
+								<input id="ifctSeqString" name="ifctSeqString" type="text" class="form-control form-control-sm w-50" placeholder="ifctSeq 그룻">
 							</div>
 							<div id="inputCategorySelectForm">
 								<select id="trpdCategoryCd1" name="trpdCategoryCd1" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
@@ -552,6 +553,41 @@ height: 100%;
 
 	<%-- <%@include file="../include/footer.jsp"%> --%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	
+	$("#shNameString").keyup(function(){
+		if($(this).val().length > 2){
+			
+			/* alert($(this).val()); */
+			// ajax
+			 $.ajax({
+				async: true
+				,cache: false
+				,type:"post"
+				,url: "/infra/category/selectCategoryNameString"
+				,data : { "shNameString" : $("#shNameString").val() }
+				,success: function(data){
+					$.each(data, function(idx, val) {
+					console.log(idx + " " + val.ifctNameString);
+					});
+					console.log(data.ifctSeqString);
+					$("#ifctSeqString").val(data.ifctSeqString);
+					
+					/* $.each(data, function(i){
+					$trpdCategoryCd2.append("<option value=" + data[i].ifctSeq + ">" + data[i].ifctName + "</option>")
+					}); */
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			}); 
+			//
+			
+		}
+	});
+	
+	</script>
 	
 	<script type="text/javascript">
 	const input = document.querySelector('.number');

@@ -36,7 +36,8 @@
 	    select d.ifctSeq, d.ifctParents, cte.ifctName, d.ifctName, depth + 1, concat(cte.orderString, '-', d.ifctOrder), concat(cte.ifctSeqString, '-', d.ifctSeq), concat(cte.ifctNameString, ' > ', d.ifctName), d.ifctOrder, d.ifctDepth from infrCategory d inner join CteCate cte on d.ifctParents = cte.ifctSeq
 	)
 	SELECT 
-		ifctNameString
+		ifctSeqString
+		, ifctNameString
 	FROM 
 		CteCate 
 	WHERE 1=1
