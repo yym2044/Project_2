@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	List<String> trocSeqList3 = new ArrayList<String>();
 	//
 	
+	
 	@Override
 	public List<Product> selectList(ProductVo vo) throws Exception {
 		return dao.selectList(vo);
@@ -84,7 +85,6 @@ public class ProductServiceImpl implements ProductService {
 					dao.insertOptionChild(dto);
 					
 					trocSeqList1.add(dto.getTrocSeq());
-					
 					
 					
 				}
@@ -186,6 +186,9 @@ public class ProductServiceImpl implements ProductService {
 			// by pass
 		}
 		
+		trocSeqList1.clear();
+		trocSeqList2.clear();
+		trocSeqList3.clear();
 		
 		dao.updateOptionParentCd(dto);
 		
