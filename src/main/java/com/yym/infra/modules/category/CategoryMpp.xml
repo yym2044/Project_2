@@ -28,5 +28,23 @@
 			, ifctOrder
 	</select>
 	
+	<select id="selectCategoryNameString" resultMap="resultMapObj">
+	WITH RECURSIVE CteCate(ifctSeq, ifctParents, ParentsName, ifctName, depth, orderString, ifctSeqString, ifctNameString, ifctOrder, ifctDepth) AS 
+	(
+	    select ifctSeq, ifctParents, cast('' as char(30)), ifctName, 0, cast(ifctSeq as char(10)), cast(ifctSeq as char(20)), cast(ifctName as char(100)), ifctOrder, ifctDepth from infrCategory where ifctParents = 1
+	    UNION ALL
+	    select d.ifctSeq, d.ifctParents, cte.ifctName, d.ifctName, depth + 1, concat(cte.orderString, '-', d.ifctOrder), concat(cte.ifctSeqString, '-', d.ifctSeq), concat(cte.ifctNameString, ' > ', d.ifctName), d.ifctOrder, d.ifctDepth from infrCategory d inner join CteCate cte on d.ifctParents = cte.ifctSeq
+	)
+	SELECT 
+		ifctNameString
+	FROM 
+		CteCate 
+	WHERE 1=1
+		AND ifctDepth = 3 
+		AND ifctNameString like concat('%',#{shNameString},'%')
+	ORDER BY 
+		orderString;
+	</select>
+	
 
 </mapper>

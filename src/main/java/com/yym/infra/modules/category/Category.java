@@ -13,6 +13,8 @@ public class Category {
 	private String ifctUrl;
 	private Integer shCategoryNy;
 	
+	private String ifctNameString;
+	
 	//for cache
 	public static List<Category> cachedCategoryArrayList = new ArrayList<Category>();
 
@@ -73,6 +75,14 @@ public class Category {
 
 	public void setShCategoryNy(Integer shCategoryNy) {
 		this.shCategoryNy = shCategoryNy;
+	}
+
+	public String getIfctNameString() {
+		return ifctNameString;
+	}
+
+	public void setIfctNameString(String ifctNameString) {
+		this.ifctNameString = ifctNameString;
 	}
 	
 	
