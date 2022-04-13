@@ -556,6 +556,8 @@ height: 100%;
 	
 	<script type="text/javascript">
 	
+	var seqString = "";
+	
 	$("#shNameString").keyup(function(){
 		if($(this).val().length > 2){
 			
@@ -568,11 +570,17 @@ height: 100%;
 				,url: "/infra/category/selectCategoryNameString"
 				,data : { "shNameString" : $("#shNameString").val() }
 				,success: function(data){
+					
+					seqString = "";
+					seqString += data.ifctSeqString;
+					$("#ifctSeqString").val(seqString);
+					
 					$.each(data, function(idx, val) {
-					console.log(idx + " " + val.ifctNameString);
+						console.log(idx + " " + val.ifctNameString);
+						console.log(idx + " " + val.ifctSeqString);
 					});
-					console.log(data.ifctSeqString);
-					$("#ifctSeqString").val(data.ifctSeqString);
+					
+					
 					
 					/* $.each(data, function(i){
 					$trpdCategoryCd2.append("<option value=" + data[i].ifctSeq + ">" + data[i].ifctName + "</option>")
