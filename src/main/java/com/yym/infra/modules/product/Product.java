@@ -47,6 +47,8 @@ public class Product {
 	private Integer[] trocAdditionalPriceArray3;
 	
 	//tradProduct_Real
+	private String trprSeq;
+	
 	private String trprOptionChildCd1;
 	private String trprOptionChildCd2;
 	private String trprOptionChildCd3;
@@ -507,6 +509,12 @@ public class Product {
 	}
 	public void setTrprDelNy(Integer trprDelNy) {
 		this.trprDelNy = trprDelNy;
+	}
+	public String getTrprSeq() {
+		return trprSeq;
+	}
+	public void setTrprSeq(String trprSeq) {
+		this.trprSeq = trprSeq;
 	}
 	
 }
