@@ -359,7 +359,7 @@
 	
 	<insert id="insertProduct_Real">
 	INSERT INTO
-		tradProduct_real (
+		tradProduct_Real (
 			trpdSeq	
 			, trprOptionChildCd1
 			, trprOptionChildCd2
