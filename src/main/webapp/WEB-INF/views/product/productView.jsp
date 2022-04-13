@@ -109,7 +109,7 @@
 								</p>
 							</div>
 							<div class="col-3 text-end">
-								<button type="button"  class="btn btn-outline-danger rounded-circle">
+								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle">
 									<i class="bi bi-heart"></i>
 								</button>
 								<button type="button"  class="btn btn-outline-primary rounded-circle">
@@ -147,8 +147,8 @@
 								<div class="col-12 p-0 py-1" style="font-size: small">
 									<c:out value="${rt.trpdOptionParentName1}"/>
 									<br>
-									<select class="form-select" style="width: 18%; font-size: small;">
-										<option>::선택::</option>
+									<select id="trprOptionChildCd1" name="trprOptionChildCd1" class="form-select optSelect" style="width: 25%; font-size: small;">
+										<option value="0">::선택::</option>
 										<c:forEach items="${listOption}" var="item" varStatus="status">
 											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd1}">
 												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
@@ -161,8 +161,8 @@
 								<div class="col-12 p-0 py-1" style="font-size: small">
 									<c:out value="${rt.trpdOptionParentName2}"/>
 									<br>
-									<select class="form-select" style="width: 18%; font-size: small;">
-										<option>::선택::</option>
+									<select id="trprOptionChildCd2" name="trprOptionChildCd2" class="form-select optSelect" style="width: 25%; font-size: small;">
+										<option value="0">::선택::</option>
 										<c:forEach items="${listOption}" var="item" varStatus="status">
 											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd2}">
 												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
@@ -175,8 +175,8 @@
 								<div class="col-12 p-0 py-1" style="font-size: small">
 									<c:out value="${rt.trpdOptionParentName3}"/>
 									<br>
-									<select class="form-select" style="width: 18%; font-size: small;">
-										<option>::선택::</option>
+									<select id="trprOptionChildCd3" name="trprOptionChildCd3" class="form-select optSelect" style="width: 25%; font-size: small;">
+										<option value="0">::선택::</option>
 										<c:forEach items="${listOption}" var="item" varStatus="status">
 											<c:if test="${item.tropSeq eq rt.trpdOptionParentCd3}">
 												<option value="<c:out value="${item.trocSeq}"/>"><c:out value="${item.trocName}"/></option>
@@ -426,6 +426,45 @@
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	
+	var opCount = 0;
+	
+	if("<c:out value="${rt.trpdOptionParentName1}"/>" != ""){
+		opCount++;
+	}
+	if("<c:out value="${rt.trpdOptionParentName2}"/>" != ""){
+		opCount++;
+	}
+	if("<c:out value="${rt.trpdOptionParentName3}"/>" != ""){
+		opCount++;
+	}
+	
+	$("#btnHeart").click(function(){
+		alert("옵션부모개수 : " + opCount);
+	});
+	
+		
+	$(".optSelect").on("change", function(){
+		
+		if(opCount == 1) {
+			if($("#trprOptionChildCd1").val() != 0){
+				alert("1옵션짜리 trpr결정");
+			}
+		} else if(opCount == 2) {
+			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
+				alert("2옵션짜리 trpr결정");
+			}
+		} else if(opCount == 3) {
+			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
+				alert("3옵션짜리 trpr결정");
+			}
+		}
+		
+	});
+	
+	</script>
 
 	<script type="text/javascript">
 		var popoverTriggerList = [].slice.call(document
