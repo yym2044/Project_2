@@ -9,6 +9,10 @@ public class ProductVo {
 	
 	private String shSort;
 	
+	private Integer trprOptionChildCd1;
+	private Integer trprOptionChildCd2;
+	private Integer trprOptionChildCd3;
+	
 	
 	
 //	paging
@@ -141,6 +145,36 @@ public class ProductVo {
 	}
 	public void setShSort(String shSort) {
 		this.shSort = shSort;
+	}
+
+
+	public Integer getTrprOptionChildCd1() {
+		return trprOptionChildCd1;
+	}
+
+
+	public void setTrprOptionChildCd1(Integer trprOptionChildCd1) {
+		this.trprOptionChildCd1 = trprOptionChildCd1;
+	}
+
+
+	public Integer getTrprOptionChildCd2() {
+		return trprOptionChildCd2;
+	}
+
+
+	public void setTrprOptionChildCd2(Integer trprOptionChildCd2) {
+		this.trprOptionChildCd2 = trprOptionChildCd2;
+	}
+
+
+	public Integer getTrprOptionChildCd3() {
+		return trprOptionChildCd3;
+	}
+
+
+	public void setTrprOptionChildCd3(Integer trprOptionChildCd3) {
+		this.trprOptionChildCd3 = trprOptionChildCd3;
 	}
 	
 	
