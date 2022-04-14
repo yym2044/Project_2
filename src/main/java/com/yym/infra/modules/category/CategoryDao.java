@@ -18,6 +18,7 @@ public class CategoryDao {
 	
 	public List<Category> selectCategoryForCache() {return sqlSession.selectList(namespace + ".selectCategoryForCache", ""); }
 	
-	public List<Category> selectCategoryNameString(CategoryVo vo) {return sqlSession.selectList(namespace + ".selectCategoryNameString", vo); }
+//	public List<Category> selectCategoryNameString(CategoryVo vo) {return sqlSession.selectList(namespace + ".selectCategoryNameString", vo); }
+	public List<Category> selectCategoryNameString() {return sqlSession.selectList(namespace + ".selectCategoryNameString", ""); }
 
 }
