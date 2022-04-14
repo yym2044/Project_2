@@ -32,7 +32,7 @@
 }
 
 .ui-autocomplete {
-	max-height: 200px;
+	max-height: 150px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -689,9 +689,11 @@ height: 100%;
 	$("#checkImg").on("click", function(){
 		alert("대표이미지 : " + $("#file0").val());
 
-		var fileCount = $("input[type=file]")[1].files.length;
+/* 		var fileCount = $("input[type=file]")[1].files.length; */
+		var fileCount = $("#file1")[0].files.length;
 		for(var i = 0 ; i<fileCount;i++) {
-			alert($("input[type=file]")[1].files[i].name);
+/* 			alert("추가이미지" + (i+1) + " : " +  $("input[type=file]")[1].files[i].name); */
+			alert("추가이미지" + (i+1) + " : " +  $("#file1")[0].files[i].name);
 		}
 	});
 
