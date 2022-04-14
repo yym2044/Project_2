@@ -324,19 +324,22 @@ height: 100%;
 							</div>
 							<div id="inputCategorySearchForm">
 								<input id="shNameString" list="ctList" name="shNameString" type="text" class="form-control form-control-sm w-50 d-inline" placeholder="카테고리명 입력">
-								<input id="ifctSeqString" name="ifctSeqString" type="text" class="form-control form-control-sm d-inline" style="width:200px;" placeholder="ifctSeq 그룻">
+								<input id="ifctSeqString" name="ifctSeqString" type="hidden" class="form-control form-control-sm d-inline" style="width:200px;" placeholder="ifctSeq 그릇">
+								<input id="trpdCategoryCdString1" name="trpdCategoryCd1" class="categorySearch" type="hidden">
+								<input id="trpdCategoryCdString2" name="trpdCategoryCd2" class="categorySearch" type="hidden">
+								<input id="trpdCategoryCdString3" name="trpdCategoryCd3" class="categorySearch" type="hidden">
 								<datalist id="ctList">
 								</datalist>
 							</div>
 							<div id="inputCategorySelectForm">
-								<select id="trpdCategoryCd1" name="trpdCategoryCd1" size="10" class="form-select form-select-sm d-inline" style="width: 200px;">
+								<select id="trpdCategoryCd1" name="trpdCategoryCd1" size="10" class="form-select form-select-sm d-inline categorySelect" style="width: 200px;">
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<option value="${item.ifctSeq}"><c:out value="${item.ifctName}"/></option>
 										<c:set var="select1" value="${item.ifctSeq}"/>
 									</c:forEach>
 								</select>
 								
-								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline d-none" style="width: 200px;">
+								<select id="trpdCategoryCd2" name="trpdCategoryCd2" size="10" class="form-select form-select-sm d-inline d-none categorySelect" style="width: 200px;">
 									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
@@ -348,7 +351,7 @@ height: 100%;
 									 --%>
 								</select>
 								
-								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline d-none" style="width: 200px;">
+								<select id="trpdCategoryCd3" name="trpdCategoryCd3" size="10" class="form-select form-select-sm d-inline d-none categorySelect" style="width: 200px;">
 									<%-- 
 									<c:forEach items="${listCategoryParents1}" var="item" varStatus="status">
 										<c:forEach items="${listCategoryDepth2}" var="item2" varStatus="status2">
@@ -563,6 +566,7 @@ height: 100%;
 	
 	<script type="text/javascript">
 	
+	
 	$(function(){
 		
 		var availableArray = [];
@@ -587,10 +591,10 @@ height: 100%;
 		
 	})
 	
-	$("#ifctSeqString").on("click", function(){
+	$("#shNameString").on("change", function(){
 		
 		$.ajax({
-			async: true
+			async: false
 			, cache: false
 			, type: "post"
 			, url: "/infra/category/selectOneifctSeqString"
@@ -599,7 +603,11 @@ height: 100%;
 				
 				$("#ifctSeqString").val(data.ifctSeqString);
 			}
-		})
+		});
+		
+		$("#trpdCategoryCdString1").val($("#ifctSeqString").val().split("-")[0]);
+		$("#trpdCategoryCdString2").val($("#ifctSeqString").val().split("-")[1]);
+		$("#trpdCategoryCdString3").val($("#ifctSeqString").val().split("-")[2]);
 		
 	});
 	
@@ -680,7 +688,11 @@ height: 100%;
 	<script type="text/javascript">
 	$("#checkImg").on("click", function(){
 		alert("대표이미지 : " + $("#file0").val());
-		alert("추가이미지 : " + $("#file1").val()); 
+
+		var fileCount = $("input[type=file]")[1].files.length;
+		for(var i = 0 ; i<fileCount;i++) {
+			alert($("input[type=file]")[1].files[i].name);
+		}
 	});
 
 	</script>
@@ -1210,24 +1222,40 @@ height: 100%;
 	$(document).ready(function(){
 		if($("#categorySearch").is(":checked")){
 	        $("#inputCategorySearchForm").show();
+	        $(".categorySearch").prop("disabled", false);
+	        
 	        $("#inputCategorySelectForm").hide();
+	        $(".categorySelect").prop("disabled", true);
 	    }else{
 	        $("#inputCategorySelectForm").show();
+	        $(".categorySelect").prop("disabled", false);
+	        
 	        $("#inputCategorySearchForm").hide();
+	        $(".categorySearch").prop("disabled", true);
 	    }
 	});
 
 	$("input[name=categoryMethod]").on("change", function(){
 		if($("#categorySearch").is(":checked")){
 	        $("#inputCategorySearchForm").show();
+	        $(".categorySearch").prop("disabled", false);
 	        $("#inputCategorySelectForm").hide();
+	        $(".categorySelect").prop("disabled", true);
 	        $("#trpdCategoryCd1").val("");
 	        /* $("#trpdCategoryCd1").prop("selectedIndex", 0); */
 	        $("#trpdCategoryCd2").addClass('d-none');
 	        $("#trpdCategoryCd3").addClass('d-none');
 	    }else{
 	        $("#inputCategorySelectForm").show();
+	        $(".categorySelect").prop("disabled", false);
 	        $("#inputCategorySearchForm").hide();
+	        $(".categorySearch").prop("disabled", true);
+	        $("#shNameString").val("");
+	        $("#ifctSeqString").val("");
+	        $("#trpdCategoryCdString1").val("");
+	        $("#trpdCategoryCdString2").val("");
+	        $("#trpdCategoryCdString3").val("");
+	        
 	    }
 	});
 	
