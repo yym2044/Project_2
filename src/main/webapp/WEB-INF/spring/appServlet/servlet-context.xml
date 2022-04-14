@@ -37,6 +37,7 @@
 			<exclude-mapping path="/home" />
 			<exclude-mapping path="/product/productSearch" />
 			<exclude-mapping path="/product/productView" />
+			<exclude-mapping path="/product/selectOneProduct_Real" />
 			<beans:bean id="checkLoginSessionInterception" class="com.yym.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	
