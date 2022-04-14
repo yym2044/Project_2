@@ -15,9 +15,13 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryDao dao;
 	
 	
+//	@Override
+//	public List<Category> selectCategoryNameString(CategoryVo vo) throws Exception {
+//		return dao.selectCategoryNameString(vo);
+//	}
 	@Override
-	public List<Category> selectCategoryNameString(CategoryVo vo) throws Exception {
-		return dao.selectCategoryNameString(vo);
+	public List<Category> selectCategoryNameString() throws Exception {
+		return dao.selectCategoryNameString();
 	}
 	
 	

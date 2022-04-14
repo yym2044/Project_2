@@ -558,6 +558,33 @@ height: 100%;
 	
 	<script type="text/javascript">
 	
+	$(function(){
+		
+		var availableArray = [];
+		
+		$.ajax({
+			async: true
+			, cache: false
+			, type: "post"
+			, url: "/infra/category/selectCategoryNameString"
+			, success: function(data){
+				
+				$.each(data, function(i){
+					availableArray.push(data[i].ifctNameString);
+				});
+			}
+		})
+		
+		$("#shNameString").autocomplete({
+			source: availableArray
+		});
+		
+	})
+	
+	</script>
+	
+	<!-- <script type="text/javascript">
+	
 	var seqString = "";
 	
 	$("#shNameString").on("keyup", function(){
@@ -608,7 +635,7 @@ height: 100%;
 			
 	});
 	
-	</script>
+	</script> -->
 	
 	<script type="text/javascript">
 	const input = document.querySelector('.number');

@@ -25,9 +25,9 @@ public class CategoryController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/category/selectCategoryNameString")
-	public List<Category> selectCategoryNameString(CategoryVo vo) throws Exception {
+	public List<Category> selectCategoryNameString() throws Exception {
 		
-		List<Category> list = service.selectCategoryNameString(vo);
+		List<Category> list = service.selectCategoryNameString();
 		
 		return list;
 	}
