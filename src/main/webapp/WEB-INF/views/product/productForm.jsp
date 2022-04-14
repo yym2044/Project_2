@@ -31,6 +31,11 @@
 	height: 40px;
 }
 
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
 </style>
 
 <style type="text/css">
@@ -576,10 +581,27 @@ height: 100%;
 		})
 		
 		$("#shNameString").autocomplete({
-			source: availableArray
+			minLength: 2
+			, source: availableArray
 		});
 		
 	})
+	
+	$("#ifctSeqString").on("click", function(){
+		
+		$.ajax({
+			async: true
+			, cache: false
+			, type: "post"
+			, url: "/infra/category/selectOneifctSeqString"
+			, data : { "shNameString" : $("#shNameString").val() }
+			, success: function(data){
+				
+				$("#ifctSeqString").val(data.ifctSeqString);
+			}
+		})
+		
+	});
 	
 	</script>
 	
