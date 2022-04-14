@@ -191,19 +191,12 @@
 								<input id="trorQuantity" name="trorQuantity" type="text" value="1" style="width: 38px;">
 							</div>
 							<div class="col px-1">
-								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
-							<!-- 
-							<div class='row p-0'>
-								<div class='col text-end'>
-									<a id='closePop' type='button' class='btn-close btn-lg' data-dismiss='popover'></a>
+								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<div id='cartPop' class='row p-3 text-center'>
+									<div class='col pb-3'>상품이 장바구니에 담겼습니다.</div>
+									<a class='btn btn-outline-primary' href='/infra/product/cartGeneral'>장바구니 바로가기 ></a>
 								</div>
-							</div>
-							 -->
-							<div class='row p-3 text-center'>
-								<div class='col pb-3'>상품이 장바구니에 담겼습니다.</div>
-								<a class='btn btn-outline-primary' href='/infra/product/cartGeneral'>장바구니 바로가기 ></a>
-							</div>
-							">장바구니 담기</a>
+								">장바구니 담기</a>
 							</div>
 							<div class="col p-0">
 								<a href="/infra/product/productCheckOut" class="btn btn-primary w-100 rounded-0">바로 구매 ></a>
@@ -429,6 +422,10 @@
 	
 	<script type="text/javascript">
 	
+	$(function(){
+		$("#btnCart").popover('disable');
+	})
+	
 	var opCount = 0;
 	
 	if("<c:out value="${rt.trpdOptionParentName1}"/>" != ""){
@@ -452,6 +449,8 @@
 			if($("#trprOptionChildCd1").val() != 0){
 				alert("1옵션짜리 trpr결정");
 				
+				$("#btnCart").popover('enable');
+				
 				// ajax
 				 $.ajax({
 					  async: true
@@ -460,20 +459,21 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
 					  ,success: function(data){
-							console.log(data.trprSeq);
+							alert(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 						}
 				  });
 				 //
-				
-				
+			} else {
+				$("#btnCart").popover('disable');
 			}
 		} else if(opCount == 2) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
 				alert("2옵션짜리 trpr결정");
 				
+				$("#btnCart").popover('enable');
 				
 				// ajax
 				 $.ajax({
@@ -483,19 +483,21 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
 					  ,success: function(data){
-							console.log(data.trprSeq);
+							alert(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 						}
 				  });
 				 //
-				
-				
+			} else {
+				$("#btnCart").popover('disable');
 			}
 		} else if(opCount == 3) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
 				alert("3옵션짜리 trpr결정");
+				
+				$("#btnCart").popover('enable');
 				
 				// ajax
 				 $.ajax({
@@ -505,14 +507,36 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
 					  ,success: function(data){
-							console.log(data.trprSeq);
+						  alert(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 						}
 				  });
 				 //
-				
+			} else {
+				$("#btnCart").popover('disable');
+			}
+		}
+		
+	});
+	
+	$("#btnCart").on("click", function(){
+		
+		if(opCount == 1){
+			if($("#trprOptionChildCd1").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
+			}
+		} else if(opCount == 2){
+			if($("trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
+			}
+		} else if(opCount == 3){
+			if($("trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() || $("#trprOptionChildCd3").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
 			}
 		}
 		
@@ -520,19 +544,6 @@
 	
 	</script>
 
-	<script type="text/javascript">
-		var popoverTriggerList = [].slice.call(document
-				.querySelectorAll('[data-bs-toggle="popover"]'))
-		var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-			return new bootstrap.Popover(popoverTriggerEl)
-		})
-
-		var popover = new bootstrap.Popover(document
-				.querySelector('.popover-dismiss'), {
-			trigger : 'focus'
-		})
-	</script>
-	
 	<script type="text/javascript">
 		logOut = function() {
 
