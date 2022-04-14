@@ -23,6 +23,7 @@
 <style type="text/css">
 </style>
 
+
 </head>
 <body>
 
@@ -32,6 +33,7 @@
 	<c:set var="listCategoryDepth3" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('3')}" />
 
 	<div class="container-fluid">
+		
 		<form id="formView" method="post" action="/infra/product/productSearch">
 
 
@@ -112,6 +114,7 @@
 								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle">
 									<i class="bi bi-heart"></i>
 								</button>
+								
 								<button type="button"  class="btn btn-outline-primary rounded-circle">
 									<i class="bi bi-share-fill"></i>
 								</button>
@@ -186,6 +189,7 @@
 								</div>
 							</c:if>
 						</div>
+						
 						<div class="row m-1 py-2 align-items-center">
 							<div class="col-2 p-0">
 								<input id="trorQuantity" name="trorQuantity" type="text" value="1" style="width: 38px;">
@@ -221,9 +225,7 @@
 				</div>
 			</div>
 			<!-- width65 end -->
-
-
-
+			
 			<!-- today's recommendation start -->
 			<div class="row width65 my-4">
 				<div class="col">
@@ -420,6 +422,7 @@
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
 	
+	
 	<script type="text/javascript">
 	
 	$(function(){
@@ -447,7 +450,7 @@
 		
 		if(opCount == 1) {
 			if($("#trprOptionChildCd1").val() != 0){
-				alert("1옵션짜리 trpr결정");
+				/* alert("1옵션짜리 trpr결정"); */
 				
 				$("#btnCart").popover('enable');
 				
@@ -459,7 +462,7 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
 					  ,success: function(data){
-							alert(data.trprSeq + " " + data.trprListPrice);
+							console.log(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -471,7 +474,7 @@
 			}
 		} else if(opCount == 2) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
-				alert("2옵션짜리 trpr결정");
+				/* alert("2옵션짜리 trpr결정"); */
 				
 				$("#btnCart").popover('enable');
 				
@@ -483,7 +486,7 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
 					  ,success: function(data){
-							alert(data.trprSeq + " " + data.trprListPrice);
+							console.log(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -495,7 +498,7 @@
 			}
 		} else if(opCount == 3) {
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
-				alert("3옵션짜리 trpr결정");
+				/* alert("3옵션짜리 trpr결정"); */
 				
 				$("#btnCart").popover('enable');
 				
@@ -507,7 +510,7 @@
 					  ,url: "/infra/product/selectOneProduct_Real"
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
 					  ,success: function(data){
-						  alert(data.trprSeq + " " + data.trprListPrice);
+						  console.log(data.trprSeq + " " + data.trprListPrice);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -522,6 +525,10 @@
 	});
 	
 	$("#btnCart").on("click", function(){
+		
+		if(!"<c:out value="${sessSeq}"/>"){
+			alert("로그인 하세요");
+		}
 		
 		if(opCount == 1){
 			if($("#trprOptionChildCd1").val() == 0){
