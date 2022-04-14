@@ -31,4 +31,12 @@ public class CategoryController {
 		
 		return list;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/category/selectOneifctSeqString")
+	public Category selectOneifctSeqString(CategoryVo vo) throws Exception {
+		Category ct = service.selectOneifctSeqString(vo);
+		
+		return ct;
+	}
 }
