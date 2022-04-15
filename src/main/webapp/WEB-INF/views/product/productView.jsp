@@ -19,8 +19,80 @@
 <title>쿠팡! 상품정보</title>
 <%@include file="../include/cssLinks.jsp"%>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <style type="text/css">
+
+
+
+.sns_box {
+  position: relative;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: auto;
+  height: 44px;
+  min-width: 268px;
+}
+
+.sns_button {
+  float: left;
+  box-shadow: inset 0 0 0 2px gray;
+  border-radius: 100%;
+  -moz-transition: all 280ms ease;
+  -o-transition: all 280ms ease;
+  -webkit-transition: all 280ms ease;
+  transition: all 280ms ease;
+}
+.sns_button a {
+  display: table-cell;
+  width: 44px;
+  height: 44px;
+  color: gray;
+  text-align: center;
+  vertical-align: middle;
+  -moz-transition: all 280ms ease;
+  -o-transition: all 280ms ease;
+  -webkit-transition: all 280ms ease;
+  transition: all 280ms ease;
+}
+.sns_button i {
+  font-size: 25px;
+  vertical-align: middle;
+}
+.sns_button:hover {
+  box-shadow: inset 0 0 0 22px #fff;
+}
+
+.sns_button + .sns_button {
+  margin: 0 0 0 12px;
+}
+
+.twitter:hover a {
+  color: #1B95E0;
+}
+
+.facebook:hover a {
+  color: #3B5999;
+}
+
+.google:hover a {
+  color: #dd4b39;
+}
+
+.instagram:hover a {
+  color: #2b5c84;
+}
+
+.pocket:hover a {
+  color: #EE4056;
+}
+
 </style>
 
 
@@ -40,6 +112,8 @@
 			<%@include file="../include/coupangTopBar.jsp"%>
 
 			<%@include file="../include/coupangShSection1.jsp"%>
+			
+			
 
 			<div class="row">
 				<div class="col offset-2 py-3 d-flex">
@@ -111,11 +185,33 @@
 								</p>
 							</div>
 							<div class="col-3 text-end">
-								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle">
+								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<div class='row p-1 text-center'>
+									<div class='col'>찜 목록에 추가되었습니다.</div>
+								</div>
+								">
 									<i class="bi bi-heart"></i>
 								</button>
 								
-								<button type="button"  class="btn btn-outline-primary rounded-circle">
+								<button id="btnShare" type="button"  class="btn btn-outline-primary rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+									<div class='sns_box px-3'>
+										<div class='sns_button twitter'>
+										<a href='###' title='Tweet'><i class='fa fa-twitter'></i></a>
+										</div>
+										<div class='sns_button facebook'>
+										<a href='###' title='Facebook'><i class='fa fa-facebook'></i></a>
+										</div>
+										<div class='sns_button google'>
+										<a href='###' title='google+'><i class='fa fa-google-plus'></i></a>
+										</div>
+										<div class='sns_button instagram'>
+										<a href='###' title='Facebook'><i class='fa fa-instagram'></i></a>
+										</div>
+										<div class='sns_button pocket'>
+										<a href='###' title='pocket'><i class='fa fa-get-pocket'></i></a>
+										</div>
+									</div>
+								">
 									<i class="bi bi-share-fill"></i>
 								</button>
 							</div>
@@ -196,7 +292,7 @@
 							</div>
 							<div class="col px-1">
 								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
-								<div id='cartPop' class='row p-3 text-center'>
+								<div class='row p-3 text-center'>
 									<div class='col pb-3'>상품이 장바구니에 담겼습니다.</div>
 									<a class='btn btn-outline-primary' href='/infra/product/cartGeneral'>장바구니 바로가기 ></a>
 								</div>
@@ -427,7 +523,16 @@
 	
 	$(function(){
 		$("#btnCart").popover('disable');
-	})
+		
+		if(!"<c:out value="${sessSeq}"/>"){
+			$("#btnHeart").popover('disable');
+		} else {
+			$("#btnHeart").popover('enable');
+		}
+		
+		$("#btnShare").popover('enable');
+		
+	});
 	
 	var opCount = 0;
 	
@@ -441,8 +546,14 @@
 		opCount++;
 	}
 	
+	
 	$("#btnHeart").click(function(){
-		alert("옵션부모개수 : " + opCount);
+		/* alert("옵션부모개수 : " + opCount); */
+		
+		if(!"<c:out value="${sessSeq}"/>"){
+			location.href="/infra/login/loginForm";
+		}
+		
 	});
 	
 	
@@ -452,7 +563,9 @@
 			if($("#trprOptionChildCd1").val() != 0){
 				/* alert("1옵션짜리 trpr결정"); */
 				
-				$("#btnCart").popover('enable');
+				if("<c:out value="${sessSeq}"/>"){
+					$("#btnCart").popover('enable');
+				}
 				
 				// ajax
 				 $.ajax({
@@ -476,7 +589,9 @@
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
 				/* alert("2옵션짜리 trpr결정"); */
 				
-				$("#btnCart").popover('enable');
+				if("<c:out value="${sessSeq}"/>"){
+					$("#btnCart").popover('enable');
+				}
 				
 				// ajax
 				 $.ajax({
@@ -500,7 +615,9 @@
 			if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
 				/* alert("3옵션짜리 trpr결정"); */
 				
-				$("#btnCart").popover('enable');
+				if("<c:out value="${sessSeq}"/>"){
+					$("#btnCart").popover('enable');
+				}
 				
 				// ajax
 				 $.ajax({
@@ -527,7 +644,8 @@
 	$("#btnCart").on("click", function(){
 		
 		if(!"<c:out value="${sessSeq}"/>"){
-			alert("로그인 하세요");
+			alert("로그인 시 이용가능합니다.");
+			return false;
 		}
 		
 		if(opCount == 1){
