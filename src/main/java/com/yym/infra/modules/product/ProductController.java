@@ -87,8 +87,9 @@ public class ProductController {
 		return "product/productCheckOut2";
 	}
 	@RequestMapping(value = "/product/cartGeneral")
-	public String cartGeneral() throws Exception {
+	public String cartGeneral(Model model, @ModelAttribute ("vo") ProductVo vo) throws Exception {
 		
+		model.addAttribute("listCartGeneral", service.selectListCartGeneral(vo));
 		
 		return "product/cartGeneral";
 	}

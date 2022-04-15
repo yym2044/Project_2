@@ -105,6 +105,36 @@
 		
 	</select>
 	
+	<select id="selectListCartGeneral" resultMap="resultMapObj">
+	
+	SELECT
+		a.trctSeq
+		, a.ifmmSeq
+		, a.trprSeq
+		, a.trctQuantity
+		, a.trctDelNy
+	    , c.trpdName
+	    , b.trprOptionChildCd1
+	    , b.trprOptionChildCd2
+	    , b.trprOptionChildCd3
+	    , b.trprListPrice
+	    , b.trprDiscountPrice
+	    , c.trpdDeliveryFee
+	FROM
+		tradCart a
+	LEFT JOIN
+		tradProduct_Real b 
+	ON 
+		b.trprSeq = a.trprSeq
+	LEFT JOIN
+		tradProduct c
+	ON 
+		c.trpdSeq = b.trpdSeq
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+	
+	</select>
+	
 	<select id="selectListUploaded" resultMap="resultMapObj">
 	SELECT
 		seq

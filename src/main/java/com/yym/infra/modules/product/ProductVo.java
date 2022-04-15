@@ -3,6 +3,7 @@ package com.yym.infra.modules.product;
 public class ProductVo {
 	
 	private String trpdSeq;
+	private String ifmmSeq;
 	
 	private Integer shCategory = 0;
 	private String shBar = "";
@@ -175,6 +176,16 @@ public class ProductVo {
 
 	public void setTrprOptionChildCd3(Integer trprOptionChildCd3) {
 		this.trprOptionChildCd3 = trprOptionChildCd3;
+	}
+
+
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+
+
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
 	}
 	
 	

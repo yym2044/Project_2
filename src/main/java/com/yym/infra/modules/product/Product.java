@@ -64,6 +64,11 @@ public class Product {
 	private Integer[] trprDiscountPriceArray;
 	private Integer[] trprStockArray;
 	
+	//tradCart
+	private String trctSeq;
+	private Integer trctQuantity;
+	private Integer trctDelNy;
+	
 	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
@@ -515,6 +520,24 @@ public class Product {
 	}
 	public void setTrprSeq(String trprSeq) {
 		this.trprSeq = trprSeq;
+	}
+	public String getTrctSeq() {
+		return trctSeq;
+	}
+	public void setTrctSeq(String trctSeq) {
+		this.trctSeq = trctSeq;
+	}
+	public Integer getTrctQuantity() {
+		return trctQuantity;
+	}
+	public void setTrctQuantity(Integer trctQuantity) {
+		this.trctQuantity = trctQuantity;
+	}
+	public Integer getTrctDelNy() {
+		return trctDelNy;
+	}
+	public void setTrctDelNy(Integer trctDelNy) {
+		this.trctDelNy = trctDelNy;
 	}
 	
 }
