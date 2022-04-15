@@ -173,6 +173,17 @@ td {
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 	
+	
+	<script type="text/javascript">
+	
+	$(function() {
+		
+		console.log("<c:out value="${vo.ifmmSeq}"/>")
+		
+	});
+	
+	</script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#btnCart").popover({

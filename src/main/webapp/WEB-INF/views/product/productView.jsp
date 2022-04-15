@@ -107,6 +107,7 @@
 	<div class="container-fluid">
 		
 		<form id="formView" method="post" action="/infra/product/productSearch">
+			<input id="ifmmSeq" name="ifmmSeq" type="hidden" value="${sessSeq}">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -291,10 +292,10 @@
 								<input id="trorQuantity" name="trorQuantity" type="text" value="1" style="width: 38px;">
 							</div>
 							<div class="col px-1">
-								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<a tabindex="0" href='javascript:goCartGeneral();' id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-3 text-center'>
 									<div class='col pb-3'>상품이 장바구니에 담겼습니다.</div>
-									<a class='btn btn-outline-primary' href='/infra/product/cartGeneral'>장바구니 바로가기 ></a>
+									<a class='btn btn-outline-primary'>장바구니 바로가기 ></a>
 								</div>
 								">장바구니 담기</a>
 							</div>
@@ -511,13 +512,26 @@
 			</div>
 			<!-- today's recommendation end -->
 
-
+			
 		</form>
 	</div>
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
 	
+
+
+
+	<script type="text/javascript">
+	goCartGeneral = function(){
+		
+		$("#formView").attr("action", "/infra/product/cartGeneral");
+		$("#formView").submit();
+		
+	}
+	
+	</script>
+
 	
 	<script type="text/javascript">
 	
