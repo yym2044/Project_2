@@ -53,8 +53,11 @@ public class Product {
 	private String trprSeq;
 	
 	private String trprOptionChildCd1;
+	private String trprOptionChildName1;
 	private String trprOptionChildCd2;
+	private String trprOptionChildName2;
 	private String trprOptionChildCd3;
+	private String trprOptionChildName3;
 	
 	private Integer trprUseNy;
 	private Integer trprDelNy;
@@ -547,6 +550,24 @@ public class Product {
 	}
 	public void setIfmmSeq(String ifmmSeq) {
 		this.ifmmSeq = ifmmSeq;
+	}
+	public String getTrprOptionChildName1() {
+		return trprOptionChildName1;
+	}
+	public void setTrprOptionChildName1(String trprOptionChildName1) {
+		this.trprOptionChildName1 = trprOptionChildName1;
+	}
+	public String getTrprOptionChildName2() {
+		return trprOptionChildName2;
+	}
+	public void setTrprOptionChildName2(String trprOptionChildName2) {
+		this.trprOptionChildName2 = trprOptionChildName2;
+	}
+	public String getTrprOptionChildName3() {
+		return trprOptionChildName3;
+	}
+	public void setTrprOptionChildName3(String trprOptionChildName3) {
+		this.trprOptionChildName3 = trprOptionChildName3;
 	}
 	
 }
