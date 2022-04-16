@@ -152,11 +152,13 @@
 			, trprSeq
 			, trctQuantity
 			, trctDelNy
+			<include refid="insertRegMod"/>
 		) VALUES (
 			#{ifmmSeq}
 			, #{trprSeq}
 			, #{trctQuantity}
 			, 0
+			<include refid="insertRegModValue"/>
 		)
 	
 	</insert>
