@@ -530,7 +530,14 @@
 	}
 	</script>
 	 -->
-
+	 
+	<script type="text/javascript">
+	
+	$("#btnMyCart").on("click", function(){
+		$("#formView").attr("action", "/infra/product/cartGeneral").submit();
+	});
+	
+	</script>
 
 	
 	<script type="text/javascript">
