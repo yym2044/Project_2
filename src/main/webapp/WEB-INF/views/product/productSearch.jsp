@@ -36,6 +36,7 @@
 		<input type="hidden" id="thisPage" name="thisPage" value="${vo.thisPage}">
 		<input type="hidden" id="shSort" name="shSort" value="${vo.shSort}">
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="${vo.rowNumToShow}">
+		<input type="hidden" id="ifmmSeq" name="ifmmSeq" value="${sessSeq}">
 
 
 			<%@include file="../include/coupangTopBar.jsp"%>
@@ -394,7 +395,13 @@
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
 	
+	<script type="text/javascript">
 	
+	$("#btnMyCart").on("click", function(){
+		$("#formSearch").attr("action", "/infra/product/cartGeneral").submit();
+	});
+	
+	</script>	
 
 	<script type="text/javascript">
 		var popoverTriggerList = [].slice.call(document

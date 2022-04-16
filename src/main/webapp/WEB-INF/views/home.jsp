@@ -34,6 +34,7 @@
 
 	<div class="container-fluid px-0">
 		<form id="formHome" method="post" action="/infra/product/productSearch">
+			<input id="ifmmSeq" name="ifmmSeq" type="hidden" value="${sessSeq}">
 
 
 			<%@include file="./include/coupangTopBar.jsp"%>
@@ -304,6 +305,14 @@
 
 	<%@include file="./include/footer.jsp"%>
 	<%@include file="./include/jsLinks.jsp"%>
+	
+	<script type="text/javascript">
+	
+	$("#btnMyCart").on("click", function(){
+		$("#formHome").attr("action", "/infra/product/cartGeneral").submit();
+	});
+	
+	</script>
 
 	<script type="text/javascript">
 		logOut = function() {

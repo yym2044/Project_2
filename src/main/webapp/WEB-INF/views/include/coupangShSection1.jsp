@@ -72,7 +72,7 @@
 								<i class="bi bi-person"></i>
 								<div class="btnText">마이쿠팡</div>
 							</button>
-							<button type="button" >
+							<button id="btnMyCart" type="button">
 								<i class="bi bi-cart4"></i>
 								<div class="btnText">장바구니</div>
 							</button>
