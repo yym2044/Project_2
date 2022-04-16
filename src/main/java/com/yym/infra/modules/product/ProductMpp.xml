@@ -110,16 +110,22 @@
 	SELECT
 		a.trctSeq
 		, a.ifmmSeq
+		, c.trpdSeq
 		, a.trprSeq
 		, a.trctQuantity
 		, a.trctDelNy
 	    , c.trpdName
 	    , b.trprOptionChildCd1
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd1) as trprOptionChildName1
 	    , b.trprOptionChildCd2
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd2) as trprOptionChildName2
 	    , b.trprOptionChildCd3
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd3) as trprOptionChildName3
 	    , b.trprListPrice
 	    , b.trprDiscountPrice
 	    , c.trpdDeliveryFee
+	    , d.uuidName
+        , d.path
 	FROM
 		tradCart a
 	LEFT JOIN
@@ -130,6 +136,10 @@
 		tradProduct c
 	ON 
 		c.trpdSeq = b.trpdSeq
+	LEFT JOIN
+		tradProductUploaded d
+	ON
+		d.pseq = c.trpdSeq AND d.defaultNy = 1
 	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
 	

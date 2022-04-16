@@ -65,42 +65,54 @@ td {
 								<th class="bg-light px-2" style="width: 89px;">상품금액</th>
 								<th class="bg-light px-2" style="width: 88px;">배송비</th>
 							</tr>
-							<tr style="height: 120px;">
-								<td class="px-3 text-start" style="width: 50px;">
-									<input type="checkbox">
-								</td>
-								<td class="px-2" style="width: 94px;">
-									<img src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg" style="width: 78px;">
-								</td>
-								<td class="px-2">
-									<div class="row">
-										<div class="col-12 text-start border-bottom pb-2">
-											<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView">언탭트 남성용 오버핏 스웨트 고중량 후드, XL, 블랙</a>
+							
+							<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
+								<tr style="height: 120px;">
+									<td class="px-3 text-start" style="width: 50px;">
+										<input type="checkbox" value="${item.trctSeq}">
+									</td>
+									<td class="px-2" style="width: 94px;">
+										<img src="${item.path}${item.uuidName}" style="width: 78px;">
+									</td>
+									<td class="px-2">
+										<div class="row">
+											<div class="col-12 text-start border-bottom pb-2">
+												<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView"><c:out value="${item.trpdName}"/>
+													<c:if test="${!empty item.trprOptionChildName1}">,${item.trprOptionChildName1}</c:if>
+													<c:if test="${!empty item.trprOptionChildName2}">,${item.trprOptionChildName2}</c:if>
+													<c:if test="${!empty item.trprOptionChildName3}">,${item.trprOptionChildName3}</c:if>
+												</a>
+											</div>
+											
+											<div class="col-6 text-start pt-3">
+												<p class="m-0">
+													<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
+													도착 보장
+												</p>
+											</div>
+											<div class="col-3 text-end py-2">
+												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
+												<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
+												<!-- 
+												<select class="form-select d-inline w-50">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+												</select>
+												 -->
+												 <input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
+											</div>
+											<div id="priceQuantity${status.index}" class="col-3 py-2">
+												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
+												<button class="btn btn-outline-secondary">X</button>
+											</div>
 										</div>
-										
-										<div class="col-6 text-start pt-3">
-											<p class="m-0">
-												<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
-												도착 보장
-											</p>
-										</div>
-										<div class="col-3 text-end py-2">
-											<span class="fw-light">28,900원</span>
-											<select class="form-select d-inline w-50">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-										</div>
-										<div class="col-3 py-2">
-											<span class="fw-light">28,900원</span>
-											<button class="btn btn-outline-secondary">X</button>
-										</div>
-									</div>
-								</td>
-								<td class="px-2">28,900원</td>
-								<td class="px-2">무료</td>
-							</tr>
+									</td>
+									<td class="px-2">28,900원</td>
+									<td class="px-2">무료</td>
+								</tr>
+							</c:forEach>
+							<%-- 
 							<tr style="height: 120px;">
 								<td class="px-3 text-start" style="width: 50px;">
 									<input type="checkbox">
@@ -136,6 +148,7 @@ td {
 								<td class="px-2">21,900원</td>
 								<td class="px-2">무료</td>
 							</tr>
+							 --%>
 							<tr>
 								<td colspan="5" class="bg-light text-end p-3">
 									상품가격
@@ -173,6 +186,33 @@ td {
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 	
+	
+	<script type="text/javascript">
+	</script>
+	
+	<script type="text/javascript">
+	
+	function addComma(value){
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return value; 
+    }
+	
+	$("input[name=trctQuantity]").each(function(i){
+		$("#trctQuantity" + i).spinner({
+			min: 1
+			, spin : function(event, ui){
+				$("#priceQuantity" + i).children().remove();
+				
+				var totalPrice = ui.value * Number($("#trctDiscountPrice" + i).val());	//숫자형
+				var totalPriceWithComma = addComma(String(totalPrice));					//문자형으로 변환해야 addComma 함수 사용 가능
+				
+				$("#priceQuantity" + i).append("<span class='fw-light'>" + totalPriceWithComma + "원</span>");
+				$("#priceQuantity" + i).append(" <button class='btn btn-outline-secondary'>X</button>");
+			}
+		})
+	})
+	
+	</script>
 	
 	<script type="text/javascript">
 	
