@@ -14,6 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>쿠팡! 장바구니</title>
 <%@include file="../include/cssLinks.jsp" %>
+<script src="https://kit.fontawesome.com/fbbc6db919.js" crossorigin="anonymous"></script>
 
 
 <style type="text/css">
@@ -93,65 +94,34 @@ td {
 											<div class="col-3 text-end pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
 												<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
+												<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
 												<input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
 											</div>
-											<div id="priceQuantity${status.index}" class="col-3 pt-2">
+											<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
 												<button class="btn btn-outline-secondary">X</button>
 											</div>
 										</div>
 									</td>
-									<td class="px-2">28,900원</td>
-									<td class="px-2">무료</td>
+									<td id="priceQuantity2_${status.index}" class="px-2"><span><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span></td>
+									<td class="px-2">
+										<c:choose>
+											<c:when test="${item.trpdDeliveryFee eq 0 or empty item.trpdDeliveryFee}">무료<input id="trctDeliveryFee${status.index}" type="hidden" value="0"></c:when>
+											<c:otherwise><fmt:formatNumber value="${item.trpdDeliveryFee}"/>원<input id="trctDeliveryFee${status.index}" type="hidden" value="${item.trpdDeliveryFee}"></c:otherwise>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
-							<%-- 
-							<tr style="height: 120px;">
-								<td class="px-3 text-start" style="width: 50px;">
-									<input type="checkbox">
-								</td>
-								<td class="px-2" style="width: 94px;">
-									<img src="${path}/resources/images/user/mainPage/product/randomProduct16.jpg" style="width: 78px;">
-								</td>
-								<td class="px-2">
-									<div class="row">
-										<div class="col-12 text-start border-bottom pb-2">
-											<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView"> 빅사이즈클럽 SG 오버핏 데일리 맨투맨, 4XL, 챠콜</a>
-										</div>
-										<div class="col-6 text-start pt-3">
-											<p class="m-0">
-												<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
-												도착 보장
-											</p>
-										</div>
-										<div class="col-3 text-end py-2">
-											<span class="fw-light">21,900원</span>
-											<select class="form-select d-inline w-50">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-										</div>
-										<div class="col-3 py-2">
-											<span class="fw-light">21,900원</span>
-											<button class="btn btn-outline-secondary">X</button>
-										</div>
-									</div>
-								</td>
-								<td class="px-2">21,900원</td>
-								<td class="px-2">무료</td>
-							</tr>
-							 --%>
 							<tr>
 								<td colspan="5" class="bg-light text-end p-3">
 									상품가격
-									<span class="fs-5">50,800</span>원
-									<button class="rounded-pill"><i class="fa-solid fa-plus"></i></button>
+									<span id="priceQuantityTotal" class="fs-5"></span>원
+									<button class="rounded-pill" disabled><i class="fa-solid fa-plus"></i></button>
 									배송비
-									<span class="fs-5">무료</span>
-									<button class="rounded-pill"><i class="fa-solid fa-equals"></i></button>
+									<span id="deliveryFeeTotal" class="fs-5"></span>원
+									<button class="rounded-pill" disabled><i class="fa-solid fa-equals"></i></button>
 									주문금액
-									<span class="fs-5 fw-bold">50,800</span>원
+									<span id="moneyTotal" class="fs-5 fw-bold"></span>원
 								</td>
 							</tr>
 						</table>
@@ -188,19 +158,57 @@ td {
 	function addComma(value){
         value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return value; 
-    }
+    };
+	
+	$(document).ready(function(){
+		var allTotalPrice = 0;
+		var allDeliveryFee = 0;
+		$("input[name=priceQuantityHidden]").each(function(i){
+			allTotalPrice += Number($(this).val());
+			allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+		});
+		var allMoney = allTotalPrice + allDeliveryFee;
+		var allTotalPriceWithComma = addComma(String(allTotalPrice));
+		var allDeliveryFeeWithComma = addComma(String(allDeliveryFee));
+		var allMoneyWithComma = addComma(String(allMoney));
+		
+		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
+		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span>");
+		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>")
+	});	
 	
 	$("input[name=trctQuantity]").each(function(i){
 		$("#trctQuantity" + i).spinner({
 			min: 1
 			, spin : function(event, ui){
-				$("#priceQuantity" + i).children().remove();
+				$("#priceQuantity1_" + i).children().remove();
+				$("#priceQuantity2_" + i).children().remove();
+				$("#priceQuantityTotal").children().remove();
+				$("#moneyTotal").children().remove();
 				
 				var totalPrice = ui.value * Number($("#trctDiscountPrice" + i).val());	//숫자형
 				var totalPriceWithComma = addComma(String(totalPrice));					//문자형으로 변환해야 addComma 함수 사용 가능
+				allTotalPrice = 0;
+				allDeliveryFee = 0;
 				
-				$("#priceQuantity" + i).append("<span class='fw-light'>" + totalPriceWithComma + "원</span>");
-				$("#priceQuantity" + i).append(" <button class='btn btn-outline-secondary'>X</button>");
+				$("#priceQuantity1_" + i).append("<span class='fw-light'>" + totalPriceWithComma + "원</span>");
+				$("#priceQuantity1_" + i).append(" <button class='btn btn-outline-secondary'>X</button>");
+				$("#priceQuantity2_" + i).append("<span>" + totalPriceWithComma + "원</span>");
+				
+				$("#priceQuantityHidden" + i).val(totalPrice);
+				
+				$("input[name=priceQuantityHidden]").each(function(){
+					allTotalPrice += Number($(this).val());
+					allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+				});
+				
+				allTotalPriceWithComma = addComma(String(allTotalPrice));
+				
+				allMoney = allTotalPrice + allDeliveryFee;
+				allMoneyWithComma = addComma(String(allMoney));
+				
+				$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
+				$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>");
 			}
 		})
 	})
