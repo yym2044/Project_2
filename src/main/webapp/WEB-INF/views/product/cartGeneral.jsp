@@ -76,7 +76,7 @@ td {
 									</td>
 									<td class="px-2">
 										<div class="row">
-											<div class="col-12 text-start border-bottom pb-2">
+											<div class="col-12 text-start border-bottom py-2">
 												<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView"><c:out value="${item.trpdName}"/>
 													<c:if test="${!empty item.trprOptionChildName1}">,${item.trprOptionChildName1}</c:if>
 													<c:if test="${!empty item.trprOptionChildName2}">,${item.trprOptionChildName2}</c:if>
@@ -90,19 +90,12 @@ td {
 													도착 보장
 												</p>
 											</div>
-											<div class="col-3 text-end py-2">
+											<div class="col-3 text-end pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
 												<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
-												<!-- 
-												<select class="form-select d-inline w-50">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-												</select>
-												 -->
-												 <input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
+												<input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
 											</div>
-											<div id="priceQuantity${status.index}" class="col-3 py-2">
+											<div id="priceQuantity${status.index}" class="col-3 pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
 												<button class="btn btn-outline-secondary">X</button>
 											</div>
