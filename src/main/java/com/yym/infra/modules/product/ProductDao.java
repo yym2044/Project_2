@@ -21,6 +21,7 @@ public class ProductDao {
 	public Integer selectListCount(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectListCount", vo); }
 	
 	public List<Product> selectListCartGeneral(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListCartGeneral", vo); }
+	public int insertCartGeneral(Product dto) {return sqlSession.insert(namespace + ".insertCartGeneral", dto); }
 	
 	public Product selectOne(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo); }
 	public List<Product> selectListOptions(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListOptions", vo); }

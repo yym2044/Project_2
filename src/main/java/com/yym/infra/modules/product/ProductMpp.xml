@@ -135,6 +135,22 @@
 	
 	</select>
 	
+	<insert id="insertCartGeneral">
+	INSERT INTO
+		tradCart (
+			ifmmSeq
+			, trprSeq
+			, trctQuantity
+			, trctDelNy
+		) VALUES (
+			#{ifmmSeq}
+			, #{trprSeq}
+			, #{trctQuantity}
+			, 0
+		)
+	
+	</insert>
+	
 	<select id="selectListUploaded" resultMap="resultMapObj">
 	SELECT
 		seq

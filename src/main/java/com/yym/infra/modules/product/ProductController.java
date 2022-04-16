@@ -1,10 +1,12 @@
 package com.yym.infra.modules.product;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -105,5 +107,19 @@ public class ProductController {
 		
 		return "product/cartRegularDelivery";
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/insertCartGeneral")
+	public Map<String, Object> insertCartGeneral(Product dto) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		if(service.insertCartGeneral(dto)>0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		
+		return returnMap;
+	}
 }
