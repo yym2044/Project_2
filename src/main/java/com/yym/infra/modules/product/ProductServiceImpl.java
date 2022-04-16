@@ -36,6 +36,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectListCartGeneral(ProductVo vo) throws Exception {
 		return dao.selectListCartGeneral(vo);
 	}
+	@Override
+	public int insertCartGeneral(Product dto) throws Exception {
+		return dao.insertCartGeneral(dto);
+	}
 
 	@Override
 	public Product selectOne(ProductVo vo) throws Exception {

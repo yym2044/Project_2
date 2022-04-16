@@ -6,6 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 
+	//멤버
+	private String ifmmSeq;
+	
 	//상품
 	private String trpdSeq;
 	private String trpdPid;
@@ -538,6 +541,12 @@ public class Product {
 	}
 	public void setTrctDelNy(Integer trctDelNy) {
 		this.trctDelNy = trctDelNy;
+	}
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
 	}
 	
 }

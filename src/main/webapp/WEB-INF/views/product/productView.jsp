@@ -185,6 +185,7 @@
 									</span>
 								</p>
 							</div>
+							<input type="text" id="trprSeqValue">
 							<div class="col-3 text-end">
 								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-1 text-center'>
@@ -292,10 +293,10 @@
 								<input id="trorQuantity" name="trorQuantity" type="text" value="1" style="width: 38px;">
 							</div>
 							<div class="col px-1">
-								<a tabindex="0" href='javascript:goCartGeneral();' id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<a tabindex="0" id="btnCart" class="btn btn-info w-100 rounded-0 text-white" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-3 text-center'>
 									<div class='col pb-3'>상품이 장바구니에 담겼습니다.</div>
-									<a class='btn btn-outline-primary'>장바구니 바로가기 ></a>
+									<a href='/infra/product/cartGeneral?ifmmSeq=${sessSeq}' class='btn btn-outline-primary'>장바구니 바로가기 ></a>
 								</div>
 								">장바구니 담기</a>
 							</div>
@@ -519,9 +520,7 @@
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
 	
-
-
-
+	<!-- 
 	<script type="text/javascript">
 	goCartGeneral = function(){
 		
@@ -529,8 +528,9 @@
 		$("#formView").submit();
 		
 	}
-	
 	</script>
+	 -->
+
 
 	
 	<script type="text/javascript">
@@ -590,6 +590,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
 					  ,success: function(data){
 							console.log(data.trprSeq + " " + data.trprListPrice);
+							$("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -616,6 +617,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
 					  ,success: function(data){
 							console.log(data.trprSeq + " " + data.trprListPrice);
+							$("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -642,6 +644,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
 					  ,success: function(data){
 						  console.log(data.trprSeq + " " + data.trprListPrice);
+						  $("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
 							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -666,16 +669,61 @@
 			if($("#trprOptionChildCd1").val() == 0){
 				alert("옵션 선택을 완료해주세요.");
 				return false;
+			} else {
+				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					, url: "/infra/product/insertCartGeneral"
+					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
+					, success: function(response) {
+						alert(response.rt);
+					}
+					, error: function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
 			}
 		} else if(opCount == 2){
 			if($("trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() == 0){
 				alert("옵션 선택을 완료해주세요.");
 				return false;
+			} else {
+				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					, url: "/infra/product/insertCartGeneral"
+					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
+					, success: function(response) {
+						alert(response.rt);
+					}
+					, error: function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
 			}
 		} else if(opCount == 3){
 			if($("trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() || $("#trprOptionChildCd3").val() == 0){
 				alert("옵션 선택을 완료해주세요.");
 				return false;
+			} else {
+				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					, url: "/infra/product/insertCartGeneral"
+					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
+					, success: function(response) {
+						alert(response.rt);
+					}
+					, error: function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
 			}
 		}
 		

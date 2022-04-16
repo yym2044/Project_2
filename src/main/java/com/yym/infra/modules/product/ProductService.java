@@ -7,6 +7,7 @@ public interface ProductService {
 	public List<Product> selectList(ProductVo vo) throws Exception;
 	public Integer selectListCount(ProductVo vo) throws Exception;
 	public List<Product> selectListCartGeneral(ProductVo vo) throws Exception;
+	public int insertCartGeneral(Product dto) throws Exception;
 	public Product selectOne(ProductVo vo) throws Exception;
 	public List<Product> selectListOptions(ProductVo vo) throws Exception;
 	public List<Product> selectListUploaded(ProductVo vo) throws Exception;
