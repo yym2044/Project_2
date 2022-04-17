@@ -55,15 +55,15 @@ td {
 						<table class="table table-sm p-0 border-top border-3">
 							<tr>
 								<th class="bg-light px-2">이름</th>
-								<td class="px-2">윤영민</td>
+								<td class="px-2"><c:out value="${rt.ifmmName}"/></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">이메일</th>
-								<td class="px-2">yym2044@naver.com</td>
+								<td class="px-2"></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">휴대폰 번호</th>
-								<td class="px-2">010-4635-6670</td>
+								<td class="px-2"></td>
 							</tr>
 						</table>
 					</div>

@@ -77,8 +77,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/productCheckOut")
-	public String productCheckOut() throws Exception {
+	public String productCheckOut(Model model, ProductVo vo) throws Exception {
 		
+		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
 		
 		return "product/productCheckOut";
 	}
