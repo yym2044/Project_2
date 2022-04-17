@@ -500,7 +500,10 @@
         AND d.ifmaTypeCd = 42
 	WHERE 1=1
 		AND a.ifmmSeq = #{ifmmSeq}
-	
 	</select>
+	<!-- <select id="selectListProductCheckOut" resultMap="resultMapObj">
+	SELECT
+		
+	</select> -->
 	
 </mapper>

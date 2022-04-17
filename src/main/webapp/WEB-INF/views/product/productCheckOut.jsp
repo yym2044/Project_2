@@ -36,7 +36,7 @@ td {
 
 		<div class="row border-bottom py-3 pt-4">
 			<div class="col offset-2">
-				<img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;">
+				<a href="/infra/home"><img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;"></a>
 			</div>
 		</div>
 
@@ -59,11 +59,20 @@ td {
 							</tr>
 							<tr>
 								<th class="bg-light px-2">이메일</th>
-								<td class="px-2"></td>
+								<td class="px-2"><c:out value="${rt.ifmeEmailFull}"/></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">휴대폰 번호</th>
-								<td class="px-2"></td>
+								<td class="px-2">
+								<c:choose>
+									<c:when test="${fn:length(rt.ifmpNumber) eq 10 }">
+										<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,6)}" />-<c:out value="${fn:substring(rt.ifmpNumber,6,10)}" />
+									</c:when>
+									<c:otherwise>
+										<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,7)}" />-<c:out value="${fn:substring(rt.ifmpNumber,7,11)}" />
+									</c:otherwise>
+								</c:choose>
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -79,21 +88,30 @@ td {
 							<tr>
 								<th class="bg-light px-2">이름</th>
 								<td class="px-2">
-									윤영민
+									<c:out value="${rt.ifmmName}"/>
 									<span class="badge rounded-pill bg-primary">기본배송지</span>
 								</td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">배송주소</th>
-								<td class="px-2">경기도 남양주시 불암로 336</td>
+								<td class="px-2"><c:out value="${rt.ifmaAddress1}"/><br><c:out value="${rt.ifmaAddress2}"/></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">연락처</th>
-								<td class="px-2">010-4635-6670</td>
+								<td class="px-2">
+								<c:choose>
+									<c:when test="${fn:length(rt.ifmpNumber) eq 10 }">
+										<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,6)}" />-<c:out value="${fn:substring(rt.ifmpNumber,6,10)}" />
+									</c:when>
+									<c:otherwise>
+										<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,7)}" />-<c:out value="${fn:substring(rt.ifmpNumber,7,11)}" />
+									</c:otherwise>
+								</c:choose>
+								</td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">배송 요청사항</th>
-								<td class="px-2">문 앞</td>
+								<td class="px-2"><span class="pe-3">문 앞</span><button class="btn btn-sm btn-primary">변경</button></td>
 							</tr>
 						</table>
 					</div>

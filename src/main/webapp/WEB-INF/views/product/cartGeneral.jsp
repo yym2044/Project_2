@@ -33,7 +33,7 @@ td {
 	<form id="formCart" method="post">
 		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 		<input type="hidden" name="checkboxTrprArray">
-	</form>
+	
 
 	<div class="container-fluid">
 
@@ -100,7 +100,7 @@ td {
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
 												<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
 												<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
-												<input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
+												<input id="trctQuantity${status.index}" name="trctQuantityArray" type="text" value="${item.trctQuantity}" style="width: 38px;">
 											</div>
 											<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
@@ -151,7 +151,7 @@ td {
 
 	</div>
 
-	
+	</form>
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 	
@@ -295,13 +295,18 @@ td {
 	var checkboxTrprArray = [];
 	
 	$("#btnCheckOut").on("click", function(){
-		$("input[name=checkboxTrpr]:checked").each(function(){
-			checkboxTrprArray.push($(this).val());
-		});
-		
-		$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
-		
-		$("#formCart").attr("action", "/infra/product/productCheckOut").submit();
+		if($("input[name=checkboxTrpr]:checked").length == 0){
+			alert("상품을 선택해주세요");
+			return false;
+		} else {
+			$("input[name=checkboxTrpr]:checked").each(function(){
+				checkboxTrprArray.push($(this).val());
+			});
+			
+			$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
+			
+			$("#formCart").attr("action", "/infra/product/productCheckOut").submit();
+		}
 	});
 	
 	</script>

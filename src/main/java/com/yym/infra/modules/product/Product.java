@@ -9,6 +9,8 @@ public class Product {
 	private String optionMethod;
 	
 	
+	
+	
 	//멤버
 	private String ifmmSeq;
 	private String ifmmName;
@@ -83,6 +85,8 @@ public class Product {
 	private Integer trctQuantity;
 	private Integer trctDelNy;
 	
+	private String[] checkboxTrprArray;
+	private Integer[] trctQuantityArray;
 	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
@@ -612,6 +616,18 @@ public class Product {
 	}
 	public void setIfmaAddress2(String ifmaAddress2) {
 		this.ifmaAddress2 = ifmaAddress2;
+	}
+	public String[] getCheckboxTrprArray() {
+		return checkboxTrprArray;
+	}
+	public void setCheckboxTrprArray(String[] checkboxTrprArray) {
+		this.checkboxTrprArray = checkboxTrprArray;
+	}
+	public Integer[] getTrctQuantityArray() {
+		return trctQuantityArray;
+	}
+	public void setTrctQuantityArray(Integer[] trctQuantityArray) {
+		this.trctQuantityArray = trctQuantityArray;
 	}
 	
 }
