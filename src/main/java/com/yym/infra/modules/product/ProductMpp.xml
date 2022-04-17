@@ -330,6 +330,7 @@
 			, trpdOptionParentCd2
 			, trpdOptionParentCd3
 			, trpdPrice
+			, trpdDeliveryFee
 			, trpdTag
 			, trpdDesc
 			, trpdDelNy
@@ -343,6 +344,7 @@
 			, 0
 			, 0
 			, #{trpdPrice}
+			, 0
 			, #{trpdTag}
 			, #{trpdDesc}
 			, 0

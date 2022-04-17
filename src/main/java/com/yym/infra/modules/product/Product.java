@@ -6,6 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 
+	private String optionMethod;
+	
+	
 	//멤버
 	private String ifmmSeq;
 	
@@ -568,6 +571,12 @@ public class Product {
 	}
 	public void setTrprOptionChildName3(String trprOptionChildName3) {
 		this.trprOptionChildName3 = trprOptionChildName3;
+	}
+	public String getOptionMethod() {
+		return optionMethod;
+	}
+	public void setOptionMethod(String optionMethod) {
+		this.optionMethod = optionMethod;
 	}
 	
 }

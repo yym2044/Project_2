@@ -520,6 +520,7 @@
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
 	
+	
 	<!-- 
 	<script type="text/javascript">
 	goCartGeneral = function(){
@@ -566,6 +567,27 @@
 	if("<c:out value="${rt.trpdOptionParentName3}"/>" != ""){
 		opCount++;
 	}
+	
+	$(document).ready(function(){
+		if(opCount == 0){
+			// ajax
+			 $.ajax({
+				  async: true
+				  ,cache: false
+				  ,type:"post"
+				  ,url: "/infra/product/selectOneProduct_Real"
+				  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>" }
+				  ,success: function(data){
+						console.log(data.trprSeq + " " + data.trprListPrice);
+						$("#trprSeqValue").val(data.trprSeq);
+				  }
+				  ,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+			  });
+			 //
+		}
+	});
 	
 	
 	$("#btnHeart").click(function(){
@@ -672,7 +694,26 @@
 			return false;
 		}
 		
-		if(opCount == 1){
+		if(opCount == 0){
+			
+			$("#btnCart").popover('enable');
+			
+			$.ajax({
+				async: true
+				, cache: false
+				, type: "post"
+				, url: "/infra/product/insertCartGeneral"
+				, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
+				, success: function(response) {
+					alert(response.rt);
+				}
+				, error: function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+			
+			
+		} else if(opCount == 1){
 			if($("#trprOptionChildCd1").val() == 0){
 				alert("옵션 선택을 완료해주세요.");
 				return false;
