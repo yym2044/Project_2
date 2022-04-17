@@ -150,8 +150,8 @@ td {
 
 
 	</div>
-
-	</form>
+</form>
+	
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 	
@@ -204,7 +204,7 @@ td {
 		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>")
 	});	
 	
-	$("input[name=trctQuantity]").each(function(i){
+	$("input[name=trctQuantityArray]").each(function(i){
 		$("#trctQuantity" + i).spinner({
 			min: 1
 			, spin : function(event, ui){
