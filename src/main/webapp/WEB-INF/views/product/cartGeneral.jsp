@@ -32,6 +32,7 @@ td {
 
 	<form id="formCart" method="post">
 		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+		<input type="hidden" name="checkboxTrprArray">
 	</form>
 
 	<div class="container-fluid">
@@ -137,7 +138,8 @@ td {
 			<div class="row">
 				<div class="col text-center">
 					<a class="lh-lg btn btn-outline-danger" href="/infra/home" style="width: 200px;">계속 쇼핑하기</a>
-					<a href="/infra/product/productCheckOut2" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
+<!-- 				<a href="/infra/product/productCheckOut2" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a> -->
+					<a id="btnCheckOut" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
 				</div>
 			</div>
 		</div>
@@ -284,6 +286,24 @@ td {
 			$("#checkboxAll").prop("checked", true);
 		}
 	});
+	
+	$("input[name=checkboxTrpr]:checked").each(function(){
+		
+	});
+	
+	//체크박스 다수를 담을 배열
+	var checkboxTrprArray = [];
+	
+	$("#btnCheckOut").on("click", function(){
+		$("input[name=checkboxTrpr]:checked").each(function(){
+			checkboxTrprArray.push($(this).val());
+		});
+		
+		$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
+		
+		$("#formCart").attr("action", "/infra/product/productCheckOut").submit();
+	});
+	
 	</script>
 	
 	<script src="${path}/resources/common/js/cart.js"></script>

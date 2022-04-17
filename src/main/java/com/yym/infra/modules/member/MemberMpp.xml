@@ -23,4 +23,29 @@
 			AND ifmmPwd = #{ifmmPwd}
 	</select>
 	
+	<select id="selectOneMemberCheckOut" resultMap="resultMapObj">
+	SELECT
+		a.ifmmName
+		, b.ifmeEmailFull
+		, c.ifmpNumber
+		, d.ifmaAddress1
+		, d.ifmaAddress2
+	FROM
+		infrMember a
+	LEFT JOIN
+		infrMemberEmail b ON b.ifmmSeq = a.ifmmSeq
+        AND b.ifmeDefaultNy = 1
+	LEFT JOIN
+		infrMemberPhone c ON c.ifmmSeq = a.ifmmSeq 
+        AND c.ifmpDeviceCd = 26
+        AND c.ifmpDefaultNy = 1
+	LEFT JOIN
+		infrMemberAddress d ON d.ifmmSeq = a.ifmmSeq
+        AND d.ifmaDefaultNy = 1
+        AND d.ifmaTypeCd = 42
+	WHERE 1=1
+		AND a.ifmmSeq = #{ifmmSeq}
+	
+	</select>
+	
 </mapper>
