@@ -160,8 +160,13 @@
 			, 0
 			<include refid="insertRegModValue"/>
 		)
-	
 	</insert>
+	<delete id="deleteCartGeneral">
+	DELETE FROM
+		tradCart
+	WHERE 1=1
+		AND trctSeq = #{trctSeq}
+	</delete>
 	
 	<select id="selectListUploaded" resultMap="resultMapObj">
 	SELECT

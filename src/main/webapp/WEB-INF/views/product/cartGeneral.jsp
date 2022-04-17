@@ -99,7 +99,7 @@ td {
 											</div>
 											<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
 												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
-												<button class="btn btn-outline-secondary">X</button>
+												<button onclick="goDelete(${item.trctSeq})" class="btn btn-outline-secondary">X</button>
 											</div>
 										</div>
 									</td>
@@ -151,6 +151,27 @@ td {
 	
 	
 	<script type="text/javascript">
+		
+	goDelete = function(trctSeq){
+		var confirmNy = confirm("해당 상품을 삭제합니다." + trctSeq);
+		if(confirmNy){
+			$.ajax({
+				async: true
+				, cache: false
+				, type: "post"
+				, url: "/infra/product/deleteCartGeneral"
+				, data: { "trctSeq" : trctSeq }
+				, success : function(response){
+					alert("삭제성공");
+					location.reload();
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+	}
+	
 	</script>
 	
 	<script type="text/javascript">

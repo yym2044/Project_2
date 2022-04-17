@@ -27,7 +27,7 @@
   width: 100px;
 }
 
-#addTr tr td, #addTr3 tr td {
+#addTr tr td, #addTr3 tr td, #singleTbody tr td {
 	height: 40px;
 }
 
@@ -370,96 +370,128 @@ height: 100%;
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold">옵션 <span class="text-danger">Ο</span></h6>
-							<table class="table table-borderless">
-								<tr>
-									<td style="width: 100px; vertical-align: middle;">기본 가격</td>
-									<td>
-										<div class="input-group" style="width:200px;">
-											<span class="input-group-text" style="border-right: none;">￦</span>
-											<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="form-control text-end">
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
-									<td>
-										<select id="optionN" name="optionN" class="form-select" style="width:200px;">
-											<option value="1">1개</option>
-											<option value="2">2개</option>
-											<option value="3">3개</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td class="pt-3" style="width: 100px; vertical-align: top;">옵션 입력</td>
-									<td class="text-start">
-										<div class="mb-1" id="option1">
-											<input id="optionName1" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input id="optionValue1" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
-										</div>
-										<div class="mb-1" id="option2">
-											<input id="optionName2" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input id="optionValue2" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
-										</div>
-										<div class="mb-1" id="option3">
-											<input id="optionName3" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-											<input id="optionValue3" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
-										</div>
-										<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary mt-1" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
-									</td>
-								</tr>
-							</table>
-							<p id="tableCap" class="ps-3 fw-bold" style="width: 100px; vertical-align: middle;">옵션 목록</p>
-							
-							<table id="optionList1" class="table table-borderless" style="font-size: small;">
-								<thead class="bg-light">
+							<div class="input-group input-group-sm mb-2">
+								<input type="radio" value="optionPlural" class="btn-check" name="optionMethod" id="optionPlural" autocomplete="off" checked>
+								<label class="btn btn-outline-primary" for="optionPlural">옵션상품 등록</label>
+								
+								<input type="radio" value="optionSingular" class="btn-check" name="optionMethod" id="optionSingular" autocomplete="off">
+								<label class="btn btn-outline-primary" for="optionSingular">단일상품 등록</label>
+							</div>
+							<div id="optionPluralForm">
+								<table id="optionPluralTable" class="table table-borderless">
 									<tr>
-										<td style="width: 50px;"><input id="checkboxAll1" class="form-check-input" type="checkbox"></td>
-										<td>옵션명</td>										
-										<td>옵션값</td>										
-										<td>추가금액</td>
-									</tr>
-								</thead>
-								<tbody id="addTr">
-									<!-- <tr>
-										<td class="p-0"><input class="form-check-input" type="checkbox"></td>
-										<td class="p-0"><input class="borderX fullWH" type="text"></td>
-										<td class="p-0"><input class="borderX fullWH" type="text"></td>
-										<td class="p-0"><input class="borderX fullWH" type="text"></td>
-									</tr> -->
-								</tbody>
-							</table>
-							
-							<table id="optionList2" class="table table-borderless" style="font-size: small;">
-								<thead id="addTr2" class="bg-light">
-									<!-- 								
-									<tr>
-										<td rowspan="2" style="vertical-align: middle;"><input type="checkbox"></td>
-										<td colspan="3">옵션명</td>										
-										<td rowspan="2" style="vertical-align: top;">정상가 (원)</td>
-										<td rowspan="2" style="vertical-align: top;">판매가 (원)</td>
-										<td rowspan="2" style="vertical-align: top;">재고수량</td>
+										<td style="width: 100px; vertical-align: middle;">기본 가격</td>
+										<td>
+											<div class="input-group" style="width:200px;">
+												<span class="input-group-text" style="border-right: none;">￦</span>
+												<input id="trpdPrice" name="trpdPrice" type="text" style="border-left: none;" class="form-control text-end">
+											</div>
+										</td>
 									</tr>
 									<tr>
-										<td>옵션1이름</td>
-										<td>옵션2이름</td>
-										<td>옵션3이름</td>
+										<td style="width: 100px; vertical-align: middle;">옵션 개수</td>
+										<td>
+											<select id="optionN" name="optionN" class="form-select" style="width:200px;">
+												<option value="1">1개</option>
+												<option value="2">2개</option>
+												<option value="3">3개</option>
+											</select>
+										</td>
 									</tr>
-									 -->
-								</thead>
-								<tbody id="addTr3">
-								</tbody>
-							</table>
+									<tr>
+										<td class="pt-3" style="width: 100px; vertical-align: top;">옵션 입력</td>
+										<td class="text-start">
+											<div class="mb-1" id="option1">
+												<input id="optionName1" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+												<input id="optionValue1" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											</div>
+											<div class="mb-1" id="option2">
+												<input id="optionName2" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+												<input id="optionValue2" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											</div>
+											<div class="mb-1" id="option3">
+												<input id="optionName3" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
+												<input id="optionValue3" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+											</div>
+											<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary mt-1" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
+										</td>
+									</tr>
+								</table>
+								<p id="tableCap" class="ps-3 fw-bold" style="width: 100px; vertical-align: middle;">옵션 목록</p>
+							
+								<table id="optionList1" class="table table-borderless" style="font-size: small;">
+									<thead class="bg-light">
+										<tr>
+											<td style="width: 50px;"><input id="checkboxAll1" class="form-check-input" type="checkbox"></td>
+											<td>옵션명</td>										
+											<td>옵션값</td>										
+											<td>추가금액</td>
+										</tr>
+									</thead>
+									<tbody id="addTr">
+										<!-- <tr>
+											<td class="p-0"><input class="form-check-input" type="checkbox"></td>
+											<td class="p-0"><input class="borderX fullWH" type="text"></td>
+											<td class="p-0"><input class="borderX fullWH" type="text"></td>
+											<td class="p-0"><input class="borderX fullWH" type="text"></td>
+										</tr> -->
+									</tbody>
+								</table>
+							
+								<table id="optionList2" class="table table-borderless" style="font-size: small;">
+									<thead id="addTr2" class="bg-light">
+										<!-- 								
+										<tr>
+											<td rowspan="2" style="vertical-align: middle;"><input type="checkbox"></td>
+											<td colspan="3">옵션명</td>										
+											<td rowspan="2" style="vertical-align: top;">정상가 (원)</td>
+											<td rowspan="2" style="vertical-align: top;">판매가 (원)</td>
+											<td rowspan="2" style="vertical-align: top;">재고수량</td>
+										</tr>
+										<tr>
+											<td>옵션1이름</td>
+											<td>옵션2이름</td>
+											<td>옵션3이름</td>
+										</tr>
+										 -->
+									</thead>
+									<tbody id="addTr3">
+									</tbody>
+								</table>
 							
 							
-							<div id="divOptNav" class="row align-items-center">
-								<div class="col text-start" style="padding-left: 20px;">
-									<button id="btnDelete" type="button" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+								<div id="divOptNav" class="row align-items-center">
+									<div class="col text-start" style="padding-left: 20px;">
+										<button id="btnDelete" type="button" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+									</div>
+									<div class="col text-end">
+										<button id="btnPrevious" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-left"></i></button>
+										<button id="btnNext" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-right"></i></button>
+									</div>
 								</div>
-								<div class="col text-end">
-									<button id="btnPrevious" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-left"></i></button>
-									<button id="btnNext" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-chevron-right"></i></button>
-								</div>
+							</div>
+							<!-- optionPluralForm end -->
+							<div id="optionSingularForm">
+							
+								<table id="" class="table table-borderless" style="font-size: small;">
+									<thead id="" class="bg-light">
+										<tr>
+											<td>옵션명</td>										
+											<td>정상가 (원)</td>
+											<td>판매가 (원)</td>
+											<td>재고수량</td>
+										</tr>
+									</thead>
+									<tbody id="singleTbody">
+										<tr>
+											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
+										</tr>
+									</tbody>
+								</table>
+							
 							</div>
 							
 						</div>
@@ -1259,6 +1291,48 @@ height: 100%;
 	        $("#trpdCategoryCdString3").val("");
 	        
 	    }
+	});
+	
+	$(document).ready(function(){
+		if($("#optionPlural").is(":checked")){
+			$("#optionPluralForm").show();
+			$("#optionSingularForm").hide();
+		} else {
+			$("#optionPluralForm").hide();
+			$("#optionSingularForm").show();
+		}
+	});
+	
+	//라디오박스 변경 확인취소 만들기
+	$(document).ready(function(){
+		var preValueOptionMethod = $("input[name=optionMethod]:checked").val();
+		
+		$("input[name=optionMethod]").on("click", function(){
+			var confirmNy = confirm($(this).val() + "으로 변경시, 다시 옵션정보를 등록해야합니다. \n그래도 실행하시겠습니까?");
+			if(confirmNy){
+				//by pass
+			} else {
+				$(this).prop('checked', false);
+				$("input[name=optionMethod]:radio[value='" + preValueOptionMethod + "']").prop('checked', true);
+				return;
+			}
+			preValueOptionMethod = $(this).val();
+		});
+		
+	});	
+	
+	$("input[name=optionMethod]").on("change", function(){
+		
+		if($("#optionPlural").is(":checked")){
+			$("#optionPluralForm").show();
+			$("#optionSingularForm").hide();
+		} else {
+			$("#optionPluralForm").hide();
+			$("#optionSingularForm").show();
+			$("#addTr").children().remove();
+			$("#addTr2").children().remove();
+			$("#addTr3").children().remove();
+		}
 	});
 	
 	$(document).ready(function() {
