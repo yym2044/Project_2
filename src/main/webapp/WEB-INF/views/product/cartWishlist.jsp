@@ -28,6 +28,10 @@ td {
 </head>
 <body>
 
+	<form id="formCart" method="post">
+		<input type="hidden" value="${sessSeq}" name="ifmmSeq">
+	</form>
+
 	<div class="container-fluid">
 
 		<div class="row border-bottom py-3 pt-4">
@@ -46,9 +50,9 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartGeneral">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link active fs-4" aria-current="page" href="">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartRegularDelivery">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매</a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">찜 목록</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular();">정기배송</a></li>
 				</ul>
 			</div>
 
@@ -58,12 +62,12 @@ td {
 						<table class="table table-sm p-0 border-top border-3">
 							<tr>
 								<th colspan="4" class="bg-light text-start px-3">
-									<input type="checkbox">
+									<input id="checkboxAll" class="form-check-input" type="checkbox">
 								</th>
 							</tr>
 							<tr style="height: 120px;">
 								<td class="px-3 text-start" style="width: 50px;">
-									<input type="checkbox">
+									<input name="checkboxTrpd" class="form-check-input" type="checkbox">
 								</td>
 								<td class="px-2" style="width: 94px;">
 									<img src="${path}/resources/images/user/mainPage/product/randomProduct17.jpg" style="width: 78px;">
@@ -118,6 +122,28 @@ td {
 			});
 		})
 	</script>
-
+	
+	<script type="text/javascript">
+	$("#checkboxAll").click(function(){
+		if($("#checkboxAll").is(":checked")){
+			$("input[name=checkboxTrpd]").prop("checked", true);
+		} else {
+			$("input[name=checkboxTrpd]").prop("checked", false);
+		}
+	});
+	
+	$("input[name=checkboxTrpd]").click(function(){
+		var total = $("input[name=checkboxTrpd]").length;
+		var checked = $("input[name=checkboxTrpd]:checked").length;
+		
+		if(total != checked){
+			$("#checkboxAll").prop("checked", false);
+		} else {
+			$("#checkboxAll").prop("checked", true);
+		}
+	});
+	</script>
+	
+	<script src="${path}/resources/common/js/cart.js"></script>
 </body>
 </html>

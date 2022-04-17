@@ -31,6 +31,10 @@ td {
 
 </head>
 <body>
+	
+	<form id="formCart" method="post">
+		<input type="hidden" value="${sessSeq}" name="ifmmSeq">
+	</form>
 
 	<div class="container-fluid">
 
@@ -50,9 +54,9 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartGeneral">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartWishlist">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link active fs-4" aria-current="page" href="">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록</a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">정기배송</a></li>
 				</ul>
 			</div>
 
@@ -113,6 +117,8 @@ td {
 			});
 		})
 	</script>
-
+	
+	<script src="${path}/resources/common/js/cart.js"></script>
+	
 </body>
 </html>

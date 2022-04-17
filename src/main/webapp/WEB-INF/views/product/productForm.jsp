@@ -371,10 +371,10 @@ height: 100%;
 						<div class="col">
 							<h6 class="fw-bold">옵션 <span class="text-danger">Ο</span></h6>
 							<div class="input-group input-group-sm mb-2">
-								<input type="radio" value="optionPlural" class="btn-check" name="optionMethod" id="optionPlural" autocomplete="off" checked>
+								<input type="radio" value="옵션상품 등록" class="btn-check" name="optionMethod" id="optionPlural" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="optionPlural">옵션상품 등록</label>
 								
-								<input type="radio" value="optionSingular" class="btn-check" name="optionMethod" id="optionSingular" autocomplete="off">
+								<input type="radio" value="단일상품 등록" class="btn-check" name="optionMethod" id="optionSingular" autocomplete="off">
 								<label class="btn btn-outline-primary" for="optionSingular">단일상품 등록</label>
 							</div>
 							<div id="optionPluralForm">
@@ -484,10 +484,10 @@ height: 100%;
 									</thead>
 									<tbody id="singleTbody">
 										<tr>
-											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
-											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
-											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
-											<td class="p-0"><input type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input id="trpdNameCopy" type="text" class="fullWH borderX text-center box-white" readonly></td>
+											<td class="p-0"><input name="trprListPriceArray" type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input name="trprDiscountPriceArray" type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input name="trprStockArray" type="text" class="fullWH borderX text-center"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -1308,7 +1308,7 @@ height: 100%;
 		var preValueOptionMethod = $("input[name=optionMethod]:checked").val();
 		
 		$("input[name=optionMethod]").on("click", function(){
-			var confirmNy = confirm($(this).val() + "으로 변경시, 다시 옵션정보를 등록해야합니다. \n그래도 실행하시겠습니까?");
+			var confirmNy = confirm("\"" + $(this).val() + "\"으로 변경시, 다시 옵션정보를 등록해야합니다. \n그래도 실행하시겠습니까?");
 			if(confirmNy){
 				//by pass
 			} else {
@@ -1332,6 +1332,7 @@ height: 100%;
 			$("#addTr").children().remove();
 			$("#addTr2").children().remove();
 			$("#addTr3").children().remove();
+			$("#trpdNameCopy").val($("#trpdName").val());
 		}
 	});
 	

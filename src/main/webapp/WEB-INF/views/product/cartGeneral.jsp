@@ -30,6 +30,10 @@ td {
 </head>
 <body>
 
+	<form id="formCart" method="post">
+		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+	</form>
+
 	<div class="container-fluid">
 
 		<div class="row border-bottom py-3 pt-4">
@@ -48,9 +52,9 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link active fs-4" aria-current="page" href="">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartWishlist">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="/infra/product/cartRegularDelivery">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">일반구매</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular()">정기배송</a></li>
 				</ul>
 			</div>
 
@@ -60,7 +64,7 @@ td {
 						<table class="table table-sm p-0 border-top border-3">
 							<tr>
 								<th colspan="2" class="bg-light text-start px-3">
-									<input type="checkbox">
+									<input id="checkboxAll" class="form-check-input" type="checkbox">
 								</th>
 								<th class="bg-light px-2">상품정보</th>
 								<th class="bg-light px-2" style="width: 89px;">상품금액</th>
@@ -70,7 +74,7 @@ td {
 							<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
 								<tr style="height: 120px;">
 									<td class="px-3 text-start" style="width: 50px;">
-										<input type="checkbox" value="${item.trctSeq}">
+										<input name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
 									</td>
 									<td class="px-2" style="width: 94px;">
 										<img src="${item.path}${item.uuidName}" style="width: 78px;">
@@ -132,7 +136,7 @@ td {
 
 			<div class="row">
 				<div class="col text-center">
-					<a class="lh-lg btn btn-outline-danger" href="javascript:history.back();" style="width: 200px;">계속 쇼핑하기</a>
+					<a class="lh-lg btn btn-outline-danger" href="/infra/home" style="width: 200px;">계속 쇼핑하기</a>
 					<a href="/infra/product/productCheckOut2" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
 				</div>
 			</div>
@@ -260,6 +264,29 @@ td {
 			});
 		})
 	</script>
-
+	
+	<script type="text/javascript">
+	$("#checkboxAll").click(function(){
+		if($("#checkboxAll").is(":checked")){
+			$("input[name=checkboxTrpr]").prop("checked", true);
+		} else {
+			$("input[name=checkboxTrpr]").prop("checked", false);
+		}
+	});
+	
+	$("input[name=checkboxTrpr]").click(function(){
+		var total = $("input[name=checkboxTrpr]").length;
+		var checked = $("input[name=checkboxTrpr]:checked").length;
+		
+		if(total != checked){
+			$("#checkboxAll").prop("checked", false);
+		} else {
+			$("#checkboxAll").prop("checked", true);
+		}
+	});
+	</script>
+	
+	<script src="${path}/resources/common/js/cart.js"></script>
+	
 </body>
 </html>
