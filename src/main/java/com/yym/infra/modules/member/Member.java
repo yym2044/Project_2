@@ -9,6 +9,11 @@ public class Member {
 	private String ifmmName;
 	private String ifmmDesc;
 	
+	private String ifmeEmailFull;
+	private String ifmpNumber;
+	private String ifmaAddress1;
+	private String ifmaAddress2;
+	
 ///////////////////////////////////////
 	
 	public String getIfmmSeq() {
@@ -46,6 +51,30 @@ public class Member {
 	}
 	public void setIfmmPwd(String ifmmPwd) {
 		this.ifmmPwd = ifmmPwd;
+	}
+	public String getIfmeEmailFull() {
+		return ifmeEmailFull;
+	}
+	public void setIfmeEmailFull(String ifmeEmailFull) {
+		this.ifmeEmailFull = ifmeEmailFull;
+	}
+	public String getIfmpNumber() {
+		return ifmpNumber;
+	}
+	public void setIfmpNumber(String ifmpNumber) {
+		this.ifmpNumber = ifmpNumber;
+	}
+	public String getIfmaAddress1() {
+		return ifmaAddress1;
+	}
+	public void setIfmaAddress1(String ifmaAddress1) {
+		this.ifmaAddress1 = ifmaAddress1;
+	}
+	public String getIfmaAddress2() {
+		return ifmaAddress2;
+	}
+	public void setIfmaAddress2(String ifmaAddress2) {
+		this.ifmaAddress2 = ifmaAddress2;
 	}
 	
 	
