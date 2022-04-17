@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectListCartGeneral(vo);
 	}
 	@Override
-	public List<Product> selectOneMemberCheckOut(ProductVo vo) throws Exception {
+	public Product selectOneMemberCheckOut(ProductVo vo) throws Exception {
 		return dao.selectOneMemberCheckOut(vo);
 	}
 	@Override

@@ -1,7 +1,5 @@
 package com.yym.infra.modules.member;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
