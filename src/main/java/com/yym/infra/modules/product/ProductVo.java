@@ -4,6 +4,7 @@ public class ProductVo {
 	
 	private String trpdSeq;
 	private String ifmmSeq;
+	private String trctSeq;
 	
 	private Integer shCategory = 0;
 	private String shBar = "";
@@ -73,120 +74,144 @@ public class ProductVo {
 			
 		}
 	//------------
+
+		public String getTrpdSeq() {
+			return trpdSeq;
+		}
+
+		public void setTrpdSeq(String trpdSeq) {
+			this.trpdSeq = trpdSeq;
+		}
+
+		public String getIfmmSeq() {
+			return ifmmSeq;
+		}
+
+		public void setIfmmSeq(String ifmmSeq) {
+			this.ifmmSeq = ifmmSeq;
+		}
+
+		public String getTrctSeq() {
+			return trctSeq;
+		}
+
+		public void setTrctSeq(String trctSeq) {
+			this.trctSeq = trctSeq;
+		}
+
+		public Integer getShCategory() {
+			return shCategory;
+		}
+
+		public void setShCategory(Integer shCategory) {
+			this.shCategory = shCategory;
+		}
+
+		public String getShBar() {
+			return shBar;
+		}
+
+		public void setShBar(String shBar) {
+			this.shBar = shBar;
+		}
+
+		public String getShSort() {
+			return shSort;
+		}
+
+		public void setShSort(String shSort) {
+			this.shSort = shSort;
+		}
+
+		public Integer getTrprOptionChildCd1() {
+			return trprOptionChildCd1;
+		}
+
+		public void setTrprOptionChildCd1(Integer trprOptionChildCd1) {
+			this.trprOptionChildCd1 = trprOptionChildCd1;
+		}
+
+		public Integer getTrprOptionChildCd2() {
+			return trprOptionChildCd2;
+		}
+
+		public void setTrprOptionChildCd2(Integer trprOptionChildCd2) {
+			this.trprOptionChildCd2 = trprOptionChildCd2;
+		}
+
+		public Integer getTrprOptionChildCd3() {
+			return trprOptionChildCd3;
+		}
+
+		public void setTrprOptionChildCd3(Integer trprOptionChildCd3) {
+			this.trprOptionChildCd3 = trprOptionChildCd3;
+		}
+
+		public int getThisPage() {
+			return thisPage;
+		}
+
+		public void setThisPage(int thisPage) {
+			this.thisPage = thisPage;
+		}
+
+		public int getRowNumToShow() {
+			return rowNumToShow;
+		}
+
+		public void setRowNumToShow(int rowNumToShow) {
+			this.rowNumToShow = rowNumToShow;
+		}
+
+		public int getPageNumToShow() {
+			return pageNumToShow;
+		}
+
+		public void setPageNumToShow(int pageNumToShow) {
+			this.pageNumToShow = pageNumToShow;
+		}
+
+		public int getTotalRows() {
+			return totalRows;
+		}
+
+		public void setTotalRows(int totalRows) {
+			this.totalRows = totalRows;
+		}
+
+		public int getTotalPages() {
+			return totalPages;
+		}
+
+		public void setTotalPages(int totalPages) {
+			this.totalPages = totalPages;
+		}
+
+		public int getStartPage() {
+			return startPage;
+		}
+
+		public void setStartPage(int startPage) {
+			this.startPage = startPage;
+		}
+
+		public int getEndPage() {
+			return endPage;
+		}
+
+		public void setEndPage(int endPage) {
+			this.endPage = endPage;
+		}
+
+		public int getStartRnumForMysql() {
+			return startRnumForMysql;
+		}
+
+		public void setStartRnumForMysql(int startRnumForMysql) {
+			this.startRnumForMysql = startRnumForMysql;
+		}
 	
 	
-	public Integer getShCategory() {
-		return shCategory;
-	}
-	public void setShCategory(Integer shCategory) {
-		this.shCategory = shCategory;
-	}
-	public String getShBar() {
-		return shBar;
-	}
-	public void setShBar(String shBar) {
-		this.shBar = shBar;
-	}
-	public String getTrpdSeq() {
-		return trpdSeq;
-	}
-	public void setTrpdSeq(String trpdSeq) {
-		this.trpdSeq = trpdSeq;
-	}
-	public int getThisPage() {
-		return thisPage;
-	}
-	public void setThisPage(int thisPage) {
-		this.thisPage = thisPage;
-	}
-	public int getRowNumToShow() {
-		return rowNumToShow;
-	}
-	public void setRowNumToShow(int rowNumToShow) {
-		this.rowNumToShow = rowNumToShow;
-	}
-	public int getPageNumToShow() {
-		return pageNumToShow;
-	}
-	public void setPageNumToShow(int pageNumToShow) {
-		this.pageNumToShow = pageNumToShow;
-	}
-	public int getTotalRows() {
-		return totalRows;
-	}
-	public void setTotalRows(int totalRows) {
-		this.totalRows = totalRows;
-	}
-	public int getTotalPages() {
-		return totalPages;
-	}
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
-	}
-	public int getStartPage() {
-		return startPage;
-	}
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-	public int getEndPage() {
-		return endPage;
-	}
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-	public int getStartRnumForMysql() {
-		return startRnumForMysql;
-	}
-	public void setStartRnumForMysql(int startRnumForMysql) {
-		this.startRnumForMysql = startRnumForMysql;
-	}
-	public String getShSort() {
-		return shSort;
-	}
-	public void setShSort(String shSort) {
-		this.shSort = shSort;
-	}
-
-
-	public Integer getTrprOptionChildCd1() {
-		return trprOptionChildCd1;
-	}
-
-
-	public void setTrprOptionChildCd1(Integer trprOptionChildCd1) {
-		this.trprOptionChildCd1 = trprOptionChildCd1;
-	}
-
-
-	public Integer getTrprOptionChildCd2() {
-		return trprOptionChildCd2;
-	}
-
-
-	public void setTrprOptionChildCd2(Integer trprOptionChildCd2) {
-		this.trprOptionChildCd2 = trprOptionChildCd2;
-	}
-
-
-	public Integer getTrprOptionChildCd3() {
-		return trprOptionChildCd3;
-	}
-
-
-	public void setTrprOptionChildCd3(Integer trprOptionChildCd3) {
-		this.trprOptionChildCd3 = trprOptionChildCd3;
-	}
-
-
-	public String getIfmmSeq() {
-		return ifmmSeq;
-	}
-
-
-	public void setIfmmSeq(String ifmmSeq) {
-		this.ifmmSeq = ifmmSeq;
-	}
 	
 	
 	

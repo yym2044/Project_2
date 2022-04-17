@@ -95,6 +95,7 @@ public class ProductController {
 		
 		return "product/cartGeneral";
 	}
+	
 	@RequestMapping(value = "/product/cartWishlist")
 	public String cartWishlist() throws Exception {
 		
@@ -120,6 +121,19 @@ public class ProductController {
 			returnMap.put("rt", "fail");
 		}
 		
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/deleteCartGeneral")
+	public Map<String, Object> deleteCartGeneral(ProductVo vo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		if(service.deleteCartGeneral(vo)>0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
 		return returnMap;
 	}
 }
