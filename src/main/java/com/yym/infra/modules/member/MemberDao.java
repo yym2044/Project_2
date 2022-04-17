@@ -18,5 +18,4 @@ public class MemberDao {
 
 	public Member selectOneLogin(Member dto) {return sqlSession.selectOne(namespace + ".selectOneLogin", dto); }
 	
-	public List<Member> selectOneMemberCheckOut(MemberVo vo) {return sqlSession.selectList(namespace + ".selectOneMemberCheckOut", vo); }
 }

@@ -11,6 +11,11 @@ public class Product {
 	
 	//멤버
 	private String ifmmSeq;
+	private String ifmmName;
+	private String ifmeEmailFull;
+	private String ifmpNumber;
+	private String ifmaAddress1;
+	private String ifmaAddress2;
 	
 	//상품
 	private String trpdSeq;
@@ -577,6 +582,36 @@ public class Product {
 	}
 	public void setOptionMethod(String optionMethod) {
 		this.optionMethod = optionMethod;
+	}
+	public String getIfmmName() {
+		return ifmmName;
+	}
+	public void setIfmmName(String ifmmName) {
+		this.ifmmName = ifmmName;
+	}
+	public String getIfmeEmailFull() {
+		return ifmeEmailFull;
+	}
+	public void setIfmeEmailFull(String ifmeEmailFull) {
+		this.ifmeEmailFull = ifmeEmailFull;
+	}
+	public String getIfmpNumber() {
+		return ifmpNumber;
+	}
+	public void setIfmpNumber(String ifmpNumber) {
+		this.ifmpNumber = ifmpNumber;
+	}
+	public String getIfmaAddress1() {
+		return ifmaAddress1;
+	}
+	public void setIfmaAddress1(String ifmaAddress1) {
+		this.ifmaAddress1 = ifmaAddress1;
+	}
+	public String getIfmaAddress2() {
+		return ifmaAddress2;
+	}
+	public void setIfmaAddress2(String ifmaAddress2) {
+		this.ifmaAddress2 = ifmaAddress2;
 	}
 	
 }
