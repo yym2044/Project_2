@@ -86,7 +86,9 @@ public class Product {
 	private Integer trctDelNy;
 	
 	private String[] checkboxTrprArray;
+	private String[] trprFullNameArray;
 	private Integer[] trctQuantityArray;
+	
 	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
@@ -628,6 +630,12 @@ public class Product {
 	}
 	public void setTrctQuantityArray(Integer[] trctQuantityArray) {
 		this.trctQuantityArray = trctQuantityArray;
+	}
+	public String[] getTrprFullNameArray() {
+		return trprFullNameArray;
+	}
+	public void setTrprFullNameArray(String[] trprFullNameArray) {
+		this.trprFullNameArray = trprFullNameArray;
 	}
 	
 }
