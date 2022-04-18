@@ -1,9 +1,6 @@
 package com.yym.infra.modules.product;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,9 +85,16 @@ public class ProductController {
 			System.out.println(dto.getCheckboxTrprArray()[i] + "번상품, 수량 : " + dto.getTrctQuantityArray()[i] + ", 상품이름 : " + dto.getTrprFullNameArray()[i]);
 		}
 		
-		List<String> rtProductName = new ArrayList<String>(Arrays.asList(dto.getTrprFullNameArray()));
+		// checkboxTrprArray, checkboxTrctQuantityArray, trprFullNameArray 에 값이 순서대로 담김
+//		List<Product> rtProduct = new ArrayList<Product>();
+//		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
+//			rtProduct.add(dto);
+//		}
 		
-		model.addAttribute("rtProductName", rtProductName);
+//		model.addAttribute("dto", dto);
+		
+//		List<String> rtProductName = new ArrayList<String>(Arrays.asList(dto.getTrprFullNameArray()));
+//		model.addAttribute("rtProductName", rtProductName);
 		
 		return "product/productCheckOut";
 	}

@@ -129,11 +129,15 @@ td {
 									도착 보장
 								</td>
 							</tr>
+							<%-- <c:forEach items="${dto}" var="item" varStatus="status"> --%>
 							<tr>
 <!-- 							<td class="productName px-2">언탭트 남성용 오버핏 스웨트 고중량 후드, XL, 블랙</td> -->
-								<td class="productName px-2"><c:out value="${rtProductName}"/></td>
+								<td class="productName px-2">
+								<%-- <c:out value="${dto.trprFullNameArray}"/> --%>
+								</td>
 								<td class="text-end px-2" style="font-weight: lighter;">수량 1개 / 무료배송</td>
 							</tr>
+							<%-- </c:forEach> --%>
 						</table>
 					</div>
 				</div>

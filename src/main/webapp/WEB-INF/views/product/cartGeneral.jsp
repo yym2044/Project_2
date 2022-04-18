@@ -76,7 +76,7 @@ td {
 								<tr style="height: 120px;">
 									<td class="px-3 text-start" style="width: 50px;">
 										<input id="checkboxTrpr${status.index}" name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
-										<input id="trprFullName${status.index}" name="trprFullName" type="text" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ,${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ,${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ,${item.trprOptionChildName3}</c:if>">
+										<input id="trprFullName${status.index}" name="trprFullName" type="text" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ${item.trprOptionChildName3}</c:if>">
 									</td>
 									<td class="px-2" style="width: 94px;">
 										<img src="${item.path}${item.uuidName}" style="width: 78px;">
