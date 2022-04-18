@@ -86,7 +86,7 @@
 										class="bi bi-person-circle text-secondary"></i>
 								</label>
 								</span> -->
-							<input type="text" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username"
+							<input type="text" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username"
 								aria-describedby="userIcon">
 						</div>
 
@@ -95,7 +95,7 @@
 										class="bi bi-file-lock2-fill text-secondary"></i>
 								</label>
 								</span> -->
-							<input type="password" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password"
+							<input type="password" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password"
 								aria-describedby="passwordIcon">
 						</div>
 
