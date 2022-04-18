@@ -485,9 +485,9 @@ height: 100%;
 									<tbody id="singleTbody">
 										<tr>
 											<td class="p-0"><input id="trpdNameCopy" type="text" class="fullWH borderX text-center box-white" readonly></td>
-											<td class="p-0"><input name="trprListPriceArray" type="text" class="fullWH borderX text-center"></td>
-											<td class="p-0"><input name="trprDiscountPriceArray" type="text" class="fullWH borderX text-center"></td>
-											<td class="p-0"><input name="trprStockArray" type="text" class="fullWH borderX text-center"></td>
+											<td class="p-0"><input id="trprListPriceArraySingle" name="trprListPriceArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
+											<td class="p-0"><input id="trprDiscountPriceArraySingle" name="trprDiscountPriceArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
+											<td class="p-0"><input id="trprStockArraySingle" name="trprStockArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -1297,9 +1297,11 @@ height: 100%;
 		if($("#optionPlural").is(":checked")){
 			$("#optionPluralForm").show();
 			$("#optionSingularForm").hide();
+			$(".optionSingularArray").prop("disabled", true);
 		} else {
 			$("#optionPluralForm").hide();
 			$("#optionSingularForm").show();
+			$(".optionSingularArray").prop("disabled", false);
 		}
 	});
 	
@@ -1326,6 +1328,7 @@ height: 100%;
 		if($("#optionPlural").is(":checked")){
 			$("#optionPluralForm").show();
 			$("#optionSingularForm").hide();
+			$(".optionSingularArray").prop("disabled", true);
 		} else {
 			$("#optionPluralForm").hide();
 			$("#optionSingularForm").show();
@@ -1333,6 +1336,7 @@ height: 100%;
 			$("#addTr2").children().remove();
 			$("#addTr3").children().remove();
 			$("#trpdNameCopy").val($("#trpdName").val());
+			$(".optionSingularArray").prop("disabled", false);
 		}
 	});
 	
