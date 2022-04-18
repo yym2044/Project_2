@@ -185,7 +185,7 @@
 									</span>
 								</p>
 							</div>
-							<input type="text" id="trprSeqValue">
+							<input type="hidden" id="trprSeqValue">
 							<div class="col-3 text-end">
 								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-1 text-center'>
