@@ -33,7 +33,7 @@ td {
 	<form id="formCart" method="post">
 		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 		<input type="hidden" name="checkboxTrprArray">
-	
+		<input type="hidden" name="trprFullNameArray">
 
 	<div class="container-fluid">
 
@@ -75,7 +75,8 @@ td {
 							<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
 								<tr style="height: 120px;">
 									<td class="px-3 text-start" style="width: 50px;">
-										<input name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
+										<input id="checkboxTrpr${status.index}" name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
+										<input id="trprFullName${status.index}" name="trprFullName" type="text" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ,${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ,${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ,${item.trprOptionChildName3}</c:if>">
 									</td>
 									<td class="px-2" style="width: 94px;">
 										<img src="${item.path}${item.uuidName}" style="width: 78px;">
@@ -168,13 +169,19 @@ td {
 				, url: "/infra/product/deleteCartGeneral"
 				, data: { "trctSeq" : trctSeq }
 				, success : function(response){
-					alert("삭제성공");
-					location.reload();
+					if(response.rt == "success"){
+						alert("삭제성공");
+						location.reload();
+					} else {
+						return false;
+					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
+		} else {
+			return false;
 		}
 	}
 	
@@ -287,12 +294,9 @@ td {
 		}
 	});
 	
-	$("input[name=checkboxTrpr]:checked").each(function(){
-		
-	});
-	
 	//체크박스 다수를 담을 배열
 	var checkboxTrprArray = [];
+	var trprFullNameArray = [];
 	
 	$("#btnCheckOut").on("click", function(){
 		if($("input[name=checkboxTrpr]:checked").length == 0){
@@ -303,7 +307,14 @@ td {
 				checkboxTrprArray.push($(this).val());
 			});
 			
+			for(var i=0; i<$("input[name=checkboxTrpr]").length; i++){
+				if($("#checkboxTrpr" + i).is(":checked")){
+					trprFullNameArray.push($("#trprFullName" + i).val());
+				}
+			}
+			
 			$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
+			$("input:hidden[name=trprFullNameArray]").val(trprFullNameArray);
 			
 			$("#formCart").attr("action", "/infra/product/productCheckOut").submit();
 		}
