@@ -130,7 +130,8 @@ td {
 								</td>
 							</tr>
 							<tr>
-								<td class="productName px-2">언탭트 남성용 오버핏 스웨트 고중량 후드, XL, 블랙</td>
+<!-- 							<td class="productName px-2">언탭트 남성용 오버핏 스웨트 고중량 후드, XL, 블랙</td> -->
+								<td class="productName px-2"><c:out value="${rtProductName}"/></td>
 								<td class="text-end px-2" style="font-weight: lighter;">수량 1개 / 무료배송</td>
 							</tr>
 						</table>
