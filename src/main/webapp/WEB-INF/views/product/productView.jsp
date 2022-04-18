@@ -705,7 +705,7 @@
 				, url: "/infra/product/insertCartGeneral"
 				, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
 				, success: function(response) {
-					alert(response.rt);
+					/* alert(response.rt); */
 				}
 				, error: function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -718,7 +718,7 @@
 				alert("옵션 선택을 완료해주세요.");
 				return false;
 			} else {
-				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				/* alert("상품이 장바구니에 추가되었습니다. ajax실행"); */
 				$.ajax({
 					async: true
 					, cache: false
@@ -726,7 +726,7 @@
 					, url: "/infra/product/insertCartGeneral"
 					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
 					, success: function(response) {
-						alert(response.rt);
+						/* alert(response.rt); */
 					}
 					, error: function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -738,7 +738,7 @@
 				alert("옵션 선택을 완료해주세요.");
 				return false;
 			} else {
-				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				/* alert("상품이 장바구니에 추가되었습니다. ajax실행"); */
 				$.ajax({
 					async: true
 					, cache: false
@@ -746,7 +746,7 @@
 					, url: "/infra/product/insertCartGeneral"
 					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
 					, success: function(response) {
-						alert(response.rt);
+						/* alert(response.rt); */
 					}
 					, error: function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -758,7 +758,7 @@
 				alert("옵션 선택을 완료해주세요.");
 				return false;
 			} else {
-				alert("상품이 장바구니에 추가되었습니다. ajax실행");
+				/* alert("상품이 장바구니에 추가되었습니다. ajax실행"); */
 				$.ajax({
 					async: true
 					, cache: false
@@ -766,7 +766,7 @@
 					, url: "/infra/product/insertCartGeneral"
 					, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeqValue").val(), "trctQuantity" : $("#trorQuantity").val()}
 					, success: function(response) {
-						alert(response.rt);
+						/* alert(response.rt); */
 					}
 					, error: function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
