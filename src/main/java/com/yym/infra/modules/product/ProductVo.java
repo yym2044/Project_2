@@ -5,6 +5,7 @@ public class ProductVo {
 	private String trpdSeq;
 	private String ifmmSeq;
 	private String trctSeq;
+	private String trprSeq;
 	
 	private Integer shCategory = 0;
 	private String shBar = "";
@@ -74,9 +75,17 @@ public class ProductVo {
 			
 		}
 	//------------
-
+		
 		public String getTrpdSeq() {
 			return trpdSeq;
+		}
+
+		public String getTrprSeq() {
+			return trprSeq;
+		}
+
+		public void setTrprSeq(String trprSeq) {
+			this.trprSeq = trprSeq;
 		}
 
 		public void setTrpdSeq(String trpdSeq) {

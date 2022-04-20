@@ -71,78 +71,98 @@ td {
 								<th class="bg-light px-2" style="width: 89px;">상품금액</th>
 								<th class="bg-light px-2" style="width: 88px;">배송비</th>
 							</tr>
-							
-							<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
-								<tr style="height: 120px;">
-									<td class="px-3 text-start" style="width: 50px;">
-										<input id="checkboxTrpr${status.index}" name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
-										<input id="trprFullName${status.index}" name="trprFullName" type="hidden" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ${item.trprOptionChildName3}</c:if>">
-									</td>
-									<td class="px-2" style="width: 94px;">
-										<img src="${item.path}${item.uuidName}" style="width: 78px;">
-									</td>
-									<td class="px-2">
-										<div class="row">
-											<div class="col-12 text-start border-bottom py-2">
-												<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView"><c:out value="${item.trpdName}"/>
-													<c:if test="${!empty item.trprOptionChildName1}">,${item.trprOptionChildName1}</c:if>
-													<c:if test="${!empty item.trprOptionChildName2}">,${item.trprOptionChildName2}</c:if>
-													<c:if test="${!empty item.trprOptionChildName3}">,${item.trprOptionChildName3}</c:if>
-												</a>
-											</div>
-											
-											<div class="col-6 text-start pt-3">
-												<p class="m-0">
-													<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
-													도착 보장
-												</p>
-											</div>
-											<div class="col-3 text-end pt-2">
-												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
-												<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
-												<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
-												<input id="trctQuantity${status.index}" name="trctQuantityArray" type="text" value="${item.trctQuantity}" style="width: 38px;">
-											</div>
-											<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
-												<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
-												<button onclick="goDelete(${item.trctSeq})" class="btn btn-outline-secondary">X</button>
-											</div>
-										</div>
-									</td>
-									<td id="priceQuantity2_${status.index}" class="px-2"><span><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span></td>
-									<td class="px-2">
-										<c:choose>
-											<c:when test="${item.trpdDeliveryFee eq 0 or empty item.trpdDeliveryFee}">무료<input id="trctDeliveryFee${status.index}" type="hidden" value="0"></c:when>
-											<c:otherwise><fmt:formatNumber value="${item.trpdDeliveryFee}"/>원<input id="trctDeliveryFee${status.index}" type="hidden" value="${item.trpdDeliveryFee}"></c:otherwise>
-										</c:choose>
-									</td>
-								</tr>
-							</c:forEach>
-							<tr>
-								<td colspan="5" class="bg-light text-end p-3">
-									상품가격
-									<span id="priceQuantityTotal" class="fs-5"></span>원
-									<button class="rounded-pill" disabled><i class="fa-solid fa-plus"></i></button>
-									배송비
-									<span id="deliveryFeeTotal" class="fs-5"></span>원
-									<button class="rounded-pill" disabled><i class="fa-solid fa-equals"></i></button>
-									주문금액
-									<span id="moneyTotal" class="fs-5 fw-bold"></span>원
-								</td>
-							</tr>
+							<c:choose>
+								<c:when test="${fn:length(listCartGeneral) eq 0}">
+									<tr style="height: 100px;">
+										<td colspan="5" class="text-center fs-6 fw-bold">장바구니에 담은 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
+										<tr style="height: 120px;">
+											<td class="px-3 text-start" style="width: 50px;">
+												<input id="checkboxTrpr${status.index}" name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
+												<input id="trprFullName${status.index}" name="trprFullName" type="hidden" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ${item.trprOptionChildName3}</c:if>">
+											</td>
+											<td class="px-2" style="width: 94px;">
+												<img src="${item.path}${item.uuidName}" style="width: 78px;">
+											</td>
+											<td class="px-2">
+												<div class="row">
+													<div class="col-12 text-start border-bottom py-2">
+														<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView"><c:out value="${item.trpdName}"/>
+															<c:if test="${!empty item.trprOptionChildName1}">,${item.trprOptionChildName1}</c:if>
+															<c:if test="${!empty item.trprOptionChildName2}">,${item.trprOptionChildName2}</c:if>
+															<c:if test="${!empty item.trprOptionChildName3}">,${item.trprOptionChildName3}</c:if>
+														</a>
+													</div>
+													
+													<div class="col-6 text-start pt-3">
+														<p class="m-0">
+															<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
+															도착 보장
+														</p>
+													</div>
+													<div class="col-3 text-end pt-2">
+														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
+														<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
+														<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
+														<input id="trctQuantity${status.index}" name="trctQuantityArray" type="text" value="${item.trctQuantity}" style="width: 38px;">
+													</div>
+													<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
+														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
+														<button onclick="goDelete(${item.trprSeq})" type="button" class="btn btn-outline-secondary">X</button>
+													</div>
+												</div>
+											</td>
+											<td id="priceQuantity2_${status.index}" class="px-2"><span><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span></td>
+											<td class="px-2">
+												<c:choose>
+													<c:when test="${item.trpdDeliveryFee eq 0 or empty item.trpdDeliveryFee}">무료<input id="trctDeliveryFee${status.index}" type="hidden" value="0"></c:when>
+													<c:otherwise><fmt:formatNumber value="${item.trpdDeliveryFee}"/>원<input id="trctDeliveryFee${status.index}" type="hidden" value="${item.trpdDeliveryFee}"></c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+									</c:forEach>
+									<tr>
+										<td colspan="5" class="bg-light text-end p-3">
+											상품가격
+											<span id="priceQuantityTotal" class="fs-5"></span>원
+											<button class="rounded-pill" disabled><i class="fa-solid fa-plus"></i></button>
+											배송비
+											<span id="deliveryFeeTotal" class="fs-5"></span>원
+											<button class="rounded-pill" disabled><i class="fa-solid fa-equals"></i></button>
+											주문금액
+											<span id="moneyTotal" class="fs-5 fw-bold"></span>원
+										</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</table>
 					</div>
 				</div>
 			</div>
 
-
-			<div class="row">
-				<div class="col text-center">
-					<a class="lh-lg btn btn-outline-danger" href="/infra/home" style="width: 200px;">계속 쇼핑하기</a>
-<!-- 				<a href="/infra/product/productCheckOut2" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a> -->
-					<a id="btnCheckOut" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
-				</div>
-			</div>
+			<c:choose>
+				<c:when test="${fn:length(listCartGeneral) eq 0}">
+					<div class="row bg-light align-items-center" style="height: 160px;">
+						<div class="col text-center">
+							<p class="my-0 py-0">각 상품에서 구매할 옵션을 선택하시고, <span class="text-primary">장바구니</span>에 담아 보세요!</p>
+							<p class="mt-0 py-0 mb-2">선택한 옵션을 모두 장바구니에 담을 수 있습니다.</p>
+							<a href="/infra/home" type="button" class="btn btn-primary">홈으로</a>
+						</div>
+					</div>					
+				</c:when>
+				<c:otherwise>
+					<div class="row">
+						<div class="col text-center">
+							<a class="lh-lg btn btn-outline-danger" href="/infra/home" style="width: 200px;">계속 쇼핑하기</a>
+		<!-- 				<a href="/infra/product/productCheckOut2" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a> -->
+							<a id="btnCheckOut" class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 
@@ -159,17 +179,17 @@ td {
 	
 	<script type="text/javascript">
 		
-	goDelete = function(trctSeq){
-		var confirmNy = confirm("해당 상품을 삭제합니다." + trctSeq);
+	goDelete = function(trprSeq){
+		var confirmNy = confirm("상품을 장바구니에서 삭제할까요?");
 		if(confirmNy){
 			$.ajax({
-				async: true
+				async: false
 				, cache: false
 				, type: "post"
 				, url: "/infra/product/deleteCartGeneral"
-				, data: { "trctSeq" : trctSeq }
+				, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>" ,"trprSeq" : trprSeq }
 				, success : function(response){
-					location.reload();
+					
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);

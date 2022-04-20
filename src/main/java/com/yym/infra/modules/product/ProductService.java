@@ -14,6 +14,9 @@ public interface ProductService {
 	public List<Product> selectListOptions(ProductVo vo) throws Exception;
 	public List<Product> selectListUploaded(ProductVo vo) throws Exception;
 	public Product selectOneProduct_Real(ProductVo vo) throws Exception;
+	public List<Product> selectListWishList(ProductVo vo) throws Exception;
+	public int insertWishList(ProductVo vo) throws Exception;
+	public int deleteWishList(ProductVo vo) throws Exception;
 	
 	public int insertProduct(Product dto) throws Exception;
 }
