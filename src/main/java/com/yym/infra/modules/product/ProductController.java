@@ -1,6 +1,7 @@
 package com.yym.infra.modules.product;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,6 +147,38 @@ public class ProductController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		if(service.deleteCartGeneral(vo)>0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/selectListWishList")
+	public List<Product> selectListWishList(ProductVo vo) throws Exception {
+		
+		List<Product> wishList = service.selectListWishList(vo);
+		
+		return wishList;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/product/insertWishList")
+	public Map<String, Object> insertWishList(ProductVo vo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		if(service.insertWishList(vo)>0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/product/deleteWishList")
+	public Map<String, Object> deleteWishList(ProductVo vo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		if(service.deleteWishList(vo)>0) {
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");

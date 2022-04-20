@@ -187,14 +187,14 @@
 							</div>
 							<input type="hidden" id="trprSeqValue">
 							<div class="col-3 text-end">
-								<button id="btnHeart" type="button"  class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<button id="btnHeart" type="button" class="d-none btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-1 text-center'>
 									<div class='col'>찜 목록에 추가되었습니다.</div>
 								</div>
 								">
 									<i class="bi bi-heart"></i>
 								</button>
-								
+								<button type="button" id="btnHeart_filled" class="d-none btn btn-danger rounded-circle"><i class="bi bi-heart"></i></button>
 								<button id="btnShare" type="button"  class="btn btn-outline-primary rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 									<div class='sns_box px-3'>
 										<div class='sns_button twitter'>
@@ -521,6 +521,122 @@
 	<%@include file="../include/jsLinks.jsp"%>
 	
 	
+	<script type="text/javascript">
+	
+	var wishNy = false;
+	
+	$(document).ready(function(){
+		
+		if("<c:out value="${sessSeq}"/>"){
+			
+			$.ajax({
+				async: false
+				,cache: false
+				,type: "post"
+				,url: "/infra/product/selectListWishList"
+				,data: {ifmmSeq : "<c:out value="${sessSeq}"/>"}
+				,success: function(data){
+					$.each(data, function(i){
+						console.log("<c:out value="${sessSeq}"/>" + "의 찜목록");
+						console.log("--------");
+						console.log((i+1) + ". " + data[i].trpdSeq + "번 상품");
+						console.log("--------");
+						if(data[i].trpdSeq == "<c:out value="${vo.trpdSeq}"/>") {
+							wishNy = true;
+						}
+					});
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			})
+			
+			console.log("현재 상품 찜 여부 : " + wishNy);
+
+		}
+		if(wishNy == true){
+			$("#btnHeart").addClass("d-none");
+			$("#btnHeart_filled").removeClass("d-none");
+		} else {
+			$("#btnHeart").removeClass("d-none");
+			$("#btnHeart_filled").addClass("d-none");
+		}
+		
+	});
+	
+	$("#btnHeart").on("click", function(){
+		/* alert("옵션부모개수 : " + opCount); */
+		
+		if(!"<c:out value="${sessSeq}"/>"){
+			location.href="/infra/login/loginForm";
+		}
+		
+			//insert ajax start
+			
+			$.ajax({
+				async: false
+				,cache: false
+				,type:"post"
+				,url: "/infra/product/insertWishList"
+				,data : { "ifmmSeq" : "<c:out value="${sessSeq}"/>" , "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>" }
+				,success: function(response){
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+			
+			//insert ajax end
+			
+			wishNy = true;
+			
+			console.log("현재 상품 찜 여부 : " + wishNy);		
+			if(wishNy == true){
+				$("#btnHeart").addClass("d-none");
+				$("#btnHeart_filled").removeClass("d-none");
+			} else {
+				$("#btnHeart").removeClass("d-none");
+				$("#btnHeart_filled").addClass("d-none");
+			}
+			
+			
+	});
+	$("#btnHeart_filled").on("click", function(){
+		
+			//delete ajax start
+			
+			$.ajax({
+				async: false
+				,cache: false
+				,type:"post"
+				,url: "/infra/product/deleteWishList"
+				,data : { "ifmmSeq" : "<c:out value="${sessSeq}"/>" , "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>" }
+				,success: function(response){
+					/* location.reload(); */
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+			
+			//delete ajax end
+			
+			wishNy = false;
+			
+			console.log("현재 상품 찜 여부 : " + wishNy);		
+			if(wishNy == true){
+				$("#btnHeart").addClass("d-none");
+				$("#btnHeart_filled").removeClass("d-none");
+			} else {
+				$("#btnHeart").removeClass("d-none");
+				$("#btnHeart_filled").addClass("d-none");
+			}
+			
+	});
+	
+	</script>
+	
+	
 	<!-- 
 	<script type="text/javascript">
 	goCartGeneral = function(){
@@ -580,6 +696,7 @@
 				  ,success: function(data){
 						console.log(data.trprSeq + " " + data.trprListPrice);
 						$("#trprSeqValue").val(data.trprSeq);
+						$("#btnCart").popover('enable');
 				  }
 				  ,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -590,14 +707,7 @@
 	});
 	
 	
-	$("#btnHeart").click(function(){
-		/* alert("옵션부모개수 : " + opCount); */
-		
-		if(!"<c:out value="${sessSeq}"/>"){
-			location.href="/infra/login/loginForm";
-		}
-		
-	});
+	
 	
 	
 	$(".optSelect").on("change", function(){
@@ -696,7 +806,7 @@
 		
 		if(opCount == 0){
 			
-			$("#btnCart").popover('enable');
+			
 			
 			$.ajax({
 				async: true

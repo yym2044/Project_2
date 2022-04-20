@@ -105,7 +105,7 @@
 		
 	</select>
 	
-	<select id="selectListCartGeneral" resultMap="resultMapObj">
+<!-- 	<select id="selectListCartGeneral" resultMap="resultMapObj">
 	
 	SELECT
 		a.trctSeq
@@ -143,6 +143,47 @@
 	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
 	
+	</select> -->
+	<select id="selectListCartGeneral" resultMap="resultMapObj">
+	
+	SELECT
+		a.trctSeq
+		, a.ifmmSeq
+		, c.trpdSeq
+		, a.trprSeq
+		, SUM(a.trctQuantity) as trctQuantity
+		, a.trctDelNy
+	    , c.trpdName
+	    , b.trprOptionChildCd1
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd1) as trprOptionChildName1
+	    , b.trprOptionChildCd2
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd2) as trprOptionChildName2
+	    , b.trprOptionChildCd3
+	    , (SELECT trocName FROM tradOptionChild WHERE trocSeq = b.trprOptionChildCd3) as trprOptionChildName3
+	    , b.trprListPrice
+	    , b.trprDiscountPrice
+	    , c.trpdDeliveryFee
+	    , d.uuidName
+        , d.path
+	FROM
+		tradCart a
+	LEFT JOIN
+		tradProduct_Real b 
+	ON 
+		b.trprSeq = a.trprSeq
+	LEFT JOIN
+		tradProduct c
+	ON 
+		c.trpdSeq = b.trpdSeq
+	LEFT JOIN
+		tradProductUploaded d
+	ON
+		d.pseq = c.trpdSeq AND d.defaultNy = 1
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+	GROUP BY
+		a.trprSeq
+	
 	</select>
 	
 	<insert id="insertCartGeneral">
@@ -165,7 +206,40 @@
 	DELETE FROM
 		tradCart
 	WHERE 1=1
-		AND trctSeq = #{trctSeq}
+		AND ifmmSeq = #{ifmmSeq}
+		AND trprSeq = #{trprSeq}
+	</delete>
+	
+	<select id="selectListWishList" resultMap="resultMapObj">
+	SELECT
+		trpdSeq
+	FROM
+		tradWishList
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+	</select>
+	
+	<insert id="insertWishList">
+	INSERT INTO
+		tradWishList (
+			ifmmSeq
+			, trpdSeq
+			, trwlUseNy
+			, trwlDelNy
+		) VALUES (
+			#{ifmmSeq}
+			, #{trpdSeq}
+			, 1
+			, 0
+		)
+	</insert>
+	
+	<delete id="deleteWishList">
+	DELETE FROM
+		tradWishList
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+		AND trpdSeq = #{trpdSeq}
 	</delete>
 	
 	<select id="selectListUploaded" resultMap="resultMapObj">

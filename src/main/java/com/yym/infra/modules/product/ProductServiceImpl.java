@@ -42,7 +42,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Override
 	public int insertCartGeneral(Product dto) throws Exception {
-		return dao.insertCartGeneral(dto);
+		
+		dao.insertCartGeneral(dto);
+		
+		
+		return 1;
 	}
 	@Override
 	public int deleteCartGeneral(ProductVo vo) throws Exception {
@@ -273,5 +277,18 @@ public class ProductServiceImpl implements ProductService {
 		
 				
 		return 1;
+	}
+	
+	@Override
+	public List<Product> selectListWishList(ProductVo vo) throws Exception {
+		return dao.selectListWishList(vo);
+	}
+	@Override
+	public int insertWishList(ProductVo vo) throws Exception {
+		return dao.insertWishList(vo);
+	}
+	@Override
+	public int deleteWishList(ProductVo vo) throws Exception {
+		return dao.deleteWishList(vo);
 	}
 }

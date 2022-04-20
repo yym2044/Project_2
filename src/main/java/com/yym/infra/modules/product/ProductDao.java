@@ -42,4 +42,10 @@ public class ProductDao {
 	public int insertOptionChild(Product dto) {return sqlSession.insert(namespace + ".insertOptionChild", dto); }
 	public int insertProductUploaded(Product dto) {return sqlSession.insert(namespace + ".insertProductUploaded", dto); } 
 	public int insertProduct_Real(Product dto) {return sqlSession.insert(namespace + ".insertProduct_Real", dto); }
+	
+	
+	public List<Product> selectListWishList(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListWishList", vo);}
+	public int insertWishList(ProductVo vo) {return sqlSession.insert(namespace + ".insertWishList", vo); }
+	public int deleteWishList(ProductVo vo) {return sqlSession.insert(namespace + ".deleteWishList", vo); }
+	
 }
