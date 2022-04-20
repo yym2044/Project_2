@@ -212,11 +212,26 @@
 	
 	<select id="selectListWishList" resultMap="resultMapObj">
 	SELECT
-		trpdSeq
+		a.trpdSeq
+		, b.trpdName
+		, b.trpdPrice
+		, b.trpdDeliveryFee
+		, c.path
+		, c.uuidName
 	FROM
-		tradWishList
+		tradWishList a
+	LEFT JOIN
+		tradProduct b 
+	ON 
+		b.trpdSeq = a.trpdSeq
+	LEFT JOIN
+		tradProductUploaded c
+	ON
+		c.pseq = b.trpdSeq AND c.defaultNy = 1
 	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
+	GROUP BY
+		a.trpdSeq
 	</select>
 	
 	<insert id="insertWishList">

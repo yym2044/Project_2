@@ -63,21 +63,29 @@ td {
 				<div class="col p-0 pt-2">
 					<div class="table-responsive">
 						<table class="table table-sm p-0 border-top border-3">
-							<tr>
-								<th colspan="2" class="bg-light text-start px-3">
-									<input id="checkboxAll" class="form-check-input" type="checkbox">
-								</th>
-								<th class="bg-light px-2">상품정보</th>
-								<th class="bg-light px-2" style="width: 89px;">상품금액</th>
-								<th class="bg-light px-2" style="width: 88px;">배송비</th>
-							</tr>
 							<c:choose>
 								<c:when test="${fn:length(listCartGeneral) eq 0}">
+									<tr>
+										<th colspan="2" class="bg-light text-start px-3">
+											
+										</th>
+										<th class="bg-light px-2">상품정보</th>
+										<th class="bg-light px-2" style="width: 89px;">상품금액</th>
+										<th class="bg-light px-2" style="width: 88px;">배송비</th>
+									</tr>
 									<tr style="height: 100px;">
 										<td colspan="5" class="text-center fs-6 fw-bold">장바구니에 담은 상품이 없습니다.</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
+									<tr>
+										<th colspan="2" class="bg-light text-start px-3">
+											<input id="checkboxAll" class="form-check-input" type="checkbox">
+										</th>
+										<th class="bg-light px-2">상품정보</th>
+										<th class="bg-light px-2" style="width: 89px;">상품금액</th>
+										<th class="bg-light px-2" style="width: 88px;">배송비</th>
+									</tr>
 									<c:forEach items="${listCartGeneral}" var="item" varStatus="status">
 										<tr style="height: 120px;">
 											<td class="px-3 text-start" style="width: 50px;">

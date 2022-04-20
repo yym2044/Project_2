@@ -30,6 +30,7 @@ td {
 
 	<form id="formCart" method="post">
 		<input type="hidden" value="${sessSeq}" name="ifmmSeq">
+		<input type="hidden" id="trpdSeq" name="trpdSeq">
 	</form>
 
 	<div class="container-fluid">
@@ -60,36 +61,63 @@ td {
 				<div class="col p-0 pt-2">
 					<div class="table-responsive">
 						<table class="table table-sm p-0 border-top border-3">
-							<tr>
-								<th colspan="4" class="bg-light text-start px-3">
-									<input id="checkboxAll" class="form-check-input" type="checkbox">
-								</th>
-							</tr>
-							<tr style="height: 120px;">
-								<td class="px-3 text-start" style="width: 50px;">
-									<input name="checkboxTrpd" class="form-check-input" type="checkbox">
-								</td>
-								<td class="px-2" style="width: 94px;">
-									<img src="${path}/resources/images/user/mainPage/product/randomProduct17.jpg" style="width: 78px;">
-								</td>
-								<td class="px-2">
-									<div class="row">
-										<div class="col-12 text-start pb-1 fw-light" style="font-size: small;">
-											무료배송
-										</div>
-										<div class="col-12 text-start pb-2">
-											<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="/infra/product/productView">참나린 2022 설선물세트 견과류세트, 3호견과류선물세트(아몬드/크렌베리/호두)</a>
-										</div>
-										<div class="col-12 text-start pb-2 fw-bold text-danger">
-											19,900원
-										</div>
-									</div>
-								</td>
-								<td class="px-2">
-									<button class="btn btn-outline-primary w-100 mb-1">장바구니 담기</button>
-									<button class="btn btn-outline-danger w-100">삭제</button>
-								</td>
-							</tr>
+							<c:choose>
+								<c:when test="${fn:length(wishList) eq 0}">
+									<tr style="height: 100px;">
+										<td colspan="5" class="text-center fs-6 fw-bold">찜한 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<th colspan="4" class="bg-light text-start px-3">
+											<input id="checkboxAll" class="form-check-input" type="checkbox">
+										</th>
+									</tr>
+									<c:forEach items="${wishList}" var="item" varStatus="status">
+										<tr style="height: 120px;">
+											<td class="px-3 text-start" style="width: 50px;">
+												<input name="checkboxTrpd" class="form-check-input" type="checkbox">
+											</td>
+											<td class="px-2" style="width: 94px;">
+												<c:choose>
+													<c:when test="${!empty item.uuidName}">
+														<img src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>" style="width: 78px;">
+													</c:when>
+													<c:otherwise>
+														<img src="${path}/resources/images/user/productSearch/img_sample.jpg" style="width: 78px;">
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td class="px-2">
+												<div class="row">
+													<div class="col-12 text-start pb-1 fw-light" style="font-size: small;">
+														<c:choose>
+															<c:when test="${item.trpdDeliveryFee eq 0 or empty item.trpdDeliveryFee}">
+																무료배송
+															</c:when>
+															<c:otherwise>
+																배송비 <fmt:formatNumber value="${item.trpdDeliveryFee}"/>원
+															</c:otherwise>
+														</c:choose>
+													</div>
+													<div class="col-12 text-start pb-2">
+														<a class="m-0 text-muted fw-bold" style="text-decoration: none;" href="javascript:goView(<c:out value="${item.trpdSeq}"/>)"><c:out value="${item.trpdName}"/></a>
+													</div>
+													<div class="col-12 text-start pb-2 fw-bold text-danger">
+														<c:if test="${!empty item.trpdPrice}">
+															<fmt:formatNumber value="${item.trpdPrice}"/>원
+														</c:if>
+													</div>
+												</div>
+											</td>
+											<td class="px-2">
+												<button class="btn btn-outline-primary w-100 mb-1">장바구니 담기</button>
+												<a href="javascript:goDelete(<c:out value="${item.trpdSeq}"/>)" class="btn btn-outline-danger w-100">삭제</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</table>
 					</div>
 				</div>
@@ -106,7 +134,34 @@ td {
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 
-
+	<script type="text/javascript">
+	
+	goView = function(trpdSeq){
+		$("#trpdSeq").val(trpdSeq);
+		$("#formCart").attr("action", "/infra/product/productView").submit();
+	}
+	
+	goDelete = function(trpdSeq){
+		var confirmNy = confirm("상품을 찜 목록에서 삭제할까요?");
+		if(confirmNy){
+			$.ajax({
+				async: false
+				, cache: false
+				, type: "post"
+				, url: "/infra/product/deleteWishList"
+				, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>" ,"trpdSeq" : trpdSeq }
+				, success : function(response){
+					
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		location.reload();
+	}
+	
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

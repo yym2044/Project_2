@@ -114,7 +114,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/cartWishlist")
-	public String cartWishlist() throws Exception {
+	public String cartWishlist(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
+		
+		model.addAttribute("wishList", service.selectListWishList(vo));
 		
 		
 		return "product/cartWishlist";
@@ -174,6 +176,7 @@ public class ProductController {
 		}
 		return returnMap;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/product/deleteWishList")
 	public Map<String, Object> deleteWishList(ProductVo vo) throws Exception {
