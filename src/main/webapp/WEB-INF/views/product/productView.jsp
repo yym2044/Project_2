@@ -187,14 +187,14 @@
 							</div>
 							<input type="hidden" id="trprSeqValue">
 							<div class="col-3 text-end">
-								<button id="btnHeart" type="button" style="display: none;" class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
+								<button id="btnHeart" type="button" class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-1 text-center'>
 									<div class='col'>찜 목록에 추가되었습니다.</div>
 								</div>
 								">
 									<i class="bi bi-heart"></i>
 								</button>
-								<button type="button" id="btnHeart_filled" style="display: none;" class="btn btn-danger rounded-circle"><i class="bi bi-heart"></i></button>
+								<!-- <button type="button" id="btnHeart_filled" style="display: none;" class="btn btn-danger rounded-circle"><i class="bi bi-heart"></i></button> -->
 								<button id="btnShare" type="button"  class="btn btn-outline-primary rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 									<div class='sns_box px-3'>
 										<div class='sns_button twitter'>
@@ -527,6 +527,8 @@
 	
 	$(document).ready(function(){
 		
+		$("#btnHeart").popover('disable');
+		
 		if("<c:out value="${sessSeq}"/>"){
 			
 			$.ajax({
@@ -555,11 +557,15 @@
 
 		}
 		if(wishNy == true){
-			$("#btnHeart").hide();
-			$("#btnHeart_filled").show();
+			$("#btnHeart").removeClass("btn-outline-danger");
+			$("#btnHeart").addClass("btn-danger");
+			$("#btnHeart").popover('disable');
+			console.log("disable");
 		} else {
-			$("#btnHeart").show();
-			$("#btnHeart_filled").hide();
+			$("#btnHeart").addClass("btn-outline-danger");
+			$("#btnHeart").removeClass("btn-danger");
+			$("#btnHeart").popover('enable');
+			console.log("enable");
 		}
 		
 	});
@@ -571,6 +577,10 @@
 			location.href="/infra/login/loginForm";
 		}
 		
+		if(wishNy == false){
+			
+			
+			
 			//insert ajax start
 			
 			$.ajax({
@@ -580,6 +590,7 @@
 				,url: "/infra/product/insertWishList"
 				,data : { "ifmmSeq" : "<c:out value="${sessSeq}"/>" , "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>" }
 				,success: function(response){
+					$("#btnHeart").popover('disable');
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -591,13 +602,13 @@
 			wishNy = true;
 			
 			console.log("현재 상품 찜 여부 : " + wishNy);		
-			$("#btnHeart").hide();
-			$("#btnHeart_filled").show();
-						
 			
-	});
-	$("#btnHeart_filled").on("click", function(){
-		
+			$("#btnHeart").removeClass("btn-outline-danger");
+			$("#btnHeart").addClass("btn-danger");
+			
+		} else {
+			//if(wishNy == true)
+				
 			//delete ajax start
 			
 			$.ajax({
@@ -607,7 +618,7 @@
 				,url: "/infra/product/deleteWishList"
 				,data : { "ifmmSeq" : "<c:out value="${sessSeq}"/>" , "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>" }
 				,success: function(response){
-					/* location.reload(); */
+					$("#btnHeart").popover('enable');
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -619,11 +630,13 @@
 			wishNy = false;
 			
 			console.log("현재 상품 찜 여부 : " + wishNy);		
-			$("#btnHeart").show();
-			$("#btnHeart_filled").hide();
+			$("#btnHeart").addClass("btn-outline-danger");
+			$("#btnHeart").removeClass("btn-danger");
+			
+		}
+						
 			
 	});
-	
 	</script>
 	
 	
@@ -651,12 +664,6 @@
 	
 	$(function(){
 		$("#btnCart").popover('disable');
-		
-		if(!"<c:out value="${sessSeq}"/>"){
-			$("#btnHeart").popover('disable');
-		} else {
-			$("#btnHeart").popover('enable');
-		}
 		
 		$("#btnShare").popover('enable');
 		
