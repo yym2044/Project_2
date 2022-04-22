@@ -17,6 +17,9 @@
 						 -->
 					</ul>
 				</div>
+				<div class="col text-center">
+					<h3 id="timeNow"></h3>
+				</div>
 				<div class="col d-flex justify-content-end">
 					<ul class="nav">
 
