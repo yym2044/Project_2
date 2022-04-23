@@ -89,6 +89,8 @@ public class Product {
 	private String[] trprFullNameArray;
 	private Integer[] trctQuantityArray;
 	
+	private Integer totalProduct;
+	private Integer totalDelivery;
 	private Integer totalMoney;
 	
 	//스프링에 파일을 올리기 위해
@@ -643,6 +645,18 @@ public class Product {
 	}
 	public void setTotalMoney(Integer totalMoney) {
 		this.totalMoney = totalMoney;
+	}
+	public Integer getTotalProduct() {
+		return totalProduct;
+	}
+	public void setTotalProduct(Integer totalProduct) {
+		this.totalProduct = totalProduct;
+	}
+	public Integer getTotalDelivery() {
+		return totalDelivery;
+	}
+	public void setTotalDelivery(Integer totalDelivery) {
+		this.totalDelivery = totalDelivery;
 	}
 	
 }
