@@ -107,6 +107,16 @@ public class ProductController {
 	@RequestMapping(value = "/product/productCheckOut2")
 	public String productCheckOut2(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
+		vo.setIfmmSeq(dto.getIfmmSeq());
+		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
+			vo.setTrprSeq(dto.getCheckboxTrprArray()[i]);
+			service.deleteCartGeneral(vo);
+		}
+		
+//		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
+//			System.out.println("ㅏㅇ아ㅏ아아앙" + dto.getCheckboxTrprArray()[i]);
+//		}
+		
 		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
 		
 		return "product/productCheckOut2";
