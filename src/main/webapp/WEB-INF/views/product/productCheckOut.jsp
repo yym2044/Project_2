@@ -124,6 +124,7 @@ td {
 				<p class="col-12 p-0 mb-0 fw-bold fs-5">배송 1건 중 1</p>
 				<div class="col p-0 pt-2">
 					<div class="table-responsive">
+						<input type="text" id="checkboxTrprArray" name="checkboxTrprArray" value="<c:out value="${rtProductSeq}"/>">
 						<table class="table table-sm p-0">
 							<tr>
 								<td colspan="2" class="bg-light px-2">
@@ -134,7 +135,7 @@ td {
 							<c:forEach var="i" begin="0" end="${fn:length(dto.checkboxTrprArray)-1}">
 							<tr>
 								<td class="productName px-2">
-								<input type="hidden" name="checkboxTrprArray" value="<c:out value="${rtProductSeq[i]}"/>">
+								<%-- <input type="text" name="checkboxTrprArray" value="<c:out value="${rtProductSeq[i]}"/>"> --%>
 								<c:out value="${rtProductName[i]}"/>
 								</td>
 								<td class="text-end px-2" style="font-weight: lighter;">수량 <c:out value="${rtProductQuantity[i]}"/>개 / 무료배송</td>
@@ -198,6 +199,9 @@ td {
 	<%@include file="../include/jsLinks.jsp" %>
 	
 	<script type="text/javascript">
+	
+	$("#checkboxTrprArray").val(JSON.parse($("#checkboxTrprArray").val()));
+	
 	goPurchase = function(){
 		$("#formCheck1").attr("action", "/infra/product/productCheckOut2").submit();
 	}
