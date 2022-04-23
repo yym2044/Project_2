@@ -34,6 +34,7 @@ td {
 		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 		<input type="hidden" name="checkboxTrprArray">
 		<input type="hidden" name="trprFullNameArray">
+		<input type="hidden" name="trctQuantityArray">
 		
 
 	<div class="container-fluid">
@@ -116,7 +117,7 @@ td {
 														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
 														<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
 														<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
-														<input id="trctQuantity${status.index}" name="trctQuantityArray" type="text" value="${item.trctQuantity}" style="width: 38px;">
+														<input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
 													</div>
 													<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
 														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
@@ -243,7 +244,7 @@ td {
 	});
 	
 	
-	$("input[name=trctQuantityArray]").each(function(i){
+	$("input[name=trctQuantity]").each(function(i){
 		$("#trctQuantity" + i).spinner({
 			min: 1
 			, spin : function(event, ui){
@@ -281,7 +282,7 @@ td {
 		})
 	});
 	
-	$("input[name=checkboxTrpr]").on("change",function(){
+	$("input[name=checkboxTrpr], #checkboxAll").on("change",function(){
 		$("#priceQuantityTotal").children().remove();
 		$("#moneyTotal").children().remove();
 		$("#deliveryFeeTotal").children().remove();
@@ -374,6 +375,7 @@ td {
 	//체크박스 다수를 담을 배열
 	var checkboxTrprArray = [];
 	var trprFullNameArray = [];
+	var trctQuantityArray = [];
 	
 	$("#btnCheckOut").on("click", function(){
 		if($("input[name=checkboxTrpr]:checked").length == 0){
@@ -387,11 +389,13 @@ td {
 			for(var i=0; i<$("input[name=checkboxTrpr]").length; i++){
 				if($("#checkboxTrpr" + i).is(":checked")){
 					trprFullNameArray.push($("#trprFullName" + i).val());
+					trctQuantityArray.push($("#trctQuantity" + i).val());
 				}
 			}
 			
 			$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
 			$("input:hidden[name=trprFullNameArray]").val(trprFullNameArray);
+			$("input:hidden[name=trctQuantityArray]").val(trctQuantityArray);
 			
 			/* console.log(checkboxTrprArray);
 			console.log(trprFullNameArray); */
