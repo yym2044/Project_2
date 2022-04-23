@@ -275,7 +275,7 @@ td {
 				allMoneyWithComma = addComma(String(allMoney));
 				
 				$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
-				$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>");
+				$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span><input type='hidden' name='totalMoney' value='" + allMoney + "'>");
 			}
 		})
 	});
@@ -313,7 +313,7 @@ td {
 		 */
 		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
 		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span>");
-		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>");
+		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span><input type='hidden' name='totalMoney' value='" + allMoney + "'>");
 	});
 	/* 
 	$("input[name=checkboxTrpr]").each(function(i){

@@ -89,6 +89,7 @@ public class Product {
 	private String[] trprFullNameArray;
 	private Integer[] trctQuantityArray;
 	
+	private Integer totalMoney;
 	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
@@ -636,6 +637,12 @@ public class Product {
 	}
 	public void setTrprFullNameArray(String[] trprFullNameArray) {
 		this.trprFullNameArray = trprFullNameArray;
+	}
+	public Integer getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(Integer totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 	
 }
