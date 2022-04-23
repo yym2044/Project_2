@@ -90,7 +90,7 @@ td {
 										<tr style="height: 120px;">
 											<td class="px-3 text-start" style="width: 50px;">
 												<input id="checkboxTrpr${status.index}" name="checkboxTrpr" class="form-check-input" type="checkbox" value="${item.trprSeq}">
-												<input id="trprFullName${status.index}" name="trprFullName" type="hidden" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ${item.trprOptionChildName2}</c:if><c:if test="${!empty item.trprOptionChildName3}"> ${item.trprOptionChildName3}</c:if>">
+												<input id="trprFullName${status.index}" name="trprFullName" type="hidden" value="<c:out value="${item.trpdName}"/><c:if test="${!empty item.trprOptionChildName1}"> ，${item.trprOptionChildName1}</c:if><c:if test="${!empty item.trprOptionChildName2}"> ，${item.trprOptionChildName2}</c:if>	<c:if test="${!empty item.trprOptionChildName3}"> ，${item.trprOptionChildName3}</c:if>">
 											</td>
 											<td class="px-2" style="width: 94px;">
 												<img src="${item.path}${item.uuidName}" style="width: 78px;">
@@ -211,27 +211,36 @@ td {
 	
 	<script type="text/javascript">
 	
+	var allTotalPrice = 0; // 체크박스당 상품가격 * 상품수량
+	var allDeliveryFee = 0; // 체크박스당 배송비
+	var allMoney = 0; // 두 변수의 합계 (총 결제금액)
+	
+	var allTotalPriceWithComma = "";
+	var allDeliveryFeeWithComma = "";
+	var allMoneyWithComma = "";
+	
 	function addComma(value){
         value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return value; 
     };
-	
 	$(document).ready(function(){
-		var allTotalPrice = 0;
-		var allDeliveryFee = 0;
 		$("input[name=priceQuantityHidden]").each(function(i){
-			allTotalPrice += Number($(this).val());
-			allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+			if($("#checkboxTrpr" + i).is(":checked")){
+				allTotalPrice += Number($(this).val());
+				allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+			}
 		});
-		var allMoney = allTotalPrice + allDeliveryFee;
-		var allTotalPriceWithComma = addComma(String(allTotalPrice));
-		var allDeliveryFeeWithComma = addComma(String(allDeliveryFee));
-		var allMoneyWithComma = addComma(String(allMoney));
+		allMoney = allTotalPrice + allDeliveryFee; // 두 변수의 합계 (총 결제금액)
+		
+		allTotalPriceWithComma = addComma(String(allTotalPrice));
+		allDeliveryFeeWithComma = addComma(String(allDeliveryFee));
+		allMoneyWithComma = addComma(String(allMoney));
 		
 		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
 		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span>");
 		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>")
-	});	
+	});
+	
 	
 	$("input[name=trctQuantityArray]").each(function(i){
 		$("#trctQuantity" + i).spinner({
@@ -253,9 +262,11 @@ td {
 				
 				$("#priceQuantityHidden" + i).val(totalPrice);
 				
-				$("input[name=priceQuantityHidden]").each(function(){
-					allTotalPrice += Number($(this).val());
-					allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+				$("input[name=priceQuantityHidden]").each(function(i){
+					if($("#checkboxTrpr" + i).is(":checked")){
+						allTotalPrice += Number($(this).val());
+						allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+					}
 				});
 				
 				allTotalPriceWithComma = addComma(String(allTotalPrice));
@@ -267,8 +278,51 @@ td {
 				$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>");
 			}
 		})
-	})
+	});
 	
+	$("input[name=checkboxTrpr]").on("change",function(){
+		$("#priceQuantityTotal").children().remove();
+		$("#moneyTotal").children().remove();
+		$("#deliveryFeeTotal").children().remove();
+		
+		allTotalPrice = 0;
+		allDeliveryFee = 0;
+		allMoney = 0;
+		
+		$("input[name=checkboxTrpr]").each(function(i){
+			if($("#checkboxTrpr" + i).is(":checked")){
+				
+				/* 
+				console.log($("#priceQuantityHidden" + i).val());
+				console.log($("#trctDeliveryFee" + i).val()); 
+				*/
+				
+				allTotalPrice += Number($("#priceQuantityHidden" + i).val());
+				allDeliveryFee += Number($("#trctDeliveryFee" + i).val());
+				allMoney += Number($("#priceQuantityHidden" + i).val()) + Number($("#trctDeliveryFee" + i).val());
+				
+			}
+		});
+		allTotalPriceWithComma = addComma(String(allTotalPrice));
+		allDeliveryFeeWithComma = addComma(String(allDeliveryFee));
+		allMoneyWithComma = addComma(String(allMoney));
+		/* 
+		console.log("물품 : " , allPriceQuantityWithComma);
+		console.log("배송비 : " , allDeliveryFeeWithComma);
+		console.log("합계 : " , allTotalPriceWithComma);
+		 */
+		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
+		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span>");
+		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span>");
+	});
+	/* 
+	$("input[name=checkboxTrpr]").each(function(i){
+		$(this).on("change", function(){
+			alert($("#priceQuantityHidden" + i).val());
+			alert($("#trctDeliveryFee" + i).val());
+		});
+	})
+	 */
 	</script>
 	
 	<script type="text/javascript">
@@ -337,6 +391,9 @@ td {
 			
 			$("input:hidden[name=checkboxTrprArray]").val(checkboxTrprArray);
 			$("input:hidden[name=trprFullNameArray]").val(trprFullNameArray);
+			
+			/* console.log(checkboxTrprArray);
+			console.log(trprFullNameArray); */
 			
 			$("#formCart").attr("action", "/infra/product/productCheckOut").submit();
 		}
