@@ -251,6 +251,7 @@ td {
 				$("#priceQuantity1_" + i).children().remove();
 				$("#priceQuantity2_" + i).children().remove();
 				$("#priceQuantityTotal").children().remove();
+				$("#deliveryFeeTotal").children().remove();
 				$("#moneyTotal").children().remove();
 				
 				var totalPrice = ui.value * Number($("#trctDiscountPrice" + i).val());	//숫자형
@@ -276,7 +277,8 @@ td {
 				allMoney = allTotalPrice + allDeliveryFee;
 				allMoneyWithComma = addComma(String(allMoney));
 				
-				$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
+				$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span><input type='hidden' name='totalProduct' value='" + allTotalPrice + "'>");
+				$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span><input type='hidden' name='totalDelivery' value='" + allDeliveryFee + "'>");
 				$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span><input type='hidden' name='totalMoney' value='" + allMoney + "'>");
 			}
 		})
@@ -313,8 +315,8 @@ td {
 		console.log("배송비 : " , allDeliveryFeeWithComma);
 		console.log("합계 : " , allTotalPriceWithComma);
 		 */
-		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span>");
-		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span>");
+		$("#priceQuantityTotal").append("<span>" + allTotalPriceWithComma + "</span><input type='hidden' name='totalProduct' value='" + allTotalPrice + "'>");
+		$("#deliveryFeeTotal").append("<span>" + allDeliveryFeeWithComma + "</span><input type='hidden' name='totalDelivery' value='" + allDeliveryFee + "'>");
 		$("#moneyTotal").append("<span>" + allMoneyWithComma + "</span><input type='hidden' name='totalMoney' value='" + allMoney + "'>");
 	});
 	/* 

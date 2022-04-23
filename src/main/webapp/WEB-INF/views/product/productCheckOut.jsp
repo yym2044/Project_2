@@ -124,11 +124,11 @@ td {
 				<p class="col-12 p-0 mb-0 fw-bold fs-5">배송 1건 중 1</p>
 				<div class="col p-0 pt-2">
 					<div class="table-responsive">
-						<input type="text" id="checkboxTrprArray" name="checkboxTrprArray" value="<c:out value="${rtProductSeq}"/>">
+						<input type="hidden" id="checkboxTrprArray" name="checkboxTrprArray" value="<c:out value="${rtProductSeq}"/>">
 						<table class="table table-sm p-0">
 							<tr>
 								<td colspan="2" class="bg-light px-2">
-									<span class="arrivalDate">내일(월) 3/28</span>
+									<span id="arrivalDate" class="arrivalDate">내일(월) 3/28</span>
 									도착 보장
 								</td>
 							</tr>
@@ -153,7 +153,7 @@ td {
 						<table class="table table-sm p-0 border-top border-3">
 							<tr>
 								<th class="bg-light px-2">총상품가격</th>
-								<td class="px-2"><fmt:formatNumber value="${dto.totalMoney}"/>원<input type="hidden" name="totalMoney" value="${dto.totalMoney}"></td>
+								<td class="px-2"><fmt:formatNumber value="${dto.totalProduct}"/>원<input type="hidden" name="totalProduct" value="${dto.totalProduct}"></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">할인쿠폰</th>
@@ -161,7 +161,7 @@ td {
 							</tr>
 							<tr>
 								<th class="bg-light px-2">배송비</th>
-								<td class="px-2">0원</td>
+								<td class="px-2"><fmt:formatNumber value="${dto.totalDelivery}"/>원<input type="hidden" name="totalDelivery" value="${dto.totalDelivery}"></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">쿠팡캐시</th>
@@ -197,6 +197,25 @@ td {
 
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
+	
+	<script type="text/javascript">
+	
+	const arrivalDate = document.querySelector("#arrivalDate");
+	
+	const today = new Date();
+	const tomorrow = new Date(today.setDate(today.getDate() + 1));
+	
+	const month = tomorrow.getMonth() + 1;
+	const date = tomorrow.getDate();
+	const day = tomorrow.getDay();
+	let weekDay = "";
+	
+	if(day == 0) weekDay = "일"; else if(day == 1) weekDay = "월"; else if(day == 2) weekDay = "화"; else if(day == 3) weekDay = "수";
+	else if(day == 4) weekDay = "목"; else if(day == 5) weekDay = "금"; else if(day == 6) weekDay = "토";
+	
+	arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
+	
+	</script>
 	
 	<script type="text/javascript">
 	

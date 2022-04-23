@@ -142,11 +142,11 @@ td {
 	<script type="text/javascript">
 	const orderDate = document.querySelector("#orderDate");
 	
-	const dateTime = new Date();
+	const today = new Date();
 
-	const year = String(dateTime.getFullYear());
-	const month = String(dateTime.getMonth() + 1);
-	const date = String(dateTime.getDate());
+	const year = String(today.getFullYear());
+	const month = String(today.getMonth() + 1);
+	const date = String(today.getDate());
 	orderDate.innerText = year + "-" + month + "-" + date;
 	
 	

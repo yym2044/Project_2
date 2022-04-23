@@ -108,7 +108,13 @@
 		
 		<form id="formView" method="post" action="/infra/product/productSearch">
 			<input id="ifmmSeq" name="ifmmSeq" type="hidden" value="${sessSeq}">
-
+			<input type="hidden" name="checkboxTrprArray" id="trprSeqValue" placeholder="trprSeq">
+			<input type="hidden" id="trprFullNameArray" name="trprFullNameArray" placeholder="trprFullName" value="${rt.trpdName}" style="width: 500px;">
+			<input type="hidden" id="trctQuantityArray" name="trctQuantityArray" placeholder="trctQuantity" value="1">
+			<input type="hidden" id="totalProduct" name="totalProduct" placeholder="상품*수량">
+			<input type="hidden" id="totalDelivery" name="totalDelivery" placeholder="배송비" value="${rt.trpdDeliveryFee}">
+			<input type="hidden" id="totalMoney" name="totalMoney" placeholder="합계">
+			<input type="hidden" id="trprDiscountPrice" placeholder="trprDiscountPrice">
 
 			<%@include file="../include/coupangTopBar.jsp"%>
 
@@ -185,7 +191,7 @@
 									</span>
 								</p>
 							</div>
-							<input type="hidden" id="trprSeqValue">
+							
 							<div class="col-3 text-end">
 								<button id="btnHeart" type="button" class="btn btn-outline-danger rounded-circle" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="
 								<div class='row p-1 text-center'>
@@ -301,7 +307,7 @@
 								">장바구니 담기</a>
 							</div>
 							<div class="col p-0">
-								<a href="/infra/product/productCheckOut" class="btn btn-primary w-100 rounded-0">바로 구매 ></a>
+								<a id="btnCheckOut" class="btn btn-primary w-100 rounded-0">바로 구매 ></a>
 							</div>
 						</div>
 						<div class="row m-1 py-2">
@@ -726,6 +732,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
 					  ,success: function(data){
 							console.log(data.trprSeq + " " + data.trprListPrice);
+							$("#trprDiscountPrice").val(data.trprDiscountPrice);
 							$("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
@@ -733,6 +740,11 @@
 						}
 				  });
 				 //
+				 
+				 var select1 = document.querySelector("#trprOptionChildCd1");
+				 
+				 $("#trprFullNameArray").val("<c:out value="${rt.trpdName}"/>" + "，" + select1.options[select1.selectedIndex].text);
+				 
 			} else {
 				$("#btnCart").popover('disable');
 			}
@@ -753,6 +765,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
 					  ,success: function(data){
 							console.log(data.trprSeq + " " + data.trprListPrice);
+							$("#trprDiscountPrice").val(data.trprDiscountPrice);
 							$("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
@@ -760,6 +773,13 @@
 						}
 				  });
 				 //
+				 
+				 var select1 = document.querySelector("#trprOptionChildCd1");
+				 var select2 = document.querySelector("#trprOptionChildCd2");
+
+				 $("#trprFullNameArray").val("<c:out value="${rt.trpdName}"/>" + "，" + select1.options[select1.selectedIndex].text + "，" + select2.options[select2.selectedIndex].text);
+				 
+				 
 			} else {
 				$("#btnCart").popover('disable');
 			}
@@ -780,6 +800,7 @@
 					  ,data : { "trpdSeq" : "<c:out value="${vo.trpdSeq}"/>", "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
 					  ,success: function(data){
 						  console.log(data.trprSeq + " " + data.trprListPrice);
+						  $("#trprDiscountPrice").val(data.trprDiscountPrice);
 						  $("#trprSeqValue").val(data.trprSeq);
 					  }
 					  ,error : function(jqXHR, textStatus, errorThrown){
@@ -787,6 +808,13 @@
 						}
 				  });
 				 //
+				 
+				 var select1 = document.querySelector("#trprOptionChildCd1");
+				 var select2 = document.querySelector("#trprOptionChildCd2");
+				 var select3 = document.querySelector("#trprOptionChildCd3");
+				 
+				 $("#trprFullNameArray").val("<c:out value="${rt.trpdName}"/>" + "，" + select1.options[select1.selectedIndex].text + "，" + select2.options[select2.selectedIndex].text + "，" + select3.options[select3.selectedIndex].text);
+				 
 			} else {
 				$("#btnCart").popover('disable');
 			}
@@ -884,6 +912,37 @@
 		
 	});
 	
+	$("#btnCheckOut").on("click", function(){
+		
+		if(!"<c:out value="${sessSeq}"/>"){
+			alert("로그인 시 이용가능합니다.");
+			return false;
+		}
+		
+		if(opCount == 0){
+			// by pass
+		} else if(opCount == 1){
+			if($("#trprOptionChildCd1").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
+			}
+		} else if(opCount == 2){
+			if($("#trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
+			}
+		} else if(opCount == 3){
+			if($("#trprOptionChildCd1").val() == 0 || $("#trprOptionChildCd2").val() == 0 || $("#trprOptionChildCd3").val() == 0){
+				alert("옵션 선택을 완료해주세요.");
+				return false;
+			}
+		}
+		
+		$("#totalProduct").val($("#trprDiscountPrice").val() * $("#trorQuantity").val());
+		$("#totalMoney").val(Number($("#totalProduct").val()) + Number($("#totalDelivery").val()));
+		$("#formView").attr("action", "/infra/product/productCheckOut").submit();
+	});
+	
 	</script>
 
 	<script type="text/javascript">
@@ -915,12 +974,16 @@
 			$("#formView").attr("action", "/infra/product/productSearch");
 			$("#formView").submit();
 		});
+		
 	</script>
 	
 	<script type="text/javascript">
 	
 	$("#trorQuantity").spinner({
 		min: 1
+		, spin : function(event, ui){
+			$("#trctQuantityArray").val(ui.value);
+		}
 	});
 	
 	</script>
