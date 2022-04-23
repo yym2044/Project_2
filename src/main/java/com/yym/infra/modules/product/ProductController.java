@@ -1,5 +1,7 @@
 package com.yym.infra.modules.product;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +80,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/productCheckOut")
-	public String productCheckOut(Model model, ProductVo vo, Product dto) throws Exception {
+	public String productCheckOut(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
 		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
 		
@@ -86,16 +88,19 @@ public class ProductController {
 			System.out.println(dto.getCheckboxTrprArray()[i] + "번상품, 수량 : " + dto.getTrctQuantityArray()[i] + ", 상품이름 : " + dto.getTrprFullNameArray()[i]);
 		}
 		
-		// checkboxTrprArray, checkboxTrctQuantityArray, trprFullNameArray 에 값이 순서대로 담김
+		// checkboxTrprArray, TrctQuantityArray, trprFullNameArray 에 값이 순서대로 담김
 //		List<Product> rtProduct = new ArrayList<Product>();
 //		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
 //			rtProduct.add(dto);
 //		}
 		
-//		model.addAttribute("dto", dto);
+		List<String> rtProductSeq = new ArrayList<String>(Arrays.asList(dto.getCheckboxTrprArray()));
+		List<String> rtProductName = new ArrayList<String>(Arrays.asList(dto.getTrprFullNameArray()));
+		List<Integer> rtProductQuantity = new ArrayList<Integer>(Arrays.asList(dto.getTrctQuantityArray()));
 		
-//		List<String> rtProductName = new ArrayList<String>(Arrays.asList(dto.getTrprFullNameArray()));
-//		model.addAttribute("rtProductName", rtProductName);
+		model.addAttribute("rtProductSeq", rtProductSeq);
+		model.addAttribute("rtProductName", rtProductName);
+		model.addAttribute("rtProductQuantity", rtProductQuantity);
 		
 		return "product/productCheckOut";
 	}
