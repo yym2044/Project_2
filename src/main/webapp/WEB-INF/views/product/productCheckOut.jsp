@@ -33,6 +33,8 @@ td {
 <body>
 
 	<div class="container-fluid">
+	<form id="formCheck1" method="post" action="">
+		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 
 		<div class="row border-bottom py-3 pt-4">
 			<div class="col offset-2">
@@ -150,7 +152,7 @@ td {
 						<table class="table table-sm p-0 border-top border-3">
 							<tr>
 								<th class="bg-light px-2">총상품가격</th>
-								<td class="px-2">28,900원</td>
+								<td class="px-2"><fmt:formatNumber value="${dto.totalMoney}"/>원<input type="hidden" name="totalMoney" value="${dto.totalMoney}"></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">할인쿠폰</th>
@@ -166,7 +168,7 @@ td {
 							</tr>
 							<tr>
 								<th class="bg-light px-2">총결제금액</th>
-								<td class="px-2">28,900원</td>
+								<td class="px-2"><fmt:formatNumber value="${dto.totalMoney}"/>원<input type="hidden" name="totalMoney" value="${dto.totalMoney}"></td>
 							</tr>
 							<tr>
 								<th class="bg-light px-2">결제방법</th>
@@ -180,7 +182,7 @@ td {
 			<div class="row">
 				<div class="col text-center">
 					<a class="lh-lg btn btn-outline-danger rounded-0" href="javascript:history.back();" style="width: 200px;">취소</a>
-					<a class="lh-lg btn btn-outline-primary rounded-0" href="./productCheckOut2.html" style="width: 200px;">결제하기</a>
+					<a class="lh-lg btn btn-outline-primary rounded-0" href="javascript:goPurchase();" style="width: 200px;">결제하기</a>
 				</div>
 			</div>
 		</div>
@@ -188,12 +190,18 @@ td {
 
 
 
-
+</form>
 
 	</div>
 
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
+	
+	<script type="text/javascript">
+	goPurchase = function(){
+		$("#formCheck1").attr("action", "/infra/product/productCheckOut2").submit();
+	}
+	</script>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {

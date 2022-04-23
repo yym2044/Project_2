@@ -52,7 +52,7 @@ td {
 					주문이 완료되었습니다.
 				</div>
 				<div class="col-12 p-0 pt-2 mb-4 fw-bold" style="font-size: x-small;">
-					주문일 2022-03-28 | 주문번호 112312112
+					주문일 <span id="orderDate">2022-03-28</span> | 주문번호 <span id="orderNum">112312112</span>
 				</div>
 				<div class="col-12 p-0 pt-2">
 					<a class="btn btn-outline-primary rounded-0" href="/infra/home">계속 쇼핑하기</a>
@@ -63,23 +63,31 @@ td {
 				<div class="col-6">
 					<p class="col-2 p-0 mb-0 fw-bold fs-4 text-muted d-inline">받는 사람 정보</p>
 					<div class="col-12 p-0 pt-2">
-						<div class="table-responsive px-3 py-4 bg-light">
+						<div class="table-responsive px-3 pt-4 bg-light" style="height: 220px;">
 							<table class="table table-sm table-borderless">
 								<tr>
 									<th class="bg-light px-2">이름</th>
-									<td class="px-2">윤영민</td>
-								</tr>
-								<tr>
-									<th class="bg-light px-2">휴대폰</th>
-									<td class="px-2">010-4635-6670</td>
+									<td class="px-2"><c:out value="${rt.ifmmName}"/></td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">연락처</th>
-									<td class="px-2">031-123-4567</td>
+									<td class="px-2">
+									<c:choose>
+										<c:when test="${fn:length(rt.ifmpNumber) eq 10 }">
+											<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,6)}" />-<c:out value="${fn:substring(rt.ifmpNumber,6,10)}" />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,7)}" />-<c:out value="${fn:substring(rt.ifmpNumber,7,11)}" />
+										</c:otherwise>
+									</c:choose>
+									</td>
 								</tr>
 								<tr>
-									<th class="bg-light px-2">배송주소</th>
-									<td class="px-2">경기도 남양주시 불암로 336</td>
+									<th style="vertical-align: top;" class="bg-light px-2">배송주소</th>
+									<td class="px-2">
+									<c:out value="${rt.ifmaAddress1}"/><br>
+									<c:out value="${rt.ifmaAddress2}"/>
+									</td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">배송 요청사항</th>
@@ -90,13 +98,13 @@ td {
 					</div>
 				</div>
 				<div class="col-6">
-					<p class="col-12 p-0 mb-0 fw-bold text-muted fs-4">결제정보</p>
+					<p class="col-12 p-0 my-0 fw-bold text-muted fs-4">결제정보</p>
 					<div class="col p-0 pt-2">
-						<div class="table-responsive px-3 py-4 bg-light">
+						<div class="table-responsive px-3 pt-4 bg-light" style="height: 220px;">
 							<table class="table table-sm p-0 table-borderless">
 								<tr>
 									<th class="bg-light px-2">주문금액</th>
-									<td class="px-2 text-end">28,900원</td>
+									<td class="px-2 text-end"><fmt:formatNumber value="${dto.totalMoney}"/>원</td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">쿠폰할인</th>
@@ -112,7 +120,7 @@ td {
 								</tr>
 								<tr>
 									<th class="bg-light px-2">총결제금액</th>
-									<td class="px-2 text-end">28,900원</td>
+									<td class="px-2 text-end"><fmt:formatNumber value="${dto.totalMoney}"/>원</td>
 								</tr>
 							</table>
 						</div>
@@ -131,6 +139,25 @@ td {
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
 
+	<script type="text/javascript">
+	const orderDate = document.querySelector("#orderDate");
+	
+	const dateTime = new Date();
+
+	const year = String(dateTime.getFullYear());
+	const month = String(dateTime.getMonth() + 1);
+	const date = String(dateTime.getDate());
+	orderDate.innerText = year + "-" + month + "-" + date;
+	
+	
+	const orderNum = document.querySelector("#orderNum");
+	let randomNum = Math.floor(Math.random() * 1000000000);
+	while(randomNum > 300000000 || randomNum < 100000000){
+		randomNum = Math.floor(Math.random() * 1000000000);
+	}
+	orderNum.innerText = randomNum;
+	
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

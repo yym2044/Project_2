@@ -105,8 +105,9 @@ public class ProductController {
 		return "product/productCheckOut";
 	}
 	@RequestMapping(value = "/product/productCheckOut2")
-	public String productCheckOut2() throws Exception {
+	public String productCheckOut2(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
+		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
 		
 		return "product/productCheckOut2";
 	}
