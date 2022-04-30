@@ -663,6 +663,10 @@
 		$("#formView").attr("action", "/infra/product/cartGeneral").submit();
 	});
 	
+	goWishList = function(){
+		$("#formView").attr("action", "/infra/product/cartWishlist").submit();
+	}
+	
 	</script>
 
 	

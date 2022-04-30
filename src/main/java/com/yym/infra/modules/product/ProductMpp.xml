@@ -590,6 +590,17 @@
 	WHERE 1=1
 		AND a.ifmmSeq = #{ifmmSeq}
 	</select>
+	
+	<select id="selectListMemberAddress" resultMap="resultMapObj">
+	SELECT
+		ifmaDefaultNy
+		, ifmaAddress1
+		, ifmaAddress2
+	FROM
+		infrMemberAddress
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+	</select>
 	<!-- 
 	<update id="updateListProductCheckOut">
 	UPDATE

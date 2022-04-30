@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 
-	private String optionMethod;
+	private Integer optionMethod;
 	
 	
 	
@@ -18,6 +18,7 @@ public class Product {
 	private String ifmpNumber;
 	private String ifmaAddress1;
 	private String ifmaAddress2;
+	private Integer ifmaDefaultNy;
 	
 	//상품
 	private String trpdSeq;
@@ -586,10 +587,10 @@ public class Product {
 	public void setTrprOptionChildName3(String trprOptionChildName3) {
 		this.trprOptionChildName3 = trprOptionChildName3;
 	}
-	public String getOptionMethod() {
+	public Integer getOptionMethod() {
 		return optionMethod;
 	}
-	public void setOptionMethod(String optionMethod) {
+	public void setOptionMethod(Integer optionMethod) {
 		this.optionMethod = optionMethod;
 	}
 	public String getIfmmName() {
@@ -657,6 +658,12 @@ public class Product {
 	}
 	public void setTotalDelivery(Integer totalDelivery) {
 		this.totalDelivery = totalDelivery;
+	}
+	public Integer getIfmaDefaultNy() {
+		return ifmaDefaultNy;
+	}
+	public void setIfmaDefaultNy(Integer ifmaDefaultNy) {
+		this.ifmaDefaultNy = ifmaDefaultNy;
 	}
 	
 }

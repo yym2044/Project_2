@@ -305,12 +305,16 @@
 
 	<%@include file="./include/footer.jsp"%>
 	<%@include file="./include/jsLinks.jsp"%>
-	
+		
 	<script type="text/javascript">
 	
 	$("#btnMyCart").on("click", function(){
 		$("#formHome").attr("action", "/infra/product/cartGeneral").submit();
 	});
+	
+	goWishList = function(){
+		$("#formHome").attr("action", "/infra/product/cartWishlist").submit();
+	}
 	
 	</script>
 
