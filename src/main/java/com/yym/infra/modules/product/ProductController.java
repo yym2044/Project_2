@@ -83,7 +83,7 @@ public class ProductController {
 	public String productCheckOut(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
 		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
-		model.addAttribute("listAddress", service.selectListMemberAddress(vo));
+		model.addAttribute("listShippingAddress", service.selectListShippingAddress(vo));
 		
 		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
 			System.out.println(dto.getCheckboxTrprArray()[i] + "번상품, 수량 : " + dto.getTrctQuantityArray()[i] + ", 상품이름 : " + dto.getTrprFullNameArray()[i]);
@@ -105,6 +105,36 @@ public class ProductController {
 		
 		return "product/productCheckOut";
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/product/insertShippingAddress")
+//	public Map<String, Object> insertShippingAddress(Product dto) throws Exception {
+//		
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		
+//		if(service.insertShippingAddress(dto)>0) {
+//			returnMap.put("rt", "success");
+//		} else {
+//			returnMap.put("rt", "fail");
+//		}
+//		
+//		return returnMap;
+//	}
+	@ResponseBody
+	@RequestMapping(value = "/product/insertShippingAddress")
+	public Product insertShippingAddress(Product dto) throws Exception {
+		
+		Product rt = new Product();
+		
+		if(service.insertShippingAddress(dto)>0) {
+			rt = service.selectOneLastShippingAddress();
+		} else {
+			rt = null;
+		}
+		
+		return rt;
+	}
+	
 	@RequestMapping(value = "/product/productCheckOut2")
 	public String productCheckOut2(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
@@ -144,6 +174,7 @@ public class ProductController {
 		
 		return "product/cartRegularDelivery";
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/product/insertCartGeneral")

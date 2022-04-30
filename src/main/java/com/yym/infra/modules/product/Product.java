@@ -20,6 +20,14 @@ public class Product {
 	private String ifmaAddress2;
 	private Integer ifmaDefaultNy;
 	
+	//배송지
+	private String ifsaName;
+	private String ifsaAddress1;
+	private String ifsaAddress2;
+	private String ifsaZipCode;
+	private String ifsaContact;
+	private Integer ifsaDefaultNy;
+	
 	//상품
 	private String trpdSeq;
 	private String trpdPid;
@@ -664,6 +672,42 @@ public class Product {
 	}
 	public void setIfmaDefaultNy(Integer ifmaDefaultNy) {
 		this.ifmaDefaultNy = ifmaDefaultNy;
+	}
+	public String getIfsaAddress1() {
+		return ifsaAddress1;
+	}
+	public void setIfsaAddress1(String ifsaAddress1) {
+		this.ifsaAddress1 = ifsaAddress1;
+	}
+	public String getIfsaAddress2() {
+		return ifsaAddress2;
+	}
+	public void setIfsaAddress2(String ifsaAddress2) {
+		this.ifsaAddress2 = ifsaAddress2;
+	}
+	public String getIfsaZipCode() {
+		return ifsaZipCode;
+	}
+	public void setIfsaZipCode(String ifsaZipCode) {
+		this.ifsaZipCode = ifsaZipCode;
+	}
+	public String getIfsaContact() {
+		return ifsaContact;
+	}
+	public void setIfsaContact(String ifsaContact) {
+		this.ifsaContact = ifsaContact;
+	}
+	public Integer getIfsaDefaultNy() {
+		return ifsaDefaultNy;
+	}
+	public void setIfsaDefaultNy(Integer ifsaDefaultNy) {
+		this.ifsaDefaultNy = ifsaDefaultNy;
+	}
+	public String getIfsaName() {
+		return ifsaName;
+	}
+	public void setIfsaName(String ifsaName) {
+		this.ifsaName = ifsaName;
 	}
 	
 }

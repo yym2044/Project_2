@@ -591,15 +591,59 @@
 		AND a.ifmmSeq = #{ifmmSeq}
 	</select>
 	
-	<select id="selectListMemberAddress" resultMap="resultMapObj">
+	<select id="selectListShippingAddress" resultMap="resultMapObj">
 	SELECT
-		ifmaDefaultNy
-		, ifmaAddress1
-		, ifmaAddress2
+		ifsaName
+		, ifsaAddress1
+		, ifsaAddress2
+		, ifsaZipCode
+		, ifsaContact
+		, ifsaDefaultNy
 	FROM
-		infrMemberAddress
+		infrShippingAddress
 	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
+		AND ifsaDelNy = 0
+	</select>
+	
+	<insert id="insertShippingAddress">
+	INSERT INTO
+	infrShippingAddress (
+		ifmmSeq
+		, ifsaName
+		, ifsaAddress1
+		, ifsaAddress2
+		, ifsaZipCode
+		, ifsaContact
+		, ifsaDefaultNy
+		, ifsaDelNy
+		<include refid="insertRegMod"/>
+	) VALUES (
+		#{ifmmSeq}
+		, #{ifsaName}
+		, #{ifsaAddress1}
+		, #{ifsaAddress2}
+		, #{ifsaZipCode}
+		, #{ifsaContact}
+		, #{ifsaDefaultNy}
+		, 0
+		<include refid="insertRegModValue"/>
+	)
+	</insert>
+	
+	<select id="selectOneLastShippingAddress" resultMap="resultMapObj">
+	SELECT 
+		ifsaName
+		, ifsaAddress1
+		, ifsaAddress2
+		, ifsaZipCode
+		, ifsaContact
+		, ifsaDefaultNy
+	FROM 
+		infrShippingAddress
+	ORDER BY 
+		ifsaSeq DESC 
+	LIMIT 1
 	</select>
 	<!-- 
 	<update id="updateListProductCheckOut">
