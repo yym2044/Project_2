@@ -139,10 +139,10 @@ td {
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">배송지 선택</h5>
+								<h5 style="padding-left: 190px;" class="modal-title" id="exampleModalLabel">배송지 선택</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body px-5">
 								<div class="row">
 									<c:forEach items="${listAddress}" var="item" varStatus="status">
 										<div class="col-12">
@@ -160,7 +160,7 @@ td {
 									</c:forEach>
 								</div>
 							</div>
-							<div class="modal-footer">
+							<div class="modal-footer px-5">
 								<button type="button" class="btn btn-primary w-100">배송지 추가</button>
 							</div>
 						</div>
@@ -171,12 +171,38 @@ td {
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">배송 요청사항</h5>
+								<h5 style="padding-left: 170px;" class="modal-title" id="exampleModalLabel">배송 요청사항</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
 								<div class="row">
 									<p class="py-3" style="background-color: #FFF5C1">사회적 거리두기를 위해, 모든 배송을 비대면으로 진행합니다.<br>'직접 받고 부재 시 문 앞'을 선택해도 문 앞으로 배송합니다.</p>
+								</div>
+								<div class="d-flex align-items-center border px-2">
+									<input id="trorDeliveryRequest1" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="">
+									<label class="form-check-label btn w-100 text-start" for="trorDeliveryRequest1">문 앞</label>
+								</div>
+								<div class="d-flex align-items-center border px-2">
+									<input id="trorDeliveryRequest2" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="">
+									<label class="form-check-label btn w-100 text-start" for="trorDeliveryRequest2">직접 받고 부재 시 문 앞</label>
+								</div>
+								<div class="d-flex align-items-center border px-2">
+									<input id="trorDeliveryRequest3" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="">
+									<label class="form-check-label btn w-100 text-start" for="trorDeliveryRequest3">경비실</label>
+								</div>
+								<div class="d-flex align-items-center border px-2">
+									<input id="trorDeliveryRequest4" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="">
+									<label class="form-check-label btn w-100 text-start" for="trorDeliveryRequest4">택배함</label>
+								</div>
+								<div id="trorDeliveryRequest4Input" class="bg-light border p-2">
+									<input type="text" class="form-control" placeholder="택배함 번호(필수)">
+								</div>
+								<div class="d-flex align-items-center border px-2">
+									<input id="trorDeliveryRequest5" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="">
+									<label class="form-check-label btn w-100 text-start" for="trorDeliveryRequest5">기타사항</label>
+								</div>
+								<div id="trorDeliveryRequest5Input" class="bg-light border p-2">
+									<input type="text" class="form-control" placeholder="장소만 입력(필수)">
 								</div>
 							</div>
 							<div class="modal-footer">
