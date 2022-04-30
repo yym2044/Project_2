@@ -41,8 +41,16 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectOneMemberCheckOut(vo);
 	}
 	@Override
-	public List<Product> selectListMemberAddress(ProductVo vo) throws Exception {
-		return dao.selectListMemberAddress(vo);
+	public List<Product> selectListShippingAddress(ProductVo vo) throws Exception {
+		return dao.selectListShippingAddress(vo);
+	}
+	@Override
+	public int insertShippingAddress(Product dto) throws Exception {
+		return dao.insertShippingAddress(dto);
+	}
+	@Override
+	public Product selectOneLastShippingAddress() throws Exception {
+		return dao.selectOneLastShippingAddress();
 	}
 	@Override
 	public int insertCartGeneral(Product dto) throws Exception {
