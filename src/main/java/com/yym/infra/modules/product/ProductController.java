@@ -83,6 +83,7 @@ public class ProductController {
 	public String productCheckOut(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
 		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
+		model.addAttribute("listAddress", service.selectListMemberAddress(vo));
 		
 		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
 			System.out.println(dto.getCheckboxTrprArray()[i] + "번상품, 수량 : " + dto.getTrctQuantityArray()[i] + ", 상품이름 : " + dto.getTrprFullNameArray()[i]);

@@ -35,6 +35,7 @@
 			<exclude-mapping path="/login/loginFindId" />
 			<exclude-mapping path="/login/loginFindPwd" />
 			<exclude-mapping path="/home" />
+			<exclude-mapping path="/index" />
 			<exclude-mapping path="/product/productSearch" />
 			<exclude-mapping path="/product/productView" />
 			<exclude-mapping path="/product/selectOneProduct_Real" />

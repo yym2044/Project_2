@@ -14,9 +14,9 @@
 			, ifctName
 			, ifctParents
 			, ifctDepth
-            , ifctOrder
-            , ifctUrl
-            , shCategoryNy
+	           , ifctOrder
+	           , ifctUrl
+	           , shCategoryNy
 		FROM
 			infrCategory
 		WHERE 1 = 1
@@ -24,7 +24,7 @@
 			AND ifctDelNy = 0
 		ORDER BY
 			ifctDepth
-            , ifctParents
+	           , ifctParents
 			, ifctOrder
 	</select>
 	

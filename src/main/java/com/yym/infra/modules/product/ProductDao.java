@@ -24,6 +24,7 @@ public class ProductDao {
 	public int insertCartGeneral(Product dto) {return sqlSession.insert(namespace + ".insertCartGeneral", dto); }
 	public int deleteCartGeneral(ProductVo vo) {return sqlSession.delete(namespace + ".deleteCartGeneral", vo); }
 	public Product selectOneMemberCheckOut(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectOneMemberCheckOut", vo); }
+	public List<Product> selectListMemberAddress(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListMemberAddress", vo); }
 	
 	public Product selectOne(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo); }
 	public List<Product> selectListOptions(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListOptions", vo); }

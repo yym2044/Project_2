@@ -6,3 +6,4 @@
 <script src="${path}/resources/common/js/category.js"></script>
 <script src="${path}/resources/common/js/stickySideBar.js"></script>
 <script src="${path}/resources/common/js/clock.js"></script>
+<script src="${path}/resources/common/js/validation.js"></script>

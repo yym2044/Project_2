@@ -305,7 +305,7 @@ height: 100%;
 
 			<section class="main-content">
 				<article class="p-4">
-					<h1 class="fw-bold">상품등록 <span class="fs-6 fw-bold text-danger" style="vertical-align: middle;">Ο 필수항목</span></h1>
+					<h1 class="fw-bold mb-3">상품등록 <span class="fs-6 fw-bold text-danger" style="vertical-align: middle;">Ο 필수항목</span></h1>
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold" class="fw-bold">노출상품명 <span class="text-danger">Ο</span></h6>
@@ -371,10 +371,10 @@ height: 100%;
 						<div class="col">
 							<h6 class="fw-bold">옵션 <span class="text-danger">Ο</span></h6>
 							<div class="input-group input-group-sm mb-2">
-								<input type="radio" value="옵션상품 등록" class="btn-check" name="optionMethod" id="optionPlural" autocomplete="off" checked>
+								<input type="radio" class="btn-check" name="optionMethod" value="1" id="optionPlural" autocomplete="off" checked>
 								<label class="btn btn-outline-primary" for="optionPlural">옵션상품 등록</label>
 								
-								<input type="radio" value="단일상품 등록" class="btn-check" name="optionMethod" id="optionSingular" autocomplete="off">
+								<input type="radio" class="btn-check" name="optionMethod" value="2" id="optionSingular" autocomplete="off">
 								<label class="btn btn-outline-primary" for="optionSingular">단일상품 등록</label>
 							</div>
 							<div id="optionPluralForm">
@@ -402,16 +402,16 @@ height: 100%;
 										<td class="pt-3" style="width: 100px; vertical-align: top;">옵션 입력</td>
 										<td class="text-start">
 											<div class="mb-1" id="option1">
-												<input id="optionName1" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-												<input id="optionValue1" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+												<input id="optionName1" type="text" class="optionName form-control d-inline" placeholder="옵션명(예:색상)" style="width: 200px;">
+												<input data-bs-toggle="tooltip" data-bs-placement="right" title=",로 구분해주세요" id="optionValue1" type="text" class="optionValue form-control d-inline" placeholder="옵션값 (예:블루,레드)" style="width: 400px;">
 											</div>
 											<div class="mb-1" id="option2">
-												<input id="optionName2" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-												<input id="optionValue2" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+												<input id="optionName2" type="text" class="optionName form-control d-inline" placeholder="옵션명(예:사이즈)" style="width: 200px;">
+												<input data-bs-toggle="tooltip" data-bs-placement="right" title=",로 구분해주세요" id="optionValue2" type="text" class="optionValue form-control d-inline" placeholder="옵션값 (예:S,M,L)" style="width: 400px;">
 											</div>
 											<div class="mb-1" id="option3">
-												<input id="optionName3" type="text" class="form-control d-inline" placeholder="옵션명" style="width: 200px;">
-												<input id="optionValue3" type="text" class="form-control d-inline" placeholder="옵션값 ( ,로 구분 )" style="width: 400px;">
+												<input id="optionName3" type="text" class="optionName form-control d-inline" placeholder="옵션명(예:타입)" style="width: 200px;">
+												<input data-bs-toggle="tooltip" data-bs-placement="right" title=",로 구분해주세요" id="optionValue3" type="text" class="optionValue form-control d-inline" placeholder="옵션값 (예:A타입,B타입)" style="width: 400px;">
 											</div>
 											<button id="btnGetOp" name="btnGetOp" type="button" class="btn btn-primary mt-1" style="width: 200px;"><i class="bi bi-chevron-down"></i> 옵션목록으로 적용</button>
 										</td>
@@ -484,10 +484,10 @@ height: 100%;
 									</thead>
 									<tbody id="singleTbody">
 										<tr>
-											<td class="p-0"><input id="trpdNameCopy" type="text" class="fullWH borderX text-center box-white" readonly></td>
-											<td class="p-0"><input id="trprListPriceArraySingle" name="trprListPriceArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
-											<td class="p-0"><input id="trprDiscountPriceArraySingle" name="trprDiscountPriceArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
-											<td class="p-0"><input id="trprStockArraySingle" name="trprStockArray" type="text" class="optionSingularArray fullWH borderX text-center"></td>
+											<td class="p-0 px-1"><input id="trpdNameCopy" type="text" class="fullWH borderX text-center box-white" readonly></td>
+											<td class="p-0 px-1"><input id="trprListPriceArraySingle" name="trprListPriceArray" type="text" class="form-control optionSingularArray fullWH borderX text-center"></td>
+											<td class="p-0 px-1"><input id="trprDiscountPriceArraySingle" name="trprDiscountPriceArray" type="text" class="form-control optionSingularArray fullWH borderX text-center"></td>
+											<td class="p-0 px-1"><input id="trprStockArraySingle" name="trprStockArray" type="text" class="form-control optionSingularArray fullWH borderX text-center"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -583,7 +583,7 @@ height: 100%;
 					
 					<div class="row">
 						<div class="col">
-							<button id="btnSubmit" name="btnSubmit" class="btn btn-primary">등록</button>
+							<button id="btnSubmit" name="btnSubmit" type="button" class="btn btn-primary">등록</button>
 						</div>
 					</div>
 					
@@ -870,6 +870,27 @@ height: 100%;
 	
 	$("#btnGetOp").on("click", function(){
 		
+		if(!checkNull($("#trpdPrice"), $("#trpdPrice").val(),"기본 가격을 입력해주세요.")) return false;
+		if(!checkOnlyNumber($("#trpdPrice"),$("#trpdPrice").val(), "잘못된 값입니다.")) return false;
+		
+		if($("#optionN").val() == 1){
+			if(!checkNull($("#optionName1"), $("#optionName1").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue1"), $("#optionValue1").val(),"옵션값을 입력해주세요.")) return false;
+		} else if($("#optionN").val() == 2){
+			if(!checkNull($("#optionName1"), $("#optionName1").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue1"), $("#optionValue1").val(),"옵션값을 입력해주세요.")) return false;
+			if(!checkNull($("#optionName2"), $("#optionName2").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue2"), $("#optionValue2").val(),"옵션값을 입력해주세요.")) return false;
+		} else if($("#optionN").val() == 3){
+			if(!checkNull($("#optionName1"), $("#optionName1").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue1"), $("#optionValue1").val(),"옵션값을 입력해주세요.")) return false;
+			if(!checkNull($("#optionName2"), $("#optionName2").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue2"), $("#optionValue2").val(),"옵션값을 입력해주세요.")) return false;
+			if(!checkNull($("#optionName3"), $("#optionName3").val(),"옵션명을 입력해주세요.")) return false;
+			if(!checkNull($("#optionValue3"), $("#optionValue3").val(),"옵션값을 입력해주세요.")) return false;
+		}
+			
+		
 		$("#divOptNav").show();
 		$("#btnPrevious").click();
 		$("#optionList1").show();
@@ -956,7 +977,7 @@ height: 100%;
 				insertTr2 += "<tr>";
 				insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input' tabindex='-1'></td>";
 				insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionValue[i]) + "</td>";
-				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center' readonly></td>";
 				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
 				insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 				insertTr2 += "</tr>";
@@ -1039,7 +1060,7 @@ height: 100%;
 					insertTr2 += "<td style='vertical-align: middle;'><input name='checkbox2' type='checkbox' class='form-check-input' tabindex='-1'></td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 					insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
-					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center' readonly></td>";
 					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
 					insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 					insertTr2 += "</tr>";
@@ -1138,7 +1159,7 @@ height: 100%;
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV1[i]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV2[j]) + "</td>";
 						insertTr2 += "<td style='vertical-align: middle;'>" + $.trim(optionV3[k]) + "</td>";
-						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center'></td>";
+						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input id='trprListPriceArray" + (i+1) + "_" + (j+1) + "_" + (k+1) + "' name='trprListPriceArray' type='text' class='fullWH borderX text-center' readonly></td>";
 						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprDiscountPriceArray' type='text' class='fullWH borderX text-center'></td>";
 						insertTr2 += "<td class='p-0' style='vertical-align: middle;'><input name='trprStockArray' type='text' class='fullWH borderX text-center'></td>";
 						insertTr2 += "</tr>";
@@ -1220,6 +1241,38 @@ height: 100%;
 	
 	<script type="text/javascript">
 	$("#btnSubmit").on("click", function(){
+		
+		if(!checkNull($("#trpdName"), $("#trpdName").val(), "상품명을 입력해주세요.")){
+			return false;
+		}
+		
+		if($("#categorySearch").is(":checked")){
+			if(!checkNull($("#shNameString"), $("#shNameString").val(), "카테고리를 입력해주세요.")){
+				return false;
+			}
+		} else if($("#categorySelect").is(":checked")) {
+			if(!checkNull($("#trpdCategoryCd1"), $("#trpdCategoryCd1").val(), "1차 카테고리를 선택해주세요.")){
+				return false;
+			}
+			if(!checkNull($("#trpdCategoryCd2"), $("#trpdCategoryCd2").val(), "2차 카테고리를 선택해주세요.")){
+				return false;
+			}
+			if(!checkNull($("#trpdCategoryCd3"), $("#trpdCategoryCd3").val(), "3차 카테고리를 선택해주세요.")){
+				return false;
+			}
+		}
+		if($("#optionPlural").is(":checked")){
+			
+		} else if($("#optionSingular").is(":checked")){
+			if(!checkNull($("#trprListPriceArraySingle"),$("#trprListPriceArraySingle").val(), "정상가를 입력해주세요.")) return false;
+			if(!checkOnlyNumber($("#trprListPriceArraySingle"),$("#trprListPriceArraySingle").val(), "잘못된 값입니다.")) return false;
+			if(!checkNull($("#trprDiscountPriceArraySingle"),$("#trprDiscountPriceArraySingle").val(), "판매가를 입력해주세요.")) return false;
+			if(!checkOnlyNumber($("#trprDiscountPriceArraySingle"),$("#trprDiscountPriceArraySingle").val(), "잘못된 값입니다.")) return false;
+			if(!checkNull($("#trprStockArraySingle"),$("#trprStockArraySingle").val(), "재고수량을 입력해주세요.")) return false;
+			if(!checkOnlyNumber($("#trprStockArraySingle"),$("#trprStockArraySingle").val(), "잘못된 값입니다.")) return false;
+		}
+	
+		
 		$("#formForm").attr("action", "/infra/product/productInst");
 		$("#formForm").submit();
 		
@@ -1340,6 +1393,10 @@ height: 100%;
 		}
 	});
 	
+	$("#trpdName").on("change", function(){
+		$("#trpdNameCopy").val($("#trpdName").val());
+	});
+	
 	$(document).ready(function() {
 		if($("#optionN").val() == 1){
 			$("#option2").hide();
@@ -1350,6 +1407,10 @@ height: 100%;
 	});
 	
 	$("#optionN").on("change", function() {
+		
+		$("input.optionName").removeClass("is-invalid");
+		$("input.optionValue").removeClass("is-invalid");
+		
 		if($("#optionN").val() == 1){
 			$("#option2").hide();
 			$("#option3").hide();
@@ -1436,6 +1497,12 @@ height: 100%;
 	</script>
 	<!-- textarea에 editor 적용 end -->
 	
+	<script type="text/javascript">
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	  return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
+	</script>
 
 </body>
 </html>

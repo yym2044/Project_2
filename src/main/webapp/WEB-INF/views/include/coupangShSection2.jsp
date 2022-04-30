@@ -43,7 +43,7 @@
 
 			<div class="col">
 
-				<div class="row">
+				<div class="row d-flex align-items-center">
 					<div class="col-2">
 						<a href="/infra/home" title="COUPANG">
 							<img src="${path}/resources/images/user/mainPage/coupang2.png" style="width: 175px;">
@@ -68,14 +68,25 @@
 						</div>
 					</div>
 					<div class="col">
-						<button type="button" >
-							<i class="bi bi-person"></i>
-							<div class="btnText">마이쿠팡</div>
-						</button>
-						<button id="btnMyCart" type="button" >
-							<i class="bi bi-cart4"></i>
-							<div class="btnText">장바구니</div>
-						</button>
+						<ul class="nav">
+							<li class="nav-item dropdown">
+								<a class="btn borderX dropdown">
+									<i class="bi bi-person fs-3"></i><br>
+									<span class="btnText">마이쿠팡</span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item">주문목록</a></li>
+									<li><a class="dropdown-item">취소/반품</a></li>
+									<li><a href="javascript:goWishList();" class="dropdown-item">찜 리스트</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a id="btnMyCart" class="btn borderX">
+									<i class="bi bi-cart4 fs-3"></i><br>
+									<span class="btnText">장바구니</span>
+								</a>
+							</li>
+						</ul>
 					</div>
 
 				</div>

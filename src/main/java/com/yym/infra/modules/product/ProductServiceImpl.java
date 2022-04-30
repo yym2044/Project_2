@@ -41,6 +41,10 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectOneMemberCheckOut(vo);
 	}
 	@Override
+	public List<Product> selectListMemberAddress(ProductVo vo) throws Exception {
+		return dao.selectListMemberAddress(vo);
+	}
+	@Override
 	public int insertCartGeneral(Product dto) throws Exception {
 		
 		dao.insertCartGeneral(dto);
@@ -90,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		
 		
-		if(dto.getOptionMethod() == "옵션상품 등록") {
+		if(dto.getOptionMethod() == 1) {
 			
 			dao.insertProduct(dto);
 			//

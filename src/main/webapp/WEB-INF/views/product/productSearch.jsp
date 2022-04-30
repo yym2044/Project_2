@@ -401,6 +401,10 @@
 		$("#formSearch").attr("action", "/infra/product/cartGeneral").submit();
 	});
 	
+	goWishList = function(){
+		$("#formSearch").attr("action", "/infra/product/cartWishlist").submit();
+	}
+	
 	</script>	
 
 	<script type="text/javascript">
