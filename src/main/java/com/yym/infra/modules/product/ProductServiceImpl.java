@@ -70,10 +70,6 @@ public class ProductServiceImpl implements ProductService {
 		return dao.deleteShippingAddress(dto);
 	}
 	@Override
-	public Product selectOneLastShippingAddress() throws Exception {
-		return dao.selectOneLastShippingAddress();
-	}
-	@Override
 	public int insertCartGeneral(Product dto) throws Exception {
 		
 		dao.insertCartGeneral(dto);
