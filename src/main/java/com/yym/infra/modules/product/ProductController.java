@@ -121,6 +121,15 @@ public class ProductController {
 //		return returnMap;
 //	}
 	@ResponseBody
+	@RequestMapping(value = "/product/selectOneShippingAddress")
+	public Product selectOneShippingAddress(ProductVo vo) throws Exception {
+		
+		Product rt = service.selectOneShippingAddress(vo);
+
+		return rt;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/product/insertShippingAddress")
 	public Product insertShippingAddress(Product dto) throws Exception {
 		
@@ -128,6 +137,21 @@ public class ProductController {
 		
 		if(service.insertShippingAddress(dto)>0) {
 			rt = service.selectOneLastShippingAddress();
+		} else {
+			rt = null;
+		}
+		
+		return rt;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/updateShippingAddress")
+	public List<Product> updateShippingAddress(Product dto, ProductVo vo) throws Exception {
+		
+		List<Product> rt = new ArrayList<Product>();
+		
+		if(service.updateShippingAddress(dto)>0) {
+			rt = service.selectListShippingAddress(vo);
 		} else {
 			rt = null;
 		}

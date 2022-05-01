@@ -593,17 +593,34 @@
 	
 	<select id="selectListShippingAddress" resultMap="resultMapObj">
 	SELECT
-		ifsaName
+		ifsaSeq
+		, ifsaName
 		, ifsaAddress1
 		, ifsaAddress2
 		, ifsaZipCode
 		, ifsaContact
 		, ifsaDefaultNy
-		, ifsaSetNy
 	FROM
 		infrShippingAddress
 	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
+		AND ifsaDelNy = 0
+	</select>
+	
+	<select id="selectOneShippingAddress" resultMap="resultMapObj">
+	SELECT
+		ifsaSeq
+		, ifsaName
+		, ifsaAddress1
+		, ifsaAddress2
+		, ifsaZipCode
+		, ifsaContact
+		, ifsaDefaultNy
+	FROM
+		infrShippingAddress
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+		AND ifsaSeq = #{ifsaSeq}
 		AND ifsaDelNy = 0
 	</select>
 	
@@ -617,7 +634,6 @@
 		, ifsaZipCode
 		, ifsaContact
 		, ifsaDefaultNy
-		, ifsaSetNy
 		, ifsaDelNy
 		<include refid="insertRegMod"/>
 	) VALUES (
@@ -628,11 +644,25 @@
 		, #{ifsaZipCode}
 		, #{ifsaContact}
 		, #{ifsaDefaultNy}
-		, 1
 		, 0
 		<include refid="insertRegModValue"/>
 	)
 	</insert>
+	
+	<update id="updateShippingAddress">
+	UPDATE
+		infrShippingAddress
+	SET
+		ifsaName = #{ifsaNameEdit}
+		, ifsaAddress1 = #{ifsaAddress1Edit}
+		, ifsaAddress2 = #{ifsaAddress2Edit}
+		, ifsaZipCode = #{ifsaZipCodeEdit}
+		, ifsaContact = #{ifsaContactEdit}
+		, ifsaDefaultNy = #{ifsaDefaultNyEdit}
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+		AND ifsaSeq = #{ifsaSeqEdit}
+	</update>
 	
 	<select id="selectOneLastShippingAddress" resultMap="resultMapObj">
 	SELECT 

@@ -27,14 +27,14 @@ td {
 	text-align: left;
 	vertical-align: middle;
 }
-
 </style>
 
 </head>
 <body>
 
+	<!-- 기본 배송지 세팅 -->
 	<c:forEach items="${listShippingAddress}" var="item" varStatus="status">
-		<c:if test="${item.ifsaSetNy eq 1}">
+		<c:if test="${item.ifsaDefaultNy eq 1}">
 			<c:set var="ifsaName" value="${item.ifsaName}"/>
 			<c:set var="ifsaAddress1" value="${item.ifsaAddress1}"/>
 			<c:set var="ifsaAddress2" value="${item.ifsaAddress2}"/>
@@ -42,6 +42,7 @@ td {
 			<c:set var="ifsaContact" value="${item.ifsaContact}"/>
 		</c:if>
 	</c:forEach>
+
 
 	<div class="container-fluid">
 		<form id="formCheck1" method="post" action="">
@@ -101,62 +102,104 @@ td {
 				<div class="row py-3">
 					<p class="col-2 p-0 mb-0 fw-bold fs-5 d-inline">받는 사람 정보</p>
 					<c:choose>
-<%-- 						<c:when test="${fn:length(listShippingAddress) eq 0}"> --%>
-						<c:when test="${empty ifsaName}">
-							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>						
+						<c:when test="${fn:length(listShippingAddress) eq 0}">
+							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>
 						</c:when>
 						<c:otherwise>
-							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>						
+							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>
 						</c:otherwise>
 					</c:choose>
 					<div class="col-12 p-0 pt-2">
 						<c:choose>
-<%-- 							<c:when test="${fn:length(listShippingAddress) eq 0}"> --%>
-							<c:when test="${empty ifsaName}">
+							<c:when test="${fn:length(listShippingAddress) eq 0}">
 								<div style="height: 120px;" class="border-top border-3 border-bottom d-flex justify-content-center align-items-center">
 									<p style="font-size: small">저장되어 있는 배송지가 없습니다. 배송지를 추가해주세요.</p>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="table-responsive">
-									<table class="table table-sm p-0 border-top border-3">
-										<tr>
-											<th class="bg-light px-2">이름</th>
-											<td class="px-2">
-												<c:out value="${rt.ifmmName}" />
-												<span class="badge rounded-pill bg-primary">기본배송지</span>
-											</td>
-										</tr>
-										<tr>
-											<th class="bg-light px-2">배송주소</th>
-											<td class="px-2">
-												<c:out value="${rt.ifmaAddress1}" />
-												<br>
-												<c:out value="${rt.ifmaAddress2}" />
-											</td>
-										</tr>
-										<tr>
-											<th class="bg-light px-2">연락처</th>
-											<td class="px-2">
-												<c:choose>
-													<c:when test="${fn:length(rt.ifmpNumber) eq 10 }">
-														<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,6)}" />-<c:out value="${fn:substring(rt.ifmpNumber,6,10)}" />
-													</c:when>
-													<c:otherwise>
-														<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,7)}" />-<c:out value="${fn:substring(rt.ifmpNumber,7,11)}" />
-													</c:otherwise>
-												</c:choose>
-											</td>
-										</tr>
-										<tr>
-											<th class="bg-light px-2">배송 요청사항</th>
-											<td class="px-2">
-												<span id="deliveryRequestSpan" class="pe-3">문 앞</span>
-												<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button>
-											</td>
-										</tr>
-									</table>
-								</div>
+								<c:choose>
+									<c:when test="${empty ifsaName}">
+										<div class="table-responsive">
+											<table class="table table-sm p-0 border-top border-3">
+												<tr>
+													<th class="bg-light px-2">이름</th>
+													<td class="px-2">
+														<c:out value="${listShippingAddress[0].ifsaName}" />
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">배송주소</th>
+													<td class="px-2">
+														<c:out value="${listShippingAddress[0].ifsaAddress1}" />
+														<br>
+														<c:out value="${listShippingAddress[0].ifsaAddress2}" />
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">연락처</th>
+													<td class="px-2">
+														<c:choose>
+															<c:when test="${fn:length(listShippingAddress[0].ifsaContact) eq 10 }">
+																<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,0,3)}" />-<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,3,6)}" />-<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,6,10)}" />
+															</c:when>
+															<c:otherwise>
+																<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,0,3)}" />-<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,3,7)}" />-<c:out value="${fn:substring(listShippingAddress[0].ifsaContact,7,11)}" />
+															</c:otherwise>
+														</c:choose>
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">배송 요청사항</th>
+													<td class="px-2">
+														<span id="deliveryRequestSpan" class="pe-3">문 앞</span>
+														<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="table-responsive">
+											<table class="table table-sm p-0 border-top border-3">
+												<tr>
+													<th class="bg-light px-2">이름</th>
+													<td class="px-2">
+														<c:out value="${ifsaName}" />
+														<span class="badge rounded-pill bg-primary">기본배송지</span>
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">배송주소</th>
+													<td class="px-2">
+														<c:out value="${ifsaAddress1}" />
+														<br>
+														<c:out value="${ifsaAddress2}" />
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">연락처</th>
+													<td class="px-2">
+														<c:choose>
+															<c:when test="${fn:length(ifsaContact) eq 10 }">
+																<c:out value="${fn:substring(ifsaContact,0,3)}" />-<c:out value="${fn:substring(ifsaContact,3,6)}" />-<c:out value="${fn:substring(ifsaContact,6,10)}" />
+															</c:when>
+															<c:otherwise>
+																<c:out value="${fn:substring(ifsaContact,0,3)}" />-<c:out value="${fn:substring(ifsaContact,3,7)}" />-<c:out value="${fn:substring(ifsaContact,7,11)}" />
+															</c:otherwise>
+														</c:choose>
+													</td>
+												</tr>
+												<tr>
+													<th class="bg-light px-2">배송 요청사항</th>
+													<td class="px-2">
+														<span id="deliveryRequestSpan" class="pe-3">문 앞</span>
+														<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -173,13 +216,18 @@ td {
 							<div class="modal-body px-5">
 								<div class="row">
 									<div class="input-group flex-nowrap mb-2">
-										<span class="input-group-text"><i class="bi bi-person"></i></span>
+										<span class="input-group-text">
+											<i class="bi bi-person"></i>
+										</span>
 										<input id="ifsaName" name="ifsaName" type="text" class="form-control" placeholder="받는 사람">
 									</div>
 									<div class="input-group flex-nowrap">
-										<span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+										<span class="input-group-text">
+											<i class="bi bi-geo-alt"></i>
+										</span>
 										<input id="ifsaZipCode" name="ifsaZipCode" type="text" class="form-control" placeholder="우편번호" readonly>
-										<button type="button" class="btn btn-sm btn-outline-primary" id="btnAddress">우편번호 검색</button>	<!--  onclick="sample6_execDaumPostcode()" -->
+										<button type="button" class="btn btn-sm btn-outline-primary" id="btnAddress">우편번호 검색</button>
+										<!--  onclick="sample6_execDaumPostcode()" -->
 										<button type="button" class="btn btn-outline-danger" id="btnAddressClear">X</button>
 									</div>
 									<div class="input-group flex-nowrap">
@@ -189,13 +237,15 @@ td {
 										<input id="ifsaAddress2" name="ifsaAddress2" type="text" class="form-control" placeholder="상세주소">
 									</div>
 									<div class="input-group flex-nowrap mb-2">
-										<span class="input-group-text"><i class="bi bi-phone"></i></span>
+										<span class="input-group-text">
+											<i class="bi bi-phone"></i>
+										</span>
 										<input id="ifsaContact" name="ifsaContact" type="text" class="form-control" placeholder="연락처">
 									</div>
 									<div class="form-check-inline">
 										<input id="ifsaDefault" name="ifsaDefault" type="checkbox" class="form-check-input">
 										<input type="hidden" id="ifsaDefaultNy" name="ifsaDefaultNy" value="0">
-										<label for="ifsaDefaultNy" class="form-check-label">기본 배송지로 선택</label>
+										<label for="ifsaDefault" class="form-check-label">기본 배송지로 선택</label>
 									</div>
 								</div>
 							</div>
@@ -207,6 +257,60 @@ td {
 				</div>
 				
 				
+				<div class="modal fade" id="addressEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addressModal"><i class="bi bi-arrow-left"></i></button>
+								<h5 style="padding-left: 140px;" class="modal-title" id="exampleModalLabel">배송지 수정</h5>
+								<button type="button" class="btn-close pe-5" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body px-5">
+								<div class="row">
+									<div class="input-group flex-nowrap mb-2">
+										<span class="input-group-text">
+											<i class="bi bi-person"></i>
+										</span>
+										<input id="ifsaSeqEdit" name="ifsaSeqEdit" type="hidden">
+										<input id="ifsaNameEdit" name="ifsaNameEdit" type="text" class="form-control" placeholder="받는 사람">
+									</div>
+									<div class="input-group flex-nowrap">
+										<span class="input-group-text">
+											<i class="bi bi-geo-alt"></i>
+										</span>
+										<input id="ifsaZipCodeEdit" name="ifsaZipCodeEdit" type="text" class="form-control" placeholder="우편번호" readonly>
+										<button type="button" class="btn btn-sm btn-outline-primary" id="btnAddress">우편번호 검색</button>
+										<!--  onclick="sample6_execDaumPostcode()" -->
+										<button type="button" class="btn btn-outline-danger" id="btnAddressClearEdit">X</button>
+									</div>
+									<div class="input-group flex-nowrap">
+										<input id="ifsaAddress1Edit" name="ifsaAddress1Edit" type="text" class="form-control" placeholder="주소" readonly>
+									</div>
+									<div class="input-group flex-nowrap mb-2">
+										<input id="ifsaAddress2Edit" name="ifsaAddress2Edit" type="text" class="form-control" placeholder="상세주소">
+									</div>
+									<div class="input-group flex-nowrap mb-2">
+										<span class="input-group-text">
+											<i class="bi bi-phone"></i>
+										</span>
+										<input id="ifsaContactEdit" name="ifsaContactEdit" type="text" class="form-control" placeholder="연락처">
+									</div>
+									<div class="form-check-inline">
+										<input id="ifsaDefaultEdit" name="ifsaDefaultEdit" type="checkbox" class="form-check-input">
+										<input type="hidden" id="ifsaDefaultNyEdit" name="ifsaDefaultNyEdit" value="0">
+										<label for="ifsaDefaultEdit" class="form-check-label">기본 배송지로 선택</label>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer px-5">
+								<a type="button" class="btn btn-primary w-100" href="javascript:updateShippingAddress();">저장</a>
+								<a type="button" class="btn text-danger border w-100" href="javascript:deleteShippingAddress();">삭제</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
 				<div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -220,12 +324,30 @@ td {
 										<div class="col-12">
 											<div class="card" style="width: 100%;">
 												<div class="card-body">
-													<h5 class="card-title"><c:out value="${item.ifsaName}"/><c:if test="${item.ifsaDefaultNy eq 1}"><span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span></c:if></h5>
-													<p class="card-text"><c:out value="${item.ifsaAddress1}"/>, <c:out value="${item.ifsaAddress2}"/></p>
-													<p class="card-text"><c:out value="${item.ifsaContact}"/></p>
+													<h5 class="card-title">
+														<c:out value="${item.ifsaName}" />
+														<c:if test="${item.ifsaDefaultNy eq 1}">
+															<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>
+														</c:if>
+													</h5>
+													<p class="card-text">
+														<c:out value="${item.ifsaAddress1}" />
+														,
+														<c:out value="${item.ifsaAddress2}" />
+													</p>
+													<p class="card-text">
+														<c:choose>
+															<c:when test="${fn:length(item.ifsaContact) eq 10 }">
+																<c:out value="${fn:substring(item.ifsaContact,0,3)}" />-<c:out value="${fn:substring(item.ifsaContact,3,6)}" />-<c:out value="${fn:substring(item.ifsaContact,6,10)}" />
+															</c:when>
+															<c:otherwise>
+																<c:out value="${fn:substring(item.ifsaContact,0,3)}" />-<c:out value="${fn:substring(item.ifsaContact,3,7)}" />-<c:out value="${fn:substring(item.ifsaContact,7,11)}" />
+															</c:otherwise>
+														</c:choose>
+													</p>
 													<div class="d-flex justify-content-between">
-														<a href="#" class="card-link btn text-primary border">수정</a>
-														<a href="#" class="card-link btn btn-primary">선택</a>
+														<a href="javascript:callAddressEditModal(${item.ifsaSeq});" class="card-link btn text-primary border">수정</a>
+														<a href="javascript:applyShippingAddress(${item.ifsaSeq});" class="card-link btn btn-primary">선택</a>
 													</div>
 												</div>
 											</div>
@@ -234,12 +356,12 @@ td {
 								</div>
 							</div>
 							<div class="modal-footer px-5">
-								<button type="button" class="btn btn-primary w-100">배송지 추가</button>
+								<button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal fade" id="deliveryRequestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -249,7 +371,11 @@ td {
 							</div>
 							<div class="modal-body">
 								<div class="row">
-									<p class="py-3" style="background-color: #FFF5C1">사회적 거리두기를 위해, 모든 배송을 비대면으로 진행합니다.<br>'직접 받고 부재 시 문 앞'을 선택해도 문 앞으로 배송합니다.</p>
+									<p class="py-3" style="background-color: #FFF5C1">
+										사회적 거리두기를 위해, 모든 배송을 비대면으로 진행합니다.
+										<br>
+										'직접 받고 부재 시 문 앞'을 선택해도 문 앞으로 배송합니다.
+									</p>
 								</div>
 								<div class="d-flex align-items-center border px-2">
 									<input id="trorDeliveryRequest1" name="trorDeliveryRequest" class="form-check-input m-0" type="radio" value="1" checked>
@@ -446,127 +572,239 @@ td {
 			});
 		})
 	</script>
-	
+
 	<script type="text/javascript">
-	$("#trorDeliveryRequest4Div").hide();
-	$("#trorDeliveryRequest5Div").hide();
-	
-	const checkbox = $("input[name=trorDeliveryRequest]");
-	const span = $("#deliveryRequestSpan");
-	
-	console.dir(checkbox[0]);
-	
-	checkbox.on("change",function(){
-		
-		if($(this).val() == 4){
-			$("#trorDeliveryRequest4Div").show();
-			$("#trorDeliveryRequest5Div").hide();
-		} else if($(this).val() == 5){
-			$("#trorDeliveryRequest4Div").hide();
-			$("#trorDeliveryRequest5Div").show();
-		} else {
-			$("#trorDeliveryRequest4Div").hide();
-			$("#trorDeliveryRequest5Div").hide();
-		}
-		
-	});
-	
-	saveDeliveryRequest = function(){
-		
-		if(checkbox[0].checked) {
-			deliveryRequestSpan.innerText = "문 앞";
-		} else if(checkbox[1].checked) {
-			deliveryRequestSpan.innerText = "직접 받고 부재 시 문 앞";
-		} else if(checkbox[2].checked) {
-			deliveryRequestSpan.innerText = "경비실";
-		} else if(checkbox[3].checked) {
-			if(!checkNull($("#trorDeliveryRequest4Input"), $("#trorDeliveryRequest4Input").val(), "필수 입력사항을 확인해주세요.")) {
-				return false;
+		$("#trorDeliveryRequest4Div").hide();
+		$("#trorDeliveryRequest5Div").hide();
+
+		const checkbox = $("input[name=trorDeliveryRequest]");
+		const span = $("#deliveryRequestSpan");
+
+		console.dir(checkbox[0]);
+
+		checkbox.on("change", function() {
+
+			if ($(this).val() == 4) {
+				$("#trorDeliveryRequest4Div").show();
+				$("#trorDeliveryRequest5Div").hide();
+			} else if ($(this).val() == 5) {
+				$("#trorDeliveryRequest4Div").hide();
+				$("#trorDeliveryRequest5Div").show();
 			} else {
-				deliveryRequestSpan.innerText = "택배함(" + $("#trorDeliveryRequest4Input").val() + ")";
+				$("#trorDeliveryRequest4Div").hide();
+				$("#trorDeliveryRequest5Div").hide();
 			}
-		} else if(checkbox[4].checked) {
-			if(!checkNull($("#trorDeliveryRequest5Input"), $("#trorDeliveryRequest5Input").val(), "필수 입력사항을 확인해주세요.")) {
-				return false;
-			} else {
-				deliveryRequestSpan.innerText = "기타사항(" + $("#trorDeliveryRequest5Input").val() + ")";
-			}
-		}
-		
-		$("#deliveryRequestModal").modal('hide');
-	}
-	</script>
-	
-	<script type="text/javascript">
-	setCheckboxValue = function(obj, targetObj){
-		if(obj.is(":checked")){
-			targetObj.val("1");
-		} else {
-			targetObj.val("0");
-		}
-	}
-	
-	addShippingAddress = function(){
-		
-		setCheckboxValue($("#ifsaDefault"), $("#ifsaDefaultNy"));
-		
-		let insertRow = "";
-		
-		$.ajax({
-			async: true
-			, cache: false
-			, type: "post"
-			, url: "/infra/product/insertShippingAddress"
-			, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "ifsaName" : $("#ifsaName").val(), "ifsaAddress1" : $("#ifsaAddress1").val(), "ifsaAddress2" : $("#ifsaAddress2").val(), "ifsaZipCode" : $("#ifsaZipCode").val(), "ifsaContact" : $("#ifsaContact").val(), "ifsaDefaultNy" : $("#ifsaDefaultNy").val()}
-			, success: function(response) {
-				$("#addressAddModal").modal('hide');
-				
-				console.log(response);
-				console.dir(response);
-				 
-				insertRow += "<div class='col-12'>";
-				insertRow += "<div class='card' style='width: 100%;'>";
-				insertRow += "<div class='card-body'>";
-				insertRow += "<h5 class='card-title'>";
-				insertRow += response.ifsaName;
-				if(response.ifsaDefaultNy == 1){
-					insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
-				}
-				insertRow += "</h5>";
-				insertRow += '<p class="card-text">';
-				insertRow += response.ifsaAddress1 + ", " + response.ifsaAddress2;
-				insertRow += "</p>";
-				insertRow += '<p class="card-text">';
-				insertRow += response.ifsaContact;
-				insertRow += "</p>";
-				insertRow += '<div class="d-flex justify-content-between"><a href="#" class="card-link btn text-primary border">수정</a><a href="#" class="card-link btn btn-primary">선택</a></div></div></div></div>';
-	
-				$("#addRow").append(insertRow);
-			
-				$("#addressModal").modal('show');
-				/*
-				<div class="col-12">
-					<div class="card" style="width: 100%;">
-						<div class="card-body">
-							<h5 class="card-title"><c:out value="${item.ifsaName}"/><c:if test="${item.ifsaDefaultNy eq 1}"><span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span></c:if></h5>
-							<p class="card-text"><c:out value="${item.ifsaAddress1}"/>, <c:out value="${item.ifsaAddress2}"/></p>
-							<p class="card-text"><c:out value="${item.ifsaContact}"/></p>
-							<div class="d-flex justify-content-between">
-								<a href="#" class="card-link btn text-primary border">수정</a>
-								<a href="#" class="card-link btn btn-primary">선택</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				 */
-				
-				
-			}
-			, error: function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
+
 		});
-	}
+
+		saveDeliveryRequest = function() {
+
+			if (checkbox[0].checked) {
+				deliveryRequestSpan.innerText = "문 앞";
+			} else if (checkbox[1].checked) {
+				deliveryRequestSpan.innerText = "직접 받고 부재 시 문 앞";
+			} else if (checkbox[2].checked) {
+				deliveryRequestSpan.innerText = "경비실";
+			} else if (checkbox[3].checked) {
+				if (!checkNull($("#trorDeliveryRequest4Input"), $(
+						"#trorDeliveryRequest4Input").val(), "필수 입력사항을 확인해주세요.")) {
+					return false;
+				} else {
+					deliveryRequestSpan.innerText = "택배함("
+							+ $("#trorDeliveryRequest4Input").val() + ")";
+				}
+			} else if (checkbox[4].checked) {
+				if (!checkNull($("#trorDeliveryRequest5Input"), $(
+						"#trorDeliveryRequest5Input").val(), "필수 입력사항을 확인해주세요.")) {
+					return false;
+				} else {
+					deliveryRequestSpan.innerText = "기타사항("
+							+ $("#trorDeliveryRequest5Input").val() + ")";
+				}
+			}
+
+			$("#deliveryRequestModal").modal('hide');
+		}
+	</script>
+
+	<script type="text/javascript">
+		setCheckboxValue = function(obj, targetObj) {
+			if (obj.is(":checked")) {
+				targetObj.val("1");
+			} else {
+				targetObj.val("0");
+			}
+		}
+
+		addShippingAddress = function() {
+
+			setCheckboxValue($("#ifsaDefault"), $("#ifsaDefaultNy"));
+
+			let insertRow = "";
+
+			$
+					.ajax({
+						async : true,
+						cache : false,
+						type : "post",
+						url : "/infra/product/insertShippingAddress",
+						data : {
+							"ifmmSeq" : "<c:out value="${sessSeq}"/>",
+							"ifsaName" : $("#ifsaName").val(),
+							"ifsaAddress1" : $("#ifsaAddress1").val(),
+							"ifsaAddress2" : $("#ifsaAddress2").val(),
+							"ifsaZipCode" : $("#ifsaZipCode").val(),
+							"ifsaContact" : $("#ifsaContact").val(),
+							"ifsaDefaultNy" : $("#ifsaDefaultNy").val()
+						},
+						success : function(response) {
+							$("#addressAddModal").modal('hide');
+
+							console.log(response);
+							console.dir(response);
+
+							insertRow += "<div class='col-12'>";
+							insertRow += "<div class='card' style='width: 100%;'>";
+							insertRow += "<div class='card-body'>";
+							insertRow += "<h5 class='card-title'>";
+							insertRow += response.ifsaName;
+							if (response.ifsaDefaultNy == 1) {
+								insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
+							}
+							insertRow += "</h5>";
+							insertRow += '<p class="card-text">';
+							insertRow += response.ifsaAddress1 + ", "
+									+ response.ifsaAddress2;
+							insertRow += "</p>";
+							insertRow += '<p class="card-text">';
+							insertRow += response.ifsaContact;
+							insertRow += "</p>";
+							insertRow += '<div class="d-flex justify-content-between"><a href="#" class="card-link btn text-primary border">수정</a><a href="#" class="card-link btn btn-primary">선택</a></div></div></div></div>';
+
+							$("#addRow").append(insertRow);
+
+							$("#addressModal").modal('show');
+							/*
+							<div class="col-12">
+								<div class="card" style="width: 100%;">
+									<div class="card-body">
+										<h5 class="card-title"><c:out value="${item.ifsaName}"/><c:if test="${item.ifsaDefaultNy eq 1}"><span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span></c:if></h5>
+										<p class="card-text"><c:out value="${item.ifsaAddress1}"/>, <c:out value="${item.ifsaAddress2}"/></p>
+										<p class="card-text"><c:out value="${item.ifsaContact}"/></p>
+										<div class="d-flex justify-content-between">
+											<a href="#" class="card-link btn text-primary border">수정</a>
+											<a href="#" class="card-link btn btn-primary">선택</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							 */
+
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+			
+			$("#ifsaName").val("");
+			$("#ifsaZipCode").val("");
+			$("#ifsaAddress1").val("");
+			$("#ifsaAddress2").val("");
+			$("#ifsaContact").val("");
+			$("#ifsaDefault").prop("checked", false);
+
+		}
+		
+		
+		callAddressEditModal = function(ifsaSeq){
+			$("#addressModal").modal('hide');
+			
+
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/infra/product/selectOneShippingAddress",
+				data : {
+					"ifmmSeq" : "<c:out value="${sessSeq}"/>",
+					"ifsaSeq" : ifsaSeq
+				},
+				success : function(response) {
+					console.log(response);
+					console.dir(response);
+					
+					$("#ifsaSeqEdit").val(response.ifsaSeq);
+					$("#ifsaNameEdit").val(response.ifsaName);
+					$("#ifsaZipCodeEdit").val(response.ifsaZipCode);
+					$("#ifsaAddress1Edit").val(response.ifsaAddress1);
+					$("#ifsaAddress2Edit").val(response.ifsaAddress2);
+					$("#ifsaContactEdit").val(response.ifsaContact);
+					
+					if(response.ifsaDefaultNy == 1){
+						$("#ifsaDefaultEdit").prop("checked", true);
+					} else {
+						$("#ifsaDefaultEdit").prop("checked", false);
+					}
+					
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
+			
+			$("#addressEditModal").modal('show');
+			
+		}
+		
+		updateShippingAddress = function(){
+			
+			setCheckboxValue($("#ifsaDefaultEdit"), $("#ifsaDefaultNyEdit"));
+			
+			let insertRow = "";
+			
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/infra/product/updateShippingAddress",
+				data : {
+					"ifmmSeq" : "<c:out value="${sessSeq}"/>",
+					"ifsaSeqEdit" : $("#ifsaSeqEdit").val(),
+					"ifsaNameEdit" : $("#ifsaNameEdit").val(),
+					"ifsaZipCodeEdit" : $("#ifsaZipCodeEdit").val(),
+					"ifsaAddress1Edit" : $("#ifsaAddress1Edit").val(),
+					"ifsaAddress2Edit" : $("#ifsaAddress2Edit").val(),
+					"ifsaContactEdit" : $("#ifsaContactEdit").val(),
+					"ifsaDefaultNyEdit" : $("#ifsaDefaultNyEdit").val()
+				},
+				success : function(response){
+					$("#addressEditModal").modal('hide');
+					
+					console.log(response);
+					console.dir(response);
+					
+					$("#addRow").children().remove();
+					
+					<c:forEach items="${response}" var="item" varStatus="status">
+					insertRow += "하이";
+					</c:forEach>
+					
+					$("#addRow").append(insertRow);
+					
+					$("#addressModal").modal('show');
+					
+					
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
+			
+		}
+		
 	</script>
 
 
@@ -622,12 +860,11 @@ td {
 							document.getElementById("ifsaAddress1").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
 							document.getElementById("ifsaAddress2").focus();
-							
-							
+
 						}
 					}).open();
 		}
-		
+
 		$("#btnAddress").on("click", function() {
 			sample6_execDaumPostcode();
 		});
@@ -636,6 +873,12 @@ td {
 			$("#ifsaZipCode").val('');
 			$("#ifsaAddress1").val('');
 			$("#ifsaAddress2").val('');
+		});
+		
+		$("#btnAddressClearEdit").on("click", function(){
+			$("#ifsaZipCodeEdit").val('');
+			$("#ifsaAddress1Edit").val('');
+			$("#ifsaAddress2Edit").val('');
 		});
 	</script>
 
