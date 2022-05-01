@@ -8,9 +8,6 @@ public class Product {
 
 	private Integer optionMethod;
 	
-	
-	
-	
 	//멤버
 	private String ifmmSeq;
 	private String ifmmName;
@@ -21,13 +18,22 @@ public class Product {
 	private Integer ifmaDefaultNy;
 	
 	//배송지
+	private String ifsaSeq;
 	private String ifsaName;
 	private String ifsaAddress1;
 	private String ifsaAddress2;
 	private String ifsaZipCode;
 	private String ifsaContact;
 	private Integer ifsaDefaultNy;
-	private Integer ifsaSetNy;
+	
+	//배송지 수정
+	private String ifsaSeqEdit;
+	private String ifsaNameEdit;
+	private String ifsaAddress1Edit;
+	private String ifsaAddress2Edit;
+	private String ifsaZipCodeEdit;
+	private String ifsaContactEdit;
+	private Integer ifsaDefaultNyEdit;
 	
 	//상품
 	private String trpdSeq;
@@ -710,11 +716,53 @@ public class Product {
 	public void setIfsaName(String ifsaName) {
 		this.ifsaName = ifsaName;
 	}
-	public Integer getIfsaSetNy() {
-		return ifsaSetNy;
+	public String getIfsaSeq() {
+		return ifsaSeq;
 	}
-	public void setIfsaSetNy(Integer ifsaSetNy) {
-		this.ifsaSetNy = ifsaSetNy;
+	public void setIfsaSeq(String ifsaSeq) {
+		this.ifsaSeq = ifsaSeq;
+	}
+	public String getIfsaSeqEdit() {
+		return ifsaSeqEdit;
+	}
+	public void setIfsaSeqEdit(String ifsaSeqEdit) {
+		this.ifsaSeqEdit = ifsaSeqEdit;
+	}
+	public String getIfsaNameEdit() {
+		return ifsaNameEdit;
+	}
+	public void setIfsaNameEdit(String ifsaNameEdit) {
+		this.ifsaNameEdit = ifsaNameEdit;
+	}
+	public String getIfsaAddress1Edit() {
+		return ifsaAddress1Edit;
+	}
+	public void setIfsaAddress1Edit(String ifsaAddress1Edit) {
+		this.ifsaAddress1Edit = ifsaAddress1Edit;
+	}
+	public String getIfsaAddress2Edit() {
+		return ifsaAddress2Edit;
+	}
+	public void setIfsaAddress2Edit(String ifsaAddress2Edit) {
+		this.ifsaAddress2Edit = ifsaAddress2Edit;
+	}
+	public String getIfsaZipCodeEdit() {
+		return ifsaZipCodeEdit;
+	}
+	public void setIfsaZipCodeEdit(String ifsaZipCodeEdit) {
+		this.ifsaZipCodeEdit = ifsaZipCodeEdit;
+	}
+	public String getIfsaContactEdit() {
+		return ifsaContactEdit;
+	}
+	public void setIfsaContactEdit(String ifsaContactEdit) {
+		this.ifsaContactEdit = ifsaContactEdit;
+	}
+	public Integer getIfsaDefaultNyEdit() {
+		return ifsaDefaultNyEdit;
+	}
+	public void setIfsaDefaultNyEdit(Integer ifsaDefaultNyEdit) {
+		this.ifsaDefaultNyEdit = ifsaDefaultNyEdit;
 	}
 	
 }

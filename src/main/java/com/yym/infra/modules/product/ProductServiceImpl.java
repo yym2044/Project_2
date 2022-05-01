@@ -45,8 +45,20 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectListShippingAddress(vo);
 	}
 	@Override
+	public Product selectOneShippingAddress(ProductVo vo) throws Exception {
+		return dao.selectOneShippingAddress(vo);
+	}
+	@Override
 	public int insertShippingAddress(Product dto) throws Exception {
+		
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		dto.setModDateTime(UtilDateTime.nowDate());
+		
 		return dao.insertShippingAddress(dto);
+	}
+	@Override
+	public int updateShippingAddress(Product dto) throws Exception {
+		return dao.updateShippingAddress(dto);
 	}
 	@Override
 	public Product selectOneLastShippingAddress() throws Exception {
@@ -297,6 +309,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Override
 	public int insertWishList(ProductVo vo) throws Exception {
+		
 		return dao.insertWishList(vo);
 	}
 	@Override

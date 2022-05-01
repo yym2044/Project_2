@@ -4,6 +4,7 @@ public class ProductVo {
 	
 	private String trpdSeq;
 	private String ifmmSeq;
+	private String ifsaSeq;
 	private String trctSeq;
 	private String trprSeq;
 	
@@ -219,7 +220,15 @@ public class ProductVo {
 		public void setStartRnumForMysql(int startRnumForMysql) {
 			this.startRnumForMysql = startRnumForMysql;
 		}
-	
+
+		public String getIfsaSeq() {
+			return ifsaSeq;
+		}
+
+		public void setIfsaSeq(String ifsaSeq) {
+			this.ifsaSeq = ifsaSeq;
+		}
+		
 	
 	
 	
