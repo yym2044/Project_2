@@ -131,12 +131,12 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/product/insertShippingAddress")
-	public Product insertShippingAddress(Product dto) throws Exception {
+	public List<Product> insertShippingAddress(Product dto, ProductVo vo) throws Exception {
 		
-		Product rt = new Product();
+		List<Product> rt = new ArrayList<Product>();
 		
 		if(service.insertShippingAddress(dto)>0) {
-			rt = service.selectOneLastShippingAddress();
+			rt = service.selectListShippingAddress(vo);
 		} else {
 			rt = null;
 		}

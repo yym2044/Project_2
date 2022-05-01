@@ -671,22 +671,6 @@
 		AND ifsaSeq = #{ifsaSeqEdit}
 	</delete>
 	
-	<select id="selectOneLastShippingAddress" resultMap="resultMapObj">
-	SELECT
-		ifsaSeq 
-		, ifsaName
-		, ifsaAddress1
-		, ifsaAddress2
-		, ifsaZipCode
-		, ifsaContact
-		, ifsaDefaultNy
-	FROM 
-		infrShippingAddress
-	ORDER BY 
-		ifsaSeq DESC 
-	LIMIT 1
-	</select>
-	
 	<update id="updateShippingDefaultNy">
 	UPDATE 
 		infrShippingAddress

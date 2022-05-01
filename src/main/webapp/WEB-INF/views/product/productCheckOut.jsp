@@ -659,54 +659,41 @@ td {
 							"ifsaContact" : $("#ifsaContact").val(),
 							"ifsaDefaultNy" : $("#ifsaDefaultNy").val()
 						},
-						success : function(response) {
+						success : function(list) {
 							$("#addressAddModal").modal('hide');
 
-							console.log(response);
-							console.dir(response);
+							console.log(list);
+							console.dir(list);
 
-							insertRow += "<div class='col-12'>";
-							insertRow += "<div class='card' style='width: 100%;'>";
-							insertRow += "<div class='card-body'>";
-							insertRow += "<h5 class='card-title'>";
-							insertRow += response.ifsaName;
-							if (response.ifsaDefaultNy == 1) {
-								insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
-							}
-							insertRow += "</h5>";
-							insertRow += '<p class="card-text">';
-							insertRow += response.ifsaAddress1 + ", "
-									+ response.ifsaAddress2;
-							insertRow += "</p>";
-							insertRow += '<p class="card-text">';
+							$("#addRow").children().remove();
 							
-							if(response.ifsaContact.length == 10){
-								insertRow += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,6) + "-" + response.ifsaContact.substring(6,10);
-							} else {
-								insertRow += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,7) + "-" + response.ifsaContact.substring(7,11);
-							}
+							$.each(list, function(i){
+								insertRow += '<div class="col-12">';
+								insertRow += '<div class="card" style="width: 100%;">';
+								insertRow += '<div class="card-body">';
+								insertRow += '<h5 class="card-title">';
+								insertRow += list[i].ifsaName;
+								if(list[i].ifsaDefaultNy == 1){
+								 insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
+								}
+								insertRow += '</h5>';
+								insertRow += '<p class="card-text">';
+								insertRow += list[i].ifsaAddress1 + ', ' + list[i].ifsaAddress2 + '</p>';
+								insertRow += '<p class="card-text">';
+								
+								if(list[i].ifsaContact.length == 10){
+									insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,6) + "-" + list[i].ifsaContact.substring(6,10);
+								} else {
+									insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,7) + "-" + list[i].ifsaContact.substring(7,11);
+								}
+								
+								insertRow += "</p>";
+								insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + list[i].ifsaSeq + ')" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + list[i].ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
+						   });
 							
-							insertRow += "</p>";
-							insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + response.ifsaSeq + ');" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + response.ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
-
 							$("#addRow").append(insertRow);
-
+							
 							$("#addressModal").modal('show');
-							/*
-							<div class="col-12">
-								<div class="card" style="width: 100%;">
-									<div class="card-body">
-										<h5 class="card-title"><c:out value="${item.ifsaName}"/><c:if test="${item.ifsaDefaultNy eq 1}"><span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span></c:if></h5>
-										<p class="card-text"><c:out value="${item.ifsaAddress1}"/>, <c:out value="${item.ifsaAddress2}"/></p>
-										<p class="card-text"><c:out value="${item.ifsaContact}"/></p>
-										<div class="d-flex justify-content-between">
-											<a href="#" class="card-link btn text-primary border">수정</a>
-											<a href="#" class="card-link btn btn-primary">선택</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							 */
 
 						},
 						error : function(jqXHR, textStatus, errorThrown) {

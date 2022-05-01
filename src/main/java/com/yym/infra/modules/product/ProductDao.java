@@ -30,7 +30,6 @@ public class ProductDao {
 	public int updateShippingAddress(Product dto) {return sqlSession.insert(namespace + ".updateShippingAddress", dto); }
 	public int deleteShippingAddress(Product dto) {return sqlSession.delete(namespace + ".deleteShippingAddress", dto); }
 	public int updateShippingDefaultNy(Product dto) {return sqlSession.update(namespace + ".updateShippingDefaultNy", dto); }
-	public Product selectOneLastShippingAddress() {return sqlSession.selectOne(namespace + ".selectOneLastShippingAddress", ""); }
 	
 	public Product selectOne(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo); }
 	public List<Product> selectListOptions(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListOptions", vo); }

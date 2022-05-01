@@ -15,7 +15,6 @@ public interface ProductService {
 	public int insertShippingAddress(Product dto) throws Exception;
 	public int updateShippingAddress(Product dto) throws Exception;
 	public int deleteShippingAddress(Product dto) throws Exception;
-	public Product selectOneLastShippingAddress() throws Exception;
 	public Product selectOne(ProductVo vo) throws Exception;
 	public List<Product> selectListOptions(ProductVo vo) throws Exception;
 	public List<Product> selectListUploaded(ProductVo vo) throws Exception;
