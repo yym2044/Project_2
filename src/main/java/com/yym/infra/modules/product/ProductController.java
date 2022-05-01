@@ -159,6 +159,21 @@ public class ProductController {
 		return rt;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/product/deleteShippingAddress")
+	public List<Product> deleteShippingAddress(Product dto, ProductVo vo) throws Exception {
+		
+		List<Product> rt = new ArrayList<Product>();
+		
+		if(service.deleteShippingAddress(dto)>0) {
+			rt = service.selectListShippingAddress(vo);
+		} else {
+			rt = null;
+		}
+		
+		return rt;
+	}
+	
 	@RequestMapping(value = "/product/productCheckOut2")
 	public String productCheckOut2(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
