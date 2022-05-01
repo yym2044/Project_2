@@ -679,7 +679,7 @@ td {
 							insertRow += '<p class="card-text">';
 							insertRow += response.ifsaContact;
 							insertRow += "</p>";
-							insertRow += '<div class="d-flex justify-content-between"><a href="#" class="card-link btn text-primary border">수정</a><a href="#" class="card-link btn btn-primary">선택</a></div></div></div></div>';
+							insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + response.ifsaSeq + ');" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + response.ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
 
 							$("#addRow").append(insertRow);
 
@@ -779,17 +779,31 @@ td {
 					"ifsaContactEdit" : $("#ifsaContactEdit").val(),
 					"ifsaDefaultNyEdit" : $("#ifsaDefaultNyEdit").val()
 				},
-				success : function(response){
+				success : function(list){
 					$("#addressEditModal").modal('hide');
 					
-					console.log(response);
-					console.dir(response);
+					console.log(list);
+					console.dir(list);
 					
 					$("#addRow").children().remove();
 					
-					<c:forEach items="${response}" var="item" varStatus="status">
-					insertRow += "하이";
-					</c:forEach>
+					$.each(list, function(i){
+						insertRow += '<div class="col-12">';
+						insertRow += '<div class="card" style="width: 100%;">';
+						insertRow += '<div class="card-body">';
+						insertRow += '<h5 class="card-title">';
+						insertRow += list[i].ifsaName;
+						if(list[i].ifsaDefaultNy == 1){
+						 insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
+						}
+						insertRow += '</h5>';
+						insertRow += '<p class="card-text">';
+						insertRow += list[i].ifsaAddress1 + ', ' + list[i].ifsaAddress2 + '</p>';
+						insertRow += '<p class="card-text">';
+						insertRow += list[i].ifsaContact;
+						insertRow += "</p>";
+						insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + list[i].ifsaSeq + ')" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + list[i].ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
+				   });
 					
 					$("#addRow").append(insertRow);
 					
