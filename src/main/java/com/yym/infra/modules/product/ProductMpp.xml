@@ -599,6 +599,7 @@
 		, ifsaZipCode
 		, ifsaContact
 		, ifsaDefaultNy
+		, ifsaSetNy
 	FROM
 		infrShippingAddress
 	WHERE 1=1
@@ -616,6 +617,7 @@
 		, ifsaZipCode
 		, ifsaContact
 		, ifsaDefaultNy
+		, ifsaSetNy
 		, ifsaDelNy
 		<include refid="insertRegMod"/>
 	) VALUES (
@@ -626,6 +628,7 @@
 		, #{ifsaZipCode}
 		, #{ifsaContact}
 		, #{ifsaDefaultNy}
+		, 1
 		, 0
 		<include refid="insertRegModValue"/>
 	)
