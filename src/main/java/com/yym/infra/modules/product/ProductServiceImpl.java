@@ -54,10 +54,15 @@ public class ProductServiceImpl implements ProductService {
 		dto.setRegDateTime(UtilDateTime.nowDate());
 		dto.setModDateTime(UtilDateTime.nowDate());
 		
+		dao.updateShippingDefaultNy(dto);
+		
 		return dao.insertShippingAddress(dto);
 	}
 	@Override
 	public int updateShippingAddress(Product dto) throws Exception {
+		
+		dao.updateShippingDefaultNy(dto);
+		
 		return dao.updateShippingAddress(dto);
 	}
 	@Override

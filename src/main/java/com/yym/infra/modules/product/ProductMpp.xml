@@ -68,7 +68,7 @@
 				ORDER BY trpdStarRating DESC
 			</when>
 			<when test="shSort == 'latest'">
-				ORDER BY regDateTime
+				ORDER BY a.regDateTime
 			</when>
 		</choose>
 	</sql>
@@ -686,6 +686,15 @@
 		ifsaSeq DESC 
 	LIMIT 1
 	</select>
+	
+	<update id="updateShippingDefaultNy">
+	UPDATE 
+		infrShippingAddress
+	SET 
+		ifsaDefaultNy = 0 
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq};
+	</update>
 	<!-- 
 	<update id="updateListProductCheckOut">
 	UPDATE
