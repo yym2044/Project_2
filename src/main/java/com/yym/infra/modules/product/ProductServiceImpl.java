@@ -61,6 +61,10 @@ public class ProductServiceImpl implements ProductService {
 		return dao.updateShippingAddress(dto);
 	}
 	@Override
+	public int deleteShippingAddress(Product dto) throws Exception {
+		return dao.deleteShippingAddress(dto);
+	}
+	@Override
 	public Product selectOneLastShippingAddress() throws Exception {
 		return dao.selectOneLastShippingAddress();
 	}

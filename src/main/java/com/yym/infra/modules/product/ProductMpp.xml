@@ -664,9 +664,17 @@
 		AND ifsaSeq = #{ifsaSeqEdit}
 	</update>
 	
+	<delete id="deleteShippingAddress">
+	DELETE FROM infrShippingAddress
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+		AND ifsaSeq = #{ifsaSeqEdit}
+	</delete>
+	
 	<select id="selectOneLastShippingAddress" resultMap="resultMapObj">
-	SELECT 
-		ifsaName
+	SELECT
+		ifsaSeq 
+		, ifsaName
 		, ifsaAddress1
 		, ifsaAddress2
 		, ifsaZipCode

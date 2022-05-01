@@ -35,11 +35,11 @@ td {
 	<!-- 기본 배송지 세팅 -->
 	<c:forEach items="${listShippingAddress}" var="item" varStatus="status">
 		<c:if test="${item.ifsaDefaultNy eq 1}">
-			<c:set var="ifsaName" value="${item.ifsaName}"/>
-			<c:set var="ifsaAddress1" value="${item.ifsaAddress1}"/>
-			<c:set var="ifsaAddress2" value="${item.ifsaAddress2}"/>
-			<c:set var="ifsaZipCode" value="${item.ifsaZipCode}"/>
-			<c:set var="ifsaContact" value="${item.ifsaContact}"/>
+			<c:set var="ifsaName" value="${item.ifsaName}" />
+			<c:set var="ifsaAddress1" value="${item.ifsaAddress1}" />
+			<c:set var="ifsaAddress2" value="${item.ifsaAddress2}" />
+			<c:set var="ifsaZipCode" value="${item.ifsaZipCode}" />
+			<c:set var="ifsaContact" value="${item.ifsaContact}" />
 		</c:if>
 	</c:forEach>
 
@@ -103,10 +103,10 @@ td {
 					<p class="col-2 p-0 mb-0 fw-bold fs-5 d-inline">받는 사람 정보</p>
 					<c:choose>
 						<c:when test="${fn:length(listShippingAddress) eq 0}">
-							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>
+							<a class="btn btn-primary border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>
 						</c:when>
 						<c:otherwise>
-							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>
+							<a class="btn btn-primary border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>
 						</c:otherwise>
 					</c:choose>
 					<div class="col-12 p-0 pt-2">
@@ -255,13 +255,15 @@ td {
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="modal fade" id="addressEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addressModal"><i class="bi bi-arrow-left"></i></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addressModal">
+									<i class="bi bi-arrow-left"></i>
+								</button>
 								<h5 style="padding-left: 140px;" class="modal-title" id="exampleModalLabel">배송지 수정</h5>
 								<button type="button" class="btn-close pe-5" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
@@ -677,7 +679,13 @@ td {
 									+ response.ifsaAddress2;
 							insertRow += "</p>";
 							insertRow += '<p class="card-text">';
-							insertRow += response.ifsaContact;
+							
+							if(response.ifsaContact.length == 10){
+								insertRow += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,6) + "-" + response.ifsaContact.substring(6,10);
+							} else {
+								insertRow += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,7) + "-" + response.ifsaContact.substring(7,11);
+							}
+							
 							insertRow += "</p>";
 							insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + response.ifsaSeq + ');" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + response.ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
 
@@ -800,7 +808,13 @@ td {
 						insertRow += '<p class="card-text">';
 						insertRow += list[i].ifsaAddress1 + ', ' + list[i].ifsaAddress2 + '</p>';
 						insertRow += '<p class="card-text">';
-						insertRow += list[i].ifsaContact;
+						
+						if(list[i].ifsaContact.length == 10){
+							insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,6) + "-" + list[i].ifsaContact.substring(6,10);
+						} else {
+							insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,7) + "-" + list[i].ifsaContact.substring(7,11);
+						}
+						
 						insertRow += "</p>";
 						insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + list[i].ifsaSeq + ')" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + list[i].ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
 				   });
@@ -819,6 +833,84 @@ td {
 			
 		}
 		
+		
+		
+		deleteShippingAddress = function(){
+			
+			const confirmNy = confirm("배송지를 삭제합니다.");
+			
+			if(!confirmNy){
+				
+				return false;
+				
+			} else {
+				
+				let insertRow = "";
+				
+				$.ajax({
+					async : true,
+					cache : false,
+					type : "post",
+					url : "/infra/product/deleteShippingAddress",
+					data : {
+						"ifmmSeq" : "<c:out value="${sessSeq}"/>",
+						"ifsaSeqEdit" : $("#ifsaSeqEdit").val()
+					},
+					success : function(list){
+						$("#addressEditModal").modal('hide');
+						
+						console.log(list);
+						console.dir(list);
+						
+						$("#addRow").children().remove();
+						
+						if(list.length > 0){
+							
+						$.each(list, function(i){
+							insertRow += '<div class="col-12">';
+							insertRow += '<div class="card" style="width: 100%;">';
+							insertRow += '<div class="card-body">';
+							insertRow += '<h5 class="card-title">';
+							insertRow += list[i].ifsaName;
+							if(list[i].ifsaDefaultNy == 1){
+							 insertRow += '<span class="badge rounded-pill bg-primary" style="font-size: small;">기본 배송지</span>';
+							}
+							insertRow += '</h5>';
+							insertRow += '<p class="card-text">';
+							insertRow += list[i].ifsaAddress1 + ', ' + list[i].ifsaAddress2 + '</p>';
+							insertRow += '<p class="card-text">';
+							
+							if(list[i].ifsaContact.length == 10){
+								insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,6) + "-" + list[i].ifsaContact.substring(6,10);
+							} else {
+								insertRow += list[i].ifsaContact.substring(0,3) + "-" + list[i].ifsaContact.substring(3,7) + "-" + list[i].ifsaContact.substring(7,11);
+							}
+							
+							insertRow += "</p>";
+							insertRow += '<div class="d-flex justify-content-between"><a href="javascript:callAddressEditModal(' + list[i].ifsaSeq + ')" class="card-link btn text-primary border">수정</a><a href="javascript:applyShippingAddress(' + list[i].ifsaSeq + ')" class="card-link btn btn-primary">선택</a></div></div></div></div>';
+					   });
+						
+						$("#addRow").append(insertRow);
+						
+						$("#addressModal").modal('show');
+						
+						} else {
+							
+							$("#addressAddModal").modal('show');
+							
+						}
+						
+						
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : "
+								+ jqXHR.errorThrown);
+					}
+				});
+				
+			}
+			
+		}
 	</script>
 
 
