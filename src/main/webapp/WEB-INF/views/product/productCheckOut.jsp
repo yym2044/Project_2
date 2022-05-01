@@ -33,6 +33,16 @@ td {
 </head>
 <body>
 
+	<c:forEach items="${listShippingAddress}" var="item" varStatus="status">
+		<c:if test="${item.ifsaSetNy eq 1}">
+			<c:set var="ifsaName" value="${item.ifsaName}"/>
+			<c:set var="ifsaAddress1" value="${item.ifsaAddress1}"/>
+			<c:set var="ifsaAddress2" value="${item.ifsaAddress2}"/>
+			<c:set var="ifsaZipCode" value="${item.ifsaZipCode}"/>
+			<c:set var="ifsaContact" value="${item.ifsaContact}"/>
+		</c:if>
+	</c:forEach>
+
 	<div class="container-fluid">
 		<form id="formCheck1" method="post" action="">
 			<input type="hidden" name="ifmmSeq" value="${sessSeq}">
@@ -91,7 +101,8 @@ td {
 				<div class="row py-3">
 					<p class="col-2 p-0 mb-0 fw-bold fs-5 d-inline">받는 사람 정보</p>
 					<c:choose>
-						<c:when test="${fn:length(listShippingAddress) eq 0}">
+<%-- 						<c:when test="${fn:length(listShippingAddress) eq 0}"> --%>
+						<c:when test="${empty ifsaName}">
 							<a class="btn border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>						
 						</c:when>
 						<c:otherwise>
@@ -100,7 +111,8 @@ td {
 					</c:choose>
 					<div class="col-12 p-0 pt-2">
 						<c:choose>
-							<c:when test="${fn:length(listShippingAddress) eq 0}">
+<%-- 							<c:when test="${fn:length(listShippingAddress) eq 0}"> --%>
+							<c:when test="${empty ifsaName}">
 								<div style="height: 120px;" class="border-top border-3 border-bottom d-flex justify-content-center align-items-center">
 									<p style="font-size: small">저장되어 있는 배송지가 없습니다. 배송지를 추가해주세요.</p>
 								</div>

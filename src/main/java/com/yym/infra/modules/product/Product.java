@@ -27,6 +27,7 @@ public class Product {
 	private String ifsaZipCode;
 	private String ifsaContact;
 	private Integer ifsaDefaultNy;
+	private Integer ifsaSetNy;
 	
 	//상품
 	private String trpdSeq;
@@ -708,6 +709,12 @@ public class Product {
 	}
 	public void setIfsaName(String ifsaName) {
 		this.ifsaName = ifsaName;
+	}
+	public Integer getIfsaSetNy() {
+		return ifsaSetNy;
+	}
+	public void setIfsaSetNy(Integer ifsaSetNy) {
+		this.ifsaSetNy = ifsaSetNy;
 	}
 	
 }
