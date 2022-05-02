@@ -101,15 +101,17 @@ td {
 
 				<div class="row py-3">
 					<p class="col-2 p-0 mb-0 fw-bold fs-5 d-inline">받는 사람 정보</p>
-					<c:choose>
-						<c:when test="${fn:length(listShippingAddress) eq 0}">
-							<a class="btn btn-primary border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>
-						</c:when>
-						<c:otherwise>
-							<a class="btn btn-primary border container3" style="width: 8%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>
-						</c:otherwise>
-					</c:choose>
-					<div class="col-12 p-0 pt-2">
+					<div id="ShippingAnchorDiv" class="d-inline-block" style="width: 200px;">
+						<c:choose>
+							<c:when test="${fn:length(listShippingAddress) eq 0}">
+								<a class="btn btn-primary border container3" style="width: 50%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지추가</a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn btn-primary border container3" style="width: 50%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div id="ShippingContentDiv" class="col-12 p-0 pt-2">
 						<c:choose>
 							<c:when test="${fn:length(listShippingAddress) eq 0}">
 								<div style="height: 120px;" class="border-top border-3 border-bottom d-flex justify-content-center align-items-center">
@@ -751,6 +753,66 @@ td {
 			
 			$("#addressEditModal").modal('show');
 			
+		}
+		
+		applyShippingAddress = function(ifsaSeq){
+			$("#addressModal").modal('hide');
+			
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/infra/product/selectOneShippingAddress",
+				data : {
+					"ifmmSeq" : "<c:out value="${sessSeq}"/>",
+					"ifsaSeq" : ifsaSeq
+				},
+				success : function(response) {
+					console.log(response);
+					console.dir(response);
+					
+					$("#ShippingAnchorDiv").children().remove();
+					$("#ShippingAnchorDiv").append('<a class="btn btn-primary border container3" style="width: 50%; font-size: x-small;" data-bs-toggle="modal" data-bs-target="#addressModal">배송지변경</a>')
+					
+					$("#ShippingContentDiv").children().remove();
+					
+					let insertC = "";
+					
+					insertC += '<div class="table-responsive">';
+					insertC += '<table class="table table-sm p-0 border-top border-3">';
+					insertC += '<tr><th class="bg-light px-2">이름</th><td class="px-2">';
+					insertC += response.ifsaName;
+					
+					if(response.ifsaDefaultNy == 1){
+						insertC += '<span class="badge rounded-pill bg-primary">기본배송지</span>';
+					} else {
+						// by pass
+					}
+					
+					insertC += '</td></tr>';
+					insertC += '<tr><th class="bg-light px-2">배송주소</th><td class="px-2">';
+					insertC += response.ifsaAddress1 + "<br>" + response.ifsaAddress2;
+					insertC += '</td></tr>';
+					insertC += '<tr><th class="bg-light px-2">연락처</th><td class="px-2">';
+					
+					if(response.ifsaContact.length == 10){
+						insertC += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,6) + "-" + response.ifsaContact.substring(6,10);
+					} else {
+						insertC += response.ifsaContact.substring(0,3) + "-" + response.ifsaContact.substring(3,7) + "-" + response.ifsaContact.substring(7,11);
+					}
+					
+					insertC += '</td></tr>';
+					insertC += '<tr><th class="bg-light px-2">배송 요청사항</th><td class="px-2"><span id="deliveryRequestSpan" class="pe-3">문 앞</span>';
+					insertC += '<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button></td></tr></table></div>';
+					
+					$("#ShippingContentDiv").append(insertC);
+					
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
 		}
 		
 		updateShippingAddress = function(){
