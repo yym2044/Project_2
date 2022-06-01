@@ -16,12 +16,9 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao dao;
 	
-	//이게 될까
 	List<String> trocSeqList1 = new ArrayList<String>();
 	List<String> trocSeqList2 = new ArrayList<String>();
 	List<String> trocSeqList3 = new ArrayList<String>();
-	//
-	
 	
 	@Override
 	public List<Product> selectList(ProductVo vo) throws Exception {
@@ -193,6 +190,12 @@ public class ProductServiceImpl implements ProductService {
 							dto.setTrprUseNy(1);
 							dto.setTrprDelNy(0);
 							
+							dto.setTrprDefaultNy(0);
+							// 처음 들어가는 상품에 default 1 주기
+							if(index == 0) {
+								dto.setTrprDefaultNy(1);
+							}
+							
 							dao.insertProduct_Real(dto);
 							
 							index++;
@@ -216,6 +219,12 @@ public class ProductServiceImpl implements ProductService {
 						dto.setTrprUseNy(1);
 						dto.setTrprDelNy(0);
 						
+						dto.setTrprDefaultNy(0);
+						// 처음 들어가는 상품에 default 1 주기
+						if(index == 0) {
+							dto.setTrprDefaultNy(1);
+						}
+						
 						dao.insertProduct_Real(dto);
 						
 						index++;
@@ -232,6 +241,12 @@ public class ProductServiceImpl implements ProductService {
 					dto.setTrprStock(dto.getTrprStockArray()[i]);
 					dto.setTrprUseNy(1);
 					dto.setTrprDelNy(0);
+					
+					dto.setTrprDefaultNy(0);
+					// 처음 들어가는 상품에 default 1 주기
+					if(i == 0) {
+						dto.setTrprDefaultNy(1);
+					}
 					
 					dao.insertProduct_Real(dto);
 					
@@ -259,6 +274,8 @@ public class ProductServiceImpl implements ProductService {
 			dto.setTrprStock(dto.getTrprStockArray()[0]);
 			dto.setTrprUseNy(1);
 			dto.setTrprDelNy(0);
+			
+			dto.setTrprDefaultNy(1);
 			
 			dao.insertProduct_Real(dto);
 		}
@@ -320,5 +337,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int deleteWishList(ProductVo vo) throws Exception {
 		return dao.deleteWishList(vo);
+	}
+	
+	public int deleteWishListNowAjax(ProductVo vo) throws Exception {
+		
+		for(int i = 0 ; i < vo.getTrpdSeqArray().length; i++) {
+			vo.setTrpdSeq(vo.getTrpdSeqArray()[i]);
+			dao.deleteWishList(vo);
+		}
+		
+		return 1;
 	}
 }

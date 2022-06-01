@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -250,18 +251,33 @@ public class ProductController {
 		List<Product> wishList = service.selectListWishList(vo);
 		
 		return wishList;
+		
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/product/insertWishList")
 	public Map<String, Object> insertWishList(ProductVo vo) throws Exception {
+		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		if(service.insertWishList(vo)>0) {
+		if(service.insertWishList(vo) > 0) {
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
 		}
+		
 		return returnMap;
+	}
+	
+	@RequestMapping(value = "/product/deleteWishListNotAjax")
+	public String deleteWishListNotAjax(ProductVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.deleteWishListNowAjax(vo);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/product/cartWishlist";
 	}
 	
 	@ResponseBody
@@ -275,4 +291,18 @@ public class ProductController {
 		}
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/productViewAjax")
+	public Map<String, Object> productViewAjax(ProductVo vo) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		returnMap.put("item", service.selectOne(vo));
+		returnMap.put("options", service.selectListOptions(vo));
+		returnMap.put("rt", "success");
+		
+		return returnMap;
+	}
+	
 }

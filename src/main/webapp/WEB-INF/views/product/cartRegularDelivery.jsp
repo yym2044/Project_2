@@ -60,35 +60,6 @@ td {
 				</ul>
 			</div>
 
-			<div class="row py-3">
-				<p class="col-12 p-0 mb-0 fw-bold fs-5">구매자 정보</p>
-				<div class="col p-0 pt-2">
-					<div class="table-responsive">
-						<table class="table table-sm p-0 border-top border-3">
-							<tr>
-								<th class="bg-light px-2">이름</th>
-								<td class="px-2">윤영민</td>
-							</tr>
-							<tr>
-								<th class="bg-light px-2">이메일</th>
-								<td class="px-2">yym2044@naver.com</td>
-							</tr>
-							<tr>
-								<th class="bg-light px-2">휴대폰 번호</th>
-								<td class="px-2">010-4635-6670</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col text-center">
-					<a class="lh-lg btn btn-outline-danger" href="javascript:history.back();" style="width: 200px;">계속 쇼핑하기</a>
-					<a class="lh-lg btn btn-outline-primary" style="width: 200px;">구매하기</a>
-				</div>
-			</div>
 		</div>
 
 

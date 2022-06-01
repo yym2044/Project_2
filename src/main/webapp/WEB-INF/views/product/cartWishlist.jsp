@@ -31,8 +31,14 @@ td {
 	<form id="formCart" method="post">
 		<input type="hidden" value="${sessSeq}" name="ifmmSeq">
 		<input type="hidden" id="trpdSeq" name="trpdSeq">
+		<input type="hidden" id="checkboxTrpdArray" name="trpdSeqArray">
 	</form>
-
+	
+	
+	<input type="hidden" id="trpdName">
+	<input type="hidden" id="trprFullNameArray">
+	<input type="hidden" id="trprSeq">
+	
 	<div class="container-fluid">
 
 		<div class="row border-bottom py-3 pt-4">
@@ -68,15 +74,19 @@ td {
 									</tr>
 								</c:when>
 								<c:otherwise>
-									<tr>
+									<tr style="height: 50px;">
 										<th colspan="4" class="bg-light text-start px-3">
-											<input id="checkboxAll" class="form-check-input" type="checkbox">
+											<div class="d-flex align-items-center">
+												<input id="checkboxAll" class="form-check-input me-2" type="checkbox">
+												<label for="checkboxAll" class="form-check-label me-2">전체 선택</label>
+												<button id="btnDelete" class="btn btn-sm btn-outline-danger" type="button">선택 삭제</button>
+											</div>
 										</th>
 									</tr>
 									<c:forEach items="${wishList}" var="item" varStatus="status">
 										<tr style="height: 120px;">
 											<td class="px-3 text-start" style="width: 50px;">
-												<input name="checkboxTrpd" class="form-check-input" type="checkbox">
+												<input name="checkboxTrpd" class="form-check-input" type="checkbox" value="<c:out value="${item.trpdSeq}"/>">
 											</td>
 											<td class="px-2" style="width: 94px;">
 												<c:choose>
@@ -110,8 +120,8 @@ td {
 													</div>
 												</div>
 											</td>
-											<td class="px-2">
-												<button class="btn btn-outline-primary w-100 mb-1">장바구니 담기</button>
+											<td class="px-2 text-end">
+												<a href="javascript:getOptions(<c:out value="${item.trpdSeq}"/>)" class="btn btn-outline-primary w-100 mb-1">장바구니 담기</a>
 												<a href="javascript:goDelete(<c:out value="${item.trpdSeq}"/>)" class="btn btn-outline-danger w-100">삭제</a>
 											</td>
 										</tr>
@@ -130,6 +140,40 @@ td {
 
 
 	</div>
+	
+	<div class="modal fade" id="optionModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">옵션을 선택해주세요!</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					<div id="optionModalBody" class="row p-5">
+							
+							
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="btnAddCart" class="btn btn-outline-info">장바구니 담기</button>
+					<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="goCartModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">상품이 장바구니에 담겼습니다!</h5>
+				<a href="/infra/product/cartGeneral?ifmmSeq=${sessSeq}" class="btn btn-outline-info">보러 가기</a>
+				<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
@@ -177,7 +221,6 @@ td {
 			});
 		})
 	</script>
-	
 	<script type="text/javascript">
 	$("#checkboxAll").click(function(){
 		if($("#checkboxAll").is(":checked")){
@@ -197,6 +240,290 @@ td {
 			$("#checkboxAll").prop("checked", true);
 		}
 	});
+	</script>
+	<script type="text/javascript">
+	
+	var opCount = 0;
+	
+	getOptions = function(trpdSeq){
+		
+		opCount = 0;
+		
+		$.ajax({
+			async: false
+			, cache: false
+			, type: "post"
+			, url: "/infra/product/productViewAjax"
+			, data: { "trpdSeq" : trpdSeq }
+			, success : function(response){
+				if(response.rt == "success"){
+					console.log(response);
+					
+					$("#trpdSeq").val(response.item.trpdSeq);
+					$("#trpdName").val(response.item.trpdName);
+					
+					if(response.item.trpdOptionParentName1 != null){
+						
+						opCount++;
+						
+						$("#optionModalBody").children().remove();
+						
+						let append = "";
+						
+						//옵션 부모 1
+						append += '<div class="col-12 p-0 py-1" style="font-size: small">';
+						append += '<span>' + response.item.trpdOptionParentName1 + '</span>';
+						append += '<select id="trprOptionChildCd1" name="trprOptionChildCd1" class="form-select optSelect" style="font-size: small;">';
+						append += '<option value="0">::선택::</option>';
+						
+						for(var i = 0; i < response.options.length; i++) {
+							if(response.options[i].tropSeq == response.item.trpdOptionParentCd1){
+								append += '<option value="' + response.options[i].trocSeq + '">' + response.options[i].trocName + '</option>';
+							}
+						}
+						
+						append += '</select>';
+						append += '</div>';
+						
+						
+						if(response.item.trpdOptionParentName2 != null) {
+							
+							opCount++;
+							
+							//옵션 부모 2
+							append += '<div class="col-12 p-0 py-1" style="font-size: small">';
+							append += '<span>' + response.item.trpdOptionParentName2 + '</span>';
+							append += '<select id="trprOptionChildCd2" name="trprOptionChildCd2" class="form-select optSelect" style="font-size: small;">';
+							append += '<option value="0">::선택::</option>';
+							
+							for(var i = 0; i < response.options.length; i++) {
+								if(response.options[i].tropSeq == response.item.trpdOptionParentCd2){
+									append += '<option value="' + response.options[i].trocSeq + '">' + response.options[i].trocName + '</option>';
+								}
+							}
+							
+							append += '</select>';
+							append += '</div>';
+							
+						}
+						
+						if(response.item.trpdOptionParentName3 != null) {
+							
+							opCount++;
+							
+							//옵션 부모 3
+							append += '<div class="col-12 p-0 py-1" style="font-size: small">';
+							append += '<span>' + response.item.trpdOptionParentName3 + '</span>';
+							append += '<select id="trprOptionChildCd3" name="trprOptionChildCd3" class="form-select optSelect" style="font-size: small;">';
+							append += '<option value="0">::선택::</option>';
+							
+							for(var i = 0; i < response.options.length; i++) {
+								if(response.options[i].tropSeq == response.item.trpdOptionParentCd3){
+									append += '<option value="' + response.options[i].trocSeq + '">' + response.options[i].trocName + '</option>';
+								}
+							}
+							
+							append += '</select>';
+							append += '</div>';
+							
+						}
+						
+						
+						$("#optionModalBody").append(append);
+						$("#optionModal").modal("show");
+						
+					} else {
+						
+						
+						$.ajax({
+							  async: true
+							  ,cache: false
+							  ,type:"post"
+							  ,url: "/infra/product/selectOneProduct_Real"
+							  ,data : { "trpdSeq" : response.item.trpdSeq }
+							  ,success: function(data){
+									console.log(data.trprSeq + " " + data.trprListPrice);
+
+									$.ajax({
+										async: true
+										, cache: false
+										, type: "post"
+										, url: "/infra/product/insertCartGeneral"
+										, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : data.trprSeq, "trctQuantity" : 1}
+										, success: function() {
+											$("#goCartModal").modal("show");
+										}
+										, error: function(jqXHR, textStatus, errorThrown){
+											alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+										}
+									});
+									
+									
+							  }
+							  ,error : function(jqXHR, textStatus, errorThrown){
+									alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+								}
+						  });
+						
+						
+						
+						
+					}
+					
+					
+				} else {
+					console.log("something is wrong.");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+		
+		
+		
+	}
+	
+	$(document).on("change", ".optSelect", function(){
+			
+			if(opCount == 1) {
+				if($("#trprOptionChildCd1").val() != 0){
+					
+					// ajax
+					 $.ajax({
+						  async: true
+						  ,cache: false
+						  ,type:"post"
+						  ,url: "/infra/product/selectOneProduct_Real"
+						  ,data : { "trpdSeq" : $("#trpdSeq").val(), "trprOptionChildCd1" : $("#trprOptionChildCd1").val() }
+						  ,success: function(data){
+								console.log(data.trprSeq + " " + data.trprListPrice);
+								$("#trprSeq").val(data.trprSeq);
+						  }
+						  ,error : function(jqXHR, textStatus, errorThrown){
+								alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+							}
+					  });
+					 //
+					 
+					 var select1 = document.querySelector("#trprOptionChildCd1");
+					 
+					 $("#trprFullNameArray").val($("#trpdName").val() + "，" + select1.options[select1.selectedIndex].text);
+					 
+				}
+			} else if(opCount == 2) {
+				if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0){
+					
+					// ajax
+					 $.ajax({
+						  async: true
+						  ,cache: false
+						  ,type:"post"
+						  ,url: "/infra/product/selectOneProduct_Real"
+						  ,data : { "trpdSeq" : $("#trpdSeq").val() , "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val() }
+						  ,success: function(data){
+								console.log(data.trprSeq + " " + data.trprListPrice);
+								$("#trprSeq").val(data.trprSeq);
+						  }
+						  ,error : function(jqXHR, textStatus, errorThrown){
+								alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+							}
+					  });
+					 //
+					 
+					 var select1 = document.querySelector("#trprOptionChildCd1");
+					 var select2 = document.querySelector("#trprOptionChildCd2");
+
+					 $("#trprFullNameArray").val($("#trpdName").val() + "，" + select1.options[select1.selectedIndex].text + "，" + select2.options[select2.selectedIndex].text);
+					 
+					 
+				}
+			} else if(opCount == 3) {
+				if($("#trprOptionChildCd1").val() != 0 && $("#trprOptionChildCd2").val() != 0 && $("#trprOptionChildCd3").val() != 0){
+					
+					// ajax
+					 $.ajax({
+						  async: true
+						  ,cache: false
+						  ,type:"post"
+						  ,url: "/infra/product/selectOneProduct_Real"
+						  ,data : { "trpdSeq" : $("#trpdSeq").val() , "trprOptionChildCd1" : $("#trprOptionChildCd1").val(), "trprOptionChildCd2" : $("#trprOptionChildCd2").val(), "trprOptionChildCd3" : $("#trprOptionChildCd3").val() }
+						  ,success: function(data){
+							  console.log(data.trprSeq + " " + data.trprListPrice);
+							  $("#trprSeq").val(data.trprSeq);
+						  }
+						  ,error : function(jqXHR, textStatus, errorThrown){
+								alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+							}
+					  });
+					 //
+					 
+					 var select1 = document.querySelector("#trprOptionChildCd1");
+					 var select2 = document.querySelector("#trprOptionChildCd2");
+					 var select3 = document.querySelector("#trprOptionChildCd3");
+					 
+					 $("#trprFullNameArray").val($("#trpdName").val() + "，" + select1.options[select1.selectedIndex].text + "，" + select2.options[select2.selectedIndex].text + "，" + select3.options[select3.selectedIndex].text);
+					 
+				}
+			}
+	});
+	
+	
+	$("#btnAddCart").on("click", function(){
+		
+		if($("#trprSeq").val() == ""){
+			alert("옵션 선택을 완료해주세요.");
+			return false;
+		}
+		
+		$.ajax({
+			async: true
+			, cache: false
+			, type: "post"
+			, url: "/infra/product/insertCartGeneral"
+			, data: { "ifmmSeq" : "<c:out value="${sessSeq}"/>", "trprSeq" : $("#trprSeq").val(), "trctQuantity" : 1}
+			, success: function() {
+				$("#optionModal").modal("hide");
+				$("#goCartModal").modal("show");
+			}
+			, error: function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+		
+	})
+	
+	
+	
+		
+	</script>
+	
+	<script type="text/javascript">
+	
+	var trpdArray = new Array();
+	
+	$("#btnDelete").on("click", function(){
+		
+		if($("input[name=checkboxTrpd]:checked").length == 0) {
+			return false;
+		}
+		
+		const delConfirm = confirm("선택된 상품을 삭제하시겠습니까?")	;
+		
+		if(delConfirm){
+			
+			$("input[name=checkboxTrpd]:checked").each(function(){
+				trpdArray.push($(this).val());
+			});
+			
+			$("#checkboxTrpdArray").val(trpdArray);
+			
+			$("#formCart").attr("action", "/infra/product/deleteWishListNotAjax").submit();
+			
+		}
+		
+	});
+	
 	</script>
 	
 	<script src="${path}/resources/common/js/cart.js"></script>

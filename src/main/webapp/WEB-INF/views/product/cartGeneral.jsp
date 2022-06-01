@@ -107,19 +107,19 @@ td {
 														</a>
 													</div>
 													
-													<div class="col-6 text-start pt-3">
+													<div class="col-5 text-start pt-3">
 														<p class="m-0">
 															<span class="arrivalDate fs-6 fw-light">내일(월) 3/28</span>
 															도착 보장
 														</p>
 													</div>
-													<div class="col-3 text-end pt-2">
+													<div class="col-4 text-end pt-2 pe-0">
 														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice}"/>원</span>
 														<input id="trctDiscountPrice${status.index}" type="hidden" value="<c:out value="${item.trprDiscountPrice}"/>">
 														<input id="priceQuantityHidden${status.index}" name="priceQuantityHidden" type="hidden" value="<c:out value="${item.trprDiscountPrice * item.trctQuantity}"/>">
 														<input id="trctQuantity${status.index}" name="trctQuantity" type="text" value="${item.trctQuantity}" style="width: 38px;">
 													</div>
-													<div id="priceQuantity1_${status.index}" class="col-3 pt-2">
+													<div id="priceQuantity1_${status.index}" class="col-3 pt-2 ps-0">
 														<span class="fw-light"><fmt:formatNumber value="${item.trprDiscountPrice * item.trctQuantity}"/>원</span>
 														<button onclick="goDelete(${item.trprSeq})" type="button" class="btn btn-outline-secondary">X</button>
 													</div>
@@ -205,8 +205,8 @@ td {
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
+			location.reload();
 		}
-		location.reload();
 	}
 	
 	</script>
@@ -406,6 +406,35 @@ td {
 		}
 	});
 	
+	</script>
+	
+	<script type="text/javascript">
+		const arrivalDate = document.querySelector(".arrivalDate");
+
+		const today = new Date();
+		const tomorrow = new Date(today.setDate(today.getDate() + 1));
+
+		const month = tomorrow.getMonth() + 1;
+		const date = tomorrow.getDate();
+		const day = tomorrow.getDay();
+		let weekDay = "";
+
+		if (day == 0)
+			weekDay = "일";
+		else if (day == 1)
+			weekDay = "월";
+		else if (day == 2)
+			weekDay = "화";
+		else if (day == 3)
+			weekDay = "수";
+		else if (day == 4)
+			weekDay = "목";
+		else if (day == 5)
+			weekDay = "금";
+		else if (day == 6)
+			weekDay = "토";
+
+		arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
 	</script>
 	
 	<script src="${path}/resources/common/js/cart.js"></script>

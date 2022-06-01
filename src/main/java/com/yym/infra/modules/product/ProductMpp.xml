@@ -16,7 +16,8 @@
 			a.trpdSeq
 			, a.trpdName
 			, a.trpdPrice
-			, a.trpdDiscountPercent
+			, c.trprListPrice
+			, c.trprDiscountPrice
 			, a.trpdDeliveryFee
 			, a.trpdStarRating
 			, b.originalName
@@ -40,6 +41,10 @@
 			tradProductUploaded b
 		ON b.pseq = a.trpdSeq
 			AND b.defaultNy = 1
+		LEFT JOIN
+			tradProduct_Real c
+		ON c.trpdSeq = a.trpdSeq
+			AND c.trprDefaultNy = 1
 			
 		WHERE 1=1
 			AND trpdDelNy = 0
@@ -59,10 +64,10 @@
 			
 		<choose>
 			<when test="shSort == 'lowPrice'">
-				ORDER BY (trpdPrice * (1-trpdDiscountPercent))
+				ORDER BY trpdPrice
 			</when>
 			<when test="shSort == 'highPrice'">
-				ORDER BY (trpdPrice * (1-trpdDiscountPercent)) DESC
+				ORDER BY trpdPrice DESC
 			</when>
 			<when test="shSort == 'highStar'">
 				ORDER BY trpdStarRating DESC
@@ -75,32 +80,39 @@
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			trpdSeq
-			, trpdName
-			, trpdPrice
-			, trpdDiscountPercent
-			, trpdDeliveryFee
-			, trpdStarRating
+			a.trpdSeq
+			, a.trpdName
+			, a.trpdPrice
+			, b.trprListPrice
+			, b.trprDiscountPrice
+			, a.trpdDeliveryFee
+			, a.trpdStarRating
 			
-			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd1) as trpdOptionParentName1
-			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd2) as trpdOptionParentName2
-			, (select tropName FROM tradOptionParent WHERE tropSeq = trpdOptionParentCd3) as trpdOptionParentName3
+			, (select tropName FROM tradOptionParent WHERE tropSeq = a.trpdOptionParentCd1) as trpdOptionParentName1
+			, (select tropName FROM tradOptionParent WHERE tropSeq = a.trpdOptionParentCd2) as trpdOptionParentName2
+			, (select tropName FROM tradOptionParent WHERE tropSeq = a.trpdOptionParentCd3) as trpdOptionParentName3
 			
-			 , trpdOptionParentCd1
-			 , trpdOptionParentCd2
-			 , trpdOptionParentCd3
+			 , a.trpdOptionParentCd1
+			 , a.trpdOptionParentCd2
+			 , a.trpdOptionParentCd3
 			 
-			 , trpdCategoryCd1
-			 , trpdCategoryCd2
-			 , trpdCategoryCd3
+			 , a.trpdCategoryCd1
+			 , a.trpdCategoryCd2
+			 , a.trpdCategoryCd3
 			 
-			 , trpdDesc
+			 , a.trpdDesc
 			 
 		FROM
-			tradProduct
+			tradProduct a
+		LEFT JOIN
+			tradProduct_Real b
+		ON
+			b.trpdSeq = a.trpdSeq
+		AND 
+			b.trprDefaultNy = 1
 		WHERE 1=1
-			AND trpdDelNy = 0
-			AND trpdSeq = #{trpdSeq}
+			AND a.trpdDelNy = 0
+			AND a.trpdSeq = #{trpdSeq}
 			
 		
 	</select>
@@ -521,6 +533,7 @@
 			, trprListPrice
 			, trprDiscountPrice
 			, trprStock
+			, trprDefaultNy
 			, trprUseNy
 			, trprDelNy
 		) VALUES (
@@ -531,6 +544,7 @@
 			, #{trprListPrice}
 			, #{trprDiscountPrice}
 			, #{trprStock}
+			, #{trprDefaultNy}
 			, #{trprUseNy}
 			, #{trprDelNy}
 		)
