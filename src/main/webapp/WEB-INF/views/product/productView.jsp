@@ -187,7 +187,7 @@
 								</div>
 								<p class="d-inline-block mt-0 px-1">
 									<span style="font-size: small;">
-										<a href="" style="text-decoration: none;">32개 상품평</a>
+										<a href="" style="text-decoration: none;">0개 상품평</a>
 									</span>
 								</p>
 							</div>
@@ -226,15 +226,12 @@
 						</div>
 						<div class="row border-bottom border-1 m-1 py-2">
 							<div class="col p-0 py-1">
-								<!-- <p class="productPrice m-0">28,900 원</p> -->
-								
-								<c:if test="${rt.trpdDiscountPercent ne 0.0}">
-									<span class="d-inline ps-1" style="font-size: small"><fmt:formatNumber value="${rt.trpdDiscountPercent}" type="percent"/> 할인</span>
-									<span class="d-inline text-decoration-line-through px-1" style="font-size: small"><fmt:formatNumber value="${rt.trpdPrice}"/></span>
+								<fmt:parseNumber var="discountPercent" value="${(rt.trprListPrice - rt.trprDiscountPrice)/rt.trprListPrice }"/>
+								<c:if test="${rt.trprListPrice ne rt.trprDiscountPrice}">
+									<span class="d-inline ps-1 text-warning" style="font-size: small"><fmt:formatNumber value="${discountPercent}" type="percent"/> 할인</span>
+									<span class="d-inline text-decoration-line-through px-1" style="font-size: small"><fmt:formatNumber value="${rt.trprListPrice}"/></span>
 								</c:if>
-								<fmt:parseNumber integerOnly="true" var="PRICE" value="${ (rt.trpdPrice * (1-rt.trpdDiscountPercent)) / 10 }"/>
-								<p class="fw-bold px-1 text-danger productPrice m-0"><fmt:formatNumber value="${PRICE * 10}" />원</p>
-								
+								<p class="fw-bold px-1 text-danger productPrice m-0"><fmt:formatNumber value="${rt.trprDiscountPrice}" />원</p>
 								
 							</div>
 						</div>
@@ -244,7 +241,7 @@
 								<c:if test="${rt.trpdDeliveryFee eq 0}"><p class="m-0 fw-bold">무료배송</p></c:if>
 								
 								<p class="m-0" style="font-size: small;">
-									<span class="arrivalDate">내일(일) 3/27</span>
+									<span id="arrivalDate" class="arrivalDate"></span>
 									도착 보장 (2시간 36분 내 주문 시 / 서울⋅경기 기준)
 								</p>
 							</div>
@@ -542,17 +539,19 @@
 				,cache: false
 				,type: "post"
 				,url: "/infra/product/selectListWishList"
-				,data: {ifmmSeq : "<c:out value="${sessSeq}"/>"}
+				,data: {"ifmmSeq" : "<c:out value="${sessSeq}"/>"}
 				,success: function(data){
+					
+					console.log("<c:out value="${sessSeq}"/>" + "의 찜목록");
+					console.log("--------");
 					$.each(data, function(i){
-						console.log("<c:out value="${sessSeq}"/>" + "의 찜목록");
-						console.log("--------");
 						console.log((i+1) + ". " + data[i].trpdSeq + "번 상품");
-						console.log("--------");
 						if(data[i].trpdSeq == "<c:out value="${vo.trpdSeq}"/>") {
 							wishNy = true;
 						}
 					});
+					console.log("--------");
+					
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
@@ -577,15 +576,12 @@
 	});
 	
 	$("#btnHeart").on("click", function(){
-		/* alert("옵션부모개수 : " + opCount); */
 		
 		if(!"<c:out value="${sessSeq}"/>"){
 			location.href="/infra/login/loginForm";
 		}
 		
 		if(wishNy == false){
-			
-			
 			
 			//insert ajax start
 			
@@ -999,6 +995,35 @@
 			$("#formView").submit();
 		}
 	}
+	</script>
+	
+	<script type="text/javascript">
+		const arrivalDate = document.querySelector("#arrivalDate");
+
+		const today = new Date();
+		const tomorrow = new Date(today.setDate(today.getDate() + 1));
+
+		const month = tomorrow.getMonth() + 1;
+		const date = tomorrow.getDate();
+		const day = tomorrow.getDay();
+		let weekDay = "";
+
+		if (day == 0)
+			weekDay = "일";
+		else if (day == 1)
+			weekDay = "월";
+		else if (day == 2)
+			weekDay = "화";
+		else if (day == 3)
+			weekDay = "수";
+		else if (day == 4)
+			weekDay = "목";
+		else if (day == 5)
+			weekDay = "금";
+		else if (day == 6)
+			weekDay = "토";
+
+		arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
 	</script>
 
 

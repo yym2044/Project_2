@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="${path}/resources/common/css/style.css">
 <link rel="stylesheet" href="${path}/resources/common/css/codepen.css">
 
-<script src="${path}/resources/common/js/codepen.js"></script>
+<%-- <script src="${path}/resources/common/js/codepen.js"></script> --%>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
@@ -142,8 +142,10 @@
 						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="border-radius: 50%;" class="btn-3d green">
 					</div>
 					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;"
-							class="btn-3d yellow">
+						<a href="javascript:kakaoLogin();">
+							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;"
+								class="btn-3d yellow">
+						</a>
 					</div>
 					<div class="col-md-1 text-center">
 						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;"
@@ -369,6 +371,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <script type="text/javascript">
 	
 $("#btnLogin").on("click", function(){
@@ -381,9 +385,9 @@ $("#btnLogin").on("click", function(){
 		,success: function(response) {
 			if(response.rt == "success") {
 				
-				/* location.href = "/infra/home"; */	// 메인페이지로
+				location.href = "/infra/home";	// 메인페이지로
 				/* window.location = document.referrer; */
-				location.href = document.referrer;
+				/* location.href = document.referrer;  */
 				
 			} else {
 				alert("로그인 실패");
@@ -438,5 +442,84 @@ $("#btnLogin").on("click", function(){
 		})
 	}
 </script>
+
+
+<!-- 카카오 start -->
+<script type="text/javascript">
+
+	Kakao.init('5ed5d21a3ed5c47a1675f773a28a15f9');
+	console.log(Kakao.isInitialized());
+	
+	
+	kakaoLogin = function(){
+		/* 
+		Kakao.Auth.authorize({
+			redirectUri: 'http://localhost:8080/infra/member/loginKakao'
+		});
+		 */
+		 
+		 Kakao.Auth.login({
+			 success : function(authObj) {
+				 console.log(authObj);
+				 
+				 Kakao.API.request({
+					 url:'/v2/user/me',
+					 success: function(res){
+						 console.log(res);
+						  
+						 // ajax
+						 $.ajax({
+							  async: true
+							  ,cache: false
+							  ,type:"post"
+							  ,url: "/infra/member/loginProcSns"
+							  /* ,data : { "ifmmId" : res.id } */
+							  ,data : { "ifmeEmailFull" : res.kakao_account.email }
+							  ,success: function(response){
+								  if(response.rt == "successGoIndex") {
+									  location.href = "/infra/index/indexView";
+									  location.href = "/infra/index/indexView";
+								  } else if (response.rt == "successGoMain") {
+									  location.href = "/infra/coupang/mainPage";
+								  } else {
+									  alert("로그인 실패");
+								  }
+							  }
+							  ,error : function(jqXHR, textStatus, errorThrown){
+									alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+								}
+						  });
+						 //
+						 
+						 
+					 }
+				 })
+			 }
+		 })
+		
+	};
+	
+	/* 
+	Kakao.Auth.createLoginButton({
+		container: '#kakao-login-btn',
+		success: function(authObj) {
+			console.log(authObj);
+			
+			Kakao.API.request({
+				url:'/v2/user/me',
+				success: function(res){
+					console.log(res);
+		
+					var id_kakao = res.id;
+					console.log(id_kakao);
+		
+				}
+			});
+		}
+	});
+	 */  
+</script>
+<!-- 카카오 end -->
+
 </html>
 

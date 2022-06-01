@@ -5,5 +5,4 @@
 <script src="/infra/resources/common/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 <script src="${path}/resources/common/js/category.js"></script>
 <script src="${path}/resources/common/js/stickySideBar.js"></script>
-<script src="${path}/resources/common/js/clock.js"></script>
 <script src="${path}/resources/common/js/validation.js"></script>

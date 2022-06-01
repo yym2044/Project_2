@@ -100,7 +100,7 @@ td {
 				</div>
 
 				<div class="row py-3">
-					<p class="col-2 p-0 mb-0 fw-bold fs-5 d-inline">받는 사람 정보</p>
+					<p class="p-0 mb-0 fw-bold fs-5 d-inline" style="width: 135px;">받는 사람 정보</p>
 					<div id="ShippingAnchorDiv" class="d-inline-block" style="width: 200px;">
 						<c:choose>
 							<c:when test="${fn:length(listShippingAddress) eq 0}">
@@ -152,8 +152,8 @@ td {
 												</tr>
 												<tr>
 													<th class="bg-light px-2">배송 요청사항</th>
-													<td class="px-2">
-														<span id="deliveryRequestSpan" class="pe-3">문 앞</span>
+													<td class="px-2 d-flex align-items-center">
+														<span id="deliveryRequestSpan" class="pe-3 d-inline-block">문 앞</span>
 														<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button>
 													</td>
 												</tr>
@@ -425,7 +425,7 @@ td {
 							<table class="table table-sm p-0">
 								<tr>
 									<td colspan="2" class="bg-light px-2">
-										<span id="arrivalDate" class="arrivalDate">내일(월) 3/28</span>
+										<span id="arrivalDate" class="arrivalDate"></span>
 										도착 보장
 									</td>
 								</tr>
@@ -557,8 +557,7 @@ td {
 		$("#checkboxTrprArray").val(JSON.parse($("#checkboxTrprArray").val()));
 
 		goPurchase = function() {
-			$("#formCheck1").attr("action", "/infra/product/productCheckOut2")
-					.submit();
+			$("#formCheck1").attr("action", "/infra/product/productCheckOut2").submit();
 		}
 	</script>
 

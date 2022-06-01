@@ -196,111 +196,9 @@ height: 100%;
 
 
 			<aside class="p-3">
-				<!-- 
-				<h1>상품관리</h1>
-				<h1>가격관리</h1>
-				<h1>주문/배송</h1>
-				<h1>고객관리</h1>
-				 -->
 				 
-				 
-<div class="area"></div>
-<nav class="main-menu sticky" style="margin-top : 36px;">
-         <ul>
-             <li>
-                 <a href="http://justinfarrow.com">
-                     <i class="fa fa-home fa-2x"></i>
-                     <span class="nav-text">
-                         Dashboard
-                     </span>
-                 </a>
-               
-             </li>
-             <li class="has-subnav">
-                 <a href="#">
-                     <i class="fa fa-laptop fa-2x"></i>
-                     <span class="nav-text">
-                         Stars Components
-                     </span>
-                 </a>
-                 
-             </li>
-             <li class="has-subnav">
-                 <a href="#">
-                    <i class="fa fa-list fa-2x"></i>
-                     <span class="nav-text">
-                         Forms
-                     </span>
-                 </a>
-                 
-             </li>
-             <li class="has-subnav">
-                 <a href="#">
-                    <i class="fa fa-folder-open fa-2x"></i>
-                     <span class="nav-text">
-                         Pages
-                     </span>
-                 </a>
-                
-             </li>
-             <li>
-                 <a href="#">
-                     <i class="fa fa-bar-chart-o fa-2x"></i>
-                     <span class="nav-text">
-                         Graphs and Statistics
-                     </span>
-                 </a>
-             </li>
-             <li>
-                 <a href="#">
-                     <i class="fa fa-font fa-2x"></i>
-                     <span class="nav-text">
-                        Quotes
-                     </span>
-                 </a>
-             </li>
-             <li>
-                <a href="#">
-                    <i class="fa fa-table fa-2x"></i>
-                     <span class="nav-text">
-                         Tables
-                     </span>
-                 </a>
-             </li>
-             <li>
-                <a href="#">
-                     <i class="fa fa-map-marker fa-2x"></i>
-                     <span class="nav-text">
-                         Maps
-                     </span>
-                 </a>
-             </li>
-             <li>
-                 <a href="#">
-                    <i class="fa fa-info fa-2x"></i>
-                     <span class="nav-text">
-                         Documentation
-                     </span>
-                 </a>
-             </li>
-         </ul>
-
-         <ul class="logout">
-             <li>
-                <a href="#">
-                      <i class="fa fa-power-off fa-2x"></i>
-                     <span class="nav-text">
-                         Logout
-                     </span>
-                 </a>
-             </li>  
-         </ul>
-  				 </nav>
-				 
-				 
-				 
-				 
-				 
+				<div class="area"></div>
+			 
 			</aside>
 
 			<section class="main-content">
@@ -505,7 +403,7 @@ height: 100%;
 					<div class="row border p-3 mb-2">
 						<div class="col">
 							<h6 class="fw-bold">상품 이미지 <span class="text-danger">Ο</span></h6>
-							<button id="checkImg" type="button">파일체크버튼</button>
+							<!-- <button id="checkImg" type="button">파일체크버튼</button> -->
 							<table class="table">
 								<tr>
 									<td class="text-start py-5" style="width: 130px; vertical-align: middle;"><label for="file0" class="upload__btn d-inline">대표이미지</label> <span class="text-danger">Ο</span></td>
@@ -575,15 +473,15 @@ height: 100%;
 							<div id="descEditorForm">
 								<textarea style="height: 200px;" id="trpdDesc" name="trpdDesc">
 								</textarea>
-								<!-- <textarea id="trpdDesc" name="trpdDesc"></textarea> -->
 							</div>
 							
 						</div>
 					</div>
 					
 					<div class="row">
-						<div class="col">
-							<button id="btnSubmit" name="btnSubmit" type="button" class="btn btn-primary">등록</button>
+						<div class="col d-flex justify-content-center">
+							<button id="btnSubmit" name="btnSubmit" type="button" class="btn btn-outline-primary w-50">등록</button>
+							<a href="/infra/home" type="button" class="btn btn-outline-danger w-50">뒤로</a>
 						</div>
 					</div>
 					
@@ -591,6 +489,23 @@ height: 100%;
 			</section>
 
 		</form>
+	</div>
+	
+	<div class="modal fade" id="setModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="optionModalBody" class="p-3">
+						<span id="setModalKey" class="px-0 py-2 fw-bold"></span> 일괄적용
+						<input id="setModalValue" type="text" class="form-control mt-2">	
+					</div>
+					<div class="text-center">
+						<button id="btnSetAll" class="btn btn-outline-info">확인</button>
+						<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<%-- <%@include file="../include/footer.jsp"%> --%>
@@ -698,23 +613,6 @@ height: 100%;
 	});
 	
 	</script> -->
-	
-	<script type="text/javascript">
-	const input = document.querySelector('.number');
-	input.addEventListener('keyup', function(e) {
-	  let value = e.target.value;
-	  value = Number(value.replaceAll(',', ''));
-	  if(isNaN(value)) {
-	    input.value = 0;
-	  }else {
-	    const formatValue = value.toLocaleString('ko-KR');
-	    input.value = formatValue;
-	  }
-	})
-	
-	
-	</script>
-	
 	
 	
 	<script type="text/javascript">
@@ -961,8 +859,8 @@ height: 100%;
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='1' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)<br><button type='button' id='btnSetDiscountPrice' class='btn btn-sm btn-primary'>일괄적용</button></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량<br><button type='button' id='btnSetStock' class='btn btn-sm btn-primary'>일괄적용</button></td>";
 			insertTr2 += "</tr>";
 			insertTr2 += "<tr>";
 			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
@@ -1038,8 +936,8 @@ height: 100%;
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='2' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)<br><button type='button' id='btnSetDiscountPrice' class='btn btn-sm btn-primary'>일괄적용</button></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량<br><button type='button' id='btnSetStock' class='btn btn-sm btn-primary'>일괄적용</button></td>";
 			insertTr2 += "</tr>";
 			insertTr2 += "<tr>";
 			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
@@ -1133,8 +1031,8 @@ height: 100%;
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'><input id='checkboxAll2' type='checkbox' class='form-check-input'></td>";
 			insertTr2 += "<td colspan='3' style='width: 200px;'>옵션명</td>";
 			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>정상가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)</td>";
-			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량</td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>판매가 (원)<br><button type='button' id='btnSetDiscountPrice' class='btn btn-sm btn-primary'>일괄적용</button></td>";
+			insertTr2 += "<td rowspan='2' style='vertical-align: middle;'>재고수량<br><button type='button' id='btnSetStock' class='btn btn-sm btn-primary'>일괄적용</button></td>";
 			insertTr2 += "</tr>";
 			insertTr2 += "<tr>";
 			insertTr2 += "<td>" + $.trim($("#optionName1").val()) + "</td>";
@@ -1362,8 +1260,21 @@ height: 100%;
 	$(document).ready(function(){
 		var preValueOptionMethod = $("input[name=optionMethod]:checked").val();
 		
+		let tmp = "";
+		
 		$("input[name=optionMethod]").on("click", function(){
-			var confirmNy = confirm("\"" + $(this).val() + "\"으로 변경시, 다시 옵션정보를 등록해야합니다. \n그래도 실행하시겠습니까?");
+
+			if(preValueOptionMethod == $(this).val()){
+				return false;
+			}
+			
+			if($(this).val() == 1){
+				tmp = "옵션상품 등록";
+			} else {
+				tmp = "단일상품 등록";
+			}
+			
+			var confirmNy = confirm("\"" + tmp + "\"으로 변경시, 다시 옵션정보를 등록해야합니다. \n그래도 실행하시겠습니까?");
 			if(confirmNy){
 				//by pass
 			} else {
@@ -1452,36 +1363,6 @@ height: 100%;
 	
 	</script>
 	
-	<!-- 업로드한 이미지 프리뷰 start -->
-	<script type="text/javascript">
-	let avatarInput = document.getElementById('avatar');
-	let img = document.querySelector('label[for=avatar] img');
-
-	avatarInput.onchange = async (e) => {
-	  
-	  img.classList.add('preview');
-	  img.src = URL.createObjectURL(e.target.files[0]);  
-	  
-	  await console.log(img.offsetHeight, img.offsetWidth)
-	  
-	}
-	</script>
-	<!-- 
-	<script type="text/javascript">
-	let avatarInput2 = document.getElementById('avatar2');
-	let img2 = document.querySelector('label[for=avatar2] img');
-
-	avatarInput2.onchange = async (e) => {
-	  
-	  img2.classList.add('preview2');
-	  img2.src = URL.createObjectURL(e.target.files[0]);  
-	  
-	  await console.log(img2.offsetHeight, img2.offsetWidth)
-	  
-	}
-	</script>
-	 -->
-	<!-- 업로드한 이미지 프리뷰 end -->
 	
 	<script src="${path}/resources/common/js/multipleImageInput.js"></script>
 	
@@ -1496,6 +1377,33 @@ height: 100%;
         } );
 	</script>
 	<!-- textarea에 editor 적용 end -->
+	
+	<script type="text/javascript">
+	
+	$(document).on("click", "#btnSetDiscountPrice", function(){
+		$("#setModalKey").text("판매가 (원)");
+		$("#setModal").modal('show');
+	});
+	
+	$(document).on("click", "#btnSetStock", function(){
+		$("#setModalKey").text("수량");
+		$("#setModal").modal('show');
+	});
+	
+	$("#btnSetAll").on("click", function(){
+		if($("#setModalKey").text() == "판매가 (원)"){
+			$("input[name=trprDiscountPriceArray]").val($("#setModalValue").val());
+			$("#setModalValue").val("");
+			$("#setModal").modal('hide');
+		} else {
+			$("input[name=trprStockArray]").val($("#setModalValue").val());
+			$("#setModalValue").val("");
+			$("#setModal").modal('hide');
+		}
+	});
+	
+	
+	</script>
 	
 	<script type="text/javascript">
 	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

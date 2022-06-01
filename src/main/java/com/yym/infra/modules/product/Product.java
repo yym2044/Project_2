@@ -43,7 +43,6 @@ public class Product {
 	private Integer trpdCategoryCd2;
 	private Integer trpdCategoryCd3;
 	private Integer trpdPrice;
-	private Double trpdDiscountPercent = 0.0;
 	private Integer trpdDeliveryFee;
 	private Double trpdStarRating;
 	
@@ -77,6 +76,7 @@ public class Product {
 	
 	//tradProduct_Real
 	private String trprSeq;
+	private Integer trprDefaultNy;
 	
 	private String trprOptionChildCd1;
 	private String trprOptionChildName1;
@@ -283,12 +283,6 @@ public class Product {
 	}
 	public void setTrpdDeliveryFee(Integer trpdDeliveryFee) {
 		this.trpdDeliveryFee = trpdDeliveryFee;
-	}
-	public Double getTrpdDiscountPercent() {
-		return trpdDiscountPercent;
-	}
-	public void setTrpdDiscountPercent(Double trpdDiscountPercent) {
-		this.trpdDiscountPercent = trpdDiscountPercent;
 	}
 	public Double getTrpdStarRating() {
 		return trpdStarRating;
@@ -763,6 +757,12 @@ public class Product {
 	}
 	public void setIfsaDefaultNyEdit(Integer ifsaDefaultNyEdit) {
 		this.ifsaDefaultNyEdit = ifsaDefaultNyEdit;
+	}
+	public Integer getTrprDefaultNy() {
+		return trprDefaultNy;
+	}
+	public void setTrprDefaultNy(Integer trprDefaultNy) {
+		this.trprDefaultNy = trprDefaultNy;
 	}
 	
 }

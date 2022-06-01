@@ -67,6 +67,13 @@
 			</div>
 			<!-- 광고 carousel e -->
 
+			<div class="row p-5">
+				<div class="col d-flex justify-content-center">
+					<input type="text" id="socketInput" placeholder="서버에 전송할 메세지">
+					<button type="button" id="socketButton">전송</button>
+				</div>
+			</div>
+
 			<!-- width65 start -->
 			<div class="width65">
 				<div class="row mt-4">
@@ -359,5 +366,28 @@
 	}
 	
 	</script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script type="text/javascript">
+	const socket = new WebSocket("ws://localhost:8080/infra/ws?" + '<c:out value="${sessSeq}"/>');
+	
+	socket.onopen = function(){
+		console.log("웹소켓 접속 성공");
+	}
+	
+	$("#socketButton").on("click", function(){
+		send($("#socketInput").val());
+	});
+	
+	function send(message) {
+		socket.send(message);
+	}
+	
+	socket.onmessage = function(msg){
+		console.log(msg);
+	}
+	
+	</script>
+	
 </body>
 </html>

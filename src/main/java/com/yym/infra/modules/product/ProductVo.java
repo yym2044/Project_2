@@ -3,6 +3,7 @@ package com.yym.infra.modules.product;
 public class ProductVo {
 	
 	private String trpdSeq;
+	private String[] trpdSeqArray;
 	private String ifmmSeq;
 	private String ifsaSeq;
 	private String trctSeq;
@@ -16,7 +17,6 @@ public class ProductVo {
 	private Integer trprOptionChildCd1;
 	private Integer trprOptionChildCd2;
 	private Integer trprOptionChildCd3;
-	
 	
 	
 //	paging
@@ -228,10 +228,13 @@ public class ProductVo {
 		public void setIfsaSeq(String ifsaSeq) {
 			this.ifsaSeq = ifsaSeq;
 		}
-		
-	
-	
-	
-	
+
+		public String[] getTrpdSeqArray() {
+			return trpdSeqArray;
+		}
+
+		public void setTrpdSeqArray(String[] trpdSeqArray) {
+			this.trpdSeqArray = trpdSeqArray;
+		}
 
 }
