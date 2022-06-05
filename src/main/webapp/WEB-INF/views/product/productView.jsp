@@ -95,6 +95,14 @@
 
 </style>
 
+<style type="text/css">
+
+.curImg {
+	border: 1px solid;
+}
+
+</style>
+
 
 </head>
 <body>
@@ -157,7 +165,7 @@
 						<div class="row">
 							<c:forEach items="${listUploaded}" var="item" varStatus="status">
 								<div class="col-12 px-0 pb-1">
-									<img style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+									<img name="allImg" style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
 								</div>
 							</c:forEach>
 						</div>
@@ -168,7 +176,7 @@
 							<c:when test="${fn:length(listUploaded) ne 0}">
 								<c:forEach items="${listUploaded}" var="item" varStatus="status">
 									<c:if test="${item.defaultNy eq 1}">
-										<img class="randomProduct" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+										<img id="mainImg" class="randomProduct" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
 									</c:if>
 								</c:forEach>
 							</c:when>
@@ -187,7 +195,7 @@
 								</div>
 								<p class="d-inline-block mt-0 px-1">
 									<span style="font-size: small;">
-										<a href="" style="text-decoration: none;">0개 상품평</a>
+										<a href="#" style="text-decoration: none;">0개 상품평</a>
 									</span>
 								</p>
 							</div>
@@ -1026,6 +1034,27 @@
 		arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
 	</script>
 
+	<script type="text/javascript">
+	
+	const mainImg = document.getElementById("mainImg");
+	const allImg = document.getElementsByName("allImg");
+	
+	allImg[0].className = "curImg";
+	
+	$("img[name=allImg]").on("mouseenter", function(e){
+		
+		$("img[name=allImg]").removeClass("curImg");
+		
+		e.target.classList.add("curImg");
+		mainImg.src = e.target.src;
+	});
+	
+	/* 
+	$("img[name=allImg]").on("mouseleave", function(e){
+		e.target.className = "";
+	});
+	 */
+	</script>
 
 </body>
 </html>
