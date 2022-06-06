@@ -35,6 +35,7 @@ td {
 	<!-- 기본 배송지 세팅 -->
 	<c:forEach items="${listShippingAddress}" var="item" varStatus="status">
 		<c:if test="${item.ifsaDefaultNy eq 1}">
+			<c:set var="ifsaSeq" value="${item.ifsaSeq}"/>
 			<c:set var="ifsaName" value="${item.ifsaName}" />
 			<c:set var="ifsaAddress1" value="${item.ifsaAddress1}" />
 			<c:set var="ifsaAddress2" value="${item.ifsaAddress2}" />
@@ -47,6 +48,8 @@ td {
 	<div class="container-fluid">
 		<form id="formCheck1" method="post" action="">
 			<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+			<input type="hidden" id="ifsaSeq" name="ifsaSeq">
+			<input type="hidden" id="trorRequest" name="trorRequest" value="문 앞">
 
 			<div class="row border-bottom py-3 pt-4">
 				<div class="col offset-2">
@@ -421,7 +424,7 @@ td {
 					<p class="col-12 p-0 mb-0 fw-bold fs-5">배송 1건 중 1</p>
 					<div class="col p-0 pt-2">
 						<div class="table-responsive">
-							<input type="hidden" id="checkboxTrprArray" name="checkboxTrprArray" value="<c:out value="${rtProductSeq}"/>">
+							<%-- <input type="text" id="checkboxTrprArray" name="checkboxTrprArray" value="<c:out value="${rtProductSeq}"/>"> --%>
 							<table class="table table-sm p-0">
 								<tr>
 									<td colspan="2" class="bg-light px-2">
@@ -432,13 +435,15 @@ td {
 								<c:forEach var="i" begin="0" end="${fn:length(dto.checkboxTrprArray)-1}">
 									<tr>
 										<td class="productName px-2">
-											<%-- <input type="text" name="checkboxTrprArray" value="<c:out value="${rtProductSeq[i]}"/>"> --%>
+											<input type="hidden" name="checkboxTrprArray" placeholder="시퀀스" value="<c:out value="${rtProductSeq[i]}"/>">
 											<c:out value="${rtProductName[i]}" />
+											<input type="hidden" name="trprFullNameArray" placeholder="풀네임" value="<c:out value="${rtProductName[i]}" />">
 										</td>
 										<td class="text-end px-2" style="font-weight: lighter;">
 											수량
 											<c:out value="${rtProductQuantity[i]}" />
 											개 / 무료배송
+											<input type="hidden" name="trctQuantityArray" placeholder="수량" value="<c:out value="${rtProductQuantity[i]}" />">
 										</td>
 									</tr>
 								</c:forEach>
@@ -533,31 +538,16 @@ td {
 		const month = tomorrow.getMonth() + 1;
 		const date = tomorrow.getDate();
 		const day = tomorrow.getDay();
-		let weekDay = "";
+		const weekDay = ["일","월","화","수","목","금","토"];
 
-		if (day == 0)
-			weekDay = "일";
-		else if (day == 1)
-			weekDay = "월";
-		else if (day == 2)
-			weekDay = "화";
-		else if (day == 3)
-			weekDay = "수";
-		else if (day == 4)
-			weekDay = "목";
-		else if (day == 5)
-			weekDay = "금";
-		else if (day == 6)
-			weekDay = "토";
-
-		arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
+		arrivalDate.innerText = "내일(" + weekDay[day] + ") " + String(month).padStart(2,"0") + "/" + String(date).padStart(2,"0");
 	</script>
 
 	<script type="text/javascript">
-		$("#checkboxTrprArray").val(JSON.parse($("#checkboxTrprArray").val()));
+//		$("#checkboxTrprArray").val(JSON.parse($("#checkboxTrprArray").val()));
 
 		goPurchase = function() {
-			$("#formCheck1").attr("action", "/infra/product/productCheckOut2").submit();
+			$("#formCheck1").attr("action", "/infra/product/productOrder").submit();
 		}
 	</script>
 
@@ -604,25 +594,28 @@ td {
 
 			if (checkbox[0].checked) {
 				deliveryRequestSpan.innerText = "문 앞";
+				$("#trorRequest").val("문 앞");
 			} else if (checkbox[1].checked) {
 				deliveryRequestSpan.innerText = "직접 받고 부재 시 문 앞";
+				$("#trorRequest").val("직접 받고 부재 시 문 앞");
 			} else if (checkbox[2].checked) {
 				deliveryRequestSpan.innerText = "경비실";
+				$("#trorRequest").val("경비실");
 			} else if (checkbox[3].checked) {
 				if (!checkNull($("#trorDeliveryRequest4Input"), $(
 						"#trorDeliveryRequest4Input").val(), "필수 입력사항을 확인해주세요.")) {
 					return false;
 				} else {
-					deliveryRequestSpan.innerText = "택배함("
-							+ $("#trorDeliveryRequest4Input").val() + ")";
+					deliveryRequestSpan.innerText = "택배함(" + $("#trorDeliveryRequest4Input").val() + ")";
+					$("#trorRequest").val("택배함(" + $("#trorDeliveryRequest4Input").val() + ")");
 				}
 			} else if (checkbox[4].checked) {
 				if (!checkNull($("#trorDeliveryRequest5Input"), $(
 						"#trorDeliveryRequest5Input").val(), "필수 입력사항을 확인해주세요.")) {
 					return false;
 				} else {
-					deliveryRequestSpan.innerText = "기타사항("
-							+ $("#trorDeliveryRequest5Input").val() + ")";
+					deliveryRequestSpan.innerText = "기타사항(" + $("#trorDeliveryRequest5Input").val() + ")";
+					$("#trorRequest").val("기타사항(" + $("#trorDeliveryRequest5Input").val() + ")");
 				}
 			}
 
@@ -631,6 +624,25 @@ td {
 	</script>
 
 	<script type="text/javascript">
+	
+		$(document).ready(function(){
+			
+			let ifsaSeq = "";
+			
+			<c:forEach items="${listShippingAddress}" var="item" varStatus="status">
+				<c:if test="${item.ifsaDefaultNy eq 1}">
+					ifsaSeq = '<c:out value="${item.ifsaSeq}"/>';
+				</c:if>
+			</c:forEach>
+			
+			if(ifsaSeq == null || ifsaSeq == ""){
+				ifsaSeq = '<c:out value="${listShippingAddress[0].ifsaSeq}" />';
+			}
+			
+			$("#ifsaSeq").val(ifsaSeq);
+			
+		});
+	
 		setCheckboxValue = function(obj, targetObj) {
 			if (obj.is(":checked")) {
 				targetObj.val("1");
@@ -755,6 +767,9 @@ td {
 		}
 		
 		applyShippingAddress = function(ifsaSeq){
+			
+			$("#ifsaSeq").val(ifsaSeq);
+			
 			$("#addressModal").modal('hide');
 			
 			$.ajax({
@@ -801,7 +816,7 @@ td {
 					}
 					
 					insertC += '</td></tr>';
-					insertC += '<tr><th class="bg-light px-2">배송 요청사항</th><td class="px-2"><span id="deliveryRequestSpan" class="pe-3">문 앞</span>';
+					insertC += '<tr><th class="bg-light px-2">배송 요청사항</th><td class="px-2"><span id="deliveryRequestSpan" class="pe-3">' + $("#trorRequest").val() + '</span>';
 					insertC += '<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryRequestModal">변경</button></td></tr></table></div>';
 					
 					$("#ShippingContentDiv").append(insertC);

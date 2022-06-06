@@ -54,4 +54,9 @@ public class ProductDao {
 	public int insertWishList(ProductVo vo) {return sqlSession.insert(namespace + ".insertWishList", vo); }
 	public int deleteWishList(ProductVo vo) {return sqlSession.insert(namespace + ".deleteWishList", vo); }
 	
+	public List<Product> selectListOrder(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListOrder", vo); }
+	public List<Product> selectListProductOrder(ProductVo vo) {return sqlSession.selectList(namespace + ".selectListProductOrder", vo); }
+	public int insertOrder(Product dto) {return sqlSession.insert(namespace + ".insertOrder", dto); }
+	public int insertProductOrder(Product dto) {return sqlSession.insert(namespace + ".insertProductOrder", dto); }
+	
 }

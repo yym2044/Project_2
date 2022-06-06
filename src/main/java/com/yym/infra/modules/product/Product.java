@@ -17,6 +17,8 @@ public class Product {
 	private String ifmaAddress2;
 	private Integer ifmaDefaultNy;
 	
+	private String ifpmSeq;
+	
 	//배송지
 	private String ifsaSeq;
 	private String ifsaName;
@@ -108,6 +110,21 @@ public class Product {
 	private Integer totalProduct;
 	private Integer totalDelivery;
 	private Integer totalMoney;
+	
+	//tradOrder
+	private String trorSeq;
+	private String trorOrderId;
+	private Integer trorDeliveryFee;
+	private String trorRequest;
+	
+	//tradProductOrder
+	private String trpoSeq;
+	private String trpoName;
+	private Integer trpoQuantity;
+	private Integer trpoOrderStatusCd;
+	private String trpoEstimatedArrivalDate;
+	private Integer trpoDeliveryStatusCd;
+	private Integer trpoDelNy;
 	
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
@@ -763,6 +780,78 @@ public class Product {
 	}
 	public void setTrprDefaultNy(Integer trprDefaultNy) {
 		this.trprDefaultNy = trprDefaultNy;
+	}
+	public String getIfpmSeq() {
+		return ifpmSeq;
+	}
+	public void setIfpmSeq(String ifpmSeq) {
+		this.ifpmSeq = ifpmSeq;
+	}
+	public String getTrorOrderId() {
+		return trorOrderId;
+	}
+	public void setTrorOrderId(String trorOrderId) {
+		this.trorOrderId = trorOrderId;
+	}
+	public Integer getTrorDeliveryFee() {
+		return trorDeliveryFee;
+	}
+	public void setTrorDeliveryFee(Integer trorDeliveryFee) {
+		this.trorDeliveryFee = trorDeliveryFee;
+	}
+	public String getTrorRequest() {
+		return trorRequest;
+	}
+	public void setTrorRequest(String trorRequest) {
+		this.trorRequest = trorRequest;
+	}
+	public String getTrorSeq() {
+		return trorSeq;
+	}
+	public void setTrorSeq(String trorSeq) {
+		this.trorSeq = trorSeq;
+	}
+	public Integer getTrpoQuantity() {
+		return trpoQuantity;
+	}
+	public void setTrpoQuantity(Integer trpoQuantity) {
+		this.trpoQuantity = trpoQuantity;
+	}
+	public Integer getTrpoOrderStatusCd() {
+		return trpoOrderStatusCd;
+	}
+	public void setTrpoOrderStatusCd(Integer trpoOrderStatusCd) {
+		this.trpoOrderStatusCd = trpoOrderStatusCd;
+	}
+	public String getTrpoEstimatedArrivalDate() {
+		return trpoEstimatedArrivalDate;
+	}
+	public void setTrpoEstimatedArrivalDate(String trpoEstimatedArrivalDate) {
+		this.trpoEstimatedArrivalDate = trpoEstimatedArrivalDate;
+	}
+	public Integer getTrpoDeliveryStatusCd() {
+		return trpoDeliveryStatusCd;
+	}
+	public void setTrpoDeliveryStatusCd(Integer trpoDeliveryStatusCd) {
+		this.trpoDeliveryStatusCd = trpoDeliveryStatusCd;
+	}
+	public Integer getTrpoDelNy() {
+		return trpoDelNy;
+	}
+	public void setTrpoDelNy(Integer trpoDelNy) {
+		this.trpoDelNy = trpoDelNy;
+	}
+	public String getTrpoSeq() {
+		return trpoSeq;
+	}
+	public void setTrpoSeq(String trpoSeq) {
+		this.trpoSeq = trpoSeq;
+	}
+	public String getTrpoName() {
+		return trpoName;
+	}
+	public void setTrpoName(String trpoName) {
+		this.trpoName = trpoName;
 	}
 	
 }
