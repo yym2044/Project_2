@@ -45,6 +45,15 @@ public class ProductController {
 		return "/product/productSearch";
 	}
 	
+	@RequestMapping(value = "/product/orderList")
+	public String orderList(Model model, ProductVo vo) throws Exception {
+		
+		model.addAttribute("orderList", service.selectListOrder(vo));
+		model.addAttribute("productOrderList", service.selectListProductOrder(vo));
+		
+		return "/product/orderList";
+	}
+	
 	@RequestMapping(value = "/product/productView")
 	public String productView(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
 		
@@ -105,6 +114,22 @@ public class ProductController {
 		model.addAttribute("rtProductQuantity", rtProductQuantity);
 		
 		return "product/productCheckOut";
+	}
+	
+	@RequestMapping(value="/product/productOrder")
+	public String productOrder(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		vo.setIfmmSeq(dto.getIfmmSeq());
+		for(int i = 0; i < dto.getCheckboxTrprArray().length; i++) {
+			vo.setTrprSeq(dto.getCheckboxTrprArray()[i]);
+			service.deleteCartGeneral(vo);
+		}
+		
+		service.insertOrder(dto);
+		
+		redirectAttributes.addFlashAttribute("dto", dto);
+		
+		return "redirect:/product/productCheckOut2";
 	}
 	
 //	@ResponseBody
@@ -179,16 +204,9 @@ public class ProductController {
 	public String productCheckOut2(Model model, ProductVo vo, @ModelAttribute("dto") Product dto) throws Exception {
 		
 		vo.setIfmmSeq(dto.getIfmmSeq());
-		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
-			vo.setTrprSeq(dto.getCheckboxTrprArray()[i]);
-			service.deleteCartGeneral(vo);
-		}
-		
-//		for(int i=0; i<dto.getCheckboxTrprArray().length; i++) {
-//			System.out.println("ㅏㅇ아ㅏ아아앙" + dto.getCheckboxTrprArray()[i]);
-//		}
-		
+		vo.setIfsaSeq(dto.getIfsaSeq());
 		model.addAttribute("rt", service.selectOneMemberCheckOut(vo));
+		model.addAttribute("rt2", service.selectOneShippingAddress(vo));
 		
 		return "product/productCheckOut2";
 	}

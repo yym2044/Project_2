@@ -417,24 +417,10 @@ td {
 		const month = tomorrow.getMonth() + 1;
 		const date = tomorrow.getDate();
 		const day = tomorrow.getDay();
-		let weekDay = "";
+		
+		const weekDay = ["일","월","화","수","목","금","토"];
 
-		if (day == 0)
-			weekDay = "일";
-		else if (day == 1)
-			weekDay = "월";
-		else if (day == 2)
-			weekDay = "화";
-		else if (day == 3)
-			weekDay = "수";
-		else if (day == 4)
-			weekDay = "목";
-		else if (day == 5)
-			weekDay = "금";
-		else if (day == 6)
-			weekDay = "토";
-
-		arrivalDate.innerText = "내일(" + weekDay + ") " + month + "/" + date;
+		arrivalDate.innerText = "내일(" + weekDay[day] + ") " + String(month).padStart(2,"0") + "/" + String(date).padStart(2,"0");
 	</script>
 	
 	<script src="${path}/resources/common/js/cart.js"></script>

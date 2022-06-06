@@ -52,7 +52,7 @@ td {
 					주문이 완료되었습니다.
 				</div>
 				<div class="col-12 p-0 pt-2 mb-4 fw-bold" style="font-size: x-small;">
-					주문일 <span id="orderDate">2022-03-28</span> | 주문번호 <span id="orderNum">112312112</span>
+					주문일 <span id="orderDate"></span> | 주문번호 <span id="orderNum"><c:out value="${dto.trorOrderId}"/></span>
 				</div>
 				<div class="col-12 p-0 pt-2">
 					<a class="btn btn-outline-primary rounded-0" href="/infra/home">계속 쇼핑하기</a>
@@ -67,17 +67,17 @@ td {
 							<table class="table table-sm table-borderless">
 								<tr>
 									<th class="bg-light px-2">이름</th>
-									<td class="px-2"><c:out value="${rt.ifmmName}"/></td>
+									<td class="px-2"><c:out value="${rt2.ifsaName}"/></td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">연락처</th>
 									<td class="px-2">
 									<c:choose>
-										<c:when test="${fn:length(rt.ifmpNumber) eq 10 }">
-											<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,6)}" />-<c:out value="${fn:substring(rt.ifmpNumber,6,10)}" />
+										<c:when test="${fn:length(rt2.ifsaContact) eq 10 }">
+											<c:out value="${fn:substring(rt2.ifsaContact,0,3)}" />-<c:out value="${fn:substring(rt2.ifsaContact,3,6)}" />-<c:out value="${fn:substring(rt2.ifsaContact,6,10)}" />
 										</c:when>
 										<c:otherwise>
-											<c:out value="${fn:substring(rt.ifmpNumber,0,3)}" />-<c:out value="${fn:substring(rt.ifmpNumber,3,7)}" />-<c:out value="${fn:substring(rt.ifmpNumber,7,11)}" />
+											<c:out value="${fn:substring(rt2.ifsaContact,0,3)}" />-<c:out value="${fn:substring(rt2.ifsaContact,3,7)}" />-<c:out value="${fn:substring(rt2.ifsaContact,7,11)}" />
 										</c:otherwise>
 									</c:choose>
 									</td>
@@ -85,13 +85,13 @@ td {
 								<tr>
 									<th style="vertical-align: top;" class="bg-light px-2">배송주소</th>
 									<td class="px-2">
-									<c:out value="${rt.ifmaAddress1}"/><br>
-									<c:out value="${rt.ifmaAddress2}"/>
+									<c:out value="${rt2.ifsaAddress1}"/><br>
+									<c:out value="${rt2.ifsaAddress2}"/>
 									</td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">배송 요청사항</th>
-									<td class="px-2">문 앞</td>
+									<td class="px-2"><c:out value="${dto.trorRequest}"/></td>
 								</tr>
 							</table>
 						</div>
@@ -104,7 +104,7 @@ td {
 							<table class="table table-sm p-0 table-borderless">
 								<tr>
 									<th class="bg-light px-2">주문금액</th>
-									<td class="px-2 text-end"><fmt:formatNumber value="${dto.totalMoney}"/>원</td>
+									<td class="px-2 text-end"><fmt:formatNumber value="${dto.totalProduct}"/>원</td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">쿠폰할인</th>
@@ -116,7 +116,7 @@ td {
 								</tr>
 								<tr>
 									<th class="bg-light px-2">배송비</th>
-									<td class="px-2 text-end">0원</td>
+									<td class="px-2 text-end"><fmt:formatNumber value="${dto.totalDelivery}"/>원</td>
 								</tr>
 								<tr>
 									<th class="bg-light px-2">총결제금액</th>
@@ -128,12 +128,6 @@ td {
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
 	</div>
 
 	<%@include file="../include/footer.jsp" %>
@@ -145,17 +139,17 @@ td {
 	const today = new Date();
 
 	const year = String(today.getFullYear());
-	const month = String(today.getMonth() + 1);
-	const date = String(today.getDate());
+	const month = String(today.getMonth() + 1).padStart(2,"0");
+	const date = String(today.getDate()).padStart(2,"0");
 	orderDate.innerText = year + "-" + month + "-" + date;
 	
 	
-	const orderNum = document.querySelector("#orderNum");
+	/* const orderNum = document.querySelector("#orderNum");
 	let randomNum = Math.floor(Math.random() * 1000000000);
 	while(randomNum > 300000000 || randomNum < 100000000){
 		randomNum = Math.floor(Math.random() * 1000000000);
 	}
-	orderNum.innerText = randomNum;
+	orderNum.innerText = randomNum; */
 	
 	</script>
 

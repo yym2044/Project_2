@@ -348,4 +348,37 @@ public class ProductServiceImpl implements ProductService {
 		
 		return 1;
 	}
+	
+	@Override
+	public List<Product> selectListOrder(ProductVo vo) throws Exception {
+		return dao.selectListOrder(vo);
+	}
+	
+	@Override
+	public List<Product> selectListProductOrder(ProductVo vo) throws Exception {
+		return dao.selectListProductOrder(vo);
+	}
+	
+	public int insertOrder(Product dto) throws Exception {
+		
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		dto.setIfpmSeq("1");
+		Long randomNum = (long) Math.floor(Math.random() * 1000000000);
+		while(randomNum > 300000000 || randomNum < 100000000) {
+			randomNum = (long) Math.floor(Math.random() * 1000000000);
+		}
+		dto.setTrorOrderId(String.valueOf(randomNum));
+		dto.setTrorDeliveryFee(dto.getTotalDelivery());
+		
+		dao.insertOrder(dto);
+		
+		for(int i = 0; i < dto.getCheckboxTrprArray().length; i++) {
+			dto.setTrprSeq(dto.getCheckboxTrprArray()[i]);
+			dto.setTrpoQuantity(dto.getTrctQuantityArray()[i]);
+			dto.setTrpoName(dto.getTrprFullNameArray()[i]);
+			dao.insertProductOrder(dto);
+		}
+		
+		return 1;
+	}
 }

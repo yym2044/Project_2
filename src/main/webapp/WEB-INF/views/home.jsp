@@ -323,6 +323,10 @@
 		$("#formHome").attr("action", "/infra/product/cartWishlist").submit();
 	}
 	
+	goOrderList = function(){
+		$("#formHome").attr("action", "/infra/product/orderList").submit();
+	}
+	
 	</script>
 
 	<script type="text/javascript">

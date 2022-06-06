@@ -404,6 +404,10 @@
 		$("#formSearch").attr("action", "/infra/product/cartWishlist").submit();
 	}
 	
+	goOrderList = function(){
+		$("#formSearch").attr("action", "/infra/product/orderList").submit();
+	}
+	
 	</script>	
 
 	<script type="text/javascript">

@@ -743,4 +743,111 @@
 	
 	</select>
 	 -->
+	 
+	 <select id="selectListOrder" resultMap="resultMapObj">
+	 
+	 SELECT
+	 	trorSeq
+	 	, ifmmSeq
+	 	, ifsaSeq
+	 	, trorOrderId
+	 	, trorDeliveryFee
+	 	, trorRequest
+	 	, regDateTime
+	 FROM
+	 	tradOrder
+	 WHERE 1=1
+	 	AND ifmmSeq = #{ifmmSeq}
+	 
+	 </select>
+	 
+	<select id="selectListProductOrder" resultMap="resultMapObj">
+	SELECT 
+		a.trpoSeq
+		, a.trorSeq
+		, a.trprSeq
+		, a.trpoName
+		, b.trprDiscountPrice
+		, a.trpoQuantity
+		, a.trpoOrderStatusCd
+		, a.trpoEstimatedArrivalDate
+		, a.trpoDeliveryStatusCd
+		, a.regDateTime
+		, d.path
+		, d.uuidName
+	FROM
+		tradProductOrder a
+	LEFT JOIN
+		tradProduct_Real b
+	ON
+		b.trprSeq = a.trprSeq
+	LEFT JOIN
+		tradProduct c
+	ON
+		c.trpdSeq = b.trpdSeq
+	LEFT JOIN
+		tradProductUploaded d
+	ON
+		d.pseq = c.trpdSeq
+	    AND d.defaultNy = 1
+	WHERE 1=1
+		AND a.trorSeq IN (
+			SELECT trorSeq FROM tradOrder
+			WHERE ifmmSeq = #{ifmmSeq}
+		)
+	 	
+	</select>
+	 
+	<insert id="insertOrder">
+	INSERT INTO
+		tradOrder (
+			ifmmSeq
+			, ifsaSeq
+			, ifpmSeq
+			, trorOrderId
+			, trorDeliveryFee
+			, trorRequest
+			, trorUseNy
+			, trorDelNy
+			, regDateTime
+		) VALUES (
+			#{ifmmSeq}
+			, #{ifsaSeq}
+			, #{ifpmSeq}
+			, #{trorOrderId}
+			, #{trorDeliveryFee}
+			, #{trorRequest}
+			, 1
+			, 0
+			, #{regDateTime}
+		)
+		<selectKey resultType="String" keyProperty="trorSeq" order="AFTER">
+	SELECT last_insert_id()
+	</selectKey>
+	</insert>
+	 
+	 <insert id="insertProductOrder">
+	 INSERT INTO
+	 	tradProductOrder (
+			trorSeq
+			, trprSeq
+			, trpoName
+			, trpoQuantity
+			, trpoOrderStatusCd
+			, trpoEstimatedArrivalDate
+			, trpoDeliveryStatusCd
+			, trpoDelNy
+			, regDateTime
+	 	) VALUES (
+	 		#{trorSeq}
+	 		, #{trprSeq}
+	 		, #{trpoName}
+	 		, #{trpoQuantity}
+	 		, #{trpoOrderStatusCd}
+	 		, #{trpoEstimatedArrivalDate}
+	 		, #{trpoDeliveryStatusCd}
+	 		, 0
+	 		, #{regDateTime}
+	 	)
+	 </insert>
 </mapper>
