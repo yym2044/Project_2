@@ -7,6 +7,7 @@ public class Member {
 	private String ifmmId;
 	private String ifmmPwd;
 	private String ifmmName;
+	private Integer ifmmGenderCd;
 	private String ifmmDesc;
 	
 	private String ifmeEmailFull;
@@ -21,6 +22,12 @@ public class Member {
 	}
 	public void setIfmmSeq(String ifmmSeq) {
 		this.ifmmSeq = ifmmSeq;
+	}
+	public Integer getIfmmGenderCd() {
+		return ifmmGenderCd;
+	}
+	public void setIfmmGenderCd(Integer ifmmGenderCd) {
+		this.ifmmGenderCd = ifmmGenderCd;
 	}
 	public Integer getIfmmAdminNy() {
 		return ifmmAdminNy;
@@ -76,7 +83,5 @@ public class Member {
 	public void setIfmaAddress2(String ifmaAddress2) {
 		this.ifmaAddress2 = ifmaAddress2;
 	}
-	
-	
 	
 }

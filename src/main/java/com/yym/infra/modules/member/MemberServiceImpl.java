@@ -14,4 +14,14 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectOneLogin(dto);
 	}
 	
+	@Override
+	public int insertMember(Member dto) throws Exception {
+		
+		dao.insertMember(dto);
+		dao.insertMemberPhone(dto);
+		dao.insertMemberEmail(dto);
+		
+		return 1;
+	}
+	
 }

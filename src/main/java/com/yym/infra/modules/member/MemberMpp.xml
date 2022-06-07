@@ -9,6 +9,52 @@
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.member.Member"></resultMap>
 		
+		
+	<insert id="insertMember">
+	
+	INSERT INTO
+		infrMember (
+			ifmmId
+			, ifmmPwd
+			, ifmmName
+			, ifmmDob
+			, ifmmGenderCd
+		) VALUES (
+			#{ifmmId}
+			, #{ifmmPwd}
+			, #{ifmmName}
+			, #{ifmmDob}
+			, #{ifmmGenderCd}
+		)
+		
+	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+	SELECT last_insert_id()
+	</selectKey>
+	
+	</insert>
+	
+	<insert id="insertMemberEmail">
+	INSERT INTO
+		infrMemberEmail (
+			ifmmSeq
+			, ifmeEmailFull
+		) VALUES (
+			#{ifmmSeq}
+			, #{ifmeEmailFull}
+		)
+	</insert>
+	
+	<insert id="insertMemberPhone">
+	INSERT INTO
+		infrMemberPhone (
+			ifmmSeq
+			, ifmpNumber
+		) VALUES (
+			#{ifmmSeq}		
+			, #{ifmpNumber}
+		)
+	</insert>
+		
 	<select id="selectOneLogin" resultMap="resultMapObj">
 		SELECT
 			ifmmSeq
