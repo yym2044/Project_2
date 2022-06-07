@@ -15,6 +15,15 @@ public class MemberController {
 
 	@Autowired
 	MemberServiceImpl service;
+	
+	@RequestMapping(value = "/member/insertMember")
+	public String insertMember(Member dto) throws Exception {
+		
+		service.insertMember(dto);
+		
+		return "redirect:/home";
+	}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/member/loginProc")
@@ -50,4 +59,5 @@ public class MemberController {
 		return returnMap;
 	}
 
+	
 }

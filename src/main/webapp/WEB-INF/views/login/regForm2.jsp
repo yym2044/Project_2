@@ -83,7 +83,7 @@ label {
 			</div>
 
 
-			<form method="" action="">
+			<form id="formRegForm2" method="post" action="/infra/member/insertMember">
 
 
 				<div class="col-12 d-flex justify-content-center">
@@ -111,64 +111,38 @@ label {
 							<input name="ifmmDob" id="ifmmDob" type="date" class="form-control">
 
 
-							<label for="ifmmGender">성별</label>
-							<select name="ifmmGender" id="ifmmGender" class="form-select">
-								<option>성별</option>
-								<option>남자</option>
-								<option>여자</option>
+							<label for="ifmmGenderCd">성별</label>
+							<select name="ifmmGenderCd" id="ifmmGenderCd" class="form-select">
+								<option value="0">성별</option>
+								<option value="3">남자</option>
+								<option value="4">여자</option>
 							</select>
 
 							<label for="ifmeEmailFull">본인 확인 이메일(선택)</label>
 							<input name="ifmeEmailFull" id="ifmeEmailFull" type="text" class="form-control" placeholder="선택입력">
 
 							<label for="ifmpNumber">휴대전화</label>
+							<!-- 
 							<select name="nationCode" id="nationCode" class="form-select">
 								<option>대한민국 +82</option>
 							</select>
+							 -->
 							<div class="input-group">
 								<input name="ifmpNumber" id="ifmpNumber" type="text" class="form-control" placeholder="전화번호 입력">
 								<input type="button" class="btn btm-sm btn-outline-dark" value="인증번호 받기">
 							</div>
 							<input name="" id="" type="text" class="form-control" placeholder="인증번호를 입력하세요">
 
-							
-							<input type="submit" id="btnSubmit" class="btn btn-outline-dark d-block w-100" value="가입하기">
 
-
+							<input type="button" id="btnSubmit" class="btn btn-outline-dark d-block w-100" value="가입하기">
 
 						</div>
-
 					</div>
 				</div>
 			</form>
-
 		</div>
 	</div>
-
-
-
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -177,25 +151,30 @@ label {
 <script src="${path}/resources/common/js/validation.js"></script>
 
 <script type="text/javascript">
-	$("#btnSubmit").on(
-			"click",
-			function() {
-				if (!checkId($("#ifmmId"), $("#ifmmId").val(),
-						"아이디가 유효하지 않습니다. 다시 입력해주세요.")) {
-					return false;
-				}
-
-				if (!checkPassword($("#ifmmPwd"), $("#ifmmPwd").val(),
-						"비밀번호가 유효하지 않습니다.")) {
-					return false;
-				}
-
-				if ($("#ifmmPwd").val() != $("#ifmmPwdConfirm").val()) {
-					alert("비밀번호를 다르게 입력하였습니다.");
-					$("#ifmmPwdConfirm").focus();
-					return false;
-				}
-			});
+	$("#btnSubmit").on("click",function() {
+		
+		
+		if (!checkId($("#ifmmId"), $("#ifmmId").val(),"아이디가 유효하지 않습니다. 다시 입력해주세요.")) {
+			return false;
+		}
+		
+		if (!checkPassword($("#ifmmPwd"), $("#ifmmPwd").val(),"비밀번호가 유효하지 않습니다.")) {
+			return false;
+		}
+		
+		if ($("#ifmmPwd").val() != $("#ifmmPwdConfirm").val()) {
+			alert("비밀번호를 다르게 입력하였습니다.");
+			$("#ifmmPwdConfirm").focus();
+			return false;
+		}
+		
+		if(!checkNoSelect($("#ifmmGenderCd"), $("#ifmmGenderCd").val(), "성별을 선택해주세요.")){
+			return false;
+		}
+		
+		$("#formRegForm2").submit();
+		
+	});
 </script>
 
 <script type="text/javascript">
@@ -205,44 +184,45 @@ label {
 
 		$("#ifmmPwdConfirmValidFeedBack").hide();
 		$("#ifmmPwdConfirmInvalidFeedBack").hide();
-		$("input")
-				.keyup(
-						function() {
-
-							var pwd1 = $("#ifmmPwd").val();
-							var pwd2 = $("#ifmmPwdConfirm").val();
-							var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).{8,20}$/;
-
-							if (regExp.test(pwd1)) {
-								$("#ifmmPwd").addClass("is-valid");
-								$("#ifmmPwd").removeClass("is-invalid");
-								$("#ifmmPwdValidFeedBack").show();
-								$("#ifmmPwdInvalidFeedBack").hide();
-								$("#ifmmPwdConfirm").removeAttr("disabled");
-							} else if (!regExp.test(pwd1) && pwd1.length > 1) {
-								$("#ifmmPwd").addClass("is-invalid");
-								$("#ifmmPwd").removeClass("is-valid");
-								$("#ifmmPwdValidFeedBack").hide();
-								$("#ifmmPwdInvalidFeedBack").show();
-								$("#ifmmPwdConfirm").attr("disabled", "disabled");
-							}
-
-							if (pwd1 != "" && pwd2 != "") {
-								if (pwd1 == pwd2) {
-									$("#ifmmPwdConfirm").addClass("is-valid");
-									$("#ifmmPwdConfirm").removeClass("is-invalid");
-									$("#ifmmPwdConfirmValidFeedBack").show();
-									$("#ifmmPwdConfirmInvalidFeedBack").hide();
-									$("#btnSubmit").removeAttr("disabled");
-								} else {
-									$("#ifmmPwdConfirm").addClass("is-invalid");
-									$("#ifmmPwdConfirm").removeClass("is-valid");
-									$("#ifmmPwdConfirmValidFeedBack").hide();
-									$("#ifmmPwdConfirmInvalidFeedBack").show();
-									$("#btnSubmit").attr("disabled", "disabled");
-								}
-							}
-						});
+		$("input").keyup(function() {
+			var pwd1 = $("#ifmmPwd").val();
+			var pwd2 = $("#ifmmPwdConfirm").val();
+			var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).{8,20}$/;
+	
+			if (regExp.test(pwd1)) {
+				$("#ifmmPwd").addClass("is-valid");
+				$("#ifmmPwd").removeClass("is-invalid");
+				$("#ifmmPwdValidFeedBack").show();
+				$("#ifmmPwdInvalidFeedBack").hide();
+				$("#ifmmPwdConfirm").removeAttr("disabled");
+			} else if (!regExp.test(pwd1) && pwd1.length > 1) {
+				$("#ifmmPwd").addClass("is-invalid");
+				$("#ifmmPwd").removeClass("is-valid");
+				$("#ifmmPwdValidFeedBack").hide();
+				$("#ifmmPwdInvalidFeedBack").show();
+				$("#ifmmPwdConfirm").attr("disabled",
+						"disabled");
+			}
+	
+			if (pwd1 != "" && pwd2 != "") {
+				if (pwd1 == pwd2) {
+					$("#ifmmPwdConfirm").addClass("is-valid");
+					$("#ifmmPwdConfirm").removeClass(
+							"is-invalid");
+					$("#ifmmPwdConfirmValidFeedBack").show();
+					$("#ifmmPwdConfirmInvalidFeedBack").hide();
+					$("#btnSubmit").removeAttr("disabled");
+				} else {
+					$("#ifmmPwdConfirm").addClass("is-invalid");
+					$("#ifmmPwdConfirm")
+							.removeClass("is-valid");
+					$("#ifmmPwdConfirmValidFeedBack").hide();
+					$("#ifmmPwdConfirmInvalidFeedBack").show();
+					$("#btnSubmit")
+							.attr("disabled", "disabled");
+				}
+			}
+		});
 	});
 </script>
 

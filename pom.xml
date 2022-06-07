@@ -245,6 +245,14 @@
 		    <version>5.2.2.RELEASE</version>
 		</dependency>
 		
+		<!-- OJDBC 2022.06.07 start -->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <version>21.5.0.0</version>
+		</dependency>
+		<!-- OJDBC 2022.06.07 end -->
+		
 	</dependencies>
     <build>
         <plugins>
