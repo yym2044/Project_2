@@ -16,31 +16,4 @@ public class HomeController {
 		return "/meeting";
 	}
 	
-	@RequestMapping(value = "/login/loginForm")
-	public String loginForm() {
-		
-		return "/login/loginForm";
-	}
-	
-	@RequestMapping(value = "/login/loginFindId")
-	public String loginFindId() {
-		
-		return "/login/loginFindId";
-	}
-	@RequestMapping(value = "/login/loginFindPwd")
-	public String loginFindPwd() {
-		
-		return "/login/loginFindPwd";
-	}
-	@RequestMapping(value = "/login/regForm1")
-	public String regForm1() {
-		
-		return "/login/regForm1";
-	}
-	@RequestMapping(value = "/login/regForm2")
-	public String regForm2() {
-		
-		return "/login/regForm2";
-	}
-	
 }

@@ -54,10 +54,22 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매 <span>(<c:out value='${cartGeneralCount}'/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록 <span>(<c:out value="${cartWishListCount }"/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">정기배송 <span>(0)</span></a></li>
 				</ul>
+			</div>
+			
+			<div class="row py-3">
+				<div class="col p-0 pt-2">
+					<div class="table-responsive">
+						<table class="table table-sm p-0 border-top border-3">
+							<tr style="height: 100px;">
+								<td colspan="5" class="text-center fs-6 fw-bold">담은 상품이 없습니다.</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -89,7 +101,7 @@ td {
 		})
 	</script>
 	
-	<script src="${path}/resources/common/js/cart.js"></script>
+	<%@include file="../include/cartJs.jsp" %>
 	
 </body>
 </html>
