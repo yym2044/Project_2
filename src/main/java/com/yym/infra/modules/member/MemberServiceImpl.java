@@ -3,6 +3,8 @@ package com.yym.infra.modules.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yym.infra.common.util.UtilDateTime;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -16,6 +18,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insertMember(Member dto) throws Exception {
+		
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		dto.setModDateTime(UtilDateTime.nowDate());
 		
 		dao.insertMember(dto);
 		dao.insertMemberPhone(dto);

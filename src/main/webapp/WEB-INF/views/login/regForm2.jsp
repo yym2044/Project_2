@@ -38,13 +38,7 @@ label {
 
 </head>
 
-
 <body>
-
-
-</body>
-
-
 <div class="container-fluid">
 
 	<div class="text-dark bi bi-arrow-left d-md-none fs-1 p-3"></div>
@@ -84,7 +78,10 @@ label {
 
 
 			<form id="formRegForm2" method="post" action="/infra/member/insertMember">
-
+			
+				<input type="hidden" name="ifmmEmailConsentNy" id="ifmmEmailConsentNy" value="${dto.ifmmEmailConsentNy}">				
+				<input type="hidden" name="ifmmSmsConsentNy" id="ifmmSmsConsentNy" value="${dto.ifmmSmsConsentNy}">				
+				<input type="hidden" name="ifmmPushConsentNy" id="ifmmPushConsentNy" value="${dto.ifmmPushConsentNy}">
 
 				<div class="col-12 d-flex justify-content-center">
 
@@ -225,7 +222,5 @@ label {
 		});
 	});
 </script>
-
-
 </body>
 </html>

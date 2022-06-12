@@ -17,14 +17,30 @@
 			ifmmId
 			, ifmmPwd
 			, ifmmName
+			<if test="ifmmDob != null and !ifmmDob.equals('')">
 			, ifmmDob
+			</if>
 			, ifmmGenderCd
+			, ifmmEmailConsentNy
+			, ifmmSmsConsentNy
+			, ifmmPushConsentNy
+			, ifmmDelNy
+			, regDateTime
+			, modDateTime
 		) VALUES (
 			#{ifmmId}
 			, #{ifmmPwd}
 			, #{ifmmName}
+			<if test="ifmmDob != null and !ifmmDob.equals('')">
 			, #{ifmmDob}
+			</if>
 			, #{ifmmGenderCd}
+			, #{ifmmEmailConsentNy}
+			, #{ifmmSmsConsentNy}
+			, #{ifmmPushConsentNy}
+			, 0
+			, #{regDateTime}
+			, #{modDateTime}
 		)
 		
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
@@ -38,9 +54,13 @@
 		infrMemberEmail (
 			ifmmSeq
 			, ifmeEmailFull
+			, ifmeDefaultNy
+			, ifmeDelNy
 		) VALUES (
 			#{ifmmSeq}
 			, #{ifmeEmailFull}
+			, 1
+			, 0
 		)
 	</insert>
 	
@@ -49,9 +69,13 @@
 		infrMemberPhone (
 			ifmmSeq
 			, ifmpNumber
+			, ifmpDefaultNy
+			, ifmpDelNy
 		) VALUES (
 			#{ifmmSeq}		
 			, #{ifmpNumber}
+			, 1
+			, 0
 		)
 	</insert>
 		
