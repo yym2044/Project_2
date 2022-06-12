@@ -57,9 +57,9 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular();">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartGeneral();">일반구매 <span>(<c:out value='${cartGeneralCount}'/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">찜 목록 <span>(<c:out value="${cartWishListCount }"/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular();">정기배송 <span>(0)</span></a></li>
 				</ul>
 			</div>
 
@@ -70,7 +70,7 @@ td {
 							<c:choose>
 								<c:when test="${fn:length(wishList) eq 0}">
 									<tr style="height: 100px;">
-										<td colspan="5" class="text-center fs-6 fw-bold">찜한 상품이 없습니다.</td>
+										<td colspan="5" class="text-center fs-6 fw-bold">담은 상품이 없습니다.</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
@@ -526,6 +526,6 @@ td {
 	
 	</script>
 	
-	<script src="${path}/resources/common/js/cart.js"></script>
+	<%@include file="../include/cartJs.jsp" %>
 </body>
 </html>

@@ -55,9 +55,9 @@ td {
 
 			<div class="row">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">일반구매</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록</a></li>
-					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular()">정기배송</a></li>
+					<li class="nav-item"><a class="nav-link active fs-4 disabled" aria-current="page" href="">일반구매 <span>(<c:out value='${cartGeneralCount}'/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartWishList();">찜 목록 <span>(<c:out value="${cartWishListCount }"/>)</span></a></li>
+					<li class="nav-item"><a class="nav-link fs-4" href="javascript:goCartRegular()">정기배송 <span>(0)</span></a></li>
 				</ul>
 			</div>
 
@@ -185,6 +185,7 @@ td {
 	
 	<%@include file="../include/footer.jsp" %>
 	<%@include file="../include/jsLinks.jsp" %>
+	<%@include file="../include/cartJs.jsp" %>
 	
 	
 	<script type="text/javascript">
@@ -422,8 +423,6 @@ td {
 
 		arrivalDate.innerText = "내일(" + weekDay[day] + ") " + String(month).padStart(2,"0") + "/" + String(date).padStart(2,"0");
 	</script>
-	
-	<script src="${path}/resources/common/js/cart.js"></script>
 	
 </body>
 </html>
