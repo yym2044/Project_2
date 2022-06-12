@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +26,34 @@ public class MemberController {
 	}
 	
 
+	@RequestMapping(value = "/login/loginForm")
+	public String loginForm() {
+		
+		return "/login/loginForm";
+	}
+	
+	@RequestMapping(value = "/login/loginFindId")
+	public String loginFindId() {
+		
+		return "/login/loginFindId";
+	}
+	@RequestMapping(value = "/login/loginFindPwd")
+	public String loginFindPwd() {
+		
+		return "/login/loginFindPwd";
+	}
+	@RequestMapping(value = "/login/regForm1")
+	public String regForm1() {
+		
+		return "/login/regForm1";
+	}
+	@RequestMapping(value = "/login/regForm2")
+	public String regForm2(@ModelAttribute ("dto") Member dto) throws Exception {
+		
+		return "/login/regForm2";
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/member/loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {

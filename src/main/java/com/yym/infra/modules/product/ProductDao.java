@@ -59,4 +59,7 @@ public class ProductDao {
 	public int insertOrder(Product dto) {return sqlSession.insert(namespace + ".insertOrder", dto); }
 	public int insertProductOrder(Product dto) {return sqlSession.insert(namespace + ".insertProductOrder", dto); }
 	
+	public int selectCartGeneralCount(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectCartGeneralCount", vo); }
+	public int selectCartWishListCount(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectCartWishListCount", vo); }
+	
 }

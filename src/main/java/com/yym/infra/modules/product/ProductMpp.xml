@@ -850,4 +850,24 @@
 	 		, #{regDateTime}
 	 	)
 	 </insert>
+	 
+	 <select id="selectCartGeneralCount" resultType="Integer">
+	 SELECT
+	 	count(*)
+	 FROM
+	 	tradCart
+	 WHERE 1=1
+	 	AND ifmmSeq = #{ifmmSeq}
+	 </select>
+	 <select id="selectCartWishListCount" resultType="Integer">
+	 SELECT
+	 	count(*)
+	 FROM
+	 	tradWishList
+	 WHERE 1=1
+	 	AND ifmmSeq = #{ifmmSeq}
+	 </select>
+	 <select id="selectCartRegularDeliveryCount" resultType="Integer">
+	 
+	 </select>
 </mapper>

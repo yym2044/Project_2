@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -214,6 +215,8 @@ public class ProductController {
 	public String cartGeneral(Model model, @ModelAttribute ("vo") ProductVo vo) throws Exception {
 		
 		model.addAttribute("listCartGeneral", service.selectListCartGeneral(vo));
+		model.addAttribute("cartGeneralCount", service.selectCartGeneralCount(vo));
+		model.addAttribute("cartWishListCount", service.selectCartWishListCount(vo));
 		
 		return "product/cartGeneral";
 	}
@@ -222,13 +225,17 @@ public class ProductController {
 	public String cartWishlist(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
 		
 		model.addAttribute("wishList", service.selectListWishList(vo));
+		model.addAttribute("cartGeneralCount", service.selectCartGeneralCount(vo));
+		model.addAttribute("cartWishListCount", service.selectCartWishListCount(vo));
 		
 		
 		return "product/cartWishlist";
 	}
 	@RequestMapping(value = "/product/cartRegularDelivery")
-	public String cartRegularDelivery() throws Exception {
+	public String cartRegularDelivery(Model model, ProductVo vo) throws Exception {
 		
+		model.addAttribute("cartGeneralCount", service.selectCartGeneralCount(vo));
+		model.addAttribute("cartWishListCount", service.selectCartWishListCount(vo));
 		
 		return "product/cartRegularDelivery";
 	}
@@ -320,6 +327,21 @@ public class ProductController {
 		returnMap.put("options", service.selectListOptions(vo));
 		returnMap.put("rt", "success");
 		
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/selectCartCount")
+	public Map<String, Object> selectCartCount(ProductVo vo) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println(vo.getIfmmSeq());
+		
+		returnMap.put("cartGeneral", service.selectCartGeneralCount(vo));
+		returnMap.put("cartWishList", service.selectCartWishListCount(vo));
+		returnMap.put("cartRegularDelivery", 0);
+				
 		return returnMap;
 	}
 	

@@ -87,7 +87,7 @@ textarea {
 			</div>
 
 
-			<form method="" action="">
+			
 
 
 				<div class="col-12 d-flex justify-content-center">
@@ -97,7 +97,7 @@ textarea {
 						<div class="col-12 mt-4 border container1 box-white p-4">
 							<div class="row px-2">
 								<div class="form-check">
-									<input id="selectConsentAll" name="" onclick="selectAll(this)" type="checkbox" class="form-check-input rounded-circle">
+									<input id="selectConsentAll" name="" type="checkbox" class="form-check-input rounded-circle">
 									<label class="form-check-label" for="selectConsentAll">쿠팡 이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 정보 수신(선택)에 모두 동의합니다.</label>
 								</div>
 							</div>
@@ -164,16 +164,19 @@ textarea {
 						</div>
 						<div class="row p-0">
 							<div class="col d-flex justify-content-center p-0">
-								<button class="btn btn-lg btn-secondary" style="width: 50%;">취소</button>
-								<a href="/infra/login/regForm2" id="btnCon" class="btn btn-lg btn-danger" style="width: 50%;">확인</a>
+								<button onclick="location.href='/infra/home';" class="btn btn-lg btn-secondary" style="width: 50%;">취소</button>
+								<a id="btnCon" class="btn btn-lg btn-danger" style="width: 50%;">확인</a>
 							</div>
 						</div>
 
 
 					</div>
 				</div>
-			</form>
-
+				<form id="formRegForm1" method="post" action="/infra/login/regForm2">
+					<input type="hidden" name="ifmmEmailConsentNy" id="ifmmEmailConsentNy">				
+					<input type="hidden" name="ifmmSmsConsentNy" id="ifmmSmsConsentNy">				
+					<input type="hidden" name="ifmmPushConsentNy" id="ifmmPushConsentNy">				
+				</form>
 		</div>
 	</div>
 
@@ -250,6 +253,25 @@ $(document).ready(function() {
 			$("#consentRequired4").focus();
 			return false;
 		}
+		
+		if($("#consentEmail").is(":checked")){
+			$("#ifmmEmailConsentNy").val(1);
+		} else {
+			$("#ifmmEmailConsentNy").val(0);
+		}
+		if($("#consentSms").is(":checked")){
+			$("#ifmmSmsConsentNy").val(1);
+		} else {
+			$("#ifmmSmsConsentNy").val(0);
+		}
+		if($("#consentPush").is(":checked")){
+			$("#ifmmPushConsentNy").val(1);
+		} else {
+			$("#ifmmPushConsentNy").val(0);
+		}
+		
+		$("#formRegForm1").submit();
+		
 		
 	});
 	

@@ -1,5 +1,7 @@
 package com.yym.infra.modules.member;
 
+import java.util.Date;
+
 public class Member {
 
 	private String ifmmSeq;
@@ -7,13 +9,32 @@ public class Member {
 	private String ifmmId;
 	private String ifmmPwd;
 	private String ifmmName;
+	private String ifmmDob;
 	private Integer ifmmGenderCd;
 	private String ifmmDesc;
+	
+	private Integer ifmmEmailConsentNy;
+	private Integer ifmmSmsConsentNy;
+	private Integer ifmmPushConsentNy;
 	
 	private String ifmeEmailFull;
 	private String ifmpNumber;
 	private String ifmaAddress1;
 	private String ifmaAddress2;
+	
+	// RegMod
+	private String regIp;
+	private String regSeq;
+	private String regDeviceCd;
+	private String regDevice;
+	private Date regDateTime;
+	private Date regDateTimeSvr;
+	private String modIp;
+	private String modSeq;
+	private String modDeviceCd;
+	private String modDevice;
+	private Date modDateTime;
+	private Date modDateTimeSvr;
 	
 ///////////////////////////////////////
 	
@@ -82,6 +103,102 @@ public class Member {
 	}
 	public void setIfmaAddress2(String ifmaAddress2) {
 		this.ifmaAddress2 = ifmaAddress2;
+	}
+	public String getIfmmDob() {
+		return ifmmDob;
+	}
+	public void setIfmmDob(String ifmmDob) {
+		this.ifmmDob = ifmmDob;
+	}
+	public String getRegIp() {
+		return regIp;
+	}
+	public void setRegIp(String regIp) {
+		this.regIp = regIp;
+	}
+	public String getRegSeq() {
+		return regSeq;
+	}
+	public void setRegSeq(String regSeq) {
+		this.regSeq = regSeq;
+	}
+	public String getRegDeviceCd() {
+		return regDeviceCd;
+	}
+	public void setRegDeviceCd(String regDeviceCd) {
+		this.regDeviceCd = regDeviceCd;
+	}
+	public String getRegDevice() {
+		return regDevice;
+	}
+	public void setRegDevice(String regDevice) {
+		this.regDevice = regDevice;
+	}
+	public Date getRegDateTime() {
+		return regDateTime;
+	}
+	public void setRegDateTime(Date regDateTime) {
+		this.regDateTime = regDateTime;
+	}
+	public Date getRegDateTimeSvr() {
+		return regDateTimeSvr;
+	}
+	public void setRegDateTimeSvr(Date regDateTimeSvr) {
+		this.regDateTimeSvr = regDateTimeSvr;
+	}
+	public String getModIp() {
+		return modIp;
+	}
+	public void setModIp(String modIp) {
+		this.modIp = modIp;
+	}
+	public String getModSeq() {
+		return modSeq;
+	}
+	public void setModSeq(String modSeq) {
+		this.modSeq = modSeq;
+	}
+	public String getModDeviceCd() {
+		return modDeviceCd;
+	}
+	public void setModDeviceCd(String modDeviceCd) {
+		this.modDeviceCd = modDeviceCd;
+	}
+	public String getModDevice() {
+		return modDevice;
+	}
+	public void setModDevice(String modDevice) {
+		this.modDevice = modDevice;
+	}
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
+	}
+	public Date getModDateTimeSvr() {
+		return modDateTimeSvr;
+	}
+	public void setModDateTimeSvr(Date modDateTimeSvr) {
+		this.modDateTimeSvr = modDateTimeSvr;
+	}
+	public Integer getIfmmEmailConsentNy() {
+		return ifmmEmailConsentNy;
+	}
+	public void setIfmmEmailConsentNy(Integer ifmmEmailConsentNy) {
+		this.ifmmEmailConsentNy = ifmmEmailConsentNy;
+	}
+	public Integer getIfmmSmsConsentNy() {
+		return ifmmSmsConsentNy;
+	}
+	public void setIfmmSmsConsentNy(Integer ifmmSmsConsentNy) {
+		this.ifmmSmsConsentNy = ifmmSmsConsentNy;
+	}
+	public Integer getIfmmPushConsentNy() {
+		return ifmmPushConsentNy;
+	}
+	public void setIfmmPushConsentNy(Integer ifmmPushConsentNy) {
+		this.ifmmPushConsentNy = ifmmPushConsentNy;
 	}
 	
 }

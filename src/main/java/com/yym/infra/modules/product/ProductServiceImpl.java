@@ -381,4 +381,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		return 1;
 	}
+	
+	public int selectCartGeneralCount(ProductVo vo) throws Exception {
+		return dao.selectCartGeneralCount(vo);
+	}
+	public int selectCartWishListCount(ProductVo vo) throws Exception {
+		return dao.selectCartWishListCount(vo);
+	}
+	
 }
