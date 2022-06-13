@@ -429,7 +429,6 @@ $("#btnLogin").on("click", function(){
 	Kakao.init('5ed5d21a3ed5c47a1675f773a28a15f9');
 	console.log(Kakao.isInitialized());
 	
-	
 	kakaoLogin = function(){
 		/* 
 		Kakao.Auth.authorize({
@@ -453,13 +452,13 @@ $("#btnLogin").on("click", function(){
 							  ,type:"post"
 							  ,url: "/infra/member/loginProcSns"
 							  /* ,data : { "ifmmId" : res.id } */
-							  ,data : { "ifmeEmailFull" : res.kakao_account.email }
+							  ,data : { ifmeEmailFull : res.kakao_account.email }
 							  ,success: function(response){
-								  if(response.rt == "successGoIndex") {
-									  location.href = "/infra/index/indexView";
-									  location.href = "/infra/index/indexView";
-								  } else if (response.rt == "successGoMain") {
-									  location.href = "/infra/coupang/mainPage";
+								  
+								  console.log("response :", response);
+								  
+								  if (response.rt == "success") {
+									  location.href = "/infra/home";
 								  } else {
 									  alert("로그인 실패");
 								  }
@@ -468,8 +467,6 @@ $("#btnLogin").on("click", function(){
 									alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 								}
 						  });
-						 //
-						 
 						 
 					 }
 				 })

@@ -758,6 +758,8 @@
 	 	tradOrder
 	 WHERE 1=1
 	 	AND ifmmSeq = #{ifmmSeq}
+	 ORDER BY
+	 	regDateTime DESC
 	 
 	 </select>
 	 
