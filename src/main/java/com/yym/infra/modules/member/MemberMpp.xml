@@ -9,6 +9,13 @@
 	<resultMap id="resultMapObj"
 		type="com.yym.infra.modules.member.Member"></resultMap>
 		
+	<select id="selectListOracle" resultMap="resultMapObj">
+	SELECT
+		ifmmSeq
+		, ifmmName
+	FROM
+		infrMember
+	</select>	
 		
 	<insert id="insertMember">
 	
@@ -91,6 +98,24 @@
 		WHERE 1=1
 			AND ifmmId = #{ifmmId}
 			AND ifmmPwd = #{ifmmPwd}
+	</select>
+	
+	<select id="selectOneLoginSns" resultMap="resultMapObj">
+	SELECT
+		a.ifmmSeq
+		, a.ifmmAdminNy
+		, a.ifmmId
+		, a.ifmmName
+		, a.ifmmDesc
+	FROM
+		infrMember a
+	LEFT JOIN
+		infrMemberEmail b
+	ON
+		b.ifmmSeq = a.ifmmSeq
+	WHERE 1=1
+		AND b.ifmeEmailFull = #{ifmeEmailFull}
+	limit 1
 	</select>
 	
 	
