@@ -597,7 +597,7 @@ a {
 														수정
 													</a>
 													<a href="javascript:goDele(<c:out value="${item.ifmmSeq }"/>)" class="btn btn-sm btn-outline-danger py-0">
-														삭제
+														삭제 
 													</a>
 												</div>
 											</td>
