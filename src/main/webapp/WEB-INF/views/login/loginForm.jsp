@@ -7,7 +7,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
-<jsp:useBean id="CodeServiceImpl" class="com.yym.infra.modules.code.CodeServiceImpl" scope="page"/>	<!-- 코드서비스임플 클래스 바로 사용 -->
+<jsp:useBean id="CodeServiceImpl" class="com.yym.infra.modules.code.CodeServiceImpl" scope="page" />
+<!-- 코드서비스임플 클래스 바로 사용 -->
 
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -81,22 +82,14 @@
 
 					<div class="col-8 mt-4">
 
-						<div class="input-group input-group-lg mb-3">
-							<!-- <span class="input-group-text bg-light" id="userIcon"> <label for="Username"> <i
-										class="bi bi-person-circle text-secondary"></i>
-								</label>
-								</span> -->
-							<input type="text" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username"
-								aria-describedby="userIcon">
+						<div class="mb-3 form-floating">
+							<input type="text" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username" aria-describedby="userIcon">
+							<label for="ifmmId">아이디</label>
 						</div>
 
-						<div class="input-group input-group-lg">
-							<!-- <span class="input-group-text bg-light" id="passwordIcon"> <label for="Password"> <i
-										class="bi bi-file-lock2-fill text-secondary"></i>
-								</label>
-								</span> -->
-							<input type="password" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password"
-								aria-describedby="passwordIcon">
+						<div class="form-floating">
+							<input type="password" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
+							<label for="ifmmPwd">비밀번호</label>
 						</div>
 
 					</div>
@@ -108,7 +101,7 @@
 
 				</div>
 			</div>
-
+			<!-- 
 			<div class="col-12 d-flex justify-content-center mb-4">
 				<div class="row d-flex justify-content-start mt-3" style="width: 600px;">
 					<div class="col-3 col-md-3 form-check ms-3">
@@ -122,34 +115,30 @@
 					</div>
 				</div>
 			</div>
-
+			 -->
 
 
 
 
 			<div class="col-md-12 text-center my-4 fw-bold">
-				<button class="btn btn-sm p-2 container3" data-bs-toggle="collapse" data-bs-target="#socialLogin">다른 계정으로
-					로그인</button>
+				<button class="btn btn-sm p-2 container3" data-bs-toggle="collapse" data-bs-target="#socialLogin">다른 계정으로 로그인</button>
 			</div>
 
 			<div class="col-md-12 collapse show" id="socialLogin">
 				<div class="row justify-content-center">
 					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="border-radius: 50%;"
-							class="btn-3d blue">
+						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="border-radius: 50%;" class="btn-3d blue">
 					</div>
 					<div class="col-md-1 text-center">
 						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="border-radius: 50%;" class="btn-3d green">
 					</div>
 					<div class="col-md-1 text-center">
 						<a href="javascript:kakaoLogin();">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;"
-								class="btn-3d yellow">
+							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;" class="btn-3d yellow">
 						</a>
 					</div>
 					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;"
-							class="btn-3d white">
+						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;" class="btn-3d white">
 					</div>
 				</div>
 			</div>
@@ -188,8 +177,7 @@
 									class="bi bi-person-circle text-secondary"></i>
 							</label>
 							</span> -->
-							<input type="text" class="form-control" id="Username" placeholder="아이디" aria-label="Username"
-								aria-describedby="userIcon">
+							<input type="text" class="form-control" id="Username" placeholder="아이디" aria-label="Username" aria-describedby="userIcon">
 						</div>
 
 						<div class="input-group input-group-lg">
@@ -197,8 +185,7 @@
 									class="bi bi-file-lock2-fill text-secondary"></i>
 							</label>
 							</span> -->
-							<input type="password" class="form-control" id="Password" placeholder="비밀번호" aria-label="Password"
-								aria-describedby="passwordIcon">
+							<input type="password" class="form-control" id="Password" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
 						</div>
 
 					</div>
@@ -214,8 +201,8 @@
 						</label>
 					</div>
 					<div class="col-5 form-check ms-3">
-						<input type="checkbox" class="form-check-input" id="saveId" name="checkbox1"> <label for="saveId"
-							class="form-check-label"><span class="fw-light">아이디 저장</span></label>
+						<input type="checkbox" class="form-check-input" id="saveId" name="checkbox1">
+						<label for="saveId" class="form-check-label"><span class="fw-light">아이디 저장</span></label>
 					</div>
 				</div>
 			</div>
@@ -306,7 +293,7 @@
 			</div>
 		</div>
 
-
+		<!-- 
 		<div class="footer">
 			<div class="row d-flex align-items-end border-top border-4 pb-3 pt-4 d-none d-md-block">
 
@@ -339,7 +326,7 @@
 
 			</div>
 		</div>
-
+		 -->
 
 	</div>
 
@@ -353,61 +340,42 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script type="text/javascript">
-	
-$("#btnLogin").on("click", function(){
-	$.ajax({
-		async: true 
-		,cache: false
-		,type: "post"
-		,url: "/infra/member/loginProc"
-		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
-		,success: function(response) {
-			if(response.rt == "success") {
-				
-				location.href = "/infra/home";	// 메인페이지로
-				/* window.location = document.referrer; */
-				/* location.href = document.referrer;  */
-				
-			} else {
-				alert("로그인 실패");
+
+	function loginAjax(){
+		$.ajax({
+			async: true
+			,cache: false
+			,type: "post"
+			,url: "/infra/member/loginProc"
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/infra/index/indexView";
+				} else {
+					alert("로그인 실패");
+				}
 			}
-		}
-		
-		,error : function(jqXHR, textStatus, errorThrown){
-			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-		}
-	});
+			
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
 	
-});
+	$("#btnLogin").on("click", function(){
+		
+		loginAjax();
+		
+	});
 	
 	//엔터키 쳤을 때 로그인 하는 방법 (input id칸이랑 pwd칸에 [onkeyup="enterkey();"] 추가)
 	function enterkey() {
-        if (window.event.keyCode == 13) {
- 				
-        	$.ajax({
-    			async: true 
-    			,cache: false
-    			,type: "post"
-    			,url: "/infra/member/loginProc"
-    			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
-    			,success: function(response) {
-    				if(response.rt == "success") {
-    					location.href = "/infra/home";
-    				} else {
-    					alert("로그인 실패");
-    				}
-    			}
-    			,error : function(jqXHR, textStatus, errorThrown){
-    				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-    			}
-    		});
-        	
-             
-        	}
-		}
-
-
-
+       if (window.event.keyCode == 13) {
+				
+       	loginAjax();
+            
+       	}
+	}
 
 </script>
 
@@ -458,7 +426,7 @@ $("#btnLogin").on("click", function(){
 								  console.log("response :", response);
 								  
 								  if (response.rt == "success") {
-									  location.href = "/infra/home";
+									  location.href = "/infra/index/indexView";
 								  } else {
 									  alert("로그인 실패");
 								  }
