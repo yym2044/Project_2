@@ -77,7 +77,7 @@ label {
 			</div>
 
 
-			<form id="formRegForm2" method="post" action="/infra/member/insertMember">
+			<form id="formRegForm2" method="post" action="/infra/member/insertMemberUser">
 			
 				<input type="hidden" name="ifmmEmailConsentNy" id="ifmmEmailConsentNy" value="${dto.ifmmEmailConsentNy}">				
 				<input type="hidden" name="ifmmSmsConsentNy" id="ifmmSmsConsentNy" value="${dto.ifmmSmsConsentNy}">				

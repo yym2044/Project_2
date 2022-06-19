@@ -26,7 +26,6 @@
 
 </head>
 <body>
-
 	<c:set var="listCategoryParents1" value="${CategoryServiceImpl.selectCategoryWithParentsCachedCode('1')}" />
 	<!-- listCategory에 값을 담음 -->
 	<c:set var="listCategoryDepth2" value="${CategoryServiceImpl.selectCategoryWithDepthCachedCode('2')}" />
@@ -36,12 +35,8 @@
 		<form id="formHome" method="post" action="/infra/product/productSearch">
 			<input id="ifmmSeq" name="ifmmSeq" type="hidden" value="${sessSeq}">
 
-
 			<%@include file="./include/coupangTopBar.jsp"%>
-			
 			<%@include file="./include/coupangShSection1.jsp"%>
-			
-
 
 			<!-- 광고 carousel s -->
 			<div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -50,7 +45,7 @@
 						<a href="/infra/product/productView?trpdSeq=3"><img src="${path}/resources/images/user/mainPage/ad1.jpg" class="d-block w-120" alt="..."></a>
 					</div>
 					<div class="carousel-item" data-bs-interval="5000">
-						<img src="${path}/resources/images/user/mainPage/ad2.jpg" class="d-block w-120" alt="...">
+						<a href="/infra/product/productView?trpdSeq=5"><img src="${path}/resources/images/user/mainPage/ad2.jpg" class="d-block w-120" alt="..."></a>
 					</div>
 					<div class="carousel-item" data-bs-interval="5000">
 						<img src="${path}/resources/images/user/mainPage/ad3.jpg" class="d-block w-120" alt="...">

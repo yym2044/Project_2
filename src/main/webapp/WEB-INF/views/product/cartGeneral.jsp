@@ -30,11 +30,11 @@ td {
 </head>
 <body>
 
-	<form id="formCart" method="post">
-		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
-		<input type="hidden" name="checkboxTrprArray">
-		<input type="hidden" name="trprFullNameArray">
-		<input type="hidden" name="trctQuantityArray">
+<form id="formCart" method="post">
+	<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+	<input type="hidden" name="checkboxTrprArray">
+	<input type="hidden" name="trprFullNameArray">
+	<input type="hidden" name="trctQuantityArray">
 		
 
 	<div class="container-fluid">
