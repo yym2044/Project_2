@@ -60,6 +60,7 @@ public class MemberDao {
 	public int updateMember(Member dto) {return sqlSession.update(namespace + ".updateMember", dto); }
 	public int updateMemberEmail(Member dto) {return sqlSession.update(namespace + ".updateMemberEmail", dto); }
 	public int updateMemberAddress(Member dto) {return sqlSession.update(namespace + ".updateMemberAddress", dto); }
+	public int updateAddressOnline(Member dto) {return sqlSession.update(namespace + ".updateAddressOnline", dto); }
 	public int updateMemberPhone(Member dto) {return sqlSession.update(namespace + ".updateMemberPhone", dto); }
 //	public int updateMemberPhoneMobile(Member dto) {return sqlSession.update(namespace + ".updateMemberPhoneMobile", dto); }
 //	public int updateMemberPhoneHome(Member dto) {return sqlSession.update(namespace + ".updateMemberPhoneHome", dto); }
@@ -82,6 +83,7 @@ public class MemberDao {
 	
 //  DELETE note and UPDATE ifntOrder
 	public int deleteMemberNote(MemberVo vo) {return sqlSession.delete(namespace + ".deleteMemberNote", vo);}
+	public int deleteMemberNoteAll(MemberVo vo) {return sqlSession.delete(namespace + ".deleteMemberNoteAll", vo); }
 	public int rearrangementNote(MemberVo vo) {return sqlSession.update(namespace + ".rearrangementNote", vo);}
 	
 }

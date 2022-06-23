@@ -62,4 +62,7 @@ public class ProductDao {
 	public int selectCartGeneralCount(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectCartGeneralCount", vo); }
 	public int selectCartWishListCount(ProductVo vo) {return sqlSession.selectOne(namespace + ".selectCartWishListCount", vo); }
 	
+	public List<Product> selectListProductAD() {return sqlSession.selectList(namespace + ".selectListProductAD", ""); }
+	public List<Product> selectListProductAD2() {return sqlSession.selectList(namespace + ".selectListProductAD2", ""); }
+	
 }

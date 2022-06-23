@@ -21,7 +21,8 @@
 	
 	INSERT INTO
 		infrMember (
-			ifmmId
+			ifmmAdminNy
+			, ifmmId
 			, ifmmPwd
 			, ifmmName
 			<if test="ifmmDob != null and !ifmmDob.equals('')">
@@ -37,7 +38,8 @@
 			, regDateTime
 			, modDateTime
 		) VALUES (
-			#{ifmmId}
+			0
+			, #{ifmmId}
 			, #{ifmmPwd}
 			, #{ifmmName}
 			<if test="ifmmDob != null and !ifmmDob.equals('')">
@@ -141,6 +143,8 @@
 	<sql id="selectListCommon">
 		FROM infrMember a
 		LEFT JOIN infrMemberEmail b ON b.ifmmSeq = a.ifmmSeq AND ifmeDefaultNy = 1
+		LEFT JOIN infrMemberAddress c ON c.ifmmSeq = a.ifmmSeq AND c.ifmaDefaultNy = 1
+		LEFT JOIN infrMemberPhone d ON d.ifmmSeq = a.ifmmSeq AND d.ifmpDefaultNy = 1 AND d.ifmpDeviceCd = 26
 		WHERE ifmmDelNy = 0
 		
 		<choose>
@@ -238,9 +242,15 @@
 			, a.ifmmDelNy
 			, (select ifcdName from infrCode where ifcdSeq = a.ifmmGradeCd) as ifmmGrade
 			, (select ifcdName from infrCode where ifcdSeq = a.ifmmStatusCd) as ifmmStatus
+			, (select ifcdName from infrCode where ifcdSeq = a.ifmmGenderCd) as ifmmGender
 			, a.regDateTime
 			, a.modDateTime
+			, a.ifmmEmailConsentNy
+			, a.ifmmSmsConsentNy
+			, a.ifmmPushConsentNy
 			, b.ifmeEmailFull
+			, c.ifmaAddress1
+			, c.ifmaAddress2
 		 <include refid="selectListCommon"/>
 		 LIMIT #{startRnumForMysql}, #{rowNumToShow}
 	</select>
@@ -433,7 +443,8 @@
 	<insert id="insertMember">
 	INSERT INTO
 	infrMember (
-		ifmmName
+		ifmmAdminNy
+		, ifmmName
 		, ifmmId
 		, ifmmPwd
 		, ifmmGenderCd
@@ -448,7 +459,8 @@
 		, ifmmDesc
 	<include refid="insertRegMod"/>
 	) VALUES (
-		#{ifmmName}
+		0
+		, #{ifmmName}
 		, #{ifmmId}
 		, #{ifmmPwd}
 		, #{ifmmGenderCd}
@@ -554,7 +566,7 @@
 				, #{ifaoSnsTypeCd}
 				, #{ifaoTitle}
 				, #{ifaoUrl}
-				, #{ifaoDelNy}
+				, 0
 				<include refid="insertRegModValue"/>
 				, #{ifmmSeq}
 			)
@@ -674,6 +686,8 @@
 	AND
 		ifmmSeq = #{ifmmSeq}
 	</update>
+	
+	<!-- UPSERT -->
 	<update id="updateMemberAddress">
 	UPDATE infrMemberAddress
 	SET
@@ -689,6 +703,16 @@
 		1 = 1
 	AND
 		ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<update id="updateAddressOnline">
+	UPDATE 
+		infrMemberAddressOnline
+	SET
+		ifaoUrl = #{ifaoUrl}
+	WHERE 1=1
+		AND ifmmSeq = #{ifmmSeq}
+		AND	ifaoTypeCd = #{ifaoTypeCd}
 	</update>
 	
 	<update id="updateMemberPhone">
@@ -756,6 +780,13 @@
 		infrMemberNote
 	WHERE 1=1
 		AND ifntOrder = #{ifntOrder}
+		AND ifmmSeq = #{ifmmSeq}
+	</delete>
+	
+	<delete id="deleteMemberNoteAll">
+	DELETE FROM
+		infrMemberNote
+	WHERE 1=1
 		AND ifmmSeq = #{ifmmSeq}
 	</delete>
 	<!-- 메모 삭제 e -->

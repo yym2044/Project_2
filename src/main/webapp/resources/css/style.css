@@ -1,0 +1,160 @@
+
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* body {
+	font-family: 'SDSamliphopangche_Outline';
+} */
+
+.randomProduct{
+	width: 230px;
+}
+
+.width60 {
+	width: 60%;
+	margin: auto;
+}
+.width65 {
+	width: 65%;
+	margin: auto;
+}
+.width70 {
+	width: 70%;
+	margin: auto;
+}
+.width75 {
+	width: 75%;
+	margin: auto;
+}
+.width77 {
+	width: 77%;
+	margin: auto;
+}
+.width80 {
+	width: 80%;
+	margin: auto;
+}
+.width85 {
+	width: 85%;
+	margin: auto;
+}
+.width90 {
+	width: 90%;
+	margin: auto;
+}
+.width92 {
+	width: 92%;
+	margin: auto;
+}
+.width95 {
+	width: 95%;
+	margin: auto;
+}
+
+.box-white {
+	
+	background-color: white;
+	
+}
+
+th, td {
+	
+	text-align: center;
+	
+}
+
+.borderX {
+	
+	border: none;
+
+}
+
+.borderB {
+	
+	border: none;
+	border-bottom: 1px solid black;
+	
+}
+
+.shadowX {
+	box-shadow: none
+}
+
+.container1 {
+    box-shadow: 1px 1px 3px 1px #dadce0;
+}
+ 
+.container2 {
+    box-shadow: 1px 1px 3px 1px #dadce0 inset;
+}
+
+.container3 {
+	box-shadow: 2px 2px 6px 2px #dadce0;
+}
+
+.text-gray{
+	color: gray;
+}
+
+.nodeco{
+	text-decoration: none;
+}
+
+.form-control1 {
+  display: inline;
+  width: 20%;
+}
+
+
+
+/* 라디오 버튼 이미지 start */
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.visa{background-image:url(http://i.imgur.com/lXzJ1eB.png);}
+.mastercard{background-image:url(http://i.imgur.com/SJbRQF7.png);}
+
+.cc-selector input:active +.drinkcard-cc{opacity: .5;}
+.cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:50px;height:35px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#999;text-decoration:none;}
+p{margin-bottom:.3em;}
+
+/* 라디오 버튼 이미지 end */
+
+
+
+

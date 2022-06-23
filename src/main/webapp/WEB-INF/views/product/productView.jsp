@@ -116,13 +116,14 @@
 		
 		<form id="formView" method="post" action="/infra/product/productSearch">
 			<input id="ifmmSeq" name="ifmmSeq" type="hidden" value="${sessSeq}">
+			<input id="trpdSeq" name="trpdSeq" type="hidden">
 			<input type="hidden" name="checkboxTrprArray" id="trprSeqValue" placeholder="trprSeq">
 			<input type="hidden" id="trprFullNameArray" name="trprFullNameArray" placeholder="trprFullName" value="${rt.trpdName}" style="width: 500px;">
 			<input type="hidden" id="trctQuantityArray" name="trctQuantityArray" placeholder="trctQuantity" value="1">
 			<input type="hidden" id="totalProduct" name="totalProduct" placeholder="상품*수량">
 			<input type="hidden" id="totalDelivery" name="totalDelivery" placeholder="배송비" value="${rt.trpdDeliveryFee}">
 			<input type="hidden" id="totalMoney" name="totalMoney" placeholder="합계">
-			<input type="hidden" id="trprDiscountPrice" placeholder="trprDiscountPrice">
+			<input type="hidden" id="trprDiscountPrice" placeholder="trprDiscountPrice" value="${rt.trprDiscountPrice}">
 
 			<%@include file="../include/coupangTopBar.jsp"%>
 
@@ -352,164 +353,32 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct1.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct2.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct3.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct5.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
+							<c:forEach items="${listAd}" var="item" varStatus="status">
+								<c:if test="${status.index le 4 }">							
+									<div class="card">
+										<a href="javascript:goView(<c:out value="${item.trpdSeq}"/>)" class="productLink link-dark">
+											<img class="randomProduct" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+											<span class="fs-6 d-block pt-2 px-1 pName"><c:out value="${item.trpdName}"/></span>
+										</a>
+										<p class="card-text fw-bold pt-2 px-1 mb-5 text-danger"><fmt:formatNumber value="${item.trprDiscountPrice}"/><span class="fw-light">원</span></p>
+									</div>
+								</c:if>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="carousel-item">
 						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct6.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct7.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct8.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct9.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct10.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct11.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct12.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct13.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct14.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct15.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
+							<c:forEach items="${listAd}" var="item" varStatus="status">
+								<c:if test="${status.index gt 4 }">							
+									<div class="card">
+										<a href="javascript:goView(<c:out value="${item.trpdSeq}"/>)" class="productLink link-dark">
+											<img class="randomProduct" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+											<span class="fs-6 d-block pt-2 px-1 pName"><c:out value="${item.trpdName}"/></span>
+										</a>
+										<p class="card-text fw-bold pt-2 px-1 mb-5 text-danger"><fmt:formatNumber value="${item.trprDiscountPrice}"/><span class="fw-light">원</span></p>
+									</div>
+								</c:if>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -1044,6 +913,25 @@
 		e.target.className = "";
 	});
 	 */
+	 
+	 const pName = document.querySelectorAll(".pName");
+		
+		pName.forEach((el) => {
+			let name = el.innerText;
+			const length = name.length;
+			
+			if(length >= 13){
+				name = name.substring(0, 12) + "...";
+				el.innerText = name;
+			}
+			
+		});
+	 
+	 goView = function(seq){
+		 $("#trpdSeq").val(seq);
+		 $("#formView").attr("action", "/infra/product/productView").submit();
+	 }
+	 
 	</script>
 
 </body>

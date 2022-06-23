@@ -23,13 +23,17 @@ public class ProductController {
 	ProductServiceImpl service;
 	
 	@RequestMapping(value = "/home")
-	public String home(Model model, @ModelAttribute("vo") ProductVo vo) {
+	public String home(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
+		
+		model.addAttribute("listAd", service.selectListProductAD());
+		model.addAttribute("listAd2", service.selectListProductAD2());
 		
 		return "/home";
 	}
 	
 	@RequestMapping(value = "/product/productSearch")
 	public String productSearch(Model model,@ModelAttribute("vo") ProductVo vo) throws Exception {
+		
 		
 		System.out.println("vo.getShCategory() : " + vo.getShCategory());
 		System.out.println("vo.getShBar() : " + vo.getShBar());
@@ -57,6 +61,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/productView")
 	public String productView(Model model, @ModelAttribute("vo") ProductVo vo) throws Exception {
+		
+		model.addAttribute("listAd", service.selectListProductAD());
 		
 		model.addAttribute("rt", service.selectOne(vo));
 		model.addAttribute("listOption", service.selectListOptions(vo));

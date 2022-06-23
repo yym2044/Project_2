@@ -15,8 +15,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 	
-	
-	
 	@Override
 	public List<Member> selectListOracle() throws Exception {
 		return dao.selectListOracle();
@@ -103,11 +101,17 @@ public class MemberServiceImpl implements MemberService {
 			dao.insertPhone(dto);
 		}
 		
-		System.out.println(dto.getIfaoUrlArray1().length);	//1
-		System.out.println(dto.getIfaoUrlArray2().length);	//1 들어오는데 뭐지
-		
 		dao.insertMemberNationality(dto);
 		
+		for(int i = 0; i < dto.getIfaoUrlArray().length; i++) {
+			dto.setIfaoTypeCd(dto.getIfaoTypeCdArray()[i]);
+			dto.setIfaoSnsTypeCd(dto.getIfaoSnsTypeCdArray()[i]);
+			dto.setIfaoTitle(dto.getIfaoTitleArray()[i]);
+			dto.setIfaoDefaultNy(dto.getIfaoDefaultNyArray()[i]);
+			dto.setIfaoUrl(dto.getIfaoUrlArray()[i]);
+			
+			dao.insertAddressOnline(dto);
+		}
 		
 		//추가 start
 		
@@ -214,6 +218,12 @@ public class MemberServiceImpl implements MemberService {
 			dao.updateMemberPhone(dto);
 		}
 		
+		for(int i = 0; i < dto.getIfaoUrlArray().length; i++) {
+			dto.setIfaoTypeCd(dto.getIfaoTypeCdArray()[i]);
+			dto.setIfaoUrl(dto.getIfaoUrlArray()[i]);
+			
+			dao.updateAddressOnline(dto);
+		}
 		
 		return 1;
 	}
@@ -231,6 +241,7 @@ public class MemberServiceImpl implements MemberService {
 			dao.deleteMemberEmail(vo);
 			dao.deleteMemberPhone(vo);
 			dao.deleteMemberNationality(vo);
+			dao.deleteMemberNoteAll(vo);
 			dao.deleteMember(vo);
 			
 		}
