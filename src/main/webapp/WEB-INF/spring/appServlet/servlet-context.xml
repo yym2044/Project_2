@@ -31,7 +31,7 @@
 			<exclude-mapping path="/login/loginForm" />
 			<exclude-mapping path="/login/regForm1" />
 			<exclude-mapping path="/login/regForm2" />
-			<exclude-mapping path="/member/insertMember" />
+			<exclude-mapping path="/member/insertMemberUser" />
 			<exclude-mapping path="/member/loginProc" />
 			<exclude-mapping path="/member/loginProcSns" />
 			<exclude-mapping path="/login/loginFindId" />

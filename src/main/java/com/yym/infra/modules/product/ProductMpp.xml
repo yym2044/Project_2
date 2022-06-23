@@ -64,16 +64,16 @@
 			
 		<choose>
 			<when test="shSort == 'lowPrice'">
-				ORDER BY trpdPrice
+				ORDER BY trprDiscountPrice
 			</when>
 			<when test="shSort == 'highPrice'">
-				ORDER BY trpdPrice DESC
+				ORDER BY trprDiscountPrice DESC
 			</when>
 			<when test="shSort == 'highStar'">
 				ORDER BY trpdStarRating DESC
 			</when>
 			<when test="shSort == 'latest'">
-				ORDER BY a.regDateTime
+				ORDER BY a.regDateTime DESC
 			</when>
 		</choose>
 	</sql>
@@ -872,4 +872,40 @@
 	 <select id="selectCartRegularDeliveryCount" resultType="Integer">
 	 
 	 </select>
+	 
+	 <sql id="selectListProductAdCommon">
+		SELECT
+			a.trpdSeq	 
+		 	, a.trpdName
+		 	, a.trpdPrice
+		 	, b.trprListPrice
+		 	, b.trprDiscountPrice
+		 	, c.path
+		 	, c.uuidName
+		 FROM
+		 	tradProduct a
+		 LEFT JOIN
+		 	tradProduct_Real b
+		 ON
+		 	b.trpdSeq = a.trpdSeq
+		 AND b.trprDefaultNy = 1
+		 LEFT JOIN
+		 	tradProductUploaded c
+		 ON
+		 	c.pseq = a.trpdSeq
+		 AND 
+		 	c.defaultNy = 1
+		 WHERE 1=1
+	</sql>
+	 
+	 <select id="selectListProductAD" resultMap="resultMapObj">
+	 	<include refid="selectListProductAdCommon"/>
+	 	AND a.trpdSeq BETWEEN 7 AND 17
+	 </select>
+	 
+	 <select id="selectListProductAD2" resultMap="resultMapObj">
+	 	<include refid="selectListProductAdCommon"/>
+	 	AND a.trpdSeq BETWEEN 18 AND 22
+	 </select>
+	 
 </mapper>

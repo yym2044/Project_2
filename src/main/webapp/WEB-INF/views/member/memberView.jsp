@@ -18,6 +18,8 @@ pageContext.setAttribute("br", "\n");
 <html>
 <head>
 
+<link rel="shortcut icon" href="/infra/resources/images/index/favicon.ico">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <link href="${path}/resources/css/style.css" rel="stylesheet" />
@@ -92,9 +94,11 @@ pageContext.setAttribute("br", "\n");
 					<td style="width: 200px;" class="bg-light text-start">아이디</td>
 					<td class="text-start">
 						<c:out value="${rt.ifmmId}" />
+						<!-- 
 						<span class="ms-2">
 							<a href="#" class="fs-6" style="text-decoration: none;">비번변경</a>
 						</span>
+						 -->
 					</td>
 				</tr>
 				<tr>
@@ -122,53 +126,57 @@ pageContext.setAttribute("br", "\n");
 						<span class="fw-bold">
 							<c:out value="${rt.ifmmGrade}" />
 						</span>
+						<!-- 
 						<span class="ms-2">
 							<a href="#" class="" style="text-decoration: none;">등급변경</a>
 						</span>
+						 -->
 					</td>
 				</tr>
 				<tr>
 					<td style="width: 200px;" class="bg-light text-start">주소</td>
 					<td class="text-start">
-						<c:out value="${rt.ifmaAddress1} ${rt.ifmaAddress2}" />
-						<span class="badge bg-primary">
-							<fmt:formatNumber value="${rt.ifmaLat}" />
-						</span>
-						<span class="badge bg-danger">
-							<fmt:formatNumber value="${rt.ifmaLng}" />
-						</span>
+							<c:out value="${rt.ifmaAddress1} ${rt.ifmaAddress2}" />
+						
+						<c:if test="${not empty rt.ifmaLat }">
+							<span class="badge bg-primary">
+								<fmt:formatNumber value="${rt.ifmaLat}" />
+							</span>
+						</c:if>
+						<c:if test="${not empty rt.ifmaLng }">
+							<span class="badge bg-danger">
+								<fmt:formatNumber value="${rt.ifmaLng}" />
+							</span>
+						</c:if>
 					</td>
 				</tr>
 				<tr>
 					<td style="width: 200px;" class="bg-light text-start">휴대폰</td>
 					<td class="text-start">
-						<span class="badge bg-info">
 							<c:forEach items="${listCodeTelecom}" var="item" varStatus="status">
 								<c:if test="${item.ifcdSeq eq ifmpTelecomMobile}">
-									<c:out value="${item.ifcdName}" />
+									<span class="badge bg-info">
+										<c:out value="${item.ifcdName}" />
+									</span>
 								</c:if>
 							</c:forEach>
-						</span>
-						<%-- <c:out value="${rt1.ifmpNumberMobile}" /> --%>
 						<c:set var="numberPhone" value="${ifmpNumberMobile}" />
-						<c:choose>
-							<c:when test="${fn:length(numberPhone) eq 10 }">
+							<c:if test="${fn:length(numberPhone) eq 10 }">
 								<c:out value="${fn:substring(numberPhone,0,3)}" />
 									- <c:out value="${fn:substring(numberPhone,3,6)}" />
 									- <c:out value="${fn:substring(numberPhone,6,10)}" />
-							</c:when>
-							<c:otherwise>
+							</c:if>
+							<c:if test="${fn:length(numberPhone) eq 11 }">
 								<c:out value="${fn:substring(numberPhone,0,3)}" />
 									- <c:out value="${fn:substring(numberPhone,3,7)}" />
 									- <c:out value="${fn:substring(numberPhone,7,11)}" />
-							</c:otherwise>
-						</c:choose>
-						<span class="badge <c:choose>
-											<c:when test="${rt.ifmmSmsConsentNyText eq '수신동의'}">bg-primary</c:when>
-											<c:when test="${rt.ifmmSmsConsentNyText eq '수신거부'}">bg-secondary</c:when>
-										</c:choose> ms-1">
-							<c:out value="${rt.ifmmSmsConsentNyText}" />
-						</span>
+							</c:if>
+							<c:if test="${not empty numberPhone }">
+								<c:choose>
+									<c:when test="${rt.ifmmSmsConsentNyText eq '수신동의'}"><span class="badge bg-primary ms-1"><c:out value="${rt.ifmmSmsConsentNyText}" /></span></c:when>
+									<c:when test="${rt.ifmmSmsConsentNyText eq '수신거부'}"><span class="badge bg-secondary ms-1"><c:out value="${rt.ifmmSmsConsentNyText}" /></span></c:when>
+								</c:choose>
+							</c:if>
 					</td>
 				</tr>
 				<tr>

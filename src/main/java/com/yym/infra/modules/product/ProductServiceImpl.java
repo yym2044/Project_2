@@ -389,4 +389,11 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectCartWishListCount(vo);
 	}
 	
+	public List<Product> selectListProductAD() throws Exception {
+		return dao.selectListProductAD();
+	}
+	public List<Product> selectListProductAD2() throws Exception {
+		return dao.selectListProductAD2();
+	}
+	
 }

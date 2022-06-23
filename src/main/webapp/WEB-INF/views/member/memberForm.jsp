@@ -11,6 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="shortcut icon" href="/infra/resources/images/index/favicon.ico">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <link href="${path}/resources/css/style.css?after" rel="stylesheet">
@@ -257,19 +260,19 @@
 				<tr>
 					<th style="width: 200px;" class="bg-light">홈페이지</th>
 					<td class="text-start">
-						<input type="hidden" id="ifaoTypeCdArray1_0" name="ifaoTypeCdArray1" value="33">
-						<input type="hidden" id="ifaoSnsTypeCdArray1_0" name="ifaoSnsTypeCdArray1" value="">
-						<input type="hidden" id="ifaoTitleArray1_0" name="ifaoTitleArray1" value="">
-						<input type="radio" id="ifaoDefaultNyArray1_0" name="ifaoDefaultNyArray1" value="1" checked>
-						<input type="text" class="form-control" id="ifaoUrlArray1_0" name="ifaoUrlArray1" placeholder="https://">
+						<input type="hidden" id="ifaoTypeCdArray1_0" name="ifaoTypeCdArray" value="33">
+						<input type="hidden" id="ifaoSnsTypeCdArray1_0" name="ifaoSnsTypeCdArray" value="">
+						<input type="hidden" id="ifaoTitleArray1_0" name="ifaoTitleArray" value="">
+						<input type="hidden" id="ifaoDefaultNyArray1_0" name="ifaoDefaultNyArray" value="0">
+						<input type="text" class="form-control" id="ifaoUrlArray1_0" name="ifaoUrlArray" placeholder="https://">
 					</td>
 					<th style="width: 200px;" class="bg-light">SNS</th>
 					<td class="text-start">
-						<input type="hidden" id="ifaoTypeCdArray2_0" name="ifaoTypeCdArray2" value="34">
-						<input type="hidden" id="ifaoSnsTypeCdArray2_0" name="ifaoSnsTypeCdArray2" value="">
-						<input type="hidden" id="ifaoTitleArray2_0" name="ifaoTitleArray2" value="">
-						<input type="radio" id="ifaoDefaultNyArray2_0" name="ifaoDefaultNyArray2" value="1" checked>
-						<input type="text" class="form-control" id="ifaoUrlArray2_0" name="ifaoUrlArray2" placeholder="SNS주소">
+						<input type="hidden" id="ifaoTypeCdArray2_0" name="ifaoTypeCdArray" value="34">
+						<input type="hidden" id="ifaoSnsTypeCdArray2_0" name="ifaoSnsTypeCdArray" value="">
+						<input type="hidden" id="ifaoTitleArray2_0" name="ifaoTitleArray" value="">
+						<input type="hidden" id="ifaoDefaultNyArray2_0" name="ifaoDefaultNyArray" value="1">
+						<input type="text" class="form-control" id="ifaoUrlArray2_0" name="ifaoUrlArray" placeholder="SNS주소">
 					</td>
 				</tr>
 				<tr>

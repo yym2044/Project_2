@@ -1,11 +1,18 @@
 package com.yym.infra.modules.member;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,6 +141,211 @@ public class MemberController {
 
 	
 	/////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping("/member/excelDownload")
+    public void excelDownload(MemberVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		
+		String[] arr = vo.getCheckboxExcelArray();
+		
+		for(String a : arr) {
+			System.out.println("---");
+			System.out.println(a);
+			System.out.println("---");
+		}
+		
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
+		
+		vo.setShPeriod(vo.getShPeriod() == null ? 0 : vo.getShPeriod());
+		
+		if(vo.getShPeriod() == 0) {
+			vo.setShDateStart(vo.getShDateStart() == null ? UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL, 1) : vo.getShDateStart());
+			vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : vo.getShDateEnd());
+		} else if(vo.getShPeriod() == 1) {
+			vo.setShDateStart(UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL, 1));
+			vo.setShDateEnd(UtilDateTime.nowString());
+		} else if(vo.getShPeriod() == 2) {
+			vo.setShDateStart(UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), -1, 2));
+			vo.setShDateEnd(UtilDateTime.nowString());
+		} else if(vo.getShPeriod() == 3) {
+			vo.setShDateStart(UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), -1, 3));
+			vo.setShDateEnd(UtilDateTime.nowString());
+		}
+		
+		int count = service.selectListCount(vo);
+		
+		String count2 = String.valueOf(count);
+		
+		vo.setParamsPaging(count); 
+		
+		
+		if(count != 0) {
+			
+			List<Member> list = service.selectList(vo);
+			
+			Workbook wb = new XSSFWorkbook();
+			Sheet sheet = wb.createSheet("첫번째 시트");
+			Row row = null;
+			Cell cell = null;
+			int rowNum = 0;
+			
+			// Header
+			row = sheet.createRow(rowNum++);
+			
+			int col = 1;
+			
+			cell = row.createCell(0);
+			cell.setCellValue("번호");
+			if(Arrays.asList(arr).contains("1")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("아이디");
+			}
+			if(Arrays.asList(arr).contains("2")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("이름");
+			}
+			if(Arrays.asList(arr).contains("3")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("이메일");
+			}
+			if(Arrays.asList(arr).contains("4")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("생년월일");
+			}
+			if(Arrays.asList(arr).contains("5")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("메일수신동의");
+			}
+			if(Arrays.asList(arr).contains("6")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("주소");
+			}
+			if(Arrays.asList(arr).contains("7")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("전화번호");
+			}
+			if(Arrays.asList(arr).contains("8")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("휴대전화");
+			}
+			if(Arrays.asList(arr).contains("9")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("SMS수신동의");
+			}
+			if(Arrays.asList(arr).contains("10")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("별명");
+			}
+			if(Arrays.asList(arr).contains("11")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("등급");
+			}
+			if(Arrays.asList(arr).contains("12")) {
+				cell = row.createCell(col);
+				col++;
+				cell.setCellValue("성별");
+			}
+			
+			// Body
+			col = 1;
+			
+			for (int i=0; i<list.size(); i++) {
+				row = sheet.createRow(rowNum++);
+				
+				cell = row.createCell(col);
+				cell.setCellValue(String.valueOf(list.get(i).getIfmmSeq()));
+				
+				if(Arrays.asList(arr).contains("1")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("2")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmName());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("3")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("4")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("5")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("6")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("7")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("8")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("9")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("10")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("11")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				if(Arrays.asList(arr).contains("12")) {
+					cell = row.createCell(col);
+					cell.setCellValue(list.get(i).getIfmmId());
+					col++;
+				}
+				
+			}
+			
+			// 컨텐츠 타입과 파일명 지정
+			httpServletResponse.setContentType("ms-vnd/excel");
+			
+			String fileName = new String(vo.getExcelFileName().getBytes("UTF-8"), "ISO-8859-1");
+			
+			//        response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+			httpServletResponse.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+			
+			// Excel File Output
+			wb.write(httpServletResponse.getOutputStream());
+			wb.close();
+			
+			
+			
+		}
+
+		}
+    
 	
 	
 	@RequestMapping(value = "/member/memberList")
@@ -281,12 +493,8 @@ public class MemberController {
 	public String memberEditForm(Model model,@ModelAttribute("vo") MemberVo vo) throws Exception {
 		
 		Member rt = service.selectOne(vo);
-//		Member rt1 = service.selectOnePhoneMobile(vo);
-//		Member rt2 = service.selectOnePhoneHome(vo);
 				
 		model.addAttribute("rt", rt);
-//		model.addAttribute("rt1", rt1);
-//		model.addAttribute("rt2", rt2);
 		
 		//코드값 가져오기
 		model.addAttribute("codeMemberGrade", CodeServiceImpl.selectListCachedCode("20"));

@@ -77,7 +77,7 @@
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="javascript:goOrderList();" class="dropdown-item">주문목록</a></li>
-									<li><a class="dropdown-item">취소/반품</a></li>
+									<!-- <li><a class="dropdown-item">취소/반품</a></li> -->
 									<li><a href="javascript:goWishList();" class="dropdown-item">찜 리스트</a></li>
 								</ul>
 							</li>

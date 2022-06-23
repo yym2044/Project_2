@@ -15,7 +15,14 @@
 <head>
 <meta charset="uTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Login API -->
+<meta name="google-signin-client_id" content="241819721200-t19cl7oeg8qm69ltpcperkva9cprpi1i.apps.googleusercontent.com">
+
 <title>로그인 화면</title>
+
+<link rel="shortcut icon" href="/infra/resources/images/index/favicon.ico">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -83,12 +90,12 @@
 					<div class="col-8 mt-4">
 
 						<div class="mb-3 form-floating">
-							<input type="text" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username" aria-describedby="userIcon">
+							<input type="text" value="admin" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username" aria-describedby="userIcon">
 							<label for="ifmmId">아이디</label>
 						</div>
 
 						<div class="form-floating">
-							<input type="password" value="123123" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
+							<input type="password" value="asdqwe123Q!" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
 							<label for="ifmmPwd">비밀번호</label>
 						</div>
 
@@ -338,58 +345,48 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
-<script type="text/javascript">
+<!-- 구글 start -->
+<script>
 
-	function loginAjax(){
-		$.ajax({
-			async: true
-			,cache: false
-			,type: "post"
-			,url: "/infra/member/loginProc"
-			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
-			,success: function(response) {
-				if(response.rt == "success") {
-					location.href = "/infra/index/indexView";
-				} else {
-					alert("로그인 실패");
-				}
-			}
-			
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	}
-	
-	$("#btnLogin").on("click", function(){
-		
-		loginAjax();
-		
-	});
-	
-	//엔터키 쳤을 때 로그인 하는 방법 (input id칸이랑 pwd칸에 [onkeyup="enterkey();"] 추가)
-	function enterkey() {
-       if (window.event.keyCode == 13) {
-				
-       	loginAjax();
-            
-       	}
-	}
-
+//처음 실행하는 함수
+function init() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+		options = new gapi.auth2.SigninOptionsBuilder();
+		options.setPrompt('select_account');
+        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+	})
+}
+function onSignIn(googleUser) {
+	var access_token = googleUser.getAuthResponse().access_token
+	$.ajax({
+    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+		url: 'https://people.googleapis.com/v1/people/me'
+        // key에 자신의 API 키를 넣습니다.
+		, data: {personFields:'birthdays', key:'AIzaSyCKY4BbphaqG8FQsYyqIE0IgfcAFNF_HBg', 'access_token': access_token}
+		, method:'GET'
+	})
+	.done(function(e){
+        //프로필을 가져온다.
+		var profile = googleUser.getBasicProfile();
+		console.log(profile);
+	})
+	.fail(function(e){
+		console.log(e);
+	})
+}
+function onSignInFailure(t){		
+	console.log(t);
+}
 </script>
 
-<script type="text/javascript">
-	function selectAll1(selectAll1) {
-		const checkboxes 
-			= document.getElementsByName("checkbox1");
-		
-		checkboxes.forEach((checkbox) => {
-			checkbox.checked = selectAll1.checked;
-		})
-	}
-</script>
-
+<!-- 구글 end -->
 
 <!-- 카카오 start -->
 <script type="text/javascript">
@@ -464,6 +461,57 @@
 	 */  
 </script>
 <!-- 카카오 end -->
+
+<script type="text/javascript">
+
+	function loginAjax(){
+		$.ajax({
+			async: true
+			,cache: false
+			,type: "post"
+			,url: "/infra/member/loginProc"
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPwd" : $("#ifmmPwd").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/infra/index/indexView";
+				} else {
+					alert("로그인 실패");
+				}
+			}
+			
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	
+	$("#btnLogin").on("click", function(){
+		
+		loginAjax();
+		
+	});
+	
+	//엔터키 쳤을 때 로그인 하는 방법 (input id칸이랑 pwd칸에 [onkeyup="enterkey();"] 추가)
+	function enterkey() {
+       if (window.event.keyCode == 13) {
+				
+       	loginAjax();
+            
+       	}
+	}
+
+</script>
+
+<script type="text/javascript">
+	function selectAll1(selectAll1) {
+		const checkboxes 
+			= document.getElementsByName("checkbox1");
+		
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll1.checked;
+		})
+	}
+</script>
 
 </html>
 

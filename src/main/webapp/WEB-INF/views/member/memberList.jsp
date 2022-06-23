@@ -18,8 +18,9 @@
 <title>회원목록</title>
 <%-- <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet"/> --%>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="shortcut icon" href="/infra/resources/images/index/favicon.ico">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <link href="${path}/resources/css/style.css" rel="stylesheet" />
 <link href="${path}/resources/css/sidebars.css" rel="stylesheet" />
@@ -75,8 +76,8 @@ a {
 				<div class="row">Administrator</div>
 			</div>
 			<div class="col col-md">
-				<button onclick="location.href='/infra/index/indexView'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="INDEX" data-bs-placement="bottom"><i class="bi bi-signpost-split"></i></button>
-				<button onclick="location.href='/infra/home'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="Shopping" data-bs-placement="bottom"><i class="bi bi-basket"></i></button>
+				<button type="button" onclick="location.href='/infra/index/indexView'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="INDEX" data-bs-placement="bottom"><i class="bi bi-signpost-split"></i></button>
+				<button type="button" onclick="location.href='/infra/home'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="Coupang Home" data-bs-placement="bottom"><i class="bi bi-basket"></i></button>
 			</div>
 
 		</div>
@@ -407,13 +408,11 @@ a {
 						검색결과 : <b class="px-1">${fn:length(list)}</b> / 총 <b class="px-1">${count2}</b>명
 
 					</div>
-					<!-- 
 				<div class="col-1 col-md-1 ms-1 me-0 p-auto">
 					<a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#excelModal"> <i
 						class="bi bi-file-earmark-excel"></i>
 					</a>
 				</div>
-				 -->
 
 					<div class="col-12 col-md ms-1 me-0 my-1 p-auto">
 						<div class="text-end">
@@ -758,17 +757,22 @@ a {
 			</div>
 
 			<!-- excelModal -->
+		</form>
+		
+		<form id="formExcel" action="/infra/member/excelDownload" method="post">
+			
 			<div class="modal fade" id="excelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
+							<input type="hidden" name="checkboxExcelArray" id="checkboxExcelArray">
 							<h5 class="modal-title fw-bold" id="staticBackdropLabel">Export data to Excel</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<div class="bg-light text-center">
 								<span class="fw-bold">파일명</span>
-								<input type="text">
+								<input name="excelFileName" type="text">
 								<span class="fw-bold">.csv</span>
 							</div>
 							<br>
@@ -780,13 +784,13 @@ a {
 								</thead>
 								<tr>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch11">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch11" value="1">
 									</td>
 									<td>
 										<label for="ch11" class="form-check-label">아이디</label>
 									</td>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch12">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch12" value="2">
 									</td>
 									<td>
 										<label for="ch12" class="form-check-label">이름</label>
@@ -794,13 +798,27 @@ a {
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch1">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch9" value="11">
 									</td>
 									<td>
-										<label for="ch1" class="form-check-label">이메일</label>
+										<label for="ch9" class="form-check-label">등급</label>
 									</td>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch2">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch10" value="12">
+									</td>
+									<td>
+										<label for="ch10" class="form-check-label">성별</label>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch4" value="6">
+									</td>
+									<td>
+										<label for="ch4" class="form-check-label">주소</label>
+									</td>
+									<td>
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch2" value="4">
 									</td>
 									<td>
 										<label for="ch2" class="form-check-label">생년월일</label>
@@ -808,58 +826,31 @@ a {
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch3">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch1" value="3">
+									</td>
+									<td>
+										<label for="ch1" class="form-check-label">이메일</label>
+									</td>
+									<td>
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch3" value="5">
 									</td>
 									<td>
 										<label for="ch3" class="form-check-label">메일수신동의</label>
 									</td>
-									<td>
-										<input type="checkbox" class="form-check-input" id="ch4">
-									</td>
-									<td>
-										<label for="ch4" class="form-check-label">주소</label>
-									</td>
+									
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch5">
-									</td>
-									<td>
-										<label for="ch5" class="form-check-label">전화번호</label>
-									</td>
-									<td>
-										<input type="checkbox" class="form-check-input" id="ch6">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch6" value="8">
 									</td>
 									<td>
 										<label for="ch6" class="form-check-label">휴대전화</label>
 									</td>
-								</tr>
-								<tr>
 									<td>
-										<input type="checkbox" class="form-check-input" id="ch7">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch7" value="9">
 									</td>
 									<td>
 										<label for="ch7" class="form-check-label">SMS수신동의</label>
-									</td>
-									<td>
-										<input type="checkbox" class="form-check-input" id="ch8">
-									</td>
-									<td>
-										<label for="ch8" class="form-check-label">별명</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input type="checkbox" class="form-check-input" id="ch9">
-									</td>
-									<td>
-										<label for="ch9" class="form-check-label">등급</label>
-									</td>
-									<td>
-										<input type="checkbox" class="form-check-input" id="ch10">
-									</td>
-									<td>
-										<label for="ch10" class="form-check-label">성별</label>
 									</td>
 								</tr>
 
@@ -867,7 +858,7 @@ a {
 
 						</div>
 						<div class="modal-footer d-flex justify-content-center">
-							<button type="button" class="btn btn-primary">다운</button>
+							<button onclick="submitExcel();" type="button" class="btn btn-primary">다운</button>
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 						</div>
 					</div>
@@ -875,7 +866,7 @@ a {
 			</div>
 		</form>
 	</div>
-
+	
 
 	<!-- footer -->
 
@@ -1293,6 +1284,20 @@ a {
 	
 	</script>
 	
+	<script type="text/javascript">
+	//체크박스 다수를 담을 배열
+	var checkboxExcelArray = [];
+	
+	submitExcel = function(){
+		$("input[name=checkExcel]:checked").each(function(){
+			checkboxExcelArray.push($(this).val());
+		});
+		
+		$("input[name=checkboxExcelArray]").val(checkboxExcelArray);
+		
+		$("#formExcel").submit();
+	}
+	</script>
 	
 
 

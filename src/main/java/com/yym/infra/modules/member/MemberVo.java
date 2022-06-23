@@ -4,6 +4,9 @@ public class MemberVo {
 
 private String ifmmSeq;
 	
+	private String excelFileName;
+	private String[] checkboxExcelArray;
+
 	private String shIfmmId;
 	
 	private String shIfscSeq;
@@ -286,5 +289,16 @@ private String ifmmSeq;
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
 	}
-	
+	public String getExcelFileName() {
+		return excelFileName;
+	}
+	public void setExcelFileName(String excelFileName) {
+		this.excelFileName = excelFileName;
+	}
+	public String[] getCheckboxExcelArray() {
+		return checkboxExcelArray;
+	}
+	public void setCheckboxExcelArray(String[] checkboxExcelArray) {
+		this.checkboxExcelArray = checkboxExcelArray;
+	}
 }

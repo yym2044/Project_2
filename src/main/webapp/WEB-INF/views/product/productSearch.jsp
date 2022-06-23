@@ -43,9 +43,6 @@
 
 			<%@include file="../include/coupangShSection2.jsp"%>
 
-
-
-
 			<!-- width65 start -->
 			<div class="width65">
 				<div class="row p-3">
@@ -112,10 +109,10 @@
 								
 									<c:choose>
 										<c:when test="${not empty item.uuidName}">
-											<img class="randomProduct" style="height: 150px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">										
+											<img class="randomProduct" style="height: 190px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">										
 										</c:when>
 										<c:otherwise>
-											<img class="randomProduct" style="height: 150px;" src="${path}/resources/images/user/productSearch/img_sample.jpg">
+											<img class="randomProduct" style="height: 190px;" src="${path}/resources/images/user/productSearch/img_sample.jpg">
 										</c:otherwise>
 									</c:choose>								
 									
@@ -195,199 +192,7 @@
 				</ul>
 			</nav>
 			<!-- pagination end -->
-			
-			
-			
 
-
-
-			<!-- today's recommendation start -->
-			<div class="row width65 my-2">
-				<div class="col">
-					<span class="fs-5 fw-bold p-1">최근 다른 고객이 많이 구매한 상품</span>
-				</div>
-			</div>
-
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				</div>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct1.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct2.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct3.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct4.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct5.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct6.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct7.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct8.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct9.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct10.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<div class="card-group width65">
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct11.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct12.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct13.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct14.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-							<div class="card">
-								<a class="productLink link-dark">
-									<img class="randomProduct" src="${path}/resources/images/user/mainPage/product/randomProduct15.jpg">
-									<span class="fs-5 d-block pt-2 px-1">상품이름</span>
-								</a>
-								<p class="card-text fw-bold pt-2 px-1 mb-5">상품가격</p>
-								<div class="card-footer box-white">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-			<!-- today's recommendation end -->
 		</form>
 	</div>
 
@@ -470,6 +275,7 @@
 	
 	goSort = function(what){
 		$("#shSort").val(what);
+		$("#thisPage").val(1);
 		$("#formSearch").attr("action", "/infra/product/productSearch");
 		$("#formSearch").submit();
 	}

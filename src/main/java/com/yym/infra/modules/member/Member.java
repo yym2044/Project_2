@@ -66,21 +66,12 @@ public class Member {
 	private String ifaoUrl;
 	
 //		infrMemberAddressOnlineArray
-	//홈페이지
-	private Integer[] ifaoTypeCdArray1;
-	private Integer[] ifaoDefaultNyArray1;
-	private Integer[] ifaoSnsTypeCdArray1;
-	private String[] ifaoTitleArray1;
-	private String[] ifaoUrlArray1;
-	//SNS
-	private Integer[] ifaoTypeCdArray2;
-	private Integer[] ifaoDefaultNyArray2;
-	private Integer[] ifaoSnsTypeCdArray2;
-	private String[] ifaoTitleArray2;
-	private String[] ifaoUrlArray2;
-	
-	
-	
+	//홈페이지 & SNS
+	private Integer[] ifaoTypeCdArray;
+	private Integer[] ifaoDefaultNyArray;
+	private Integer[] ifaoSnsTypeCdArray;
+	private String[] ifaoTitleArray;
+	private String[] ifaoUrlArray;
 	
 	//멤버_어드레스
 	private String ifmaZipCode;
@@ -529,66 +520,6 @@ public class Member {
 	public void setIfaoUrl(String ifaoUrl) {
 		this.ifaoUrl = ifaoUrl;
 	}
-	public Integer[] getIfaoTypeCdArray1() {
-		return ifaoTypeCdArray1;
-	}
-	public void setIfaoTypeCdArray1(Integer[] ifaoTypeCdArray1) {
-		this.ifaoTypeCdArray1 = ifaoTypeCdArray1;
-	}
-	public Integer[] getIfaoDefaultNyArray1() {
-		return ifaoDefaultNyArray1;
-	}
-	public void setIfaoDefaultNyArray1(Integer[] ifaoDefaultNyArray1) {
-		this.ifaoDefaultNyArray1 = ifaoDefaultNyArray1;
-	}
-	public Integer[] getIfaoSnsTypeCdArray1() {
-		return ifaoSnsTypeCdArray1;
-	}
-	public void setIfaoSnsTypeCdArray1(Integer[] ifaoSnsTypeCdArray1) {
-		this.ifaoSnsTypeCdArray1 = ifaoSnsTypeCdArray1;
-	}
-	public String[] getIfaoTitleArray1() {
-		return ifaoTitleArray1;
-	}
-	public void setIfaoTitleArray1(String[] ifaoTitleArray1) {
-		this.ifaoTitleArray1 = ifaoTitleArray1;
-	}
-	public String[] getIfaoUrlArray1() {
-		return ifaoUrlArray1;
-	}
-	public void setIfaoUrlArray1(String[] ifaoUrlArray1) {
-		this.ifaoUrlArray1 = ifaoUrlArray1;
-	}
-	public Integer[] getIfaoTypeCdArray2() {
-		return ifaoTypeCdArray2;
-	}
-	public void setIfaoTypeCdArray2(Integer[] ifaoTypeCdArray2) {
-		this.ifaoTypeCdArray2 = ifaoTypeCdArray2;
-	}
-	public Integer[] getIfaoDefaultNyArray2() {
-		return ifaoDefaultNyArray2;
-	}
-	public void setIfaoDefaultNyArray2(Integer[] ifaoDefaultNyArray2) {
-		this.ifaoDefaultNyArray2 = ifaoDefaultNyArray2;
-	}
-	public Integer[] getIfaoSnsTypeCdArray2() {
-		return ifaoSnsTypeCdArray2;
-	}
-	public void setIfaoSnsTypeCdArray2(Integer[] ifaoSnsTypeCdArray2) {
-		this.ifaoSnsTypeCdArray2 = ifaoSnsTypeCdArray2;
-	}
-	public String[] getIfaoTitleArray2() {
-		return ifaoTitleArray2;
-	}
-	public void setIfaoTitleArray2(String[] ifaoTitleArray2) {
-		this.ifaoTitleArray2 = ifaoTitleArray2;
-	}
-	public String[] getIfaoUrlArray2() {
-		return ifaoUrlArray2;
-	}
-	public void setIfaoUrlArray2(String[] ifaoUrlArray2) {
-		this.ifaoUrlArray2 = ifaoUrlArray2;
-	}
 	public String getIfntWriterCd() {
 		return ifntWriterCd;
 	}
@@ -696,6 +627,36 @@ public class Member {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public Integer[] getIfaoTypeCdArray() {
+		return ifaoTypeCdArray;
+	}
+	public void setIfaoTypeCdArray(Integer[] ifaoTypeCdArray) {
+		this.ifaoTypeCdArray = ifaoTypeCdArray;
+	}
+	public Integer[] getIfaoDefaultNyArray() {
+		return ifaoDefaultNyArray;
+	}
+	public void setIfaoDefaultNyArray(Integer[] ifaoDefaultNyArray) {
+		this.ifaoDefaultNyArray = ifaoDefaultNyArray;
+	}
+	public Integer[] getIfaoSnsTypeCdArray() {
+		return ifaoSnsTypeCdArray;
+	}
+	public void setIfaoSnsTypeCdArray(Integer[] ifaoSnsTypeCdArray) {
+		this.ifaoSnsTypeCdArray = ifaoSnsTypeCdArray;
+	}
+	public String[] getIfaoTitleArray() {
+		return ifaoTitleArray;
+	}
+	public void setIfaoTitleArray(String[] ifaoTitleArray) {
+		this.ifaoTitleArray = ifaoTitleArray;
+	}
+	public String[] getIfaoUrlArray() {
+		return ifaoUrlArray;
+	}
+	public void setIfaoUrlArray(String[] ifaoUrlArray) {
+		this.ifaoUrlArray = ifaoUrlArray;
 	}
 	
 }
