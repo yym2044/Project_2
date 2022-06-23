@@ -34,3 +34,4 @@ src/main/webapp/resources/uploaded/
 
 src/main/webapp/resources/css/assets/
 src/main/webapp/resources/js/assets/
+src/main/webapp/WEB_INF/spring/root-context.xml
