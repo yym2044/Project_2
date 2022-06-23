@@ -16,6 +16,7 @@ public class Member {
 	private String ifmmPwd;
 	private String ifmmName;
 	private String ifmmGenderCd;
+	private String ifmmGender;
 	private String ifmmDob;
 	private String ifmmFavoriteColor;
 	private Integer ifmmGradeCd;
@@ -657,6 +658,12 @@ public class Member {
 	}
 	public void setIfaoUrlArray(String[] ifaoUrlArray) {
 		this.ifaoUrlArray = ifaoUrlArray;
+	}
+	public String getIfmmGender() {
+		return ifmmGender;
+	}
+	public void setIfmmGender(String ifmmGender) {
+		this.ifmmGender = ifmmGender;
 	}
 	
 }

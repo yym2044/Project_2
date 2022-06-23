@@ -208,61 +208,54 @@ public class MemberController {
 			if(Arrays.asList(arr).contains("3")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("이메일");
+				cell.setCellValue("등급");
 			}
 			if(Arrays.asList(arr).contains("4")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("생년월일");
+				cell.setCellValue("성별");
 			}
 			if(Arrays.asList(arr).contains("5")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("메일수신동의");
+				cell.setCellValue("주소");
 			}
 			if(Arrays.asList(arr).contains("6")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("주소");
+				cell.setCellValue("생년월일");
 			}
 			if(Arrays.asList(arr).contains("7")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("전화번호");
+				cell.setCellValue("이메일");
 			}
 			if(Arrays.asList(arr).contains("8")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("휴대전화");
+				cell.setCellValue("메일수신동의");
 			}
 			if(Arrays.asList(arr).contains("9")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("SMS수신동의");
+				cell.setCellValue("휴대전화");
 			}
 			if(Arrays.asList(arr).contains("10")) {
 				cell = row.createCell(col);
 				col++;
-				cell.setCellValue("별명");
-			}
-			if(Arrays.asList(arr).contains("11")) {
-				cell = row.createCell(col);
-				col++;
-				cell.setCellValue("등급");
-			}
-			if(Arrays.asList(arr).contains("12")) {
-				cell = row.createCell(col);
-				col++;
-				cell.setCellValue("성별");
+				cell.setCellValue("SMS수신동의");
 			}
 			
 			// Body
-			col = 1;
+			
 			
 			for (int i=0; i<list.size(); i++) {
+				
+				col = 1;
+				
 				row = sheet.createRow(rowNum++);
 				
-				cell = row.createCell(col);
+				cell = row.createCell(0);
 				cell.setCellValue(String.valueOf(list.get(i).getIfmmSeq()));
 				
 				if(Arrays.asList(arr).contains("1")) {
@@ -277,55 +270,57 @@ public class MemberController {
 				}
 				if(Arrays.asList(arr).contains("3")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					cell.setCellValue(list.get(i).getIfmmGrade());
 					col++;
 				}
 				if(Arrays.asList(arr).contains("4")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					cell.setCellValue(list.get(i).getIfmmGender());
 					col++;
 				}
 				if(Arrays.asList(arr).contains("5")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					
+					if(list.get(i).getIfmaAddress1() == null) {
+						cell.setCellValue("X");
+					} else {
+						cell.setCellValue(list.get(i).getIfmaAddress1() + " " + list.get(i).getIfmaAddress2());
+					}
 					col++;
 				}
 				if(Arrays.asList(arr).contains("6")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					cell.setCellValue(list.get(i).getIfmmDob());
 					col++;
 				}
 				if(Arrays.asList(arr).contains("7")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					cell.setCellValue(list.get(i).getIfmeEmailFull());
 					col++;
 				}
 				if(Arrays.asList(arr).contains("8")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					if(list.get(i).getIfmmEmailConsentNy() == 1) {
+						cell.setCellValue("동의");
+					} else {
+						cell.setCellValue("비동의");
+					}
 					col++;
 				}
 				if(Arrays.asList(arr).contains("9")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					cell.setCellValue(list.get(i).getIfmpNumber());
 					col++;
 				}
 				if(Arrays.asList(arr).contains("10")) {
 					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
+					if(list.get(i).getIfmmSmsConsentNy() == 1) {
+						cell.setCellValue("동의");
+					} else {
+						cell.setCellValue("비동의");
+					}
 					col++;
 				}
-				if(Arrays.asList(arr).contains("11")) {
-					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
-					col++;
-				}
-				if(Arrays.asList(arr).contains("12")) {
-					cell = row.createCell(col);
-					cell.setCellValue(list.get(i).getIfmmId());
-					col++;
-				}
-				
 			}
 			
 			// 컨텐츠 타입과 파일명 지정

@@ -143,7 +143,7 @@
 	<sql id="selectListCommon">
 		FROM infrMember a
 		LEFT JOIN infrMemberEmail b ON b.ifmmSeq = a.ifmmSeq AND ifmeDefaultNy = 1
-		LEFT JOIN infrMemberAddress c ON c.ifmmSeq = a.ifmmSeq AND c.ifmaDefaultNy = 1
+		LEFT JOIN infrMemberAddress c ON c.ifmmSeq = a.ifmmSeq AND c.ifmaDefaultNy = 1 AND c.ifmaTypeCd = 42
 		LEFT JOIN infrMemberPhone d ON d.ifmmSeq = a.ifmmSeq AND d.ifmpDefaultNy = 1 AND d.ifmpDeviceCd = 26
 		WHERE ifmmDelNy = 0
 		
@@ -251,6 +251,7 @@
 			, b.ifmeEmailFull
 			, c.ifmaAddress1
 			, c.ifmaAddress2
+			, d.ifmpNumber
 		 <include refid="selectListCommon"/>
 		 LIMIT #{startRnumForMysql}, #{rowNumToShow}
 	</select>

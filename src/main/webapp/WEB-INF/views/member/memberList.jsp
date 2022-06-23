@@ -41,7 +41,8 @@ a {
 </head>
 <body>
 
-	<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}"/>	<!-- listCodeGender에 값을 담음 -->
+	<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+	<!-- listCodeGender에 값을 담음 -->
 
 
 	<div class="container-fluid bg-light">
@@ -53,9 +54,8 @@ a {
 			<div class="col-6 col-md-4 fs-4 mb-2 d-md-block d-none fw-bold">Coupang Management System</div>
 
 
-			<div class="col-3 col-md-1 mb-2 d-md-block d-none">
-			</div>
-			
+			<div class="col-3 col-md-1 mb-2 d-md-block d-none"></div>
+
 			<div class="col-2 col-md-1 mb-2 p-0 text-end pe-2 d-md-block d-none">
 				<c:choose>
 					<c:when test="${empty uuidName}">
@@ -68,7 +68,13 @@ a {
 			</div>
 			<div class="col-4 col-md-1 mb-2 d-md-block d-none">
 				<div class="row dropdown">
-					<a href="#" class="link-dark text-decoration-none dropdown-toggle ps-0" data-bs-toggle="dropdown"> <c:choose><c:when test="${not empty sessSeq}"><c:out value="${sessName}"/> 님</c:when><c:otherwise>로그인 정보 없음</c:otherwise></c:choose> </a>
+					<a href="#" class="link-dark text-decoration-none dropdown-toggle ps-0" data-bs-toggle="dropdown">
+						<c:choose>
+							<c:when test="${not empty sessSeq}">
+								<c:out value="${sessName}" /> 님</c:when>
+							<c:otherwise>로그인 정보 없음</c:otherwise>
+						</c:choose>
+					</a>
 					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
 						<li><a class="dropdown-item" href="javascript:logOut();">Sign out</a></li>
 					</ul>
@@ -76,8 +82,12 @@ a {
 				<div class="row">Administrator</div>
 			</div>
 			<div class="col col-md">
-				<button type="button" onclick="location.href='/infra/index/indexView'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="INDEX" data-bs-placement="bottom"><i class="bi bi-signpost-split"></i></button>
-				<button type="button" onclick="location.href='/infra/home'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="Coupang Home" data-bs-placement="bottom"><i class="bi bi-basket"></i></button>
+				<button type="button" onclick="location.href='/infra/index/indexView'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="INDEX" data-bs-placement="bottom">
+					<i class="bi bi-signpost-split"></i>
+				</button>
+				<button type="button" onclick="location.href='/infra/home'" class="btn btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="Coupang Home" data-bs-placement="bottom">
+					<i class="bi bi-basket"></i>
+				</button>
 			</div>
 
 		</div>
@@ -189,7 +199,7 @@ a {
 						<li class="breadcrumb-item active" aria-current="page"><a href="#" style="text-decoration: none;">회원관리</a></li>
 					</ol>
 				</nav>
-				 -->	
+				 -->
 
 
 
@@ -402,18 +412,19 @@ a {
 			<br>
 
 			<div class="width92">
-				<div class="row">
-					<div class="col-8 col-md-3 p-auto d-flex justify-content-start align-items-center fs-5" style="margin-left: 12px;">
+				<div class="row mb-2">
+					<div class="col-8 col-md-2 p-auto d-flex justify-content-start align-items-center fs-5" style="margin-left: 12px;">
 
 						검색결과 : <b class="px-1">${fn:length(list)}</b> / 총 <b class="px-1">${count2}</b>명
 
 					</div>
-				<div class="col-1 col-md-1 ms-1 me-0 p-auto">
-					<a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#excelModal"> <i
-						class="bi bi-file-earmark-excel"></i>
-					</a>
-				</div>
-
+					<!-- 
+					<div class="col-1 col-md-1 ms-1 me-0 p-auto">
+						<a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#excelModal">
+							<i class="bi bi-file-earmark-excel"></i>
+						</a>
+					</div>
+					 -->
 					<div class="col-12 col-md ms-1 me-0 my-1 p-auto">
 						<div class="text-end">
 
@@ -566,10 +577,12 @@ a {
 											<td>
 												<!-- 방법1 -->
 												<c:forEach items="${listCodeGender}" var="itemGender" varStatus="statusGender">
-													<c:if test="${item.ifmmGenderCd eq itemGender.ifcdSeq}"><c:out value="${itemGender.ifcdName}"/></c:if>
+													<c:if test="${item.ifmmGenderCd eq itemGender.ifcdSeq}">
+														<c:out value="${itemGender.ifcdName}" />
+													</c:if>
 												</c:forEach>
 												<!-- 방법2 -->
-											<%-- 
+												<%-- 
 												<c:choose> 
 													<c:when test="${item.ifmmGenderCd eq 3}">
 														남성
@@ -580,7 +593,7 @@ a {
 												</c:choose>
 												 --%>
 											</td>
-											
+
 											<td>
 												<div class="d-flex justify-content-center align-items-center">
 													<!-- <a href="#" class="btn btn-sm btn-outline-dark py-0">
@@ -589,15 +602,9 @@ a {
 													<a href="#" class="btn btn-sm btn-outline-dark py-0">
 														<i class="bi bi-envelope"></i>
 													</a> -->
-													<a href="javascript:goView(<c:out value="${item.ifmmSeq}"/>)" class="btn btn-sm btn-outline-info py-0">
-														상세
-													</a>
-													<a href="javascript:goEdit(<c:out value="${item.ifmmSeq }"/>)" class="btn btn-sm btn-outline-primary py-0">
-														수정
-													</a>
-													<a href="javascript:goDele(<c:out value="${item.ifmmSeq }"/>)" class="btn btn-sm btn-outline-danger py-0">
-														삭제 
-													</a>
+													<a href="javascript:goView(<c:out value="${item.ifmmSeq}"/>)" class="btn btn-sm btn-outline-info py-0"> 상세 </a>
+													<a href="javascript:goEdit(<c:out value="${item.ifmmSeq }"/>)" class="btn btn-sm btn-outline-primary py-0"> 수정 </a>
+													<a href="javascript:goDele(<c:out value="${item.ifmmSeq }"/>)" class="btn btn-sm btn-outline-danger py-0"> 삭제 </a>
 												</div>
 											</td>
 										<tr>
@@ -618,6 +625,9 @@ a {
 						<a class="btn btn-outline-primary" href="javascript:goForm()">
 							<!-- onclick="window.open('memberForm','name','resizable=no width=1000 height=500');return false" -->
 							<i class="bi bi-plus-square"></i>
+						</a>
+						<a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#excelModal">
+							<i class="bi bi-file-earmark-excel"></i>
 						</a>
 					</div>
 					<!-- 같은줄 or 따로뺄지 -->
@@ -757,10 +767,9 @@ a {
 			</div>
 
 			<!-- excelModal -->
-		</form>
-		
-		<form id="formExcel" action="/infra/member/excelDownload" method="post">
-			
+
+
+
 			<div class="modal fade" id="excelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -773,7 +782,7 @@ a {
 							<div class="bg-light text-center">
 								<span class="fw-bold">파일명</span>
 								<input name="excelFileName" type="text">
-								<span class="fw-bold">.csv</span>
+								<span class="fw-bold">.xlsx</span>
 							</div>
 							<br>
 							<table class="table table-sm table-hover">
@@ -784,73 +793,73 @@ a {
 								</thead>
 								<tr>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch11" value="1">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch1" value="1">
 									</td>
 									<td>
-										<label for="ch11" class="form-check-label">아이디</label>
+										<label for="ch1" class="form-check-label">아이디</label>
 									</td>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch12" value="2">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch2" value="2">
 									</td>
 									<td>
-										<label for="ch12" class="form-check-label">이름</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch9" value="11">
-									</td>
-									<td>
-										<label for="ch9" class="form-check-label">등급</label>
-									</td>
-									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch10" value="12">
-									</td>
-									<td>
-										<label for="ch10" class="form-check-label">성별</label>
+										<label for="ch2" class="form-check-label">이름</label>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch4" value="6">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch3" value="3">
 									</td>
 									<td>
-										<label for="ch4" class="form-check-label">주소</label>
+										<label for="ch3" class="form-check-label">등급</label>
 									</td>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch2" value="4">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch4" value="4">
 									</td>
 									<td>
-										<label for="ch2" class="form-check-label">생년월일</label>
+										<label for="ch4" class="form-check-label">성별</label>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch1" value="3">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch5" value="5">
 									</td>
 									<td>
-										<label for="ch1" class="form-check-label">이메일</label>
+										<label for="ch5" class="form-check-label">주소</label>
 									</td>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch3" value="5">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch6" value="6">
 									</td>
 									<td>
-										<label for="ch3" class="form-check-label">메일수신동의</label>
+										<label for="ch6" class="form-check-label">생년월일</label>
 									</td>
-									
 								</tr>
 								<tr>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch6" value="8">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch7" value="7">
 									</td>
 									<td>
-										<label for="ch6" class="form-check-label">휴대전화</label>
+										<label for="ch7" class="form-check-label">이메일</label>
 									</td>
 									<td>
-										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch7" value="9">
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch8" value="8">
 									</td>
 									<td>
-										<label for="ch7" class="form-check-label">SMS수신동의</label>
+										<label for="ch8" class="form-check-label">메일수신동의</label>
+									</td>
+
+								</tr>
+								<tr>
+									<td>
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch9" value="9">
+									</td>
+									<td>
+										<label for="ch9" class="form-check-label">휴대전화</label>
+									</td>
+									<td>
+										<input name="checkExcel" type="checkbox" class="form-check-input" id="ch10" value="10">
+									</td>
+									<td>
+										<label for="ch10" class="form-check-label">SMS수신동의</label>
 									</td>
 								</tr>
 
@@ -866,7 +875,7 @@ a {
 			</div>
 		</form>
 	</div>
-	
+
 
 	<!-- footer -->
 
@@ -1283,7 +1292,7 @@ a {
 	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 	
 	</script>
-	
+
 	<script type="text/javascript">
 	//체크박스 다수를 담을 배열
 	var checkboxExcelArray = [];
@@ -1295,10 +1304,12 @@ a {
 		
 		$("input[name=checkboxExcelArray]").val(checkboxExcelArray);
 		
-		$("#formExcel").submit();
+		$("#formList").attr("action", "/infra/member/excelDownload").submit();
+		
+		$("#excelModal").modal("hide");
 	}
 	</script>
-	
+
 
 
 </body>
