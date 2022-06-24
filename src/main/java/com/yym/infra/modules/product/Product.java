@@ -129,6 +129,7 @@ public class Product {
 	//스프링에 파일을 올리기 위해
 	private MultipartFile[] file0;
 	private MultipartFile[] file1;
+	private MultipartFile[] file2;
 	
 	//uploaded
 	private String tableName;
@@ -852,6 +853,12 @@ public class Product {
 	}
 	public void setTrpoName(String trpoName) {
 		this.trpoName = trpoName;
+	}
+	public MultipartFile[] getFile2() {
+		return file2;
+	}
+	public void setFile2(MultipartFile[] file2) {
+		this.file2 = file2;
 	}
 	
 }

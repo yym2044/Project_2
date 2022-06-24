@@ -66,12 +66,20 @@
 	INSERT INTO
 		infrMemberEmail (
 			ifmmSeq
+			, ifmeTypeCd
 			, ifmeEmailFull
+			, ifmeEmailAccount
+			, ifmeEmailDomain
+			, ifmeEmailDomainCd
 			, ifmeDefaultNy
 			, ifmeDelNy
 		) VALUES (
 			#{ifmmSeq}
+			, 15
 			, #{ifmeEmailFull}
+			, SUBSTRING_INDEX(#{ifmeEmailFull}, '@', 1)
+			, SUBSTRING_INDEX(#{ifmeEmailFull}, '@', -1)
+			, 21
 			, 1
 			, 0
 		)
@@ -81,11 +89,17 @@
 	INSERT INTO
 		infrMemberPhone (
 			ifmmSeq
+			, ifmpTypeCd
+			, ifmpDeviceCd
+			, ifmpTelecomCd
 			, ifmpNumber
 			, ifmpDefaultNy
 			, ifmpDelNy
 		) VALUES (
 			#{ifmmSeq}		
+			, 22
+			, 26
+			, #{ifmpTelecomCd}
 			, #{ifmpNumber}
 			, 1
 			, 0
@@ -697,6 +711,7 @@
 		, ifmaAddress2 = #{ifmaAddress2}
 		, ifmaAddressReferences = #{ifmaAddressReferences}
 		, ifmaDefaultNy = 1
+		, ifmaTypeCd = 42
 		, ifmaLat = #{ifmaLat}
 		, ifmaLng = #{ifmaLng}
 		<include refid="updateModValue"/>

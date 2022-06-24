@@ -5,6 +5,8 @@
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link link-dark">즐겨찾기</a></li>
 						<li class="nav-item"><a href="/infra/product/productForm" class="nav-link link-dark">상품등록</a></li>
+						<li class="nav-item"><a href="/infra/index/indexView" class="nav-link link-dark">Index</a></li>
+						<li class="nav-item"><a href="/infra/member/memberList" class="nav-link link-dark">Manage</a></li>
 						<!-- 
 						<li class="nav-item dropdown"><a class="nav-link link-dark dropdown-toggle">입점신청</a>
 							<ul class="dropdown-menu">
@@ -17,10 +19,7 @@
 						 -->
 					</ul>
 				</div>
-				<div class="col text-center">
-					<button type="button" onclick="location.href='/infra/index/indexView'" class="btn btn-sm btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="INDEX" data-bs-placement="bottom"><i class="bi bi-signpost-split"></i></button>
-					<button type="button" onclick="location.href='/infra/member/memberList'" class="btn btn-sm btn-outline-dark rounded-circle" data-bs-toggle="tooltip" title="Manage" data-bs-placement="bottom"><i class="bi bi-people"></i></button>
-				</div>
+				
 				<div class="col d-flex justify-content-end">
 					<ul class="nav">
 
@@ -35,7 +34,7 @@
 										<span class="fw-bold">
 											<c:out value="${sessName}" />
 										</span>
-										님, 반갑습니다
+										님, 반갑습니다!
 									</a>
 								</li>
 								<li class="nav-item"><a class="nav-link link-dark" href="javascript:logOut()">로그아웃</a></li>

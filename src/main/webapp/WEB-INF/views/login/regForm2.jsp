@@ -125,11 +125,13 @@ label {
 							</select>
 							 -->
 							<div class="input-group">
+								<select name="ifmpTelecomCd" id="ifmpTelecomCd">
+									<option value="29">SKT</option>
+									<option value="30">KT</option>
+									<option value="31">LG</option>
+								</select>
 								<input name="ifmpNumber" id="ifmpNumber" type="text" class="form-control" placeholder="전화번호 입력">
-								<input type="button" class="btn btm-sm btn-outline-dark" value="인증번호 받기">
 							</div>
-							<input name="" id="" type="text" class="form-control" placeholder="인증번호를 입력하세요">
-
 
 							<input type="button" id="btnSubmit" class="btn btn-outline-dark d-block w-100" value="가입하기">
 

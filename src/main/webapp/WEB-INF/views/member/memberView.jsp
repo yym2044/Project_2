@@ -316,7 +316,7 @@ pageContext.setAttribute("br", "\n");
 					</td>
 				</tr>
 				<tr>
-					<td style="width: 200px;" class="bg-light text-start">ifmmDesc</td>
+					<td style="width: 200px;" class="bg-light text-start">Description</td>
 					<td class="text-start">
 						<%-- <p>${fn:replace(rt.ifmmDesc, br, '<br/>')}</p> 둘 다 가능 --%>
 						<%-- <% pageContext.setAttribute("br", "\n"); %> 같이 써줘야 함, 위에 이미 있음 --%>

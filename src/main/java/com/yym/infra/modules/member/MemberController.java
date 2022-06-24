@@ -328,7 +328,7 @@ public class MemberController {
 			
 			String fileName = new String(vo.getExcelFileName().getBytes("UTF-8"), "ISO-8859-1");
 			
-			//        response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+			// response.setHeader("Content-Disposition", "attachment;filename=example.xls");
 			httpServletResponse.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
 			
 			// Excel File Output

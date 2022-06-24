@@ -40,6 +40,18 @@ public class MemberServiceImpl implements MemberService {
 		dao.insertMemberPhoneUser(dto);
 		dao.insertMemberEmailUser(dto);
 		
+		//시퀀스 값만 넣는 곳
+		dao.insertMemberAddress(dto);
+		
+		dto.setIfnaSeq("1");
+		dao.insertMemberNationality(dto);
+		
+		dao.insertAddressOnline(dto);
+		
+		dto.setTableName("infrMemberUploaded");
+		dto.setPseq(dto.getIfmmSeq());
+		dao.insertMemberUploaded(dto);
+		
 		return 1;
 	}
 	

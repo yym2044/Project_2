@@ -462,7 +462,7 @@ height: 100%;
 									<div class="upload__btn-box text-center">
 										<label class="upload__btn">
 											<p>이미지 등록</p>
-											<input type="file" multiple="multiple" data-max_length="20" class="upload__inputfile">
+											<input type="file" name="file2" multiple="multiple" data-max_length="20" class="upload__inputfile">
 										</label>
 									</div>
 									<div class="upload__img-wrap">

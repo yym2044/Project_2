@@ -472,7 +472,7 @@ a {
 										<th>이름</th>
 										<th>회원등급</th>
 										<th>상태</th>
-										<th>가입일</th>
+										<th>등록일</th>
 										<th>관리</th>
 									</tr>
 								</thead>
@@ -781,7 +781,7 @@ a {
 						<div class="modal-body">
 							<div class="bg-light text-center">
 								<span class="fw-bold">파일명</span>
-								<input name="excelFileName" type="text">
+								<input id="excelFileName" name="excelFileName" type="text">
 								<span class="fw-bold">.xlsx</span>
 							</div>
 							<br>
@@ -881,13 +881,6 @@ a {
 
 	<div class="container-fluid">
 		<footer class="py-3 my-4">
-			<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-			</ul>
 			<p class="text-center text-muted">© 2021 Company, Inc</p>
 		</footer>
 	</div>
@@ -1298,6 +1291,11 @@ a {
 	var checkboxExcelArray = [];
 	
 	submitExcel = function(){
+		
+		if(!checkNull($("#excelFileName"), $("#excelFileName").val(), "파일명을 입력해주세요")) {
+			return false;
+		}
+		
 		$("input[name=checkExcel]:checked").each(function(){
 			checkboxExcelArray.push($(this).val());
 		});
@@ -1306,7 +1304,11 @@ a {
 		
 		$("#formList").attr("action", "/infra/member/excelDownload").submit();
 		
-		$("#excelModal").modal("hide");
+		setTimeout(() => {
+			$("#excelModal").modal("hide");
+		}, 2000);
+		
+		
 	}
 	</script>
 

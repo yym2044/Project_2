@@ -321,6 +321,28 @@ public class ProductServiceImpl implements ProductService {
 			
 		}
 		
+		j = 1;
+		for(MultipartFile multipartFile : dto.getFile2()) {
+			
+			if(!multipartFile.getOriginalFilename().equals("")) {
+				
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+				
+				UtilUpload.upload(multipartFile, pathModule, dto);
+				
+				dto.setTableName("tradProductUploaded");
+				dto.setType(1);
+				dto.setDefaultNy(0);
+				dto.setSort(j);
+				dto.setPseq(dto.getTrpdSeq());
+				
+				dao.insertProductUploaded(dto);
+				j++;
+				
+			}
+			
+		}
+		
 				
 		return 1;
 	}

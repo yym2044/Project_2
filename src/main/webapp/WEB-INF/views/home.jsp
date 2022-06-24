@@ -49,7 +49,7 @@
 						<a href="/infra/product/productView?trpdSeq=3"><img src="${path}/resources/images/user/mainPage/ad1.jpg" class="d-block w-120" alt="..."></a>
 					</div>
 					<div class="carousel-item" data-bs-interval="5000">
-						<a href="/infra/product/productView?trpdSeq=5"><img src="${path}/resources/images/user/mainPage/ad2.jpg" class="d-block w-120" alt="..."></a>
+						<a href="/infra/product/productView?trpdSeq=6"><img src="${path}/resources/images/user/mainPage/ad2.jpg" class="d-block w-120" alt="..."></a>
 					</div>
 					<div class="carousel-item" data-bs-interval="5000">
 						<img src="${path}/resources/images/user/mainPage/ad3.jpg" class="d-block w-120" alt="...">

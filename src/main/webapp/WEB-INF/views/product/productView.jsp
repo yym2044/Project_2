@@ -165,9 +165,11 @@
 					<div class="col-1 ps-5 pe-0">
 						<div class="row">
 							<c:forEach items="${listUploaded}" var="item" varStatus="status">
-								<div class="col-12 px-0 pb-1">
-									<img name="allImg" style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
-								</div>
+								<c:if test="${item.type eq 0 }">
+									<div class="col-12 px-0 pb-1">
+										<img name="allImg" style="width: 50px; height: 50px;" src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">
+									</div>
+								</c:if>
 							</c:forEach>
 						</div>
 					</div>
@@ -317,7 +319,8 @@
 							</div>
 						</div>
 						<div class="row m-1 py-2">
-							<!--    tradProduct_real에서 뽑아온 정보가 들어갈 예정 
+							<!--    tradProduct_real에서 뽑아온 정보가 들어갈 예정 -->
+							<!-- 
 							<ul class="productDetails">
 								<li>의류 핏: 오버핏</li>
 								<li>안감 종류: 기본</li>
@@ -327,6 +330,14 @@
 								<li>쿠팡상품번호: 6111245966 - 11519354261</li>
 							</ul>
 							 -->
+							<ul class="productDetails" style="list-style: none;">
+								<li> </li>
+								<li> </li>
+								<li> </li>
+								<li> </li>
+								<li> </li>
+								<li> </li>
+							</ul>
 						</div>
 					</div>
 					<div class="col-12">
@@ -335,6 +346,20 @@
 				</div>
 			</div>
 			<!-- width65 end -->
+			
+			
+			
+			<div class="width65 row">
+				<div class="col-12 text-center border border-top border-bottom p-0">
+					<c:forEach items="${listUploaded}" var="item" varStatus="status">
+						<c:if test="${item.type eq 1 }">
+							<img src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">				
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
+			
+			
 			
 			<!-- today's recommendation start -->
 			<div class="row width65 my-4">
