@@ -347,20 +347,6 @@
 			</div>
 			<!-- width65 end -->
 			
-			
-			
-			<div class="width65 row">
-				<div class="col-12 text-center border border-top border-bottom p-0">
-					<c:forEach items="${listUploaded}" var="item" varStatus="status">
-						<c:if test="${item.type eq 1 }">
-							<img src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">				
-						</c:if>
-					</c:forEach>
-				</div>
-			</div>
-			
-			
-			
 			<!-- today's recommendation start -->
 			<div class="row width65 my-4">
 				<div class="col">
@@ -418,6 +404,18 @@
 			</div>
 			<!-- today's recommendation end -->
 
+
+
+			<div class="width65 row">
+				<div class="col-12 text-center border border-top border-bottom p-0">
+					<c:forEach items="${listUploaded}" var="item" varStatus="status">
+						<c:if test="${item.type eq 1 }">
+							<img src="<c:out value="${item.path}"/><c:out value="${item.uuidName}"/>">				
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
+			
 			
 		</form>
 	</div>

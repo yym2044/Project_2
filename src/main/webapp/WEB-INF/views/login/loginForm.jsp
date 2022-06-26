@@ -145,7 +145,7 @@
 						</a>
 					</div>
 					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;" class="btn-3d white">
+						<img id="loginGoogle" src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;" class="btn-3d white">
 					</div>
 				</div>
 			</div>
@@ -360,7 +360,7 @@ function init() {
 		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
         // 인스턴스의 함수 호출 - element에 로그인 기능 추가
         // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
-		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+		gapi.auth2.getAuthInstance().attachClickHandler('loginGoogle', options, onSignIn, onSignInFailure);
 	})
 }
 function onSignIn(googleUser) {
