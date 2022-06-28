@@ -504,6 +504,10 @@ td {
 											<input name="paymentMethod" id="paymentMethod3" type="radio" class="form-check-input">
 											<label for="paymentMethod3" style="cursor: pointer;">무통장입금(가상계좌)</label>
 										</div>
+										<div class="form-check form-check-inline">
+											<input name="paymentMethod" id="paymentMethod4" type="radio" class="form-check-input" value="kakao">
+											<label for="paymentMethod4" style="cursor: pointer;">카카오페이</label>
+										</div>
 									</td>
 								</tr>
 							</table>
@@ -528,6 +532,16 @@ td {
 
 	<%@include file="../include/footer.jsp"%>
 	<%@include file="../include/jsLinks.jsp"%>
+	
+	<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+	<script type="text/javascript">
+	var IMP = window.IMP;
+	
+	IMP.init('imp77780712');
+	
+	</script>
 
 	<script type="text/javascript">
 		const arrivalDate = document.querySelector("#arrivalDate");
@@ -547,7 +561,32 @@ td {
 //		$("#checkboxTrprArray").val(JSON.parse($("#checkboxTrprArray").val()));
 
 		goPurchase = function() {
+			
+			
+			if($("#paymentMethod4").is(":checked")){
+				
+				IMP.request_pay({ // param
+					pg: 'kakaopay',
+					pay_method : 'card',
+					merchant_uid : 'iamport_test_id' + new Date().getTime(), // 주문번호
+					name : '쿠팡 상품주문',
+					amount : "<c:out value="${dto.totalMoney}"/>"
+				}, function(rsp) {
+					if(rsp.success) {
+						console.log("빌링키 발급 성공", rsp);
+					} else {
+						var msg = "결제에 실패하였습니다.\n";
+						msg += rsp.error_msg;
+						alert(msg);
+						return false;
+					}
+				})
+				
+			}
+			
 			$("#formCheck1").attr("action", "/infra/product/productOrder").submit();
+			
+			
 		}
 	</script>
 
@@ -1050,6 +1089,6 @@ td {
 			$("#ifsaAddress2Edit").val('');
 		});
 	</script>
-
+	
 </body>
 </html>

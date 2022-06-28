@@ -17,7 +17,6 @@ public class Product {
 	private String ifmaAddress2;
 	private Integer ifmaDefaultNy;
 	
-	private String ifpmSeq;
 	
 	//배송지
 	private String ifsaSeq;
@@ -781,12 +780,6 @@ public class Product {
 	}
 	public void setTrprDefaultNy(Integer trprDefaultNy) {
 		this.trprDefaultNy = trprDefaultNy;
-	}
-	public String getIfpmSeq() {
-		return ifpmSeq;
-	}
-	public void setIfpmSeq(String ifpmSeq) {
-		this.ifpmSeq = ifpmSeq;
 	}
 	public String getTrorOrderId() {
 		return trorOrderId;

@@ -805,7 +805,6 @@
 		tradOrder (
 			ifmmSeq
 			, ifsaSeq
-			, ifpmSeq
 			, trorOrderId
 			, trorDeliveryFee
 			, trorRequest
@@ -815,7 +814,6 @@
 		) VALUES (
 			#{ifmmSeq}
 			, #{ifsaSeq}
-			, #{ifpmSeq}
 			, #{trorOrderId}
 			, #{trorDeliveryFee}
 			, #{trorRequest}

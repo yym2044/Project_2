@@ -384,7 +384,6 @@ public class ProductServiceImpl implements ProductService {
 	public int insertOrder(Product dto) throws Exception {
 		
 		dto.setRegDateTime(UtilDateTime.nowDate());
-		dto.setIfpmSeq("1");
 		Long randomNum = (long) Math.floor(Math.random() * 1000000000);
 		while(randomNum > 300000000 || randomNum < 100000000) {
 			randomNum = (long) Math.floor(Math.random() * 1000000000);
