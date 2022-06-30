@@ -493,20 +493,20 @@ td {
 									<th class="bg-light px-2">결제방법</th>
 									<td class="px-2">
 										<div class="form-check form-check-inline">
-											<input name="paymentMethod" id="paymentMethod1" type="radio" class="form-check-input">
-											<label for="paymentMethod1" style="cursor: pointer;">계좌이체</label>
+											<input name="paymentMethod" id="paymentMethod1" type="radio" class="form-check-input" value="kakao">
+											<label for="paymentMethod1" style="cursor: pointer;">카카오페이</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input name="paymentMethod" id="paymentMethod2" type="radio" class="form-check-input">
-											<label for="paymentMethod2" style="cursor: pointer;">신용/체크카드</label>
+											<input name="paymentMethod" id="paymentMethod2" type="radio" class="form-check-input" disabled>
+											<label for="paymentMethod2" style="cursor: pointer;">계좌이체</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input name="paymentMethod" id="paymentMethod3" type="radio" class="form-check-input">
-											<label for="paymentMethod3" style="cursor: pointer;">무통장입금(가상계좌)</label>
+											<input name="paymentMethod" id="paymentMethod3" type="radio" class="form-check-input" disabled>
+											<label for="paymentMethod3" style="cursor: pointer;">신용/체크카드</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input name="paymentMethod" id="paymentMethod4" type="radio" class="form-check-input" value="kakao">
-											<label for="paymentMethod4" style="cursor: pointer;">카카오페이</label>
+											<input name="paymentMethod" id="paymentMethod4" type="radio" class="form-check-input" disabled>
+											<label for="paymentMethod4" style="cursor: pointer;">무통장입금(가상계좌)</label>
 										</div>
 									</td>
 								</tr>
@@ -563,7 +563,7 @@ td {
 		goPurchase = function() {
 			
 			
-			if($("#paymentMethod4").is(":checked")){
+			if($("#paymentMethod1").is(":checked")){
 				
 				IMP.request_pay({ // param
 					pg: 'kakaopay',
@@ -574,6 +574,7 @@ td {
 				}, function(rsp) {
 					if(rsp.success) {
 						console.log("빌링키 발급 성공", rsp);
+						$("#formCheck1").attr("action", "/infra/product/productOrder").submit();
 					} else {
 						var msg = "결제에 실패하였습니다.\n";
 						msg += rsp.error_msg;
@@ -582,9 +583,11 @@ td {
 					}
 				})
 				
+			} else {
+				alert("결제방법을 선택해주세요.");
 			}
 			
-			$("#formCheck1").attr("action", "/infra/product/productOrder").submit();
+			
 			
 			
 		}

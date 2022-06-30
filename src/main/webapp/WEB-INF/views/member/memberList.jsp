@@ -1287,10 +1287,11 @@ a {
 	</script>
 
 	<script type="text/javascript">
-	//체크박스 다수를 담을 배열
-	var checkboxExcelArray = [];
 	
 	submitExcel = function(){
+		
+		//체크박스 다수를 담을 배열
+		var checkboxExcelArray = [];
 		
 		if(!checkNull($("#excelFileName"), $("#excelFileName").val(), "파일명을 입력해주세요")) {
 			return false;

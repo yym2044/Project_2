@@ -203,7 +203,7 @@
 							</div>
 							<div class="col-12">
 								<input type="text" name="ifmaAddress1" id="sample6_address" class="form-control d-block bg-light" placeholder="주소" readonly style="width: 300px;">
-								<input type="text" name="ifmaAddress2" id="sample6_detailAddress" class="form-control d-inline mt-2" placeholder="상세주소" autocomplete="off" style="width: 300px;">
+								<input type="text" name="ifmaAddress2" id="sample6_detailAddress" class="form-control d-inline mt-2" placeholder="상세주소" autocomplete="off" style="width: 300px;" onclick="checkAddressNull();">
 								<input type="text" name="ifmaAddressReferences" id="sample6_extraAddress" class="form-control d-inline bg-light" style="width: 300px;" readonly placeholder="참고항목">
 								<div class="row mt-1">
 									<div class="col">
@@ -881,6 +881,12 @@
 			targetObj.val("1");
 		} else {
 			targetObj.val("0");
+		}
+	}
+	
+	checkAddressNull = function(){
+		if($("#sample6_postcode").val() == "" || $("#sample6_postcode").val() == null) {
+			$("#btnAddress").trigger("click");
 		}
 	}
 	
