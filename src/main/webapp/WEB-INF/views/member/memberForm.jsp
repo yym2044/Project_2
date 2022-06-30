@@ -779,6 +779,8 @@
 			$("#sample6_address").val('');
 			$("#sample6_detailAddress").val('');
 			$("#sample6_extraAddress").val('');
+			$("#ifmaLat").val('');
+			$("#ifmaLng").val('');
 		});
 		
 		$(document).ready(function(){
