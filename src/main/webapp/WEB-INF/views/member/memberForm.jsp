@@ -357,7 +357,7 @@
 					</td>
 				</tr>
 				<tr style="height: 95px;">
-					<th style="width: 200px;" class="bg-light">ifmmDesc</th>
+					<th style="width: 200px;" class="bg-light">Description</th>
 					<td class="text-start">
 						<textarea id="ifmmDesc" name="ifmmDesc" class="form-control" style="font-size: small; height: 78px; resize: none;"></textarea>
 					</td>
@@ -588,8 +588,12 @@
 							geocoder.addressSearch(addr, function(result, status){
 								
 								if (status == daum.maps.services.Status.OK) {
-									document.getElementById("ifmaLat").value = result[0].y;
-									document.getElementById("ifmaLng").value = result[0].x;
+									
+									const lat = String(Number(result[0].y).toFixed(2));
+									const lng = String(Number(result[0].x).toFixed(2));
+									
+									document.getElementById("ifmaLat").value = lat;
+									document.getElementById("ifmaLng").value = lng;
 								}
 								
 							});

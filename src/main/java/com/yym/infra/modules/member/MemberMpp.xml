@@ -811,7 +811,7 @@
 	<update id="rearrangementNote">
 	SET @ifntOrder:=0;
 	UPDATE 
-		infrMembernote 
+		infrMemberNote 
 	SET 
 		ifntOrder = @ifntOrder:=@ifntOrder+1 
 	WHERE 

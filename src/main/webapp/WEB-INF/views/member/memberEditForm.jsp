@@ -333,7 +333,7 @@ table th {
 					</td>
 				</tr>
 				<tr style="height: 95px;">
-					<th style="width: 200px;" class="bg-light">ifmmDesc</th>
+					<th style="width: 200px;" class="bg-light">Description</th>
 					<td class="text-start">
 						<textarea id="ifmmDesc" name="ifmmDesc" class="form-control" style="font-size: small; height: 78px; resize: none;"><c:out value="${rt.ifmmDesc}" /></textarea>
 					</td>
