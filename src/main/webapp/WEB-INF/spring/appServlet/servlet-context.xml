@@ -34,6 +34,7 @@
 			<exclude-mapping path="/member/insertMemberUser" />
 			<exclude-mapping path="/member/loginProc" />
 			<exclude-mapping path="/member/loginProcSns" />
+			<exclude-mapping path="/member/loginNaver" />
 			<exclude-mapping path="/login/loginFindId" />
 			<exclude-mapping path="/login/loginFindPwd" />
 			<exclude-mapping path="/home" />
@@ -56,6 +57,9 @@
 		<!-- <beans:property name="maxInMemorySize" value="1048576"/> --> <!-- 1MB -->
 	</beans:bean>  
 	<!-- fileUpload e 2022.04.10 -->
+	
+	<beans:bean id="naverLoginBO" class="com.yym.infra.modules.naver.NaverLoginBo" />
+   <!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	
 	
 	

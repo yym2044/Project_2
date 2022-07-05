@@ -137,7 +137,8 @@
 						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="border-radius: 50%;" class="btn-3d blue">
 					</div>
 					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="border-radius: 50%;" class="btn-3d green">
+						<%-- <img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="border-radius: 50%;" class="btn-3d green"> --%>
+						<div id="naver_id_login" class="btn-3d green"></div>
 					</div>
 					<div class="col-md-1 text-center">
 						<a href="javascript:kakaoLogin();">
@@ -346,9 +347,23 @@
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+
+<!-- 네이버 start -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("Yn6Xl_G7XXgjvBNNusVk", "http://13.125.216.202/infra/member/loginNaver");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("green", 1, 50);
+	naver_id_login.setDomain("http://13.125.216.202/");
+	naver_id_login.setState(state);
+//	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+	
+</script>
+<!-- 네이버 end -->
 
 <!-- 구글 start -->
-<script>
+<!-- <script>
 
 //처음 실행하는 함수
 function init() {
@@ -384,7 +399,7 @@ function onSignIn(googleUser) {
 function onSignInFailure(t){		
 	console.log(t);
 }
-</script>
+</script> -->
 
 <!-- 구글 end -->
 

@@ -1,5 +1,6 @@
 package com.yym.infra.modules.member;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,18 +19,46 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.yym.infra.common.constants.Constants;
 import com.yym.infra.common.util.UtilDateTime;
 import com.yym.infra.modules.code.CodeServiceImpl;
+import com.yym.infra.modules.naver.NaverLoginBo;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberServiceImpl service;
+	
+	private NaverLoginBo naverLoginBo;
+	
+	@Autowired
+	private void setNaverLoginBo(NaverLoginBo naverLoginBo){
+		this.naverLoginBo = naverLoginBo;
+	}
+	
+	@RequestMapping("/member/loginNaver")
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+		OAuth2AccessToken oauthToken = naverLoginBo.getAccessToken(session, code, state);
+		
+		//로그인 사용자 정보를 읽어온다.
+		String apiResult = naverLoginBo.getUserProfile(oauthToken);
+//      System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+        session.setAttribute("result", apiResult);
+        System.out.println("result"+apiResult);
+        
+        session.setAttribute("sessSeq", 0); //생략 가능
+		
+		return "redirect:/index/indexView"; //사용자설정
+	}
+
+
 	
 	@RequestMapping(value = "/member/memberListOracle")
 	public String memberListOracle(Model model) throws Exception {
@@ -47,12 +76,21 @@ public class MemberController {
 		return "redirect:/home";
 	}
 	
+	@RequestMapping("/login/loginForm")
+    public ModelAndView login(HttpSession session) {
+        /* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+        String naverAuthUrl = naverLoginBo.getAuthorizationUrl(session);
+        
+        /* 생성한 인증 URL을 View로 전달 */
+        return new ModelAndView("/login/loginForm", "url", naverAuthUrl);
+    }
 
-	@RequestMapping(value = "/login/loginForm")
-	public String loginForm() {
-		
-		return "/login/loginForm";
-	}
+
+//	@RequestMapping(value = "/login/loginForm")
+//	public String loginForm() {
+//		
+//		return "/login/loginForm";
+//	}
 	
 	@RequestMapping(value = "/login/loginFindId")
 	public String loginFindId() {
