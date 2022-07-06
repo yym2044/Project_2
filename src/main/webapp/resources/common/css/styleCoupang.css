@@ -94,3 +94,7 @@ footer div div a {
 .productDetails {
 	font-size: x-small;
 }
+
+.subMenu {
+	display: none;
+}
