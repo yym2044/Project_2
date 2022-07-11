@@ -538,11 +538,11 @@ a {
 										<th>상태</th>
 										<th>
 											<c:if test="${vo.orderby ne 'top' or vo.sort ne 'sortRedt'}">
-												<a href="javascript:sortAsc('sortRedt');">가입일</a>
+												<a href="javascript:sortAsc('sortRedt');">등록일</a>
 												<%-- <a href="/infra/member/memberList?rowNumToShow=${vo.rowNumToShow}&sort=sortRedt&orderby=top">가입일</a> --%>
 											</c:if>
 											<c:if test="${vo.orderby eq 'top' and vo.sort eq 'sortRedt'}">
-												<a href="javascript:sortDesc('sortRedt');">가입일</a>
+												<a href="javascript:sortDesc('sortRedt');">등록일</a>
 												<%-- <a href="/infra/member/memberList?rowNumToShow=${vo.rowNumToShow}&sort=sortRedt&orderby=bottom">가입일</a> --%>
 											</c:if>
 										</th>
