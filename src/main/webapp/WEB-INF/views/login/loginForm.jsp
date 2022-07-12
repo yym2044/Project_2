@@ -40,75 +40,71 @@
 
 <body>
 
+	<div class="container-fluid">
 
-</body>
+		<div class="text-dark bi bi-arrow-left d-md-none fs-1 p-3"></div>
 
+		<div class="width80">
+			<div class="d-none d-md-block">
 
-<div class="container-fluid">
-
-	<div class="text-dark bi bi-arrow-left d-md-none fs-1 p-3"></div>
-
-	<div class="width80">
-		<div class="d-none d-md-block">
-
-			<div class="row d-flex align-items-end border-bottom border-4 py-3">
-				<div class="col-12 col-md-6">
-					<h1 class="fw-bold">회원 로그인</h1>
-				</div>
-				<div class="col col-md d-flex justify-content-end">
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">Home</li>
-							<li class="breadcrumb-item">로그인</li>
-							<li class="breadcrumb-item active fw-bold" aria-current="page">로그인</li>
-						</ol>
-					</nav>
+				<div class="row d-flex align-items-end border-bottom border-4 py-3">
+					<div class="col-12 col-md-6">
+						<h1 class="fw-bold">회원 로그인</h1>
+					</div>
+					<div class="col col-md d-flex justify-content-end">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">Home</li>
+								<li class="breadcrumb-item">로그인</li>
+								<li class="breadcrumb-item active fw-bold" aria-current="page">로그인</li>
+							</ol>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- 웹 -->
-		<div class="row my-5 justify-content-center d-none d-md-block border py-5 bg-light">
+			<!-- 웹 -->
+			<div class="row my-5 justify-content-center d-none d-md-block border py-5 bg-light">
 
-			<div class="col-12 text-center">
+				<div class="col-12 text-center">
 
-				<img src="${path}/resources/images/xdmin/coupang2.png" alt="coupang_logo" class="p-0" style="width: 195px; height: 46px;">
+					<img src="${path}/resources/images/xdmin/coupang2.png" alt="coupang_logo" class="p-0" style="width: 195px; height: 46px;">
 
-				<!-- 
+					<!-- 
 				<h1 style="color: lightslategray">
 					MEMBER <span class="fw-bold">LOGIN</span>
 				</h1>
 				 -->
-			</div>
-
-
-
-			<div class="col-12 d-flex justify-content-center">
-
-				<div class="row justify-content-center" style="width: 600px;">
-
-					<div class="col-8 mt-4">
-
-						<div class="mb-3 form-floating">
-							<input type="text" value="admin" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username" aria-describedby="userIcon">
-							<label for="ifmmId">아이디</label>
-						</div>
-
-						<div class="form-floating">
-							<input type="password" value="asdqwe123Q!" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
-							<label for="ifmmPwd">비밀번호</label>
-						</div>
-
-					</div>
-					<div class="col-4 mt-4">
-						<button id="btnLogin" name="btnLogin" class="btn btn-outline-dark container3" style="width: 100%; height: 100%; border-radius: 10px;">
-							<span class="fw-bold">로그인</span>
-						</button>
-					</div>
-
 				</div>
-			</div>
-			<!-- 
+
+
+
+				<div class="col-12 d-flex justify-content-center">
+
+					<div class="row justify-content-center" style="width: 600px;">
+
+						<div class="col-8 mt-4">
+
+							<div class="mb-3 form-floating">
+								<input type="text" value="admin" class="form-control" onkeyup="enterkey();" id="ifmmId" name="ifmmId" placeholder="아이디" autocomplete="on" aria-label="Username" aria-describedby="userIcon">
+								<label for="ifmmId">아이디</label>
+							</div>
+
+							<div class="form-floating">
+								<input type="password" value="asdqwe123Q!" class="form-control" onkeyup="enterkey();" id="ifmmPwd" name="ifmmPwd" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
+								<label for="ifmmPwd">비밀번호</label>
+							</div>
+
+						</div>
+						<div class="col-4 mt-4">
+							<button id="btnLogin" name="btnLogin" class="btn btn-outline-dark container3" style="width: 100%; height: 100%; border-radius: 10px;">
+								<span class="fw-bold">로그인</span>
+							</button>
+						</div>
+
+					</div>
+				</div>
+				<!-- 
 			<div class="col-12 d-flex justify-content-center mb-4">
 				<div class="row d-flex justify-content-start mt-3" style="width: 600px;">
 					<div class="col-3 col-md-3 form-check ms-3">
@@ -127,121 +123,120 @@
 
 
 
-			<div class="col-md-12 text-center my-4 fw-bold">
-				<button class="btn btn-sm p-2 container3" data-bs-toggle="collapse" data-bs-target="#socialLogin">다른 계정으로 로그인</button>
-			</div>
+				<div class="col-md-12 text-center my-4 fw-bold">
+					<button class="btn btn-sm p-2 container3" data-bs-toggle="collapse" data-bs-target="#socialLogin">다른 계정으로 로그인</button>
+				</div>
 
-			<div class="col-md-12 collapse show" id="socialLogin">
-				<div class="row justify-content-center">
-					<div class="col-md-1 text-center">
-						<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="border-radius: 50%;" class="btn-3d blue">
-					</div>
-					<div class="col-md-1 text-center">
-						<%-- <img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png" style="border-radius: 50%;" class="btn-3d green"> --%>
-						<div id="naver_id_login" class="btn-3d green"></div>
-					</div>
-					<div class="col-md-1 text-center">
-						<a href="javascript:kakaoLogin();">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;" class="btn-3d yellow">
-						</a>
-					</div>
-					<div class="col-md-1 text-center">
-						<img id="loginGoogle" src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;" class="btn-3d white">
+				<div class="col-md-12 collapse show" id="socialLogin">
+					<div class="row justify-content-center">
+						<div class="col-md-1 text-center">
+							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png" style="border-radius: 50%;" class="btn-3d blue">
+						</div>
+						<div class="col-md-1 text-center">
+							<div id="naver_id_login" class="btn-3d green"></div>
+						</div>
+						<div class="col-md-1 text-center">
+							<a href="javascript:kakaoLogin();">
+								<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png" style="border-radius: 50%;" class="btn-3d yellow">
+							</a>
+						</div>
+						<div class="col-md-1 text-center">
+							<img id="loginGoogle" src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png" style="border-radius: 50%;" class="btn-3d white">
+						</div>
 					</div>
 				</div>
+
+
+
+
+
+
+
 			</div>
 
+			<!-- 모바일 -->
 
+			<div class="row my-3 justify-content-center d-md-none">
+				<div class="col-12 text-center">
 
-
-
-
-
-		</div>
-
-		<!-- 모바일 -->
-
-		<div class="row my-3 justify-content-center d-md-none">
-			<div class="col-12 text-center">
-
-				<img src="${path}/resources/images/xdmin/coupang2.png" alt="coupang_logo" class="p-0" style="width: 195px; height: 46px;">
-				<!-- 
+					<img src="${path}/resources/images/xdmin/coupang2.png" alt="coupang_logo" class="p-0" style="width: 195px; height: 46px;">
+					<!-- 
 				<h1 style="color: lightslategray">
 					MEMBER <span class="fw-bold">LOGIN</span>
 				</h1>
 				 -->
-			</div>
+				</div>
 
 
 
-			<div class="col-12 d-flex justify-content-center">
+				<div class="col-12 d-flex justify-content-center">
 
-				<div class="row justify-content-center" style="width: 600px;">
+					<div class="row justify-content-center" style="width: 600px;">
 
-					<div class="col-12 mt-4">
+						<div class="col-12 mt-4">
 
-						<div class="input-group input-group-lg mb-3">
-							<!-- <span class="input-group-text bg-light" id="userIcon"> <label for="Username"> <i
+							<div class="input-group input-group-lg mb-3">
+								<!-- <span class="input-group-text bg-light" id="userIcon"> <label for="Username"> <i
 									class="bi bi-person-circle text-secondary"></i>
 							</label>
 							</span> -->
-							<input type="text" class="form-control" id="Username" placeholder="아이디" aria-label="Username" aria-describedby="userIcon">
-						</div>
+								<input type="text" class="form-control" id="Username" placeholder="아이디" aria-label="Username" aria-describedby="userIcon">
+							</div>
 
-						<div class="input-group input-group-lg">
-							<!-- <span class="input-group-text bg-light" id="passwordIcon"> <label for="Password"> <i
+							<div class="input-group input-group-lg">
+								<!-- <span class="input-group-text bg-light" id="passwordIcon"> <label for="Password"> <i
 									class="bi bi-file-lock2-fill text-secondary"></i>
 							</label>
 							</span> -->
-							<input type="password" class="form-control" id="Password" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
+								<input type="password" class="form-control" id="Password" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordIcon">
+							</div>
+
 						</div>
 
 					</div>
-
 				</div>
-			</div>
 
-			<div class="col-12 d-flex justify-content-center" style="min-width: 350px;">
-				<div class="row d-flex justify-content-start mt-3" style="width: 600px;">
-					<div class="col-5 form-check ms-4">
-						<input type="checkbox" class="form-check-input" id="autoLogin" name="checkbox1" onclick="selectAll1(this)">
-						<label for="autoLogin" class="form-check-label"> <span class="fw-light"> 자동 로그인 </span>
-						</label>
-					</div>
-					<div class="col-5 form-check ms-3">
-						<input type="checkbox" class="form-check-input" id="saveId" name="checkbox1">
-						<label for="saveId" class="form-check-label"><span class="fw-light">아이디 저장</span></label>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-9 my-5" style="min-width: 350px;">
-				<button class="btn container3 btn-outline-dark" style="width: 100%; height: 100%;">
-					<span class="fw-bold">로그인</span>
-				</button>
-			</div>
-
-			<div class="col-9 my-3 text-center" style="min-width: 350px;">
-				<div class="row d-flex justify-content-center align-items-center">
-					<div class="col p-2 border-end border-2">
-						<a class="nodeco text-gray">아이디찾기</a>
-					</div>
-					<div class="col p-2">
-						<a class="nodeco text-gray">비밀번호찾기</a>
-					</div>
-					<div class="col p-2 border-start border-2">
-						<a class="nodeco text-gray">회원가입</a>
+				<div class="col-12 d-flex justify-content-center" style="min-width: 350px;">
+					<div class="row d-flex justify-content-start mt-3" style="width: 600px;">
+						<div class="col-5 form-check ms-4">
+							<input type="checkbox" class="form-check-input" id="autoLogin" name="checkbox1" onclick="selectAll1(this)">
+							<label for="autoLogin" class="form-check-label"> <span class="fw-light"> 자동 로그인 </span>
+							</label>
+						</div>
+						<div class="col-5 form-check ms-3">
+							<input type="checkbox" class="form-check-input" id="saveId" name="checkbox1">
+							<label for="saveId" class="form-check-label"><span class="fw-light">아이디 저장</span></label>
+						</div>
 					</div>
 				</div>
+
+				<div class="col-9 my-5" style="min-width: 350px;">
+					<button class="btn container3 btn-outline-dark" style="width: 100%; height: 100%;">
+						<span class="fw-bold">로그인</span>
+					</button>
+				</div>
+
+				<div class="col-9 my-3 text-center" style="min-width: 350px;">
+					<div class="row d-flex justify-content-center align-items-center">
+						<div class="col p-2 border-end border-2">
+							<a class="nodeco text-gray">아이디찾기</a>
+						</div>
+						<div class="col p-2">
+							<a class="nodeco text-gray">비밀번호찾기</a>
+						</div>
+						<div class="col p-2 border-start border-2">
+							<a class="nodeco text-gray">회원가입</a>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
-		</div>
 
+			<!-- social login -->
 
-		<!-- social login -->
-
-		<!-- 웹 -->
-		<!-- 
+			<!-- 웹 -->
+			<!-- 
 		<div class="row d-flex justify-content-center g-3 d-none d-md-block mb-4">
 			<div class="col-md-12 text-center">다른 계정으로 로그인</div>
 
@@ -263,45 +258,45 @@
 			</div>
 		</div>
 		 -->
-		<!-- 모바일 -->
-		<div class="d-flex justify-content-center d-md-none">
-			<div class="row mb-5" style="min-width: 350px;">
-				<button type="button" class="btn btn-primary mb-1 text-white">
-					<div class="row">
-						<div class="col-1 col-md-1 text-start">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png">
+			<!-- 모바일 -->
+			<div class="d-flex justify-content-center d-md-none">
+				<div class="row mb-5" style="min-width: 350px;">
+					<button type="button" class="btn btn-primary mb-1 text-white">
+						<div class="row">
+							<div class="col-1 col-md-1 text-start">
+								<img src="${path}/resources/images/xdmin/sns_icon/icon_round_facebook_48.png">
+							</div>
+							<div class="col col-md fw-bold" style="margin: auto;">페이스북 계정으로 로그인</div>
 						</div>
-						<div class="col col-md fw-bold" style="margin: auto;">페이스북 계정으로 로그인</div>
-					</div>
-				</button>
-				<button type="button" class="btn btn-warning mb-1 text-white">
-					<div class="row">
-						<div class="col-1 col-md-1 text-start">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png">
+					</button>
+					<button type="button" class="btn btn-warning mb-1 text-white">
+						<div class="row">
+							<div class="col-1 col-md-1 text-start">
+								<img src="${path}/resources/images/xdmin/sns_icon/icon_round_kakaotalk_48.png">
+							</div>
+							<div class="col col-md fw-bold" style="margin: auto;">카카오 계정으로 로그인</div>
 						</div>
-						<div class="col col-md fw-bold" style="margin: auto;">카카오 계정으로 로그인</div>
-					</div>
-				</button>
-				<button type="button" class="btn btn-success mb-1 text-white">
-					<div class="row">
-						<div class="col-1 col-md-1 text-start">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png">
+					</button>
+					<button type="button" class="btn btn-success mb-1 text-white">
+						<div class="row">
+							<div class="col-1 col-md-1 text-start">
+								<img src="${path}/resources/images/xdmin/sns_icon/icon_round_naver_48.png">
+							</div>
+							<div class="col col-md fw-bold" style="margin: auto;">네이버 계정으로 로그인</div>
 						</div>
-						<div class="col col-md fw-bold" style="margin: auto;">네이버 계정으로 로그인</div>
-					</div>
-				</button>
-				<button type="button" class="btn btn-default mb-1 border border-2 box-white">
-					<div class="row">
-						<div class="col-1 col-md-1 text-start">
-							<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png">
+					</button>
+					<button type="button" class="btn btn-default mb-1 border border-2 box-white">
+						<div class="row">
+							<div class="col-1 col-md-1 text-start">
+								<img src="${path}/resources/images/xdmin/sns_icon/icon_round_google_48.png">
+							</div>
+							<div class="col col-md fw-bold" style="margin: auto;">구글 계정으로 로그인</div>
 						</div>
-						<div class="col col-md fw-bold" style="margin: auto;">구글 계정으로 로그인</div>
-					</div>
-				</button>
+					</button>
+				</div>
 			</div>
-		</div>
 
-		<!-- 
+			<!-- 
 		<div class="footer">
 			<div class="row d-flex align-items-end border-top border-4 pb-3 pt-4 d-none d-md-block">
 
@@ -336,21 +331,22 @@
 		</div>
 		 -->
 
+		</div>
+
+
+
 	</div>
 
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-</div>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-
-<!-- 네이버 start -->
-<script type="text/javascript">
+	<!-- 네이버 start -->
+	<script type="text/javascript">
 	var naver_id_login = new naver_id_login("Yn6Xl_G7XXgjvBNNusVk", "http://13.125.216.202/infra/member/loginNaver");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("green", 1, 50);
@@ -360,10 +356,10 @@
 	naver_id_login.init_naver_id_login();
 	
 </script>
-<!-- 네이버 end -->
+	<!-- 네이버 end -->
 
-<!-- 구글 start -->
-<!-- <script>
+	<!-- 구글 start -->
+	<script>
 
 //처음 실행하는 함수
 function init() {
@@ -399,12 +395,12 @@ function onSignIn(googleUser) {
 function onSignInFailure(t){		
 	console.log(t);
 }
-</script> -->
+</script>
 
-<!-- 구글 end -->
+	<!-- 구글 end -->
 
-<!-- 카카오 start -->
-<script type="text/javascript">
+	<!-- 카카오 start -->
+	<script type="text/javascript">
 
 	Kakao.init('5ed5d21a3ed5c47a1675f773a28a15f9');
 	console.log(Kakao.isInitialized());
@@ -475,9 +471,9 @@ function onSignInFailure(t){
 	});
 	 */  
 </script>
-<!-- 카카오 end -->
+	<!-- 카카오 end -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function loginAjax(){
 		$.ajax({
@@ -517,7 +513,7 @@ function onSignInFailure(t){
 
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	function selectAll1(selectAll1) {
 		const checkboxes 
 			= document.getElementsByName("checkbox1");
@@ -526,7 +522,8 @@ function onSignInFailure(t){
 			checkbox.checked = selectAll1.checked;
 		})
 	}
-</script>
+	</script>
+</body>
 
 </html>
 
