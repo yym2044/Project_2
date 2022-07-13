@@ -93,14 +93,9 @@ public class MemberServiceImpl implements MemberService {
 		dto.setRegDateTime(UtilDateTime.nowDate());
 		dto.setModDateTime(UtilDateTime.nowDate());
 		
-		
-		
-		
-		
 		dao.insertMember(dto);
 		dao.insertMemberAddress(dto);
 		dao.insertMemberEmail(dto);
-		
 		
 		// infrMemberPhone
 		for(int i=0; i<dto.getIfmpNumberArray().length; i++) {
@@ -129,41 +124,41 @@ public class MemberServiceImpl implements MemberService {
 		
 		//이미지
 		int j = 0;
-		for(MultipartFile multipartFile : dto.getFile0() ) {
-			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
-			
-			UtilUpload.uploadMember(multipartFile, pathModule, dto);
-			
-			dto.setTableName("infrMemberUploaded");
-			dto.setType(0);
-			dto.setDefaultNy(0);
-			dto.setSort(j);
-			dto.setPseq(dto.getIfmmSeq());
-			
-			
-			
-			dao.insertMemberUploaded(dto);
-			j++;
+		if(!dto.getFile0()[0].isEmpty()) {
+			for(MultipartFile multipartFile : dto.getFile0() ) {
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+				
+				UtilUpload.uploadMember(multipartFile, pathModule, dto);
+				
+				dto.setTableName("infrMemberUploaded");
+				dto.setType(0);
+				dto.setDefaultNy(0);
+				dto.setSort(j);
+				dto.setPseq(dto.getIfmmSeq());
+				
+				dao.insertMemberUploaded(dto);
+				j++;
+			}
 		}
 		
 		//파일
 		j = 0;
-		for(MultipartFile multipartFile : dto.getFile1() ) {
-			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
-			
-			UtilUpload.uploadMember(multipartFile, pathModule, dto);
-			
-			dto.setTableName("infrMemberUploaded");
-			dto.setType(1);
-			dto.setDefaultNy(0);
-			dto.setSort(j);
-			dto.setPseq(dto.getIfmmSeq());
-			
-			dao.insertMemberUploaded(dto);
-			j++;
+		if(!dto.getFile1()[0].isEmpty()) {
+			for(MultipartFile multipartFile : dto.getFile1() ) {
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+				
+				UtilUpload.uploadMember(multipartFile, pathModule, dto);
+				
+				dto.setTableName("infrMemberUploaded");
+				dto.setType(1);
+				dto.setDefaultNy(0);
+				dto.setSort(j);
+				dto.setPseq(dto.getIfmmSeq());
+				
+				dao.insertMemberUploaded(dto);
+				j++;
+			}
 		}
-		
-		
 		
 		//추가 end
 		

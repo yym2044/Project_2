@@ -22,39 +22,41 @@
 <script type="text/javascript">
 var naver_id_login = new naver_id_login("Yn6Xl_G7XXgjvBNNusVk", "http://13.125.216.202/infra/member/loginNaver");
 
-//ajax
-$.ajax({
-	  async: true
-	  ,cache: false
-	  ,type:"post"
-	  ,url: "/infra/member/loginProcSns"
-	  /* ,data : { "ifmmId" : res.id } */
-	  ,data : { ifmeEmailFull : naver_id_login.getProfileData('email') }
-	  ,success: function(response){
-		  
-		  console.log("response :", response);
-		  
-		  if (response.rt == "success") {
-			  location.href = "/infra/index/indexView";
-		  } else {
-			  alert("로그인 실패. 등록된 계정이 없습니다.");
-			  location.href = "/infra/login/loginForm";
-		  }
-	  }
-	  ,error : function(jqXHR, textStatus, errorThrown){
-			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-		}
- });
-
-/* alert(naver_id_login.oauthParams.access_token);
+//alert(naver_id_login.oauthParams.access_token);
 naver_id_login.get_naver_userprofile("naverSignInCallback()");
 
 function naverSignInCallback() {
+	
+	//ajax
+	$.ajax({
+		  async: true
+		  ,cache: false
+		  ,type:"post"
+		  ,url: "/infra/member/loginProcSns"
+		  ,data : { ifmeEmailFull : naver_id_login.getProfileData('email') }
+		  ,success: function(response){
+			  
+			  console.log("response :", response);
+			  
+			  if (response.rt == "success") {
+				  location.href = "/infra/index/indexView";
+			  } else {
+				  alert("로그인 실패. 등록된 계정이 없습니다.");
+				  location.href = "/infra/login/loginForm";
+			  }
+		  }
+		  ,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+	 });
+	/* 
 	alert(naver_id_login.getProfileData('email'));
 	alert(naver_id_login.getProfileData('nickname'));
 	alert(naver_id_login.getProfileData('age'));
+	 */
 }
- */
+
+
 </script>
 
 </body>

@@ -337,7 +337,44 @@
 
 	</div>
 
+<!-- 	<button id="btn_0" >Button 1</button>
+<button id="btn_1" >Button 2</button>
+<button id="btn_2" >Button 3</button>
 
+<script>
+    var message = [
+        'Button 1 was clicked.',
+        'Button 2 was clicked.',
+        'Button 3 was clicked.'
+    ]
+
+    for (var i = 0; i < message.length; i++) {
+        var tmp = i;
+        var msg = message[tmp];
+        document.getElementById("btn_" + tmp).onclick = function() {
+            alert(msg);
+        };
+    }
+</script>
+ -->
+<!-- 
+<script>
+var a = {k1: {}, k2: {}};
+var b = { k1: {}};
+b.k2 = a;
+// b = { k1 : {} , k2 : {k1 : {}, k2 : {}}}
+a.k3 = b;
+// a = { k1 : {} , k2 : {} , k3 : { k1 : {} , k2 : {k1 : {}, k2 : {}}}}
+b.k2.l1 = 1;
+//b = { k1 : {} , k2 : {k1 : {}, k2 : {}, l1 : 1}}
+a.k3.k2.l2 = 1;
+// a = { k1 : {} , k2 : {} , k3 : { k1 : {} , k2 : {k1 : {}, k2 : {}, l2 : 1}}}
+var x;
+for (x in a) {
+    console.log(x);
+}
+</script>
+ -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
