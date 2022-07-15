@@ -8,7 +8,7 @@ public class Member {
 
 	//검색어
 	private Integer ifscSeq;
-	private String ifscName;
+	private String ifscName; 
 	//멤버
 	private String ifmmSeq;
 	private Integer ifmmAdminNy;
