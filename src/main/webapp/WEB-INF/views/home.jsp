@@ -24,7 +24,7 @@
 .randomProduct{
 	width: 100%;
 	height: 190px;
-}
+} 
 </style>
 
 </head>
